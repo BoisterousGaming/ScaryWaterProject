@@ -1721,40 +1721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522dfb07b6a488b4ab7d7bdd7b010683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  render: {fileID: 7063062}
-  horizontalSpeed: 2
-  verticalSpeed: 0
-  scaleSpeed: 3
-  lookAt: {fileID: 616471240}
-  animationNames:
-  - Idle
-  - Idle look
-  - Attack 1
-  - Attack 2
-  - Attack 3
-  - Attack 4
-  - Angry
-  - Hit 1
-  - Hit2
-  - Stun
-  - Recover
-  - Death 1
-  - Death 2
-  - Walk
-  - Short jump
-  - Long jump
-  materials:
-  - {fileID: 2100000, guid: 9c9fded33ea0321448a7533932bb14b1, type: 2}
-  - {fileID: 2100000, guid: cdd465c7de9f8cd4dae60572b1d18a0e, type: 2}
-  - {fileID: 2100000, guid: 377a609f2d914e448a6e67ce5fe1abcf, type: 2}
-  - {fileID: 2100000, guid: 41b7a0f8b2ccbb4489c3266cc589622c, type: 2}
-  - {fileID: 2100000, guid: a23d7452b85be944f9569980a86b1f6b, type: 2}
-  - {fileID: 2100000, guid: cf6d003c36b6a9447ae4658984396513, type: 2}
-  - {fileID: 2100000, guid: c89f48675498756468b20ad775d1d2db, type: 2}
-  - {fileID: 2100000, guid: 4ae2bf301e59b0c4c84ce9aedcded1db, type: 2}
-  initialScale: {x: 0, y: 0, z: 0}
-  s: -0.25
 --- !u!1 &2111699678
 GameObject:
   m_ObjectHideFlags: 0
