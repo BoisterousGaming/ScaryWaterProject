@@ -1,0 +1,71 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+// Custom Editor using SerializedProperties.
+// Automatic handling of multi-object editing, undo, and prefab overrides.
+[CustomEditor(typeof(MiniGameHandler))]
+[CanEditMultipleObjects]
+public class MiniGameEditor : Editor 
+{
+    SerializedProperty eMiniGameTypeState;
+    SerializedProperty iCoinsNeedsToCollect;
+    SerializedProperty iButterfliesNeedsToCollect;
+    SerializedProperty iEnemiesNeedsToStun;
+    SerializedProperty iFriendsHelpIsRequired;
+    SerializedProperty iLeftRightMovementNeedsToPerform;
+    SerializedProperty iHighAndLongJumpNeedsToPerform;
+    SerializedProperty iFoodsNeedsToEat;
+    SerializedProperty iPowerUpsNeedsToCollect;
+
+	void OnEnable()
+	{
+		// Setup the SerializedProperties.
+        eMiniGameTypeState = serializedObject.FindProperty("_eMiniGameTypes");
+        iCoinsNeedsToCollect = serializedObject.FindProperty("_iCoinsNeedsToCollect");
+        iButterfliesNeedsToCollect = serializedObject.FindProperty("_iButterfliesNeedsToCollect");
+        iEnemiesNeedsToStun = serializedObject.FindProperty("_iEnemiesNeedsToStun");
+        iFriendsHelpIsRequired = serializedObject.FindProperty("_iFriendsHelpIsRequired");
+        iLeftRightMovementNeedsToPerform = serializedObject.FindProperty("_iLeftRightMovementNeedsToPerform");
+        iHighAndLongJumpNeedsToPerform = serializedObject.FindProperty("_iHighAndLongJumpNeedsToPerform");
+        iFoodsNeedsToEat = serializedObject.FindProperty("_iFoodsNeedsToEat");
+        iPowerUpsNeedsToCollect = serializedObject.FindProperty("_iPowerUpsNeedsToCollect");
+	}
+
+    public override void OnInspectorGUI()
+    {
+		// Update the serializedProperty - always do this in the beginning of OnInspectorGUI.
+		serializedObject.Update();
+        EditorGUILayout.PropertyField(eMiniGameTypeState);
+        MiniGameHandler.eMiniGameTypes type = (MiniGameHandler.eMiniGameTypes)eMiniGameTypeState.enumValueIndex;
+
+        switch (type)
+        {
+            case MiniGameHandler.eMiniGameTypes.CollectCoins:
+                EditorGUILayout.IntSlider(iCoinsNeedsToCollect, 0, 1000, new GUIContent("Coin Amount"));
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.CollectButterflies:
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.StunEnemy:
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.AcceptFriendHelp:
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.LeftRightMovement:
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.HighAndLongJump:
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.EatFood:
+                break;
+
+            case MiniGameHandler.eMiniGameTypes.CollectPowerUp:
+                break;
+        }
+    }
+}

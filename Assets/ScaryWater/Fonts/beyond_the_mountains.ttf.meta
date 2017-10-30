@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c225d42e98565194a807b0698a37b0f1
+timeCreated: 1500536069
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Beyond The Mountains
+  fontNames:
+  - Beyond The Mountains
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

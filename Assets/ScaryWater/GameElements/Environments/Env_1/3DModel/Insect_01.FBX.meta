@@ -1,0 +1,149 @@
+fileFormatVersion: 2
+guid: 4b140bb4822dffc46ac96b0110f732a9
+timeCreated: 1500480989
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Bug_01
+    100002: Bug_Wing_Left_01
+    100004: Bug_Wing_Right_01
+    100006: Butterfly_01
+    100008: Butterfly_Wing_Left_01
+    100010: Butterfly_Wing_Right_01
+    100012: Fireflies_01
+    100014: Fireflies_Wing_Left_01
+    100016: Fireflies_Wing_Right_01
+    100018: Insect_01
+    100020: //RootNode
+    100022: Insect_Wing_Left_01
+    100024: Insect_Wing_Right_01
+    100026: Worm_01
+    400000: Bug_01
+    400002: Bug_Wing_Left_01
+    400004: Bug_Wing_Right_01
+    400006: Butterfly_01
+    400008: Butterfly_Wing_Left_01
+    400010: Butterfly_Wing_Right_01
+    400012: Fireflies_01
+    400014: Fireflies_Wing_Left_01
+    400016: Fireflies_Wing_Right_01
+    400018: //RootNode
+    400020: Insect_01
+    400022: Insect_Wing_Left_01
+    400024: Insect_Wing_Right_01
+    400026: Worm_01
+    2300000: Bug_01
+    2300002: Bug_Wing_Left_01
+    2300004: Bug_Wing_Right_01
+    2300006: Butterfly_01
+    2300008: Butterfly_Wing_Left_01
+    2300010: Butterfly_Wing_Right_01
+    2300012: Fireflies_01
+    2300014: Fireflies_Wing_Left_01
+    2300016: Fireflies_Wing_Right_01
+    2300018: Insect_01
+    2300020: Insect_Wing_Left_01
+    2300022: Insect_Wing_Right_01
+    2300024: Worm_01
+    3300000: Bug_01
+    3300002: Bug_Wing_Left_01
+    3300004: Bug_Wing_Right_01
+    3300006: Butterfly_01
+    3300008: Butterfly_Wing_Left_01
+    3300010: Butterfly_Wing_Right_01
+    3300012: Fireflies_01
+    3300014: Fireflies_Wing_Left_01
+    3300016: Fireflies_Wing_Right_01
+    3300018: Insect_01
+    3300020: Insect_Wing_Left_01
+    3300022: Insect_Wing_Right_01
+    3300024: Worm_01
+    4300000: Insect_01
+    4300002: Butterfly_01
+    4300004: Fireflies_01
+    4300006: Bug_01
+    4300008: Worm_01
+    4300010: Butterfly_Wing_Right_01
+    4300012: Butterfly_Wing_Left_01
+    4300014: Fireflies_Wing_Left_01
+    4300016: Bug_Wing_Left_01
+    4300018: Insect_Wing_Left_01
+    4300020: Fireflies_Wing_Right_01
+    4300022: Bug_Wing_Right_01
+    4300024: Insect_Wing_Right_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.05
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

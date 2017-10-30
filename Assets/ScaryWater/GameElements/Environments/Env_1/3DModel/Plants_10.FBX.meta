@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 49a2af9f1a06aa8499ada2790467e775
+timeCreated: 1500292854
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Cattails_0100
+    100002: Cattails_0101
+    100004: Cattails_0102
+    100006: Cattails_0103
+    100008: Horsetail_0100
+    100010: Horsetail_0101
+    100012: Horsetail_0102
+    100014: Iris_0100
+    100016: Iris_0101
+    100018: Iris_0102
+    100020: Piskerelweed_0100
+    100022: Piskerelweed_0101
+    100024: //RootNode
+    400000: Cattails_0100
+    400002: Cattails_0101
+    400004: Cattails_0102
+    400006: Cattails_0103
+    400008: Horsetail_0100
+    400010: Horsetail_0101
+    400012: Horsetail_0102
+    400014: Iris_0100
+    400016: Iris_0101
+    400018: Iris_0102
+    400020: Piskerelweed_0100
+    400022: Piskerelweed_0101
+    400024: //RootNode
+    2300000: Cattails_0100
+    2300002: Cattails_0101
+    2300004: Cattails_0102
+    2300006: Cattails_0103
+    2300008: Horsetail_0100
+    2300010: Horsetail_0101
+    2300012: Horsetail_0102
+    2300014: Iris_0100
+    2300016: Iris_0101
+    2300018: Iris_0102
+    2300020: Piskerelweed_0100
+    2300022: Piskerelweed_0101
+    3300000: Cattails_0100
+    3300002: Cattails_0101
+    3300004: Cattails_0102
+    3300006: Cattails_0103
+    3300008: Horsetail_0100
+    3300010: Horsetail_0101
+    3300012: Horsetail_0102
+    3300014: Iris_0100
+    3300016: Iris_0101
+    3300018: Iris_0102
+    3300020: Piskerelweed_0100
+    3300022: Piskerelweed_0101
+    4300000: Horsetail_0102
+    4300002: Cattails_0103
+    4300004: Cattails_0100
+    4300006: Cattails_0101
+    4300008: Cattails_0102
+    4300010: Iris_0102
+    4300012: Iris_0100
+    4300014: Iris_0101
+    4300016: Piskerelweed_0101
+    4300018: Piskerelweed_0100
+    4300020: Horsetail_0100
+    4300022: Horsetail_0101
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

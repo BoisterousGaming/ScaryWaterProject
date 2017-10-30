@@ -1,0 +1,444 @@
+fileFormatVersion: 2
+guid: 47ae8201d530f254c8cc2e40c8e090f5
+timeCreated: 1496207095
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arrowhead Leaves_Tonny_01_03
+    100002: Arrowhead Leaves_Tonny_01_04
+    100004: Arrowhead Leaves_Tonny_01_05
+    100006: Arrowhead Tree_S_03_03
+    100008: Arrowhead Tree_S_03_04
+    100010: Arrowhead Tree_S_03_05
+    100012: Arrowhead Tree_S_03_06
+    100014: G_01_00
+    100016: G_Tree_Leave_01_00
+    100018: G_Tree_Leave_01_01
+    100020: G_Tree_Leave_01_02
+    100022: G_Tree_Leave_01_03
+    100024: G_Tree_Leave_01_04
+    100026: G_Tree_Leave_01_05
+    100028: Plant_01_00
+    100030: Plant_01_01
+    100032: Plant_01_02
+    100034: Plant_01_03
+    100036: Plant_01_04
+    100038: Plant_01_05
+    100040: Plant_01_06
+    100042: Plant_01_07
+    100044: Plant_01_08
+    100046: Plant_01_09
+    100048: Plant_01_10
+    100050: //RootNode
+    100052: Rock_01_03
+    100054: Rock_01_04
+    100056: Rock_01_05
+    100058: Rock_01_06
+    100060: Rock_01_07
+    100062: Rock_01_08
+    100064: Rock_01_09
+    100066: Rock_01_10
+    100068: Rock_01_11
+    100070: Rock_01_12
+    100072: Rock_01_13
+    100074: Rock_01_14
+    100076: Rock_01_15
+    100078: Stone_01_00
+    100080: Stone_01_01
+    100082: Stone_01_02
+    100084: Tree_Leave_01_00
+    100086: Tree_Leave_01_01
+    100088: Tree_Leave_01_06
+    100090: Tree_Leave_01_07
+    100092: Tree_Leave_01_08
+    100094: Tree_S_02_09
+    100096: Tree_S_02_10
+    100098: Tree_S_02_11
+    100100: Tree_S_02_12
+    100102: Tree_S_02_13
+    100104: Tree_S_02_14
+    100106: Tree_S_02_15
+    100108: Tree_S_02_16
+    100110: Tree_S_02_17
+    100112: Tree_S_02_18
+    100114: Tree_S_02_19
+    100116: Tree_S_04_00
+    100118: Tree_S_04_03
+    100120: Tree_S_04_04
+    100122: Tree_S_06_00
+    100124: Tree_S_06_01
+    100126: Tree_S_06_02
+    100128: Tree_S_06_07
+    100130: Trees_01_02
+    100132: Trees_01_05
+    100134: Trees_01_06
+    100136: Trees_01_07
+    100138: Trees_01_08
+    100140: vine_01_00
+    100142: vine_01_01
+    100144: vine_01_05
+    100146: vine_01_06
+    400000: Arrowhead Leaves_Tonny_01_03
+    400002: Arrowhead Leaves_Tonny_01_04
+    400004: Arrowhead Leaves_Tonny_01_05
+    400006: Arrowhead Tree_S_03_03
+    400008: Arrowhead Tree_S_03_04
+    400010: Arrowhead Tree_S_03_05
+    400012: Arrowhead Tree_S_03_06
+    400014: G_01_00
+    400016: G_Tree_Leave_01_00
+    400018: G_Tree_Leave_01_01
+    400020: G_Tree_Leave_01_02
+    400022: G_Tree_Leave_01_03
+    400024: G_Tree_Leave_01_04
+    400026: G_Tree_Leave_01_05
+    400028: Plant_01_00
+    400030: Plant_01_01
+    400032: Plant_01_02
+    400034: Plant_01_03
+    400036: Plant_01_04
+    400038: Plant_01_05
+    400040: Plant_01_06
+    400042: Plant_01_07
+    400044: Plant_01_08
+    400046: Plant_01_09
+    400048: Plant_01_10
+    400050: //RootNode
+    400052: Rock_01_03
+    400054: Rock_01_04
+    400056: Rock_01_05
+    400058: Rock_01_06
+    400060: Rock_01_07
+    400062: Rock_01_08
+    400064: Rock_01_09
+    400066: Rock_01_10
+    400068: Rock_01_11
+    400070: Rock_01_12
+    400072: Rock_01_13
+    400074: Rock_01_14
+    400076: Rock_01_15
+    400078: Stone_01_00
+    400080: Stone_01_01
+    400082: Stone_01_02
+    400084: Tree_Leave_01_00
+    400086: Tree_Leave_01_01
+    400088: Tree_Leave_01_06
+    400090: Tree_Leave_01_07
+    400092: Tree_Leave_01_08
+    400094: Tree_S_02_09
+    400096: Tree_S_02_10
+    400098: Tree_S_02_11
+    400100: Tree_S_02_12
+    400102: Tree_S_02_13
+    400104: Tree_S_02_14
+    400106: Tree_S_02_15
+    400108: Tree_S_02_16
+    400110: Tree_S_02_17
+    400112: Tree_S_02_18
+    400114: Tree_S_02_19
+    400116: Tree_S_04_00
+    400118: Tree_S_04_03
+    400120: Tree_S_04_04
+    400122: Tree_S_06_00
+    400124: Tree_S_06_01
+    400126: Tree_S_06_02
+    400128: Tree_S_06_07
+    400130: Trees_01_02
+    400132: Trees_01_05
+    400134: Trees_01_06
+    400136: Trees_01_07
+    400138: Trees_01_08
+    400140: vine_01_00
+    400142: vine_01_01
+    400144: vine_01_05
+    400146: vine_01_06
+    2300000: Arrowhead Leaves_Tonny_01_03
+    2300002: Arrowhead Leaves_Tonny_01_04
+    2300004: Arrowhead Leaves_Tonny_01_05
+    2300006: Arrowhead Tree_S_03_03
+    2300008: Arrowhead Tree_S_03_04
+    2300010: Arrowhead Tree_S_03_05
+    2300012: Arrowhead Tree_S_03_06
+    2300014: G_01_00
+    2300016: G_Tree_Leave_01_00
+    2300018: G_Tree_Leave_01_01
+    2300020: G_Tree_Leave_01_02
+    2300022: G_Tree_Leave_01_03
+    2300024: G_Tree_Leave_01_04
+    2300026: G_Tree_Leave_01_05
+    2300028: Plant_01_00
+    2300030: Plant_01_01
+    2300032: Plant_01_02
+    2300034: Plant_01_03
+    2300036: Plant_01_04
+    2300038: Plant_01_05
+    2300040: Plant_01_06
+    2300042: Plant_01_07
+    2300044: Plant_01_08
+    2300046: Plant_01_09
+    2300048: Plant_01_10
+    2300050: Rock_01_03
+    2300052: Rock_01_04
+    2300054: Rock_01_05
+    2300056: Rock_01_06
+    2300058: Rock_01_07
+    2300060: Rock_01_08
+    2300062: Rock_01_09
+    2300064: Rock_01_10
+    2300066: Rock_01_11
+    2300068: Rock_01_12
+    2300070: Rock_01_13
+    2300072: Rock_01_14
+    2300074: Rock_01_15
+    2300076: Stone_01_00
+    2300078: Stone_01_01
+    2300080: Stone_01_02
+    2300082: Tree_Leave_01_00
+    2300084: Tree_Leave_01_01
+    2300086: Tree_Leave_01_06
+    2300088: Tree_Leave_01_07
+    2300090: Tree_Leave_01_08
+    2300092: Tree_S_02_09
+    2300094: Tree_S_02_10
+    2300096: Tree_S_02_11
+    2300098: Tree_S_02_12
+    2300100: Tree_S_02_13
+    2300102: Tree_S_02_14
+    2300104: Tree_S_02_15
+    2300106: Tree_S_02_16
+    2300108: Tree_S_02_17
+    2300110: Tree_S_02_18
+    2300112: Tree_S_02_19
+    2300114: Tree_S_04_00
+    2300116: Tree_S_04_03
+    2300118: Tree_S_04_04
+    2300120: Tree_S_06_00
+    2300122: Tree_S_06_01
+    2300124: Tree_S_06_02
+    2300126: Tree_S_06_07
+    2300128: Trees_01_02
+    2300130: Trees_01_05
+    2300132: Trees_01_06
+    2300134: Trees_01_07
+    2300136: Trees_01_08
+    2300138: vine_01_00
+    2300140: vine_01_01
+    2300142: vine_01_05
+    2300144: vine_01_06
+    3300000: Arrowhead Leaves_Tonny_01_03
+    3300002: Arrowhead Leaves_Tonny_01_04
+    3300004: Arrowhead Leaves_Tonny_01_05
+    3300006: Arrowhead Tree_S_03_03
+    3300008: Arrowhead Tree_S_03_04
+    3300010: Arrowhead Tree_S_03_05
+    3300012: Arrowhead Tree_S_03_06
+    3300014: G_01_00
+    3300016: G_Tree_Leave_01_00
+    3300018: G_Tree_Leave_01_01
+    3300020: G_Tree_Leave_01_02
+    3300022: G_Tree_Leave_01_03
+    3300024: G_Tree_Leave_01_04
+    3300026: G_Tree_Leave_01_05
+    3300028: Plant_01_00
+    3300030: Plant_01_01
+    3300032: Plant_01_02
+    3300034: Plant_01_03
+    3300036: Plant_01_04
+    3300038: Plant_01_05
+    3300040: Plant_01_06
+    3300042: Plant_01_07
+    3300044: Plant_01_08
+    3300046: Plant_01_09
+    3300048: Plant_01_10
+    3300050: Rock_01_03
+    3300052: Rock_01_04
+    3300054: Rock_01_05
+    3300056: Rock_01_06
+    3300058: Rock_01_07
+    3300060: Rock_01_08
+    3300062: Rock_01_09
+    3300064: Rock_01_10
+    3300066: Rock_01_11
+    3300068: Rock_01_12
+    3300070: Rock_01_13
+    3300072: Rock_01_14
+    3300074: Rock_01_15
+    3300076: Stone_01_00
+    3300078: Stone_01_01
+    3300080: Stone_01_02
+    3300082: Tree_Leave_01_00
+    3300084: Tree_Leave_01_01
+    3300086: Tree_Leave_01_06
+    3300088: Tree_Leave_01_07
+    3300090: Tree_Leave_01_08
+    3300092: Tree_S_02_09
+    3300094: Tree_S_02_10
+    3300096: Tree_S_02_11
+    3300098: Tree_S_02_12
+    3300100: Tree_S_02_13
+    3300102: Tree_S_02_14
+    3300104: Tree_S_02_15
+    3300106: Tree_S_02_16
+    3300108: Tree_S_02_17
+    3300110: Tree_S_02_18
+    3300112: Tree_S_02_19
+    3300114: Tree_S_04_00
+    3300116: Tree_S_04_03
+    3300118: Tree_S_04_04
+    3300120: Tree_S_06_00
+    3300122: Tree_S_06_01
+    3300124: Tree_S_06_02
+    3300126: Tree_S_06_07
+    3300128: Trees_01_02
+    3300130: Trees_01_05
+    3300132: Trees_01_06
+    3300134: Trees_01_07
+    3300136: Trees_01_08
+    3300138: vine_01_00
+    3300140: vine_01_01
+    3300142: vine_01_05
+    3300144: vine_01_06
+    4300000: Rock_01_09
+    4300002: G_01_00
+    4300004: Tree_S_06_01
+    4300006: Rock_01_05
+    4300008: Rock_01_04
+    4300010: G_Tree_Leave_01_00
+    4300012: G_Tree_Leave_01_02
+    4300014: G_Tree_Leave_01_04
+    4300016: Rock_01_03
+    4300018: G_Tree_Leave_01_05
+    4300020: G_Tree_Leave_01_03
+    4300022: Tree_S_06_00
+    4300024: G_Tree_Leave_01_01
+    4300026: Stone_01_02
+    4300028: Tree_S_06_02
+    4300030: Tree_S_06_07
+    4300032: Arrowhead Tree_S_03_04
+    4300034: Stone_01_01
+    4300036: Arrowhead Tree_S_03_05
+    4300038: Arrowhead Tree_S_03_06
+    4300040: Arrowhead Tree_S_03_03
+    4300042: Stone_01_00
+    4300044: Arrowhead Leaves_Tonny_01_04
+    4300046: Arrowhead Leaves_Tonny_01_03
+    4300048: Arrowhead Leaves_Tonny_01_05
+    4300050: Trees_01_02
+    4300052: Tree_Leave_01_06
+    4300054: Trees_01_06
+    4300056: Tree_Leave_01_01
+    4300058: vine_01_01
+    4300060: Tree_Leave_01_07
+    4300062: Trees_01_08
+    4300064: vine_01_05
+    4300066: Tree_Leave_01_08
+    4300068: Trees_01_07
+    4300070: vine_01_06
+    4300072: Trees_01_05
+    4300074: vine_01_00
+    4300076: Tree_Leave_01_00
+    4300078: Tree_S_04_00
+    4300080: Tree_S_02_17
+    4300082: Tree_S_02_15
+    4300084: Tree_S_02_14
+    4300086: Tree_S_02_12
+    4300088: Tree_S_02_10
+    4300090: Tree_S_02_09
+    4300092: Tree_S_02_11
+    4300094: Tree_S_02_19
+    4300096: Tree_S_02_16
+    4300098: Plant_01_02
+    4300100: Plant_01_00
+    4300102: Plant_01_04
+    4300104: Plant_01_05
+    4300106: Plant_01_08
+    4300108: Plant_01_01
+    4300110: Plant_01_10
+    4300112: Plant_01_09
+    4300114: Plant_01_07
+    4300116: Plant_01_06
+    4300118: Tree_S_02_13
+    4300120: Tree_S_02_18
+    4300122: Plant_01_03
+    4300124: Tree_S_04_03
+    4300126: Tree_S_04_04
+    4300128: Rock_01_07
+    4300130: Rock_01_08
+    4300132: Rock_01_15
+    4300134: Rock_01_10
+    4300136: Rock_01_11
+    4300138: Rock_01_12
+    4300140: Rock_01_13
+    4300142: Rock_01_14
+    4300144: Rock_01_06
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
