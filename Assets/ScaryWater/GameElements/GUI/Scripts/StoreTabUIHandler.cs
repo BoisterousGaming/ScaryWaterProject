@@ -8,9 +8,9 @@ public class StoreTabUIHandler : GUIItemsManager
 {
     static StoreTabUIHandler mInstance;
 
-	public Color _ActiveColor;
-	public Color _DeactiveColor;
-    public List<Button> _listOfBtn = new List<Button>();
+    public List<GUIItem> _listOfBtn = new List<GUIItem>();
+    public List<Sprite> _listOfActiveBtnSprite = new List<Sprite>();
+    public List<Sprite> _listOfDeactiveBtnSprite = new List<Sprite>();
 
     public static StoreTabUIHandler Instance
     {
@@ -36,7 +36,7 @@ public class StoreTabUIHandler : GUIItemsManager
     public override void OnButtonCallBack(GUIItem item)
     {
         //Debug.Log("Button Pressed: " + item.gameObject.name);
-        ChangeButtonColor(item);
+        ChangeButtonImage(item);
 
         switch (item.gameObject.name)
         {
@@ -90,24 +90,16 @@ public class StoreTabUIHandler : GUIItemsManager
         }
     }
 
-    void ChangeButtonColor(GUIItem item)
+    void ChangeButtonImage(GUIItem btnItem)
     {
-		foreach (Button element in _listOfBtn)
-		{
-			if (element.gameObject.name.Equals(item.gameObject.name))
-			{
-				ColorBlock tCB = element.colors;
-				tCB.normalColor = _ActiveColor;
-				element.colors = tCB;
-			}
+        for (int i = 0; i < _listOfBtn.Count; i++)
+        {
+            if (btnItem.gameObject.name == _listOfBtn[i].gameObject.name)
+                btnItem.GetComponent<Image>().sprite = _listOfActiveBtnSprite[i];
 
-			else
-			{
-				ColorBlock tCB = element.colors;
-				tCB.normalColor = _DeactiveColor;
-				element.colors = tCB;
-			}
-		}
+            else
+                _listOfBtn[i].GetComponent<Image>().sprite = _listOfDeactiveBtnSprite[i];
+        }
     }
 
     public override void OnBackButton() 

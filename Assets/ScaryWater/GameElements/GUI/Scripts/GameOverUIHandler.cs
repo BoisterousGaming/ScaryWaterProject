@@ -14,6 +14,7 @@ public class GameOverUIHandler : GUIItemsManager
 	public Text _ButterflyCount;
     public Text _CurrentScore;
     public Text _HighScore;
+    public Text _NotificationText;
 	
     public static GameOverUIHandler Instance
     {
@@ -44,6 +45,11 @@ public class GameOverUIHandler : GUIItemsManager
 
         if (_HighScore != null)
             _HighScore.text = DataManager.GetHighScore().ToString();
+    }
+
+    public void GetNotification(string notificationString)
+    {
+        _NotificationText.text = notificationString;
     }
 
     public override void OnButtonCallBack(GUIItem item)

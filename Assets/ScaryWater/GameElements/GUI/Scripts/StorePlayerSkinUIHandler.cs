@@ -63,9 +63,9 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
     public int _SelectedSkinID;
     public Dictionary<ePlayerSkinID, int> _dictOfSkinPrice = new Dictionary<ePlayerSkinID, int>();
     public List<SkinDataScr> _listOfSkins = new List<SkinDataScr>();
+    public List<Sprite> _listOfBtnSprite = new List<Sprite>();
     public Text _SkinInfo;
     public Text _SkinCost;
-    public Text _BuyBtnInfo;
     public Image _CoinImg;
     public Button _BuyBtn;
     public DemoPlayerScr _DemoPlayerScr;
@@ -88,7 +88,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 
     void Start()
     {
-        SkinInfo(false, "Equiped", "Skin is equiped", " ", false);
+        SkinInfo(false, 1, "Skin is equiped", " ", false);
         InitializeSkinPrice();
 	}
 
@@ -145,7 +145,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
             if (_SelectedSkinID == (int)tSkinDataScr._ePlayerSkinID)
             {
                 DataManager.SetSkinStates(tSkinDataScr._ePlayerSkinID.ToString(), 1, 1, 0);
-                SkinInfo(true, "Equip", "Skin is not equiped", " ", false);
+                SkinInfo(true, 0, "Skin is not equiped", " ", false);
             }     
         }
 	}
@@ -165,7 +165,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
             {
                 DataManager.SetSkinStates(tSkinDataScr._ePlayerSkinID.ToString(), 1, 1, 1);
                 DataManager.SetEquipedSkinID(_SelectedSkinID);
-                SkinInfo(false, "Equiped", "Skin is equiped", " ", false);
+                SkinInfo(false, 1, "Skin is equiped", " ", false);
             }
 
             else
@@ -236,10 +236,10 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 			{
                 int isEquiped = tSkinStates._iSkinEquipState;
 				if (isEquiped == 1)
-    				SkinInfo(false, "Equiped", "Skin is equiped", " ", false);
+                    SkinInfo(false, 1, "Skin is equiped", " ", false);
 
 				else
-    				SkinInfo(true, "Equip", "Skin is not equiped", " ", false);
+                    SkinInfo(true, 1, "Skin is not equiped", " ", false);
 			}
 
 			else
@@ -247,21 +247,21 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 				foreach (KeyValuePair<ePlayerSkinID, int> element in _dictOfSkinPrice)
 				{
 					if (element.Key.Equals(skinData._ePlayerSkinID))
-    					SkinInfo(true, "Buy", "Purchase the skin", element.Value.ToString(), true);
+                        SkinInfo(true, 0, "Purchase the skin", element.Value.ToString(), true);
 				}
 			}
 		}
 
 		else
-    		SkinInfo(false, "Locked", "Skin is locked", " ", false);
+            SkinInfo(false, 0, "Skin is locked", " ", false);
 	}
 
-    void SkinInfo(bool interactableState, string skinBtnInfo, string skinInfo, string skinCost, bool coinImageState)
+    void SkinInfo(bool interactableState, int index, string skinInfo, string skinCost, bool coinImageState)
     {
-		_BuyBtn.interactable = interactableState;
-		_BuyBtnInfo.text = skinBtnInfo;
-		_SkinInfo.text = skinInfo;
-		_SkinCost.text = skinCost;
-		_CoinImg.GetComponent<Image>().enabled = coinImageState;
+        _BuyBtn.interactable = interactableState;
+        _BuyBtn.GetComponent<Image>().sprite = _listOfBtnSprite[index];
+        _SkinInfo.text = skinInfo;
+        _SkinCost.text = skinCost;
+        _CoinImg.GetComponent<Image>().enabled = coinImageState;
     }
 }
