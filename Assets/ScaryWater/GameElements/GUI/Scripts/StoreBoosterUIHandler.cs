@@ -104,7 +104,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
     public override void OnButtonCallBack(GUIItem item)
     {
-        Debug.Log("Button Pressed: " + item.gameObject.name);
+        //Debug.Log("Button Pressed: " + item.gameObject.name);
 
         switch (item.gameObject.name)
         {
