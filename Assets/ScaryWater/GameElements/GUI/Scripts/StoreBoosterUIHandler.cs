@@ -60,12 +60,11 @@ public class StoreBoosterUIHandler : GUIItemsManager
 		{
 			int tIndex = DataManager.GetMagnetTime();
 
-            if (tIndex >= _arrOfMagnetTimePrice.Length)
+            if (tIndex >= _arrOfMagnetTimePrice.Length - 1)
             {
                 _MagnetTimePrice.text = " ";
                 _MagnetCoinImage.enabled = false;
                 _MagnetTimeBtn.interactable = false;
-                Debug.Log("MagnetButtonDisable");
             }
 
             else
@@ -85,12 +84,11 @@ public class StoreBoosterUIHandler : GUIItemsManager
 		{
 			int tIndex = DataManager.GetPoisonRange();
 
-            if (tIndex >= _arrOfPoisonRangePrice.Length)
+            if (tIndex >= _arrOfPoisonRangePrice.Length - 1)
             {
                 _PoisonRangePrice.text = " ";
                 _PoisonCoinImage.enabled = false;
                 _PoisonRangeBtn.interactable = false;
-                Debug.Log("poisonButtonDisable");
             }
 
             else
