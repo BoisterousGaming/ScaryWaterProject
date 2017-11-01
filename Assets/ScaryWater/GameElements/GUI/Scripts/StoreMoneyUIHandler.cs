@@ -97,7 +97,7 @@ public class StoreMoneyUIHandler : GUIItemsManager
                 AddCoin(3);             //cRamappa
 				break;
 
-			case "Coin10MuyBtn":
+            case "Coin10MBuyBtn":
                 AddCoin(4);             //cRamappa
 				break;
 

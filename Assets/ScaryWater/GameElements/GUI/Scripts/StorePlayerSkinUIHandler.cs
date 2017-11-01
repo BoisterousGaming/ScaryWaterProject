@@ -59,6 +59,8 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 {
     static StorePlayerSkinUIHandler mInstance;
     GameObject mDemoPlayer;
+    string msRegularTextColor = "#FFFFFFFF";
+    string msEquipedTextColor = "#2D8199FF";
 
     public int _SelectedSkinID;
     public Dictionary<ePlayerSkinID, int> _dictOfSkinPrice = new Dictionary<ePlayerSkinID, int>();
@@ -89,7 +91,9 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 
     void Start()
     {
-        SkinAndBtnState(false, false, "Skin is equiped", " ", false);
+        Color tColor = new Color();
+        ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
+        SkinAndBtnState(false, false, "Skin is equiped", tColor, " ", false);
         InitializeSkinPrice();
 	}
 
@@ -146,7 +150,9 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
             if (_SelectedSkinID == (int)tSkinDataScr._ePlayerSkinID)
             {
                 DataManager.SetSkinStates(tSkinDataScr._ePlayerSkinID.ToString(), 1, 1, 0);
-                SkinAndBtnState(false, true, "Skin is not equiped", " ", false);
+                Color tColor = new Color();
+                ColorUtility.TryParseHtmlString(msRegularTextColor, out tColor);
+                SkinAndBtnState(false, true, "Skin is not equiped", tColor, " ", false);
             }     
         }
 	}
@@ -166,7 +172,9 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
             {
                 DataManager.SetSkinStates(tSkinDataScr._ePlayerSkinID.ToString(), 1, 1, 1);
                 DataManager.SetEquipedSkinID(_SelectedSkinID);
-                SkinAndBtnState(false, false, "Skin is equiped", " ", false);
+                Color tColor = new Color();
+                ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
+                SkinAndBtnState(false, false, "Skin is equiped", tColor, " ", false);
             }
 
             else
@@ -250,10 +258,18 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
             {
                 int isEquiped = tSkinStates._iSkinEquipState;
                 if (isEquiped == 1)
-                    SkinAndBtnState(false, false, "Skin is equiped", " ", false);
+                {
+                    Color tColor = new Color();
+                    ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
+                    SkinAndBtnState(false, false, "Skin is equiped", tColor, " ", false);
+                }
 
                 else
-                    SkinAndBtnState(false, true, "Skin is not equiped", " ", false);
+                {
+                    Color tColor = new Color();
+                    ColorUtility.TryParseHtmlString(msRegularTextColor, out tColor);
+                    SkinAndBtnState(false, true, "Skin is not equiped", tColor, " ", false);
+                }
             }
 
             else
@@ -261,20 +277,29 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
                 foreach (KeyValuePair<ePlayerSkinID, int> element in _dictOfSkinPrice)
                 {
                     if (element.Key.Equals(skinData._ePlayerSkinID))
-                        SkinAndBtnState(true, false, "Purchase the skin", element.Value.ToString(), true);
+                    {
+                        Color tColor = new Color();
+                        ColorUtility.TryParseHtmlString(msRegularTextColor, out tColor);
+                        SkinAndBtnState(true, false, "Purchase the skin", tColor, element.Value.ToString(), true);
+                    }     
                 }
             }
         }
 
         else
-            SkinAndBtnState(false, false, "Skin is locked", " ", false);
+        {
+            Color tColor = new Color();
+            ColorUtility.TryParseHtmlString(msRegularTextColor, out tColor);
+            SkinAndBtnState(false, false, "Skin is locked", tColor, " ", false);
+        }
 	}
 
-    void SkinAndBtnState(bool buyBtnState, bool equipBtnState, string skinInfo, string skinCost, bool coinImageState)
+    void SkinAndBtnState(bool buyBtnState, bool equipBtnState, string skinInfo, Color skininfoColor, string skinCost, bool coinImageState)
     {
         _BuyBtn.gameObject.SetActive(buyBtnState);
         _EquipBtn.gameObject.SetActive(equipBtnState);
         _SkinInfo.text = skinInfo;
+        _SkinInfo.color = skininfoColor;
         _SkinCost.text = skinCost;
         _CoinImg.GetComponent<Image>().enabled = coinImageState;
     }

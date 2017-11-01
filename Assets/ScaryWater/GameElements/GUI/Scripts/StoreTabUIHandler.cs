@@ -11,6 +11,8 @@ public class StoreTabUIHandler : GUIItemsManager
     public List<GUIItem> _listOfBtn = new List<GUIItem>();
     public List<Sprite> _listOfActiveBtnSprite = new List<Sprite>();
     public List<Sprite> _listOfDeactiveBtnSprite = new List<Sprite>();
+    public Text _CoinCountText;
+    public Text _ButterflyCountText;
 
     public static StoreTabUIHandler Instance
     {
@@ -30,7 +32,9 @@ public class StoreTabUIHandler : GUIItemsManager
 
     void Start()
     {
-        UICanvasHandler.Instance.LoadScreen("StorePlayerSkinCanvas", null, true);    
+        UICanvasHandler.Instance.LoadScreen("StorePlayerSkinCanvas", null, true);  
+        DisplayCoinAmount();
+        DisplayButterflyAmount();
     }
 
     public override void OnButtonCallBack(GUIItem item)
@@ -119,5 +123,15 @@ public class StoreTabUIHandler : GUIItemsManager
 
         else
             UICanvasHandler.Instance.LoadScreen("GameOverCanvas", null, true);
+    }
+
+    public void DisplayCoinAmount()
+    {
+        _CoinCountText.text = DataManager.GetTotalCoinAmount().ToString();
+    }
+
+    public void DisplayButterflyAmount()
+    {
+        _ButterflyCountText.text = DataManager.GetTotalButterflyAmount().ToString();
     }
 }

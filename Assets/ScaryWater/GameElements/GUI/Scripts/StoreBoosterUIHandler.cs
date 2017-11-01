@@ -65,6 +65,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                 _MagnetTimePrice.text = " ";
                 _MagnetCoinImage.enabled = false;
                 _MagnetTimeBtn.interactable = false;
+                Debug.Log("MagnetButtonDisable");
             }
 
             else
@@ -89,6 +90,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                 _PoisonRangePrice.text = " ";
                 _PoisonCoinImage.enabled = false;
                 _PoisonRangeBtn.interactable = false;
+                Debug.Log("poisonButtonDisable");
             }
 
             else
@@ -104,12 +106,14 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
     public override void OnButtonCallBack(GUIItem item)
     {
-        //Debug.Log("Button Pressed: " + item.gameObject.name);
+        Debug.Log("Button Pressed: " + item.gameObject.name);
 
         switch (item.gameObject.name)
         {
             case "Coin2XBuyBtn":
                 DataManager.SetCoinValue(2);        //cRamappa
+                _Coin2XPrice.text = " ";
+                _Coin2XBtn.interactable = false;
                 break;
 
             case "MagnetTimeBuyBtn":
@@ -119,7 +123,10 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					tIndex += 1;
 
                     if (tIndex >= _arrOfMagnetTimePrice.Length)
+                    {
+                        MagnetMeterAndPriceInitializer();
                         return;
+                    }
 
                     if (DataManager.GetTotalCoinAmount() >= _arrOfMagnetTimePrice[tIndex])
                     {
@@ -130,9 +137,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                     }
 
                     else
-                    {
-                        // Do nothing
-                    }
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
                 }
 
                 else
@@ -146,9 +151,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                     }
 
                     else
-                    {
-                        // Do nothing
-                    }
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
                 }
                 break;
 
@@ -159,7 +162,10 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					tIndex += 1;
 
 					if (tIndex >= _arrOfPoisonRangePrice.Length)
-						return;
+                    {
+                        PoisonMeterAndPriceInitializer();
+                        return;
+                    }
 
 					if (DataManager.GetTotalCoinAmount() >= _arrOfPoisonRangePrice[tIndex])
 					{
@@ -170,9 +176,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					}
 
 					else
-					{
-						// Do nothing
-					}
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
 				}
 
 				else
@@ -186,9 +190,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					}
 
 					else
-					{
-						// Do nothing
-					}
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
 				}
                 break;
         }

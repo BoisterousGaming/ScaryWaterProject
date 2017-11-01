@@ -180,6 +180,10 @@ public class DataManager : MonoBehaviour
 
 		else
 			PlayerPrefs.SetInt(msTotalCoin, Value);
+
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        if (tCanvas != null)
+            tCanvas.GetComponent<StoreTabUIHandler>().DisplayCoinAmount();
     }
 
 	public static void AddToCSessionCoin(int Value)
@@ -206,6 +210,10 @@ public class DataManager : MonoBehaviour
 
 		else
 			PlayerPrefs.SetInt(msTotalButterfly, Value);
+
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        if (tCanvas != null)
+            tCanvas.GetComponent<StoreTabUIHandler>().DisplayButterflyAmount();
     }
 
 	public static void AddToCSessionButterfly(int Value)
@@ -226,6 +234,10 @@ public class DataManager : MonoBehaviour
         int tValue = PlayerPrefs.GetInt(msTotalCoin);
         tValue -= Value;
         PlayerPrefs.SetInt(msTotalCoin, tValue);
+
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        if (tCanvas != null)
+            tCanvas.GetComponent<StoreTabUIHandler>().DisplayCoinAmount();
     }
 
 	public static void SubstractFromTotalButterfly(int Value)
@@ -233,6 +245,10 @@ public class DataManager : MonoBehaviour
 		int tValue = PlayerPrefs.GetInt(msTotalButterfly);
         tValue -= Value;
 		PlayerPrefs.SetInt(msTotalButterfly, tValue);
+
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        if (tCanvas != null)
+            tCanvas.GetComponent<StoreTabUIHandler>().DisplayButterflyAmount();
 	}
 
     public static void AddToHighScore(int score)                //cRamappa
