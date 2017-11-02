@@ -15,6 +15,7 @@ public class ChallengeCommenceTimer : MonoBehaviour
     public double _TimeInSeconds = 604800;
     public bool _bDisableEnvLock = false;
     public bool _bEnableChallenge = false;
+    public Sprite[] _arrOfChallengeBtnSprites;
 
     void Start()
     {
@@ -35,12 +36,14 @@ public class ChallengeCommenceTimer : MonoBehaviour
         {
             _bDisableEnvLock = false;
             _InfoText.text = "LOCKED";
+            _ChallengeButton.GetComponent<Image>().sprite = _arrOfChallengeBtnSprites[0];
         }     
     }
 
     void ActivateTimer()
     {
         _ChallengeButton.interactable = true;
+        _ChallengeButton.GetComponent<Image>().sprite = _arrOfChallengeBtnSprites[1];
 
         mTargetDate = DateTime.Now.AddSeconds(_TimeInSeconds);
         DataManager.SetChallengeCommenceTimeStampTarget(Convert.ToString(mTargetDate));
@@ -62,7 +65,7 @@ public class ChallengeCommenceTimer : MonoBehaviour
                 string tHours = tDifference.Hours.ToString("D2");
                 string tMin = tDifference.Minutes.ToString("D2");
                 string tSec = tDifference.Seconds.ToString("D2");
-                _InfoText.text = tDays + " : " + tHours + " : " + tMin + " : " + tSec;
+                _InfoText.text = tDays + ":" + tHours + ":" + tMin + ":" + tSec;
             }
 
             if (tDifference.TotalSeconds <= 0)

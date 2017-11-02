@@ -20,7 +20,7 @@ public class BarProgress : MonoBehaviour
 
     public delegate void FillsCountChanged(int val);
     public FillsCountChanged _FillCountChangedCallback;
-    public Gradient _Gradient;
+    //public Gradient _Gradient;
     public float _TargetValue = 3;
     public float _Speed = 10;
     public Image _ProgressBar;
@@ -70,7 +70,7 @@ public class BarProgress : MonoBehaviour
                     _FillCountChangedCallback(miCurNumberOfFills);
             }
             _ProgressBar.fillAmount = mfCurTargetValue - miNumberOfFills;
-            _ProgressBar.color = _Gradient.Evaluate(_ProgressBar.fillAmount);
+            //_ProgressBar.color = _Gradient.Evaluate(_ProgressBar.fillAmount);
         }
     }
 

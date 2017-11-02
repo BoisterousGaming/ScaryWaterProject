@@ -13,6 +13,7 @@ public class ChallengeActiveTimer : MonoBehaviour
     public Button _ChallengeButton;
     public Text _InfoText;
     public double _TimeInSeconds = 604800;
+    public Sprite[] _arrOfChallengeBtnSprites;
 
     public void Initialize()
     {
@@ -44,12 +45,14 @@ public class ChallengeActiveTimer : MonoBehaviour
         if (_ChallengeCommenceTimerScr._bDisableEnvLock)
         {
             _ChallengeButton.interactable = true;
-            _InfoText.text = "Challenge Mode";
+            _ChallengeButton.GetComponent<Image>().sprite = _arrOfChallengeBtnSprites[1];
+            _InfoText.text = "Challenge";
         }
 
         else
         {
             _ChallengeButton.interactable = false;
+            _ChallengeButton.GetComponent<Image>().sprite = _arrOfChallengeBtnSprites[0];
             _InfoText.text = "LOCKED";
         }
     }

@@ -15,13 +15,13 @@ public enum eInputType
 
 public class TouchInputHandler
 {
-    public delegate void InputTypeChanged(eInputType type);
-    public InputTypeChanged _InputTypeChangedCallback;
-
     Vector2 mvInputStartPosition = Vector2.zero;
     Vector2 mvInputCurrentPosition = Vector2.zero;
-	bool mbInputActive;
-	float mfInputTime;
+    bool mbInputActive;
+    float mfInputTime;
+
+    public delegate void InputTypeChanged(eInputType type);
+    public InputTypeChanged _InputTypeChangedCallback;
 
     public PlayerHandler _playerHandler;
     public eInputType _eInputType = eInputType.None;
