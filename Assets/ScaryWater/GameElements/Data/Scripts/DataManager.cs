@@ -181,7 +181,7 @@ public class DataManager : MonoBehaviour
 		else
 			PlayerPrefs.SetInt(msTotalCoin, Value);
 
-        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas");
         if (tCanvas != null)
             tCanvas.GetComponent<StoreTabUIHandler>().DisplayCoinAmount();
     }
@@ -211,7 +211,7 @@ public class DataManager : MonoBehaviour
 		else
 			PlayerPrefs.SetInt(msTotalButterfly, Value);
 
-        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas");
         if (tCanvas != null)
             tCanvas.GetComponent<StoreTabUIHandler>().DisplayButterflyAmount();
     }
@@ -235,7 +235,7 @@ public class DataManager : MonoBehaviour
         tValue -= Value;
         PlayerPrefs.SetInt(msTotalCoin, tValue);
 
-        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas");
         if (tCanvas != null)
             tCanvas.GetComponent<StoreTabUIHandler>().DisplayCoinAmount();
     }
@@ -246,7 +246,7 @@ public class DataManager : MonoBehaviour
         tValue -= Value;
 		PlayerPrefs.SetInt(msTotalButterfly, tValue);
 
-        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas").gameObject;
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StoreTabCanvas");
         if (tCanvas != null)
             tCanvas.GetComponent<StoreTabUIHandler>().DisplayButterflyAmount();
 	}

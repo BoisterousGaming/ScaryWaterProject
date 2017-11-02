@@ -131,8 +131,8 @@ public class CollectableHandler : MonoBehaviour
             {
                 mbSkipChecking = true;
 
-                //if (_eCollectableType == eCollectableType.StartCoin)
-                    //Debug.Log("Collectable name: " + this.gameObject.name + ", Collectable position: " + this.transform.position);
+                if (_eCollectableType == eCollectableType.StartCoin)
+                    Debug.Log("Collectable name: " + this.gameObject.name + ", Collectable position: " + this.transform.position);
                 
                 CollectableAndFoodManager.Instance.CompareCollectableElements(this);
 

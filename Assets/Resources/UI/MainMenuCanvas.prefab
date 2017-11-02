@@ -625,6 +625,7 @@ MonoBehaviour:
   - {fileID: 114410823076997228}
   - {fileID: 114352966198294040}
   _BackToScreen: 
+  _ChallengeCommenceTimerScr: {fileID: 114179609240680074}
 --- !u!114 &114113974252450064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -716,8 +717,9 @@ MonoBehaviour:
   _ChallengeActiveTimerScr: {fileID: 114399640981525494}
   _ChallengeButton: {fileID: 114573213119459746}
   _InfoText: {fileID: 114675073370443604}
-  _TimeInSeconds: 1209600
+  _TimeInSeconds: 60
   _bDisableEnvLock: 0
+  _bEnableChallenge: 0
 --- !u!114 &114182503858996954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -945,7 +947,7 @@ MonoBehaviour:
   _ChallengeCommenceTimerScr: {fileID: 114179609240680074}
   _ChallengeButton: {fileID: 114573213119459746}
   _InfoText: {fileID: 114675073370443604}
-  _TimeInSeconds: 604800
+  _TimeInSeconds: 180
 --- !u!114 &114410823076997228
 MonoBehaviour:
   m_ObjectHideFlags: 1

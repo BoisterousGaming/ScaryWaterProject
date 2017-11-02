@@ -120,12 +120,6 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					int tIndex = DataManager.GetMagnetTime();
 					tIndex += 1;
 
-                    if (tIndex >= _arrOfMagnetTimePrice.Length)
-                    {
-                        MagnetMeterAndPriceInitializer();
-                        return;
-                    }
-
                     if (DataManager.GetTotalCoinAmount() >= _arrOfMagnetTimePrice[tIndex])
                     {
                         DataManager.SetMagnetTime(tIndex);
@@ -136,6 +130,9 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
                     else
                         UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+
+                    if (tIndex >= _arrOfMagnetTimePrice.Length - 1)
+                        MagnetMeterAndPriceInitializer();
                 }
 
                 else
@@ -159,12 +156,6 @@ public class StoreBoosterUIHandler : GUIItemsManager
                     int tIndex = DataManager.GetPoisonRange();
 					tIndex += 1;
 
-					if (tIndex >= _arrOfPoisonRangePrice.Length)
-                    {
-                        PoisonMeterAndPriceInitializer();
-                        return;
-                    }
-
 					if (DataManager.GetTotalCoinAmount() >= _arrOfPoisonRangePrice[tIndex])
 					{
                         DataManager.SetPoisonRange(tIndex);
@@ -175,6 +166,9 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
 					else
                         UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+
+                    if (tIndex >= _arrOfPoisonRangePrice.Length - 1)
+                        PoisonMeterAndPriceInitializer();
 				}
 
 				else

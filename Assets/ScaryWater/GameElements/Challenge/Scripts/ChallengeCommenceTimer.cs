@@ -14,10 +14,11 @@ public class ChallengeCommenceTimer : MonoBehaviour
     public Text _InfoText;
     public double _TimeInSeconds = 604800;
     public bool _bDisableEnvLock = false;
+    public bool _bEnableChallenge = false;
 
     void Start()
     {
-        _ChallengeButton.interactable = false;
+        _ChallengeButton.interactable = true;
 
         miTimerActive = DataManager.GetChallengeCommenceTimerState();
 
@@ -39,7 +40,7 @@ public class ChallengeCommenceTimer : MonoBehaviour
 
     void ActivateTimer()
     {
-        _ChallengeButton.interactable = false;
+        _ChallengeButton.interactable = true;
 
         mTargetDate = DateTime.Now.AddSeconds(_TimeInSeconds);
         DataManager.SetChallengeCommenceTimeStampTarget(Convert.ToString(mTargetDate));
@@ -72,6 +73,7 @@ public class ChallengeCommenceTimer : MonoBehaviour
     void OnChallengeAvailable()
     {
         miTimerActive = 0;
+        _bEnableChallenge = true;
         _ChallengeActiveTimerScr.Initialize();
     }
 

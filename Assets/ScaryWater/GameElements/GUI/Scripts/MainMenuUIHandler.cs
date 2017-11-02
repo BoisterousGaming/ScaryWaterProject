@@ -7,6 +7,8 @@ public class MainMenuUIHandler : GUIItemsManager
 {
     static MainMenuUIHandler mInstance;
 
+    public ChallengeCommenceTimer _ChallengeCommenceTimerScr;
+
 	public static MainMenuUIHandler Instance
 	{
 		get { return mInstance; }
@@ -35,10 +37,10 @@ public class MainMenuUIHandler : GUIItemsManager
                 break;
 
             case "ChallengeBtn":
-                if (DataManager.GetAllEnvPurchasedState())
+                if (DataManager.GetAllEnvPurchasedState() & _ChallengeCommenceTimerScr._bEnableChallenge)
                     SceneManager.LoadScene(2, LoadSceneMode.Single);
 
-                else
+                else if (!DataManager.GetAllEnvPurchasedState())
                 {
                     UICanvasHandler.Instance.DestroyScreen(this.gameObject);
                     UICanvasHandler.Instance.LoadScreen("EnvironmentSelectionCanvas");

@@ -24,14 +24,8 @@ public class StoreUpgradeUIHandler : GUIItemsManager
     int miTotalMagnetBought;
     int miTempCount = 1;
 
-    public Text _LiveCount;
-    public Text _LivePrice;
-    public Text _PoisonCount;
-    public Text _PoisonPrice;
-    public Text _AirwingCount;
-    public Text _AirwingPrice;
-    public Text _MagnetCount;
-    public Text _MagnetPrice;
+    public Text[] _arrOfAllTextElement;
+    public Button[] _arrOfAllBtnElement;
 
     public static StoreUpgradeUIHandler Instance
     {
@@ -56,22 +50,27 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 
     void Initialized()
     {
-		_LiveCount.text = miLiveCount.ToString();
-		_PoisonCount.text = miPoisonCount.ToString();
-		_AirwingCount.text = miAirwingCount.ToString();
-		_MagnetCount.text = miMagnetCount.ToString();
+		_arrOfAllTextElement[0].text = miLiveCount.ToString();
+		_arrOfAllTextElement[2].text = miPoisonCount.ToString();
+		_arrOfAllTextElement[4].text = miAirwingCount.ToString();
+		_arrOfAllTextElement[6].text = miMagnetCount.ToString();
 
         miTotalLivePrice = miLiveCount * miLivePrice;
-        _LivePrice.text = miTotalLivePrice.ToString();
+        _arrOfAllTextElement[1].text = miTotalLivePrice.ToString();
 
         miTotalPoisonPrice = miPoisonCount * miPoisonPrice;
-        _PoisonPrice.text = miTotalPoisonPrice.ToString();
+        _arrOfAllTextElement[3].text = miTotalPoisonPrice.ToString();
 
         miTotalAirwingPrice = miAirwingCount * miAirwingPrice;
-        _AirwingPrice.text = miTotalAirwingPrice.ToString();
+        _arrOfAllTextElement[5].text = miTotalAirwingPrice.ToString();
 
         miTotalMagnetPrice = miMagnetCount * miMagnetPrice;
-        _MagnetPrice.text = miTotalMagnetPrice.ToString();
+        _arrOfAllTextElement[7].text = miTotalMagnetPrice.ToString();
+
+        _arrOfAllBtnElement[0].interactable = false;
+        _arrOfAllBtnElement[2].interactable = false;
+        _arrOfAllBtnElement[4].interactable = false;
+        _arrOfAllBtnElement[6].interactable = false;
     }
 
     public override void OnButtonCallBack(GUIItem item)
@@ -84,11 +83,15 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                     miLiveCount -= 1;
 
                 miTotalLivePrice = miLiveCount * miLivePrice;
-                _LiveCount.text = miLiveCount.ToString();
-                _LivePrice.text = miTotalLivePrice.ToString();
+                _arrOfAllTextElement[0].text = miLiveCount.ToString();
+                _arrOfAllTextElement[1].text = miTotalLivePrice.ToString();
+
+                if (miLiveCount == 1)
+                    _arrOfAllBtnElement[0].interactable = false;
 				break;
 
-            case "LivesIncBtn":                 int tValue = DataManager.GetLiveAmount();                 int tCount = miLiveCount;                 miTempCount += 1;                 tValue += miTempCount;                 if (tValue <= 999)                 {                     miLiveCount += 1;                     miTotalLivePrice = miLiveCount * miLivePrice;                     _LiveCount.text = miLiveCount.ToString();                     _LivePrice.text = miTotalLivePrice.ToString();                 }                  else                     miTempCount = tCount;                 break;
+            case "LivesIncBtn":                 int tValue = DataManager.GetLiveAmount();                 int tCount = miLiveCount;                 miTempCount += 1;                 tValue += miTempCount;                 if (tValue <= 999)                 {                     miLiveCount += 1;                     miTotalLivePrice = miLiveCount * miLivePrice;                     _arrOfAllTextElement[0].text = miLiveCount.ToString();                     _arrOfAllTextElement[1].text = miTotalLivePrice.ToString();
+                    _arrOfAllBtnElement[0].interactable = true;                 }                  else                     miTempCount = tCount;                 break;
 
             case "LivesBuyBtn":
                 if (DataManager.GetTotalCoinAmount() >= miTotalLivePrice)
@@ -103,15 +106,19 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 					miPoisonCount -= 1;
 
 				miTotalPoisonPrice = miPoisonCount * miPoisonPrice;
-                _PoisonCount.text = miPoisonCount.ToString();
-				_PoisonPrice.text = miTotalPoisonPrice.ToString();
+                _arrOfAllTextElement[2].text = miPoisonCount.ToString();
+				_arrOfAllTextElement[3].text = miTotalPoisonPrice.ToString();
+
+                if (miPoisonCount == 1)
+                    _arrOfAllBtnElement[2].interactable = false;
                 break;
 
             case "PoisonIncBtn":
 				miPoisonCount += 1;
 				miTotalPoisonPrice = miPoisonCount * miPoisonPrice;
-                _PoisonCount.text = miPoisonCount.ToString();
-				_PoisonPrice.text = miTotalPoisonPrice.ToString();
+                _arrOfAllTextElement[2].text = miPoisonCount.ToString();
+				_arrOfAllTextElement[3].text = miTotalPoisonPrice.ToString();
+                _arrOfAllBtnElement[2].interactable = true;
                 break;
 
             case "PoisonBuyBtn":
@@ -127,15 +134,19 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 					miAirwingCount -= 1;
 
 				miTotalAirwingPrice = miAirwingCount * miAirwingPrice;
-                _AirwingCount.text = miAirwingCount.ToString();
-				_AirwingPrice.text = miTotalAirwingPrice.ToString();
+                _arrOfAllTextElement[4].text = miAirwingCount.ToString();
+				_arrOfAllTextElement[5].text = miTotalAirwingPrice.ToString();
+
+                if (miAirwingCount == 1)
+                    _arrOfAllBtnElement[4].interactable = false;
                 break;
 
             case "AirwingsIncBtn":
 				miAirwingCount += 1;
 				miTotalAirwingPrice = miAirwingCount * miAirwingPrice;
-                _AirwingCount.text = miAirwingCount.ToString();
-				_AirwingPrice.text = miTotalAirwingPrice.ToString();
+                _arrOfAllTextElement[4].text = miAirwingCount.ToString();
+				_arrOfAllTextElement[5].text = miTotalAirwingPrice.ToString();
+                _arrOfAllBtnElement[4].interactable = true;
                 break;
 
             case "AirwingsBuyBtn":
@@ -151,15 +162,19 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 					miMagnetCount -= 1;
 
 				miTotalMagnetPrice = miMagnetCount * miMagnetPrice;
-                _MagnetCount.text = miMagnetCount.ToString();
-				_MagnetPrice.text = miTotalMagnetPrice.ToString();
+                _arrOfAllTextElement[6].text = miMagnetCount.ToString();
+				_arrOfAllTextElement[7].text = miTotalMagnetPrice.ToString();
+
+                if (miMagnetCount == 1)
+                    _arrOfAllBtnElement[6].interactable = false;
                 break;
 
             case "MagnetIncBtn":
 				miMagnetCount += 1;
 				miTotalMagnetPrice = miMagnetCount * miMagnetPrice;
-                _MagnetCount.text = miMagnetCount.ToString();
-				_MagnetPrice.text = miTotalMagnetPrice.ToString();
+                _arrOfAllTextElement[6].text = miMagnetCount.ToString();
+				_arrOfAllTextElement[7].text = miTotalMagnetPrice.ToString();
+                _arrOfAllBtnElement[6].interactable = true;
                 break;
 
             case "MagnetBuyBtn":
