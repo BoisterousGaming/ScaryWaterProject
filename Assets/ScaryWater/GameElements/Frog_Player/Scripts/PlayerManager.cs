@@ -32,7 +32,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (_playerPrefab != null)
             PlayerSpawnLoc(new Vector3(0f, 0.5f, 0f));
-            //StartCoroutine(IPlayerSpawnLoc(new Vector3(0f, 0.5f, 0f)));
 
 		else
             Debug.LogWarning("Player prefab dose not exist!");
@@ -40,7 +39,6 @@ public class PlayerManager : MonoBehaviour
 
     void PlayerSpawnLoc(Vector3 SpawnPos)
     {
-        //yield return new WaitForSeconds(1.0f);
         GameObject goPlayer = Instantiate(_playerPrefab);
         goPlayer.transform.SetParent(this.transform);
         goPlayer.transform.position = SpawnPos;
@@ -63,8 +61,8 @@ public class PlayerManager : MonoBehaviour
     public void PlayerDeathHandler()
     {
         _playerHandler._jumpActionScr.StopJump("death");
-        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 		if (tCanvas != null)
 			UICanvasHandler.Instance.DestroyScreen(tCanvas);
 

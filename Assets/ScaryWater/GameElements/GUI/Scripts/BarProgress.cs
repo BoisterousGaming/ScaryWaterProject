@@ -37,7 +37,7 @@ public class BarProgress : MonoBehaviour
         _TargetValue = DataManager.GetLiveAmount();
         mfTargetValue = _TargetValue;
         mfCurTargetValue = mfTargetValue;
-        miCurNumberOfFills = 3;
+        miCurNumberOfFills = DataManager.GetLiveAmount();
     }
 
     void Update()
@@ -46,9 +46,7 @@ public class BarProgress : MonoBehaviour
         CheckNewTargetValue();
 
         if (Mathf.Abs(_CurrentFillAmount - _ProgressBar.fillAmount) >= 0.01f)
-        {
             _CurrentFillAmount = _ProgressBar.fillAmount;
-        }
 
         if (mbAnimating && _ProgressBar != null)
         {
@@ -61,7 +59,9 @@ public class BarProgress : MonoBehaviour
 				mbAnimating = false;
 			}
             mfCurTargetValue = mfStartValue + mfDifference * mfProgress;
+            //Debug.Log("CurTargetValue: " + mfCurTargetValue);
             miNumberOfFills = (int)mfCurTargetValue;
+            
             if (miNumberOfFills != miCurNumberOfFills)
             {
                 miCurNumberOfFills = miNumberOfFills;

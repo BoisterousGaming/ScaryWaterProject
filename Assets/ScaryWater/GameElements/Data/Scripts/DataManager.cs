@@ -38,6 +38,7 @@ public class DataManager : MonoBehaviour
     static string msEnvPurchaseState = "PurchaseState";
 
     static string msLockEnvInitialization = "LockEnvInitialization";
+    static string msNonPurchasedEnvIDCheckState = "NonPurchasedEnvIDCheckState";
 
     static string msChallengeCommenceTimerState = "CCTimerActive";
     static string msChallengeCommenceTimeStampTarget = "CCTimeStampTarget";
@@ -93,14 +94,14 @@ public class DataManager : MonoBehaviour
 
     void LiveDataInitialize()
     {
-		if (PlayerPrefs.HasKey(msPurchasedLive))
-		{
-			if (PlayerPrefs.GetInt(msPurchasedLive) <= 1)
-    			PlayerPrefs.SetInt(msPurchasedLive, 3);
-		}
+        if (PlayerPrefs.HasKey(msPurchasedLive))
+        {
+            if (PlayerPrefs.GetInt(msPurchasedLive) <= 1)
+                PlayerPrefs.SetInt(msPurchasedLive, 3);
+        }
 
-		else
-			PlayerPrefs.SetInt(msPurchasedLive, 3);
+        else
+            PlayerPrefs.SetInt(msPurchasedLive, 3);
     }
 
     void ScoreDataInitialize()
@@ -413,6 +414,11 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt(envName + msEnvPurchaseState, purchaseState);
     }
 
+    public static void SetNonPurchasedEnvIDCheckState(int Value)
+    {
+        PlayerPrefs.SetInt(msNonPurchasedEnvIDCheckState, Value);
+    }
+
     public static void SetChallengeCommenceTimerState(int Value)
     {
         PlayerPrefs.SetInt(msChallengeCommenceTimerState, Value);
@@ -577,6 +583,28 @@ public class DataManager : MonoBehaviour
             tEnvPurchasedState = true;  
         
         return tEnvPurchasedState;
+    }
+
+    public static int GetNonPurchasedEnvID()
+    {
+        int tValue = 0;
+        for (int i = 0; i < mListOfEnvID.Count; i++)
+        {
+            if (PlayerPrefs.GetInt(mListOfEnvID[i].ToString() + msEnvPurchaseState) == 0)
+            {
+                tValue = i;
+                break;
+            }
+        }
+        return tValue;
+    }
+
+    public static int GetNonPurchasedEnvIDCheckState()
+    {
+        int tValue = 0;
+        if (PlayerPrefs.HasKey(msNonPurchasedEnvIDCheckState))
+            tValue = PlayerPrefs.GetInt(msNonPurchasedEnvIDCheckState);
+        return tValue;
     }
 
     public static int GetChallengeCommenceTimerState()

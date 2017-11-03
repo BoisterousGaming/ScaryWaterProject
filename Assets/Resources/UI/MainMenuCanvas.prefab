@@ -1732,7 +1732,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0.4
-  _Duration: 1.5
+  _Duration: 0.5
 --- !u!114 &114025575485455994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1924,7 +1924,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0.5
-  _Duration: 1.5
+  _Duration: 0.25
 --- !u!114 &114113273612455228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   _ChallengeActiveTimerScr: {fileID: 114399640981525494}
   _ChallengeButton: {fileID: 114573213119459746}
   _InfoText: {fileID: 114675073370443604}
-  _TimeInSeconds: 60
+  _TimeInSeconds: 1800
   _bDisableEnvLock: 0
   _bEnableChallenge: 0
   _arrOfChallengeBtnSprites:
@@ -2269,7 +2269,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0
-  _Duration: 1.5
+  _Duration: 0.25
 --- !u!114 &114349086098932354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2348,7 +2348,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _StartDelay: 0.4
-  _Duration: 1
+  _Duration: 0.25
 --- !u!114 &114399640981525494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2363,7 +2363,7 @@ MonoBehaviour:
   _ChallengeCommenceTimerScr: {fileID: 114179609240680074}
   _ChallengeButton: {fileID: 114573213119459746}
   _InfoText: {fileID: 114675073370443604}
-  _TimeInSeconds: 180
+  _TimeInSeconds: 1800
   _arrOfChallengeBtnSprites:
   - {fileID: 21300000, guid: 7ad1ef24a69eb40ae98a496d45157978, type: 3}
   - {fileID: 21300000, guid: f5425341c418342529eb4a69412ca06e, type: 3}
@@ -2670,7 +2670,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0.1
-  _Duration: 1
+  _Duration: 0.25
 --- !u!114 &114612276503653968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3119,7 +3119,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0.3
-  _Duration: 1
+  _Duration: 0.25
 --- !u!114 &114949944864130110
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -53,7 +53,7 @@ public class ChallengeActiveTimer : MonoBehaviour
         {
             _ChallengeButton.interactable = false;
             _ChallengeButton.GetComponent<Image>().sprite = _arrOfChallengeBtnSprites[0];
-            _InfoText.text = "LOCKED";
+            _InfoText.text = "Locked";
         }
     }
 

@@ -38,10 +38,11 @@ public class MainMenuUIHandler : GUIItemsManager
 
             case "ChallengeBtn":
                 if (DataManager.GetAllEnvPurchasedState() & _ChallengeCommenceTimerScr._bEnableChallenge)
-                    SceneManager.LoadScene(2, LoadSceneMode.Single);
+                    SceneManager.LoadScene(4, LoadSceneMode.Single);
 
                 else if (!DataManager.GetAllEnvPurchasedState())
                 {
+                    DataManager.SetNonPurchasedEnvIDCheckState(1);
                     UICanvasHandler.Instance.DestroyScreen(this.gameObject);
                     UICanvasHandler.Instance.LoadScreen("EnvironmentSelectionCanvas");
                 }

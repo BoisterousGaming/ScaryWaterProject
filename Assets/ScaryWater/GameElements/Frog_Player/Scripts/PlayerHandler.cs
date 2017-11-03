@@ -141,7 +141,8 @@ public class PlayerHandler : MonoBehaviour
 			{
 				_jumpActionScr.StopJump("death");
 				GameplayAreaUIHandler tHUDCanvasScr = tCanvas.GetComponent<GameplayAreaUIHandler>();
-				tHUDCanvasScr._HealthBar.AddDamage(tHUDCanvasScr._HealthBar._CurrentFillAmount + 0.001f, _playerManager.PlayerDeathHandler);
+                tHUDCanvasScr._HealthBar.AddDamage(tHUDCanvasScr._HealthBar._CurrentFillAmount + 0.001f, _playerManager.PlayerDeathHandler);
+                //Debug.Log("Executing");
 
 				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidDying)
 					MiniGameManager.Instance._iPlayerDeathCount += 1;

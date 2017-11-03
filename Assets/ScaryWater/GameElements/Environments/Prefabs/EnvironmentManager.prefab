@@ -57,7 +57,7 @@ MonoBehaviour:
   _listOfHighTireSets: []
   _listOfChallengeSets: []
   _listOfMiniGameSets: []
-  _iNumberOfActiveTilesOnScreen: 2
+  _iNumberOfActiveTilesOnScreen: 3
   _playerManager: {fileID: 0}
   _vCurrentPlatformPosition: {x: 0, y: 0, z: 0}
   _listOfPlatformHandler: []

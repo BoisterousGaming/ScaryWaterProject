@@ -68,10 +68,17 @@ public class EnvironmentUIHandler : GUIItemsManager
 
     void Start()
     {
-        int tActiveID = DataManager.GetActiveEnvID();
+        int tActiveID;
+        if (DataManager.GetNonPurchasedEnvIDCheckState() == 1)
+            tActiveID = DataManager.GetNonPurchasedEnvID();
+        
+        else
+            tActiveID = DataManager.GetActiveEnvID();
+        
         miCurrentIndex = tActiveID;
         EnvPriceInitialize();
         EnvironmentSetup();
+        DataManager.SetNonPurchasedEnvIDCheckState(0);
     }
 
     void Update()
