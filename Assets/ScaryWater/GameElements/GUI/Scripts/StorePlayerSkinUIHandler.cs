@@ -93,7 +93,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
     {
         Color tColor = new Color();
         ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
-        SkinAndBtnState(false, false, "Skin is equiped", tColor, " ", false);
+        SkinAndBtnState(false, false, "Skin is equipped", tColor, " ", false);
         InitializeSkinPrice();
 	}
 
@@ -152,7 +152,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
                 DataManager.SetSkinStates(tSkinDataScr._ePlayerSkinID.ToString(), 1, 1, 0);
                 Color tColor = new Color();
                 ColorUtility.TryParseHtmlString(msRegularTextColor, out tColor);
-                SkinAndBtnState(false, true, "Skin is not equiped", tColor, " ", false);
+                SkinAndBtnState(false, true, "Skin is not equipped", tColor, " ", false);
             }     
         }
 	}
@@ -174,7 +174,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
                 DataManager.SetEquipedSkinID(_SelectedSkinID);
                 Color tColor = new Color();
                 ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
-                SkinAndBtnState(false, false, "Skin is equiped", tColor, " ", false);
+                SkinAndBtnState(false, false, "Skin is equipped", tColor, " ", false);
             }
 
             else
@@ -261,14 +261,14 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
                 {
                     Color tColor = new Color();
                     ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
-                    SkinAndBtnState(false, false, "Skin is equiped", tColor, " ", false);
+                    SkinAndBtnState(false, false, "Skin is equipped", tColor, " ", false);
                 }
 
                 else
                 {
                     Color tColor = new Color();
                     ColorUtility.TryParseHtmlString(msRegularTextColor, out tColor);
-                    SkinAndBtnState(false, true, "Skin is not equiped", tColor, " ", false);
+                    SkinAndBtnState(false, true, "Skin is not equipped", tColor, " ", false);
                 }
             }
 

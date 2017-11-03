@@ -142,7 +142,6 @@ public class PlayerHandler : MonoBehaviour
 				_jumpActionScr.StopJump("death");
 				GameplayAreaUIHandler tHUDCanvasScr = tCanvas.GetComponent<GameplayAreaUIHandler>();
                 tHUDCanvasScr._HealthBar.AddDamage(tHUDCanvasScr._HealthBar._CurrentFillAmount + 0.001f, _playerManager.PlayerDeathHandler);
-                //Debug.Log("Executing");
 
 				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidDying)
 					MiniGameManager.Instance._iPlayerDeathCount += 1;
@@ -179,7 +178,7 @@ public class PlayerHandler : MonoBehaviour
 		{
 			_iLaneNumber -= 1;
             if (_jumpActionScr._Progress <= 0.6f)
-                DoJumpToNextPlatform(1.5f, miJumpDistance);
+                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
 		}
 	}
 
@@ -189,11 +188,11 @@ public class PlayerHandler : MonoBehaviour
 		{
 			_iLaneNumber += 1;
             if (_jumpActionScr._Progress <= 0.6f)
-                DoJumpToNextPlatform(1.5f, miJumpDistance);
+                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
 		}
 	}
 
-    void DoJumpToNextPlatform(float height = 1.5f, float offset = 10.0f, float speed = 17, string animationName = "short_jump_root_motion")
+    void DoJumpToNextPlatform(float height = DataHandler._fPlayerAutoJumpHeight, float offset = 10.0f, float speed = 17, string animationName = "short_jump_root_motion")
     {
         _bLockUpdatingPosition = false;
         EnvironmentManager.Instance.SetCurrentPlatformPosition(_vCurPlatformPosition.x, _vCurPlatformPosition.y, _vCurPlatformPosition.z);

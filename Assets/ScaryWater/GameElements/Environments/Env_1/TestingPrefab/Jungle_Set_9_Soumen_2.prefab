@@ -1638,9 +1638,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4394502313400426}
   - component: {fileID: 33312613828377860}
-  - component: {fileID: 136834948729082932}
   - component: {fileID: 23572665636663056}
   - component: {fileID: 114687727921578576}
+  - component: {fileID: 65949783602080100}
   m_Layer: 0
   m_Name: MiniGame_01
   m_TagString: MiniGameOrb
@@ -7346,6 +7346,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65949783602080100
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886744401889086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114006062887536138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7965,16 +7977,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eSupportType: 0
   _Transform: {fileID: 0}
---- !u!136 &136834948729082932
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886744401889086}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

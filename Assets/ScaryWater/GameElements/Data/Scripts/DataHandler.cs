@@ -5,13 +5,13 @@ using UnityEngine;
 public static class DataHandler
 {
     #region PlayerHandler Variables
-    public const float _fPlayerAutoJumpHeight = 1.5f;
-    public const float _fPlayerHighAndLongJumpHeight = 4f;
-    public const float _fPlayerSpiderInitiatedJumpHeight = 5f;
+    public const float _fPlayerAutoJumpHeight = 2f;
+    public const float _fPlayerHighAndLongJumpHeight = 5f;
+    public const float _fPlayerSpiderInitiatedJumpHeight = 6f;
     public const float _fPlayerJumpDistance = 5f;
-    public const float _fPlayerRegularSpeed = 17.5f; // 17.5
-    public const float _fPlayerSpeedDuringLaneChange = 40f; // 40
-    public const float _fPlayerSpeedIntiatedBySpider = 17.5f; // 17.5
+    public const float _fPlayerRegularSpeed = 17.5f;
+    public const float _fPlayerSpeedDuringLaneChange = 40f;
+    public const float _fPlayerSpeedIntiatedBySpider = 17.5f;
     public const float _fPlayerCoinCollectionDistanceForMagnet = 25f;
     public const float _fPlayerRespawnWaitTimeInSecond = 2f;
     public const float _fSpaceBetweenLanes = 5f;

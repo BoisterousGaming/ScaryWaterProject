@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 4673717913803046}
   - component: {fileID: 114257723847005498}
   - component: {fileID: 54470430337402746}
-  - component: {fileID: 135134026718297186}
+  - component: {fileID: 65099596654033740}
   m_Layer: 0
   m_Name: PlayerFrog
   m_TagString: Player
@@ -1221,6 +1221,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65099596654033740
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432167568676342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.33, z: 1}
+  m_Center: {x: 0, y: 0.16, z: 0.16}
 --- !u!95 &95438025247916012
 Animator:
   serializedVersion: 3
@@ -1260,18 +1272,6 @@ MonoBehaviour:
   _bLockUpdatingPosition: 0
   _bSwipedLeftOrRight: 0
   _rigidBodyOfPlayer: {fileID: 54470430337402746}
---- !u!135 &135134026718297186
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1432167568676342}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137945764147403592
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

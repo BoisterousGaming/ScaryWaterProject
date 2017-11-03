@@ -41,6 +41,7 @@ public class ObstacleHandler : MonoBehaviour
             {
                 mbSkipChecking = true;
 				EnemyAndObstacleManager.Instance.ApplyDamageBasedOnObstacle(_eObstacleType);
+                Debug.Log("Name of the obstacle: " + this.gameObject.name + ", Position: " + this.transform.position);
             }
             Destroy(this.gameObject);
         }
