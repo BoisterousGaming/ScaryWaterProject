@@ -6,7 +6,8 @@ using System;
 public class ChallengeManager : MonoBehaviour 
 {
     static ChallengeManager mInstance;
-    bool mbSkipSetting = false;
+
+    public PlayerManager _PlayerManager;
 
     public static ChallengeManager Instance
     {
@@ -25,19 +26,7 @@ public class ChallengeManager : MonoBehaviour
     void Start()
     {
         EnvironmentManager.Instance.ChallengeTypeSetInstantiation();
-    }
-
-    void Update()
-    {
-        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
-        if (tCanvas != null)
-        {
-            if (!mbSkipSetting)
-            {
-                mbSkipSetting = true;
-                tCanvas.GetComponent<GameplayAreaUIHandler>()._HealthBar._FillCountChangedCallback += TerminateChallengeCallback;
-            }
-        }
+        _PlayerManager._BarProgressSpriteScr._FillCountChangedCallback += TerminateChallengeCallback;
     }
 
     public static DateTime GetCurrentDateAndTime()
@@ -69,7 +58,7 @@ public class ChallengeManager : MonoBehaviour
 
     void OnDestroy()
     {
-        //if (BarProgress.Instance._FillCountChangedCallback != null)
-            //BarProgress.Instance._FillCountChangedCallback -= TerminateChallengeCallback;    
+        if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
+            PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= TerminateChallengeCallback;
     }
 }

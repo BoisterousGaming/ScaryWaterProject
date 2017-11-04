@@ -10,7 +10,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
     ButterflySpriteScr mButterflySpriteScr;
     static GameplayAreaUIHandler mInstance;
 
-    public BarProgress _HealthBar;
+    //public BarProgress _HealthBar;
     public Text _Score;
     public Text _HealthCount;
     public Text _CoinCount;
@@ -43,8 +43,14 @@ public class GameplayAreaUIHandler : GUIItemsManager
     void Start()
     {
         _HealthCount.text = DataManager.GetLiveAmount().ToString();
-        _HealthBar._FillCountChangedCallback += PrintHealthCountCallback;
+        Invoke("InitializeCallback", 1.0f);
     }
+
+    void InitializeCallback()
+    {
+        PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += PrintHealthCountCallback;
+    }
+
 
 	public void InstantiateCoin()
 	{
@@ -119,9 +125,9 @@ public class GameplayAreaUIHandler : GUIItemsManager
         UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas", null, true);
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
-        if (_HealthBar._FillCountChangedCallback != null)
-            _HealthBar._FillCountChangedCallback -= PrintHealthCountCallback;
+        if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
+            PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PrintHealthCountCallback;
     }
 }

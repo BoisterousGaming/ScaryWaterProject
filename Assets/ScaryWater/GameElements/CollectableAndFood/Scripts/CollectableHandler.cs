@@ -23,6 +23,7 @@ public class CollectableHandler : MonoBehaviour
     int miCoinValue = 1;
     int miButterflyValue = 1;
     bool mbSkipChecking = false;
+    bool mbShouldDestroy = false;
 
 	public eCollectableType _eCollectableType = eCollectableType.None;
     public eMoveTowards _eMoveTowards = eMoveTowards.None;
@@ -61,6 +62,9 @@ public class CollectableHandler : MonoBehaviour
     void Update()
 	{
 		ElementMoveTowardsHandler();
+
+        if (mbShouldDestroy)
+            Destroy(this.gameObject);
 	}
 
     void OnDestroy()
@@ -119,7 +123,7 @@ public class CollectableHandler : MonoBehaviour
 		{
 			CoinCount();
 			_eMoveTowards = eMoveTowards.None;
-			Destroy(this.gameObject);
+            mbShouldDestroy = true;
 		}
 	}
 
@@ -138,24 +142,25 @@ public class CollectableHandler : MonoBehaviour
 
                 if (this._eCollectableType == eCollectableType.StartCoin)
                 {
+                    mbShouldDestroy = true;
+
                     CoinCount();
 
 					GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 					if (tCanvas != null)
 						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateCoin();
 
-                    Destroy(this.gameObject);
                 }
 
 				if (this._eCollectableType == eCollectableType.Butterfly)
 				{
+                    mbShouldDestroy = true;
+
                     ButterflyCount();
 
 					GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 					if (tCanvas != null)
 						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateButterfly();
-
-                    Destroy(this.gameObject);
 				}
             }
         }

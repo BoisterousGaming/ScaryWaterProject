@@ -32,6 +32,7 @@ public class PlayerHandler : MonoBehaviour
     public bool _bLockUpdatingPosition;
     public bool _bSwipedLeftOrRight;
     public Rigidbody _rigidBodyOfPlayer;
+    public BarProgressSprite _BarProgressSpriteScr; 
 
     void Awake()
     {
@@ -136,22 +137,26 @@ public class PlayerHandler : MonoBehaviour
 
         else
         {
-			GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
-			if (tCanvas != null)
-			{
-				_jumpActionScr.StopJump("death");
-				GameplayAreaUIHandler tHUDCanvasScr = tCanvas.GetComponent<GameplayAreaUIHandler>();
-                tHUDCanvasScr._HealthBar.AddDamage(tHUDCanvasScr._HealthBar._CurrentFillAmount + 0.001f, _playerManager.PlayerDeathHandler);
+            _jumpActionScr.StopJump("death");
 
-				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidDying)
-					MiniGameManager.Instance._iPlayerDeathCount += 1;
+            BarProgressSprite tHealthBarScr = _playerManager._BarProgressSpriteScr;
 
-				else
-					MiniGameManager.Instance.DeactivateMiniGame(false);
+            float targetHealth = tHealthBarScr._TargetValue;
+            float diff = targetHealth - (int)targetHealth;
+            if (diff <= 0.001f)
+                diff = 1.0f;
+            targetHealth -= diff;
+            targetHealth = Mathf.RoundToInt(targetHealth);
+            tHealthBarScr.AddDamage(diff + 0.001f, _playerManager.PlayerDeathHandler);
 
-				if (tHUDCanvasScr._HealthBar.GetNumberOfFills() >= 1)
-					StartCoroutine(IRespawnThePlayer(EnvironmentManager.Instance.ComparePlatformAndPlayerPositionForReSpawning(transform.position, 2f, 30f)));
-			}
+            if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidDying)
+                MiniGameManager.Instance._iPlayerDeathCount += 1;
+
+            else
+                MiniGameManager.Instance.DeactivateMiniGame(false);
+
+            if (tHealthBarScr.GetNumberOfFills() >= 1)
+                StartCoroutine(IRespawnThePlayer(EnvironmentManager.Instance.ComparePlatformAndPlayerPositionForReSpawning(transform.position, 2f, 30f)));
 		}
 
         _bSwipedLeftOrRight = false;

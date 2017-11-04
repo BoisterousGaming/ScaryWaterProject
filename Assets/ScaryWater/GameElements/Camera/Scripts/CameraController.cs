@@ -5,21 +5,28 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     Transform mtPlayerTransform;
+    Transform mTransform;
     Vector3 mvOffset;
+    Vector3 mvOriginalPosition;
+    Vector3 mvOriginalLocalPosition;
     Vector3 mvTargetPosition;
     bool mbInitialized;
 
+    public bool _FollowPlayerY = false;
+
     void Initialize()
     {
+        mTransform = transform;
 		if (mtPlayerTransform == null)
 		{
 			mtPlayerTransform = PlayerManager.Instance._playerHandler._tPlayerTransform;
+            mTransform.parent = mtPlayerTransform;
 		}
-
-		mvOffset = transform.position - mtPlayerTransform.position;
-		float resolutionRatio = (float)Screen.width / (float)Screen.height;
-		mvOffset.z *= 0.75f / resolutionRatio;
-        mvOffset.y *= 0.75f / resolutionRatio;
+        mvOriginalPosition = mTransform.position;
+		//mvOffset = transform.position - mtPlayerTransform.position;
+		//float resolutionRatio = (float)Screen.width / (float)Screen.height;
+		//mvOffset.z *= 0.75f / resolutionRatio;
+        //mvOffset.y *= 0.75f / resolutionRatio;
     }
 
     void LateUpdate ()
@@ -28,13 +35,30 @@ public class CameraController : MonoBehaviour
         {
             mbInitialized = true;
             Initialize();
-        } 
+        }
 
-        Vector3 tPlayerPosition = mtPlayerTransform.position;
-        mvTargetPosition.x = mvOffset.x;
-		mvTargetPosition.y = mvOffset.y;
-		mvTargetPosition.z = tPlayerPosition.z + mvOffset.z;
+        if (!_FollowPlayerY)
+        {
+            Vector3 tPlayerPosition = mtPlayerTransform.position;
+            Vector3 tCamPos = mTransform.position;
+            //      mvTargetPosition.x = mvOffset.x + tPlayerPosition.x * 0.75f;
+            //mvTargetPosition.y = mvOffset.y;
+            //mvTargetPosition.z = tPlayerPosition.z + mvOffset.z;
+            //mvTargetPosition = tPlayerPosition + mvOffset;
+            tPlayerPosition.y = mvOriginalPosition.y;
+            tPlayerPosition.x = tCamPos.x;
+            tPlayerPosition.z = tCamPos.z;
 
-        transform.position = Vector3.Lerp(transform.position, mvTargetPosition, Time.fixedDeltaTime * 10.0f);
+            transform.position = tPlayerPosition;//Vector3.Lerp(transform.position, mvTargetPosition, Time.fixedDeltaTime * 10.0f);
+        }
+        else
+        {
+            Vector3 tPlayerPosition = mtPlayerTransform.position;
+            Vector3 tCamPos = mTransform.position;
+            tPlayerPosition.y = tCamPos.y;
+            tPlayerPosition.x = tCamPos.x;
+            tPlayerPosition.z = tCamPos.z;
+            transform.position = tPlayerPosition;
+        }
     }
 }

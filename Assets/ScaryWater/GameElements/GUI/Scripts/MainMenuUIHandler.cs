@@ -23,12 +23,17 @@ public class MainMenuUIHandler : GUIItemsManager
 
 		else if (mInstance != this)
 			Destroy(this.gameObject);
+
+        CMusicPlayer.Instance.Play("BGMusic");
 	}
 
     public override void OnButtonCallBack(GUIItem item)
 	{
-		//Debug.Log("Button Pressed: " + item.gameObject.name);
+        //Debug.Log("Button Pressed: " + item.gameObject.name);
+        if (mbIsAnimating)
+            return;
 
+        //CEffectsPlayer.Instance.Play("Click", 0.1f);
         switch (item.name)
         {
             case "PlayBtn":

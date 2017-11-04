@@ -17,6 +17,7 @@ public class BarProgress : MonoBehaviour
 	int miNumberOfFills;
 	int miCurNumberOfFills;
 	bool mbAnimating = false;
+    bool mbEmptyTheBar = false;
 
     public delegate void FillsCountChanged(int val);
     public FillsCountChanged _FillCountChangedCallback;
@@ -34,17 +35,16 @@ public class BarProgress : MonoBehaviour
     void Awake()
     {
         mInstance = this;
-        _TargetValue = DataManager.GetLiveAmount();
+        _TargetValue = DataManager.GetLiveAmount() + 0.9f;
         mfTargetValue = _TargetValue;
         mfCurTargetValue = mfTargetValue;
-        miCurNumberOfFills = DataManager.GetLiveAmount();
+        miCurNumberOfFills = DataManager.GetLiveAmount() + 1;
     }
 
     void Update()
     {
         //Debug.Log("Current Fill amount: " + _ProgressBar.fillAmount);
         CheckNewTargetValue();
-
         if (Mathf.Abs(_CurrentFillAmount - _ProgressBar.fillAmount) >= 0.01f)
             _CurrentFillAmount = _ProgressBar.fillAmount;
 
@@ -53,23 +53,38 @@ public class BarProgress : MonoBehaviour
             mfCount += Time.deltaTime;
             mfProgress = mfCount / mfTime;
 
-			if (mfProgress >= 1)
-			{
-				mfProgress = 1.0f;
-				mbAnimating = false;
-			}
-            mfCurTargetValue = mfStartValue + mfDifference * mfProgress;
-            //Debug.Log("CurTargetValue: " + mfCurTargetValue);
-            miNumberOfFills = (int)mfCurTargetValue;
-            
-            if (miNumberOfFills != miCurNumberOfFills)
+            if (mfProgress >= 1)
             {
-                miCurNumberOfFills = miNumberOfFills;
-                DataManager.SetLiveAmount(miCurNumberOfFills);
-                if (_FillCountChangedCallback != null)
-                    _FillCountChangedCallback(miCurNumberOfFills);
+                mfProgress = 1.0f;
+                mbAnimating = false;
+                mfCurTargetValue = mfTargetValue;
+                Debug.Log("CurTargetValue: " + mfCurTargetValue);
+                miNumberOfFills = (int)mfCurTargetValue;
+
+                if (miNumberOfFills != miCurNumberOfFills)
+                {
+                    miCurNumberOfFills = miNumberOfFills;
+                    DataManager.SetLiveAmount(miCurNumberOfFills);
+                    if (_FillCountChangedCallback != null)
+                        _FillCountChangedCallback(miCurNumberOfFills);
+                }
+                _ProgressBar.fillAmount = mfCurTargetValue - miNumberOfFills;
             }
-            _ProgressBar.fillAmount = mfCurTargetValue - miNumberOfFills;
+            else
+            {
+                mfCurTargetValue = mfStartValue + mfDifference * mfProgress;
+                Debug.Log("CurTargetValue: " + mfCurTargetValue);
+                miNumberOfFills = (int)mfCurTargetValue;
+
+                if (miNumberOfFills != miCurNumberOfFills)
+                {
+                    miCurNumberOfFills = miNumberOfFills;
+                    DataManager.SetLiveAmount(miCurNumberOfFills);
+                    if (_FillCountChangedCallback != null)
+                        _FillCountChangedCallback(miCurNumberOfFills);
+                }
+                _ProgressBar.fillAmount = mfCurTargetValue - miNumberOfFills;
+            }
             //_ProgressBar.color = _Gradient.Evaluate(_ProgressBar.fillAmount);
         }
     }
@@ -100,6 +115,7 @@ public class BarProgress : MonoBehaviour
 
 	public void SetTargetValue(float pTargetValue)
 	{
+        _TargetValue = pTargetValue;
 		mfTargetValue = pTargetValue;
         mfStartValue = mfCurTargetValue;
 

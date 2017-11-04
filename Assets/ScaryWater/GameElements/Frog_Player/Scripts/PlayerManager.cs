@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject _poisonPrefab;
     public PlayerHandler _playerHandler;
     public Texture[] _arrOfPlayerTexture;
+    public BarProgressSprite _BarProgressSpriteScr; 
 
     public static PlayerManager Instance
     {
@@ -44,6 +45,7 @@ public class PlayerManager : MonoBehaviour
         goPlayer.transform.position = SpawnPos;
         _playerHandler = goPlayer.GetComponent<PlayerHandler>();
         _playerHandler._playerManager = this;
+        _BarProgressSpriteScr = _playerHandler._BarProgressSpriteScr;
         EquipSkinOnStart(goPlayer);
     }
 

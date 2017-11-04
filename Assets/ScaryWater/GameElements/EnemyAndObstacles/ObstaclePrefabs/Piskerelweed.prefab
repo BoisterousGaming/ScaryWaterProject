@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4104465907389034}
   - component: {fileID: 114615165500537810}
-  - component: {fileID: 65753875449315198}
   - component: {fileID: 54037756714904028}
   - component: {fileID: 33687629110193154}
   - component: {fileID: 23810725227246916}
@@ -42,6 +41,7 @@ GameObject:
   - component: {fileID: 4575349122006252}
   - component: {fileID: 33493949195604706}
   - component: {fileID: 23999039639935862}
+  - component: {fileID: 64048994689626266}
   m_Layer: 10
   m_Name: Piskerelweed
   m_TagString: Untagged
@@ -173,18 +173,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &65753875449315198
-BoxCollider:
+--- !u!64 &64048994689626266
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1018920734030142}
+  m_GameObject: {fileID: 1512286103060300}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 6, z: 1}
-  m_Center: {x: 0, y: 3.5, z: 0.4}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300018, guid: 49a2af9f1a06aa8499ada2790467e775, type: 3}
 --- !u!114 &114095980816966446
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -32,9 +32,6 @@ public class EnemyAndObstacleManager : MonoBehaviour
     {
         if (FriendManager._bPlayerIsWithAFriend)
             return;
-        
-		GameObject HudObj = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
-		GameplayAreaUIHandler tHudScr = HudObj.GetComponent<GameplayAreaUIHandler>();
 
 		switch (obsType)
 		{
@@ -42,28 +39,28 @@ public class EnemyAndObstacleManager : MonoBehaviour
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Cattail);
                 
-                tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eObstacleType.Horsetail:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Horsetail);
                 
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eObstacleType.Iris:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Iris);
                 
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eObstacleType.Pickerelweed:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Pickerelweed);
                 
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 		}
 
@@ -84,39 +81,39 @@ public class EnemyAndObstacleManager : MonoBehaviour
 		switch (enemyType)
 		{
 			case eEnemyType.Bat:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+				_playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.BlueHeron:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.Crab:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.GiantWaterBug:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.GreatEgret:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.Hawk:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.Raccoon:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.Snake:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eEnemyType.VenusFlytrap:
-				tHudScr._HealthBar.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddDamage(0.5f, _playerManager.PlayerDeathHandler);
 				break;
 		}
 

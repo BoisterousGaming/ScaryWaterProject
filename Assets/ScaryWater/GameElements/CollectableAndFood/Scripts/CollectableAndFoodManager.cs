@@ -39,37 +39,34 @@ public class CollectableAndFoodManager : MonoBehaviour
 
     public void ApplyHealthBasedOnFood(eFoodType foodType)
     {
-		GameObject HudObj = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
-		GameplayAreaUIHandler tHudScr = HudObj.GetComponent<GameplayAreaUIHandler>();
-
 		switch (foodType)
 		{
 			case eFoodType.Bug:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Bug);
                 
-                tHudScr._HealthBar.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eFoodType.Firefly:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Firefly);
                 
-				tHudScr._HealthBar.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eFoodType.Insect:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Insect);
                 
-				tHudScr._HealthBar.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
 				break;
 
 			case eFoodType.Worm:
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Worm);
                 
-				tHudScr._HealthBar.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
+                _playerManager._BarProgressSpriteScr.AddHealth(0.1f, _playerManager.PlayerDeathHandler);
 				break;
 		}
 

@@ -379,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1751330128063176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: "0\x03"
 --- !u!114 &114585308483587924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1281,7 +1281,6 @@ MonoBehaviour:
   _AnimatingItems:
   - {fileID: 114642708015915446}
   _BackToScreen: 
-  _HealthBar: {fileID: 114130957993965776}
   _Score: {fileID: 114772608361448972}
   _HealthCount: {fileID: 114575565641918166}
   _CoinCount: {fileID: 114023036622872376}

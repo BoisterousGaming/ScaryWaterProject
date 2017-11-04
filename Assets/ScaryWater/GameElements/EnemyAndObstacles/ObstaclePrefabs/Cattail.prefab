@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4584850196526750}
   - component: {fileID: 33256506097879478}
   - component: {fileID: 23488614720343332}
+  - component: {fileID: 64268830578257108}
   m_Layer: 10
   m_Name: Cattail
   m_TagString: Untagged
@@ -37,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4373977609890770}
   - component: {fileID: 114569043230569964}
-  - component: {fileID: 65185824185892402}
   - component: {fileID: 54808158658481434}
   - component: {fileID: 33906425910881956}
   - component: {fileID: 23471790974617992}
@@ -173,18 +173,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &65185824185892402
-BoxCollider:
+--- !u!64 &64268830578257108
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1448136300782242}
+  m_GameObject: {fileID: 1340740801012338}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 6.75, z: 1}
-  m_Center: {x: 0, y: 3.45, z: 0}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: 49a2af9f1a06aa8499ada2790467e775, type: 3}
 --- !u!114 &114033648043157826
 MonoBehaviour:
   m_ObjectHideFlags: 1

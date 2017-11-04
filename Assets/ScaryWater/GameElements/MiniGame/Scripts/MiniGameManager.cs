@@ -42,6 +42,7 @@ public class MiniGameManager : MonoBehaviour
     bool mbSkipReward;
     bool mbMinGameIsActive;
     bool mbActive;
+    bool mbDoOnce = true;
 
     public eRewardState _eRewardState = eRewardState.None;
 	public int _iCoinsCollected;
@@ -138,6 +139,7 @@ public class MiniGameManager : MonoBehaviour
 				_iLeftRightMovementPerformed = 0;
                 _iObstaclesTouched = 0;
                 _iPlayerDeathCount = 0;
+                mbDoOnce = true;
 				break;
 
 			case eMiniGameState.CollectCoins:
@@ -211,7 +213,14 @@ public class MiniGameManager : MonoBehaviour
 				if (mfTempMiniGameLength > 0f)
 					mfTempMiniGameLength -= Time.deltaTime;
 
-				EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, true);
+                if (mbDoOnce)
+                {
+                    mbDoOnce = false;
+                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, true);    
+                }
+
+                else
+                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, false);    
 
 				if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
 					mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[(int)CurrentMiniGameType] + " " + CurrentAmount + "/" + RequiredAmount + "  <-->  " + "Time left: " + Mathf.Round(mfTempMiniGameLength);
@@ -248,7 +257,14 @@ public class MiniGameManager : MonoBehaviour
 					if (mfTempMiniGameLength > 0f)
 						mfTempMiniGameLength -= Time.deltaTime;
 
-					EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, true);
+                    if (mbDoOnce)
+                {
+                    mbDoOnce = false;
+                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, true);    
+                }
+
+                else
+                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, false);  
 
 					if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
 						mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[(int)CurrentMiniGameType] + " " + Mathf.Round(mfTempMiniGameLength) + " seconds.";
