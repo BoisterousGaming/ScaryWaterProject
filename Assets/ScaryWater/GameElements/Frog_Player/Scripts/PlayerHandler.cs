@@ -120,8 +120,10 @@ public class PlayerHandler : MonoBehaviour
 
     void JumpFinished()
     {
-		//Jump finished now what to do check if platform is available below player then jump again
-		//Or depending on swipe you can change the jump parameters for next jump
+        //Jump finished now what to do check if platform is available below player then jump again
+        //Or depending on swipe you can change the jump parameters for next jump
+        _playerManager._CameraControllerScr._bFollowPlayerY = false;
+
 		if (EnvironmentManager.Instance.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f))
         {
 			if (ScoreHandler._OnScoreEventCallback != null)
@@ -216,6 +218,8 @@ public class PlayerHandler : MonoBehaviour
 
     public void DoDoubleJump()
     {
+        _playerManager._CameraControllerScr._bFollowPlayerY = true;
+
 		if (ScoreHandler._OnScoreEventCallback != null)
 			ScoreHandler._OnScoreEventCallback(eScoreType.HighAndLongJump);
         
@@ -228,6 +232,8 @@ public class PlayerHandler : MonoBehaviour
 
 	public void DoSpiderJump()
 	{
+        _playerManager._CameraControllerScr._bFollowPlayerY = true;
+
 		transform.position = _vPlayerRequiredPosition;
 		_vCurPlatformPosition = _vNextPlatformPosition;
 		miJumpDistance = 30;

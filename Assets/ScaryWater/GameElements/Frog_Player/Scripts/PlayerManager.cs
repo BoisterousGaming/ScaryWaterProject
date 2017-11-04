@@ -13,7 +13,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject _poisonPrefab;
     public PlayerHandler _playerHandler;
     public Texture[] _arrOfPlayerTexture;
-    public BarProgressSprite _BarProgressSpriteScr; 
+    public BarProgressSprite _BarProgressSpriteScr;
+    public CameraController _CameraControllerScr;
 
     public static PlayerManager Instance
     {

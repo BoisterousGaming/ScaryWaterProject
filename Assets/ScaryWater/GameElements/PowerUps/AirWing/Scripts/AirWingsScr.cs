@@ -126,6 +126,7 @@ public class AirWingsScr : MonoBehaviour
 
 			PlayerManager.Instance._playerHandler._vPlayerRequiredPosition = mvLandingPadPosition;
 			PlayerManager.Instance._playerHandler._vNextPlatformPosition = mvLandingPadPosition;
+            PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
 			PlayerManager.Instance._playerHandler.DoSingleJump();
         }
 	}
@@ -141,6 +142,7 @@ public class AirWingsScr : MonoBehaviour
 			{
 				mbPlayerTriggerEnterChecking = false;
 
+                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
                 

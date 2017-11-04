@@ -204,6 +204,7 @@ public class BirdHandler : MonoBehaviour
 
 			PlayerManager.Instance._playerHandler._vPlayerRequiredPosition = mvLandingPadPosition;
 			PlayerManager.Instance._playerHandler._vNextPlatformPosition = mvLandingPadPosition;
+            PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
 			PlayerManager.Instance._playerHandler.DoSingleJump();
         }
     }
@@ -219,6 +220,7 @@ public class BirdHandler : MonoBehaviour
 			{
 				mbDetectPlayer = false;
 
+                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
 				if (ScoreHandler._OnScoreEventCallback != null)
                 {
                     if (meBirdType.Equals(eBirdType.Kingfisher))

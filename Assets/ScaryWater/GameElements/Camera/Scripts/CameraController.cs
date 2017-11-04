@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     Vector3 mvTargetPosition;
     bool mbInitialized;
 
-    public bool _FollowPlayerY = false;
+    public bool _bFollowPlayerY = false;
 
     void Initialize()
     {
@@ -37,11 +37,11 @@ public class CameraController : MonoBehaviour
             Initialize();
         }
 
-        if (!_FollowPlayerY)
+        if (!_bFollowPlayerY)
         {
             Vector3 tPlayerPosition = mtPlayerTransform.position;
             Vector3 tCamPos = mTransform.position;
-            //      mvTargetPosition.x = mvOffset.x + tPlayerPosition.x * 0.75f;
+            //mvTargetPosition.x = mvOffset.x + tPlayerPosition.x * 0.75f;
             //mvTargetPosition.y = mvOffset.y;
             //mvTargetPosition.z = tPlayerPosition.z + mvOffset.z;
             //mvTargetPosition = tPlayerPosition + mvOffset;
@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
             tPlayerPosition.x = tCamPos.x;
             tPlayerPosition.z = tCamPos.z;
 
-            transform.position = tPlayerPosition;//Vector3.Lerp(transform.position, mvTargetPosition, Time.fixedDeltaTime * 10.0f);
+            transform.position = tPlayerPosition; //Vector3.Lerp(transform.position, mvTargetPosition, Time.fixedDeltaTime * 10.0f);
         }
         else
         {

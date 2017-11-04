@@ -91,6 +91,7 @@ public class DuckHandler : MonoBehaviour
 
                     PlayerManager.Instance._playerHandler._vPlayerRequiredPosition = _tPointC.position;
                     PlayerManager.Instance._playerHandler._vNextPlatformPosition = _tPointC.position;
+                    PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
                     PlayerManager.Instance._playerHandler.DoSingleJump();
                 }
                 break;
@@ -116,6 +117,7 @@ public class DuckHandler : MonoBehaviour
 			{
 				mbSkipChecking = false;
 
+                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
 				if (ScoreHandler._OnScoreEventCallback != null)
 					ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
 
