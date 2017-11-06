@@ -25,7 +25,10 @@ public enum eEnemyState
 
 public class EnemyHandler : MonoBehaviour
 {
+    GameObject mTempGameObject;
     bool mbSkipChecking = false;
+    bool mbShouldDestroy = false;
+    bool mbShouldDestroyTempGO = false;
 
     public eEnemyType _eEnemyType = eEnemyType.None;
     public eEnemyState _eEnemyState = eEnemyState.Active;
@@ -39,6 +42,15 @@ public class EnemyHandler : MonoBehaviour
 	{
 		if (PlayerManager.Instance._playerHandler._tPlayerTransform.position.z - this.transform.position.z >= 20f)
             Destroy(this.gameObject);
+
+        if (mbShouldDestroy)
+            Destroy(this.gameObject);
+
+        if (mbShouldDestroyTempGO & mTempGameObject != null)
+        {
+            mbShouldDestroyTempGO = false;
+            Destroy(mTempGameObject);
+        }
 	}
 
     void OnDestroy()
@@ -92,7 +104,7 @@ public class EnemyHandler : MonoBehaviour
                 }
             }
 
-            Destroy(this.gameObject);
+            mbShouldDestroy = true;
 		}
 
         else if (other.CompareTag("Poison"))
@@ -104,7 +116,8 @@ public class EnemyHandler : MonoBehaviour
 					MiniGameManager.Instance._iEnemiesStunned += 1;
             }
 
-            Destroy(other.gameObject);
+            mTempGameObject = other.gameObject;
+            mbShouldDestroyTempGO = true;
         }
     }
 }

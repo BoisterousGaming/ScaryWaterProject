@@ -9,6 +9,9 @@ public class CollectableAndFoodManager : MonoBehaviour
 	float mfTempPlayerCoinMagnetLifeDurationInSecond;
     bool mbMagnetIsAttachedToPlayer;
     GameObject[] mArrOfChilds;
+    List<GameObject> mListOfCollectableGameObject = new List<GameObject>();
+    GameObject mTempGameObject;
+    bool mbShouldDestroyCGO = false;
     static CollectableAndFoodManager mInstance;
 
     public List<CollectableHandler> _listOfCollectableHandlers = new List<CollectableHandler>();
@@ -35,6 +38,12 @@ public class CollectableAndFoodManager : MonoBehaviour
     {
 		if (mbMagnetIsAttachedToPlayer)
 			MagnetHandler();
+
+        if (mbShouldDestroyCGO)
+        {
+            mbShouldDestroyCGO = false;
+            Destroy(mTempGameObject);
+        }
     }
 
     public void ApplyHealthBasedOnFood(eFoodType foodType)
@@ -92,19 +101,22 @@ public class CollectableAndFoodManager : MonoBehaviour
 		else if (scr._eCollectableType == eCollectableType.Magnet)
 		{
 			EnableMagnet();
-			Destroy(scr.gameObject);
+            mbShouldDestroyCGO = true;
+            mTempGameObject = scr.gameObject;
 		}
 
 		else if (scr._eCollectableType == eCollectableType.Poison)
 		{
             DataManager.AddToCSessionPoisonAmount(1);
-			Destroy(scr.gameObject);
+            mbShouldDestroyCGO = true;
+            mTempGameObject = scr.gameObject;
 		}
 
         else if (scr._eCollectableType == eCollectableType.AirWing)
         {
             FriendManager.Instance.InstantiateAirWings(scr._xAxisPosition);
-            Destroy(scr.gameObject);
+            mbShouldDestroyCGO = true;
+            mTempGameObject = scr.gameObject;
         }
 	}
 

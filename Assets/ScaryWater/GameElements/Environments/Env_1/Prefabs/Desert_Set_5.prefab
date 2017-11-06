@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 4990258985402356}
   - component: {fileID: 114571080891330242}
   m_Layer: 0
-  m_Name: Desert_Set_5_bird
+  m_Name: Desert_Set_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

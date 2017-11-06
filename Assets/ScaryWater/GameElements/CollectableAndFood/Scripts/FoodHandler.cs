@@ -15,12 +15,19 @@ public enum eFoodType
 public class FoodHandler : MonoBehaviour 
 {
     bool mbSkipChecking;
+    bool mbShouldDestroy = false;
 
     public eFoodType _eFoodType = eFoodType.None;
 
     void OnEnable()
     {
         CollectableAndFoodManager.Instance._listOfFoodHandlers.Add(this);
+    }
+
+    void Update()
+    {
+        if (mbShouldDestroy)
+            Destroy(this.gameObject);
     }
 
     void OnDestroy()
@@ -37,7 +44,8 @@ public class FoodHandler : MonoBehaviour
                 mbSkipChecking = true;
 				CollectableAndFoodManager.Instance.ApplyHealthBasedOnFood(_eFoodType);
             }
-            Destroy(this.gameObject);
+
+            mbShouldDestroy = true;
 		}
 	}
 }

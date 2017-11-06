@@ -1498,6 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab583a6196b35344b5470c7a0149137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _eBirdType: 2
   _tBird: {fileID: 4674885443541744}
   _tPointA: {fileID: 4069591942350726}
   _tPointB: {fileID: 4144534425312372}

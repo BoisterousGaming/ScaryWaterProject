@@ -448,7 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4789697904560532}
   m_Layer: 0
-  m_Name: DuckComponent (1)
+  m_Name: DuckComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8124,7 +8124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462290e7e119846cd8f6dbfc6042726d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eSupportType: 0
+  _eSupportType: 1
   _Transform: {fileID: 0}
 --- !u!114 &114919041465355150
 MonoBehaviour:

@@ -108,15 +108,7 @@ public class StoreTabUIHandler : GUIItemsManager
 
     public override void OnBackButton() 
     {
-        for (int i = 0; i < UICanvasHandler.Instance._ActiveCanvas.Count; i++)
-        {
-            GameObject tCanvas = UICanvasHandler.Instance._ActiveCanvas[i];
-
-            if (tCanvas.name.Equals("StorePlayerSkinCanvas") | tCanvas.name.Equals("StoreUpgradeCanvas") | tCanvas.name.Equals("StoreBoosterCanvas") | tCanvas.name.Equals("StoreMoneyCanvas"))
-                UICanvasHandler.Instance.DestroyScreen(tCanvas);
-        }
-
-        UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+        UICanvasHandler.Instance.RemoveAllActiveCanvas();
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
             UICanvasHandler.Instance.LoadScreen("MainMenuCanvas", null, true);

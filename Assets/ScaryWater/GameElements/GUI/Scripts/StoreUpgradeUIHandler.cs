@@ -99,6 +99,9 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                     DataManager.AddToLiveAmount(miLiveCount);
                     DataManager.SubstractFromTotalCoin(miTotalLivePrice);
                 }
+
+                else
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
                 break;
 
             case "PoisonDecBtn":
@@ -127,6 +130,9 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                     DataManager.AddToPoisonAmount(miPoisonCount);
                     DataManager.SubstractFromTotalCoin(miTotalPoisonPrice);
 				}
+
+                else
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
                 break;
 
             case "AirwingsDecBtn":
@@ -155,6 +161,9 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                     DataManager.AddToAirwingAmount(miAirwingCount);
                     DataManager.SubstractFromTotalCoin(miTotalAirwingPrice);
 				}
+
+                else
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
                 break;
 
             case "MagnetDecBtn":
@@ -183,6 +192,9 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                     DataManager.AddToMagnetAmount(miMagnetCount);
                     DataManager.SubstractFromTotalCoin(miTotalMagnetPrice);
 				}
+
+                else
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
                 break;
         }
     }

@@ -165,7 +165,6 @@ public class EnvironmentManager : MonoBehaviour
 
         if (miniGameState)
         {
-            Debug.Log("Executing");
 			Vector3 tLastSetPos = mListOfInstatiatedSets[mListOfInstatiatedSets.Count - 1].transform.position;
 			Destroy(mListOfInstatiatedSets[mListOfInstatiatedSets.Count - 1]);
 			mListOfInstatiatedSets.RemoveAt(mListOfInstatiatedSets.Count - 1);

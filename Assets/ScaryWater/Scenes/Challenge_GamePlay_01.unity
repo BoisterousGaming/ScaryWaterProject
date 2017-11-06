@@ -4187,13 +4187,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1376652677}
-  m_LocalRotation: {x: 0.074841395, y: -0, z: -0, w: 0.9971955}
-  m_LocalPosition: {x: 0, y: 7.92, z: -9.39}
+  m_LocalRotation: {x: 0.14704092, y: -0, z: -0, w: 0.9891305}
+  m_LocalPosition: {x: 0, y: 3.58, z: -5.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.584001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.911001, y: 0, z: 0}
 --- !u!114 &1376652683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4205,6 +4205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd0aa6224452ca49953431e190aeab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bFollowPlayerY: 0
 --- !u!45 &1376652684
 Skybox:
   m_ObjectHideFlags: 0

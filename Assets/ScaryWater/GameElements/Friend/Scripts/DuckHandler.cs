@@ -127,12 +127,7 @@ public class DuckHandler : MonoBehaviour
 				PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
 				other.GetComponent<Rigidbody>().useGravity = false;
 				other.GetComponent<Rigidbody>().isKinematic = true;
-
-				Vector3 duckPosition = transform.position;
-				mvTempPos.x = duckPosition.x;
-				mvTempPos.y = duckPosition.y + 0.65f;
-				mvTempPos.z = duckPosition.z;
-				PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+                SetPlayerPositionForDuck();
 
 				meDuckState = eDuckState.MoveToPointA;
 
@@ -142,21 +137,18 @@ public class DuckHandler : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-			Vector3 duckPosition = transform.position;
-			mvTempPos.x = duckPosition.x;
-			mvTempPos.y = duckPosition.y + 0.65f;
-			mvTempPos.z = duckPosition.z;
-			PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
-        }
-    }
-
     void SmoothLook(Vector3 Direction)
     {
         var targetRotation = Quaternion.LookRotation(Direction - transform.localPosition);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
+    }
+
+    void SetPlayerPositionForDuck()
+    {
+        Vector3 duckPosition = transform.position;
+        mvTempPos.x = duckPosition.x;
+        mvTempPos.y = duckPosition.y + 0.2f;
+        mvTempPos.z = duckPosition.z - 0.65f;
+        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
     }
 }

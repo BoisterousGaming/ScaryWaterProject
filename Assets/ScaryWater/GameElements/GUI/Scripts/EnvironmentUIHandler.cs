@@ -203,7 +203,7 @@ public class EnvironmentUIHandler : GUIItemsManager
 
     public override void OnBackButton()
     {
-        UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+        UICanvasHandler.Instance.RemoveAllActiveCanvas();
         UICanvasHandler.Instance.LoadScreen("MainMenuCanvas");
     }
 }

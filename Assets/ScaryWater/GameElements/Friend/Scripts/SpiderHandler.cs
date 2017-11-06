@@ -5,10 +5,17 @@ using UnityEngine;
 public class SpiderHandler : MonoBehaviour 
 {
     bool mbSkipChecking;
+    bool mbShouldDestroy = false;
 
     void OnEnable()
     {
         FriendManager.Instance._listOfFriends.Add(this.transform);
+    }
+
+    void Update()
+    {
+        if (mbShouldDestroy)
+            Destroy(this.gameObject);
     }
 
     void OnDestroy()
@@ -35,7 +42,7 @@ public class SpiderHandler : MonoBehaviour
 				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidFriend)
 					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
 
-                Destroy(this.gameObject);
+                mbShouldDestroy = true;
 			}
 		}
 	}

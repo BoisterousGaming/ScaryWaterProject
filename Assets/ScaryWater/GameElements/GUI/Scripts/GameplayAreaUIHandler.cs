@@ -122,6 +122,12 @@ public class GameplayAreaUIHandler : GUIItemsManager
 
     public override void OnBackButton()
     {
+        for (int i = 0; i < UICanvasHandler.Instance._ActiveCanvas.Count; i++)
+        {
+            GameObject tCanvas = UICanvasHandler.Instance._ActiveCanvas[i];
+            if (tCanvas.GetComponent<Canvas>().sortingOrder > 0)
+                return;
+        }
         UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas", null, true);
     }
 

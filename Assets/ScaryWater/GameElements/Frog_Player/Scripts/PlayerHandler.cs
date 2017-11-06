@@ -18,6 +18,7 @@ public class PlayerHandler : MonoBehaviour
 	float miJumpDistance = 10;
 	bool mbInGameLoadingBufferState = true;
     bool mbLockHighAndLongJumpAction;
+    bool mbPerformingSpiderJump = false;
 
     public int _iLaneNumber;
     public eControlState _eControlState = eControlState.None;
@@ -123,6 +124,7 @@ public class PlayerHandler : MonoBehaviour
         //Jump finished now what to do check if platform is available below player then jump again
         //Or depending on swipe you can change the jump parameters for next jump
         _playerManager._CameraControllerScr._bFollowPlayerY = false;
+        mbPerformingSpiderJump = false;
 
 		if (EnvironmentManager.Instance.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f))
         {
@@ -218,6 +220,9 @@ public class PlayerHandler : MonoBehaviour
 
     public void DoDoubleJump()
     {
+        if (mbPerformingSpiderJump)
+            return;
+        
         _playerManager._CameraControllerScr._bFollowPlayerY = true;
 
 		if (ScoreHandler._OnScoreEventCallback != null)
@@ -232,6 +237,7 @@ public class PlayerHandler : MonoBehaviour
 
 	public void DoSpiderJump()
 	{
+        mbPerformingSpiderJump = true;
         _playerManager._CameraControllerScr._bFollowPlayerY = true;
 
 		transform.position = _vPlayerRequiredPosition;

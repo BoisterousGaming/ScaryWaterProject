@@ -26,12 +26,12 @@ public class BirdHandler : MonoBehaviour
         PointH2
     }
 
-    eBirdType meBirdType = eBirdType.None;
 	eBirdState meBirdState = eBirdState.Idle;
 	bool mbDetectPlayer;
 	Vector3 mvLandingPadPosition = Vector3.zero;
     Vector3 mvTempPos;
 
+    public eBirdType _eBirdType = eBirdType.None;
     public Transform _tBird;
     public Transform _tPointA;
     public Transform _tPointB;
@@ -223,10 +223,10 @@ public class BirdHandler : MonoBehaviour
                 PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
 				if (ScoreHandler._OnScoreEventCallback != null)
                 {
-                    if (meBirdType.Equals(eBirdType.Kingfisher))
+                    if (_eBirdType.Equals(eBirdType.Kingfisher))
                         ScoreHandler._OnScoreEventCallback(eScoreType.Kingfisher);
 
-                    else if (meBirdType.Equals(eBirdType.Dragonfly))
+                    else if (_eBirdType.Equals(eBirdType.Dragonfly))
                         ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
                 }
 
@@ -236,12 +236,7 @@ public class BirdHandler : MonoBehaviour
 				PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
 				other.GetComponent<Rigidbody>().useGravity = false;
 				other.GetComponent<Rigidbody>().isKinematic = true;
-
-				Vector3 birdPosition = transform.position;
-				mvTempPos.x = birdPosition.x;
-				mvTempPos.y = birdPosition.y - 0.85f;
-				mvTempPos.z = birdPosition.z;
-				PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+                DetectBirdType();
 
 				meBirdState = eBirdState.PointC;
 
@@ -249,18 +244,6 @@ public class BirdHandler : MonoBehaviour
 					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
 			}
 		}
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Vector3 birdPosition = transform.position;
-			mvTempPos.x = birdPosition.x;
-			mvTempPos.y = birdPosition.y - 0.85f;
-			mvTempPos.z = birdPosition.z;
-			PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
-        }
     }
 
     void SmoothLook(Vector3 Direction)
@@ -272,4 +255,31 @@ public class BirdHandler : MonoBehaviour
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
 		}
 	}
+
+    void DetectBirdType()
+    {
+        if (this._eBirdType == eBirdType.Kingfisher)
+            SetPlayerPositionForKingfisher();
+
+        else if (this._eBirdType == eBirdType.Dragonfly)
+            SetPlayerPositionForDragonfly();
+    }
+
+    void SetPlayerPositionForKingfisher()
+    {
+        Vector3 birdPosition = transform.position;
+        mvTempPos.x = birdPosition.x;
+        mvTempPos.y = birdPosition.y - 1.25f;
+        mvTempPos.z = birdPosition.z - 0.35f;
+        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+    }
+
+    void SetPlayerPositionForDragonfly()
+    {
+        Vector3 birdPosition = transform.position;
+        mvTempPos.x = birdPosition.x;
+        mvTempPos.y = birdPosition.y - 0.85f;
+        mvTempPos.z = birdPosition.z;
+        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+    }
 }

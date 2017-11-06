@@ -96,6 +96,8 @@ public class BarProgressSprite : MonoBehaviour
             }
             //_ProgressBar.color = _Gradient.Evaluate(_ProgressBar.fillAmount);
         }
+
+        HideProgressBar();
     }
 
     void CheckNewTargetValue()
@@ -140,5 +142,18 @@ public class BarProgressSprite : MonoBehaviour
     public int GetNumberOfFills()
     {
         return miCurNumberOfFills;
+    }
+
+    void HideProgressBar()
+    {
+        Color tColor;
+
+        if (!FriendManager._bPlayerIsWithAFriend)
+            tColor = new Color(1f, 1f, 1f, 1f);
+        else
+            tColor = new Color(1f, 1f, 1f, 0f);
+        
+        GetComponent<SpriteRenderer>().color = tColor;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = tColor;
     }
 }

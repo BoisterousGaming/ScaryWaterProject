@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class BirdInitiate : MonoBehaviour 
 {
+    bool mbShouldDestroy = false;
+
 	public delegate void InitiateBird();
 	public InitiateBird _InitiateBird;
+
+    void Update()
+    {
+        if (mbShouldDestroy)
+            Destroy(this.gameObject);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,8 +21,8 @@ public class BirdInitiate : MonoBehaviour
         {
             if (_InitiateBird != null)
                 _InitiateBird();
-            
-            Destroy(this.gameObject, 0.2f);
+
+            mbShouldDestroy = true;
         }
     }
 }
