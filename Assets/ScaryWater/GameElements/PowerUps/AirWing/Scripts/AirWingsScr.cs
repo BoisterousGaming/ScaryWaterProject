@@ -173,30 +173,14 @@ public class AirWingsScr : MonoBehaviour
 				other.GetComponent<Rigidbody>().useGravity = false;
 				other.GetComponent<Rigidbody>().isKinematic = true;
 
-				Vector3 airWingPosition = transform.position;
-				mvTempPos.x = airWingPosition.x;
-				mvTempPos.y = airWingPosition.y - 0.85f;
-				mvTempPos.z = airWingPosition.z;
-				PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+                SetPlayerPositionForAirWings();
 
 				meAirWingState = eAirWingState.MoveForward;
 
-				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidFriend)
+				if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
 					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
 			}
 		}
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-			Vector3 airWingPosition = transform.position;
-			mvTempPos.x = airWingPosition.x;
-			mvTempPos.y = airWingPosition.y - 0.85f;
-			mvTempPos.z = airWingPosition.z;
-			PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
-        }
     }
 
     void SmoothLook(Vector3 Direction)
@@ -204,4 +188,13 @@ public class AirWingsScr : MonoBehaviour
 		var targetRotation = Quaternion.LookRotation(Direction - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
 	}
+
+    void SetPlayerPositionForAirWings()
+    {
+        Vector3 airWingPosition = transform.position;
+        mvTempPos.x = airWingPosition.x;
+        mvTempPos.y = airWingPosition.y - 0.85f;
+        mvTempPos.z = airWingPosition.z;
+        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+    }
 }

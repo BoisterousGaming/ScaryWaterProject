@@ -15,6 +15,8 @@ public class PlayerManager : MonoBehaviour
     public Texture[] _arrOfPlayerTexture;
     public BarProgressSprite _BarProgressSpriteScr;
     public CameraController _CameraControllerScr;
+    public EnvironmentManager _EnvironmentManagerScr;
+    public MiniGameManager _MiniGameManagerScr;
 
     public static PlayerManager Instance
     {

@@ -96,6 +96,12 @@ public class EnvironmentManager : MonoBehaviour
 
     void Start()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 4)
+            ChallengeTypeSetInstantiation();
+
+        else
+            _eSetTire = eSetTire.Low;
+        
         _GenerateRandomValueScr = new GenerateRandomValueScr();
         _GenerateRandomValueScr._EnvironmentManager = this;
         mfStartTime = Time.time;
@@ -174,8 +180,6 @@ public class EnvironmentManager : MonoBehaviour
 
     public void ChallengeTypeSetInstantiation()
     {
-        Destroy(mListOfInstatiatedSets[mListOfInstatiatedSets.Count - 1]);
-        mListOfInstatiatedSets.RemoveAt(mListOfInstatiatedSets.Count - 1);
         _eSetTire = eSetTire.Challenge;
         mbInstantiateChallengeSet = true;
         SetPosition();

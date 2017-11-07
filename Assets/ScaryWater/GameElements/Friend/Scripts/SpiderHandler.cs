@@ -39,7 +39,7 @@ public class SpiderHandler : MonoBehaviour
                 
 				PlayerManager.Instance._playerHandler.DoSpiderJump();
 
-				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidFriend)
+				if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
 					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
 
                 mbShouldDestroy = true;

@@ -79,7 +79,7 @@ public class CollectableAndFoodManager : MonoBehaviour
 				break;
 		}
 
-		if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.EatFood || MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidFood)
+		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.EatFood || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFood)
 			MiniGameManager.Instance._iFoodsEaten += 1;
     }
 
@@ -140,7 +140,7 @@ public class CollectableAndFoodManager : MonoBehaviour
 		else if (mbMagnetIsAttachedToPlayer)
             mfTempPlayerCoinMagnetLifeDurationInSecond += mfPlayerCoinMagnetLifeDurationInSecond;
 
-		if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.CollectPowerUp || MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidPowerUp)
+		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectPowerUp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidPowerUp)
 			MiniGameManager.Instance._iPowerUpsCollected += 1;
     }
 

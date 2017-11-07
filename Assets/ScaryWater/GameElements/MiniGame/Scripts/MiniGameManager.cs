@@ -31,7 +31,6 @@ public enum eRewardState
 public class MiniGameManager : MonoBehaviour
 {
     static MiniGameManager mInstance;
-    eMiniGameState meMiniGameState = eMiniGameState.None;
     eMiniGameState meTempMiniGameState = eMiniGameState.None;
     MiniGameInfoUIHandler mMiniGameInfoUIHandlerScr;
     MiniGameRewardUIHandler mMiniGameRewardUIHandlerScr;
@@ -44,6 +43,7 @@ public class MiniGameManager : MonoBehaviour
     bool mbActive;
     bool mbDoOnce = true;
 
+    public eMiniGameState _eMiniGameState = eMiniGameState.None;
     public eRewardState _eRewardState = eRewardState.None;
 	public int _iCoinsCollected;
 	public int _iButterfliesCollected;
@@ -57,13 +57,6 @@ public class MiniGameManager : MonoBehaviour
     public int _iPlayerDeathCount;
     public string[] _arrOfMiniGameInfo;
     public List<MiniGameHandler> _listOfMinGameHandlers = new List<MiniGameHandler>();
-
-	public eMiniGameState AutoImplementedProperties_eMiniGameState
-	{
-		get { return meMiniGameState; }
-
-		set { meMiniGameState = value; }
-	}
 
     public static MiniGameManager Instance
     {
@@ -120,13 +113,13 @@ public class MiniGameManager : MonoBehaviour
         mbSkipReward = false;
 		mfMiniGameStartTime = currentTime;
         mfTempMiniGameLength = mCurrentMiniGameHandlerScr._fMinGameTimeLengthInSecond;
-        meMiniGameState = meTempMiniGameState;
+        _eMiniGameState = meTempMiniGameState;
         meTempMiniGameState = eMiniGameState.None;
 	}
 
 	void MiniGameStateHandler()
 	{
-		switch (meMiniGameState)
+		switch (_eMiniGameState)
 		{
 			case eMiniGameState.None:
 				_iCoinsCollected = 0;
@@ -296,7 +289,7 @@ public class MiniGameManager : MonoBehaviour
         
         mbActive = false;
         mbMinGameIsActive = false;
-		meMiniGameState = eMiniGameState.None;
+		_eMiniGameState = eMiniGameState.None;
 		EnvironmentManager.Instance.MiniGameTypeSetInstantiation(eSetType.AllType, false, false);
 		yield return new WaitForSeconds(2f);
 		GameObject tInfoCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameInfoCanvas");

@@ -33,7 +33,7 @@ public class PlayerHandler : MonoBehaviour
     public bool _bLockUpdatingPosition;
     public bool _bSwipedLeftOrRight;
     public Rigidbody _rigidBodyOfPlayer;
-    public BarProgressSprite _BarProgressSpriteScr; 
+    public BarProgressSprite _BarProgressSpriteScr;
 
     void Awake()
     {
@@ -123,48 +123,59 @@ public class PlayerHandler : MonoBehaviour
     {
         //Jump finished now what to do check if platform is available below player then jump again
         //Or depending on swipe you can change the jump parameters for next jump
-        _playerManager._CameraControllerScr._bFollowPlayerY = false;
+        if (_playerManager._CameraControllerScr != null)
+            _playerManager._CameraControllerScr._bFollowPlayerY = false;
+        
         mbPerformingSpiderJump = false;
 
-		if (EnvironmentManager.Instance.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f))
+        if (_playerManager._EnvironmentManagerScr != null)
         {
-			if (ScoreHandler._OnScoreEventCallback != null)
-				ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);
-            
-			transform.position = _vPlayerRequiredPosition;
-			_vCurPlatformPosition = _vNextPlatformPosition;
-			miJumpDistance = 10;
-			//_Animator.SetTrigger("Jump");
-			_Animator.speed = 2;
-			DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
-        }
+            if (_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f))
+            {
+                if (ScoreHandler._OnScoreEventCallback != null)
+                    ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);
 
-        else
-        {
-            _jumpActionScr.StopJump("death");
-
-            BarProgressSprite tHealthBarScr = _playerManager._BarProgressSpriteScr;
-
-            float targetHealth = tHealthBarScr._TargetValue;
-            float diff = targetHealth - (int)targetHealth;
-            if (diff <= 0.001f)
-                diff = 1.0f;
-            targetHealth -= diff;
-            targetHealth = Mathf.RoundToInt(targetHealth);
-            tHealthBarScr.AddDamage(diff + 0.001f, _playerManager.PlayerDeathHandler);
-
-            if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidDying)
-                MiniGameManager.Instance._iPlayerDeathCount += 1;
+                transform.position = _vPlayerRequiredPosition;
+                _vCurPlatformPosition = _vNextPlatformPosition;
+                miJumpDistance = 10;
+                //_Animator.SetTrigger("Jump");
+                _Animator.speed = 2;
+                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
+            }   
 
             else
-                MiniGameManager.Instance.DeactivateMiniGame(false);
+            {
+                _jumpActionScr.StopJump("death");
 
-            if (tHealthBarScr.GetNumberOfFills() >= 1)
-                StartCoroutine(IRespawnThePlayer(EnvironmentManager.Instance.ComparePlatformAndPlayerPositionForReSpawning(transform.position, 2f, 30f)));
-		}
+                BarProgressSprite tHealthBarScr = _playerManager._BarProgressSpriteScr;
 
-        _bSwipedLeftOrRight = false;
-        mbLockHighAndLongJumpAction = false;
+                float targetHealth = tHealthBarScr._TargetValue;
+                float diff = targetHealth - (int)targetHealth;
+                if (diff <= 0.001f)
+                    diff = 1.0f;
+                targetHealth -= diff;
+                targetHealth = Mathf.RoundToInt(targetHealth);
+                tHealthBarScr.AddDamage(diff + 0.001f, _playerManager.PlayerDeathHandler);
+
+                if (_playerManager._MiniGameManagerScr != null)
+                {
+                    if (_playerManager._MiniGameManagerScr._eMiniGameState == eMiniGameState.AvoidDying)
+                        _playerManager._MiniGameManagerScr._iPlayerDeathCount += 1;
+
+                    //else
+                        //_playerManager._MiniGameManagerScr.DeactivateMiniGame(false);
+                }
+
+                if (_playerManager._EnvironmentManagerScr != null)
+                {
+                    if (tHealthBarScr.GetNumberOfFills() >= 1)
+                        StartCoroutine(IRespawnThePlayer(_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForReSpawning(transform.position, 2f, 30f)));
+                }
+            }
+
+            _bSwipedLeftOrRight = false;
+            mbLockHighAndLongJumpAction = false;
+        }
     }
 
 	IEnumerator IRespawnThePlayer(Vector3 SpawnPosition)
@@ -203,9 +214,12 @@ public class PlayerHandler : MonoBehaviour
 
     void DoJumpToNextPlatform(float height = DataHandler._fPlayerAutoJumpHeight, float offset = 10.0f, float speed = 17, string animationName = "short_jump_root_motion")
     {
+        if (_playerManager._EnvironmentManagerScr == null)
+            return;
+
         _bLockUpdatingPosition = false;
-        EnvironmentManager.Instance.SetCurrentPlatformPosition(_vCurPlatformPosition.x, _vCurPlatformPosition.y, _vCurPlatformPosition.z);
-        _vNextPlatformPosition = EnvironmentManager.Instance.GetNextPlatformPosition(1f, offset, 5f * _iLaneNumber);
+        _playerManager._EnvironmentManagerScr.SetCurrentPlatformPosition(_vCurPlatformPosition.x, _vCurPlatformPosition.y, _vCurPlatformPosition.z);
+        _vNextPlatformPosition = _playerManager._EnvironmentManagerScr.GetNextPlatformPosition(1f, offset, 5f * _iLaneNumber);
         _jumpActionScr.JumpToPosition(transform.position, _vNextPlatformPosition, speed, height, JumpFinished, animationName);
     }
 
@@ -222,8 +236,9 @@ public class PlayerHandler : MonoBehaviour
     {
         if (mbPerformingSpiderJump)
             return;
-        
-        _playerManager._CameraControllerScr._bFollowPlayerY = true;
+
+        if (_playerManager._CameraControllerScr != null)
+            _playerManager._CameraControllerScr._bFollowPlayerY = true;
 
 		if (ScoreHandler._OnScoreEventCallback != null)
 			ScoreHandler._OnScoreEventCallback(eScoreType.HighAndLongJump);
@@ -233,12 +248,15 @@ public class PlayerHandler : MonoBehaviour
         miJumpDistance = 10;
         //_Animator.SetTrigger("LongJump");
         DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, miJumpDistance, 17, "long_jump_root_motion");
+        _playerManager._BarProgressSpriteScr.AddDamage(0.03f, _playerManager.PlayerDeathHandler);
     }
 
 	public void DoSpiderJump()
 	{
         mbPerformingSpiderJump = true;
-        _playerManager._CameraControllerScr._bFollowPlayerY = true;
+
+        if (_playerManager._CameraControllerScr != null)
+            _playerManager._CameraControllerScr._bFollowPlayerY = true;
 
 		transform.position = _vPlayerRequiredPosition;
 		_vCurPlatformPosition = _vNextPlatformPosition;
@@ -250,7 +268,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void DoPoisonThrow()
     {
-		GameObject mGoPoison = Instantiate(PlayerManager.Instance._poisonPrefab);
+		GameObject mGoPoison = Instantiate(_playerManager._poisonPrefab);
 		PoisonHandler poisonHandler = mGoPoison.GetComponent<PoisonHandler>();
 		poisonHandler._playerHandler = this;
         poisonHandler.Initialize();

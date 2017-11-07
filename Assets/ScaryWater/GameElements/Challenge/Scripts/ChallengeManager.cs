@@ -7,7 +7,7 @@ public class ChallengeManager : MonoBehaviour
 {
     static ChallengeManager mInstance;
 
-    public PlayerManager _PlayerManager;
+    public PlayerManager _PlayerManagerScr;
 
     public static ChallengeManager Instance
     {
@@ -25,13 +25,8 @@ public class ChallengeManager : MonoBehaviour
 
     void Start()
     {
-        EnvironmentManager.Instance.ChallengeTypeSetInstantiation();
-        _PlayerManager._BarProgressSpriteScr._FillCountChangedCallback += TerminateChallengeCallback;
-    }
-
-    public static DateTime GetCurrentDateAndTime()
-    {
-        return DateTime.Now;
+        if (_PlayerManagerScr._BarProgressSpriteScr != null)
+            _PlayerManagerScr._BarProgressSpriteScr._FillCountChangedCallback += TerminateChallengeCallback;
     }
 
     public static void ChallengeIsComplete()
@@ -58,7 +53,7 @@ public class ChallengeManager : MonoBehaviour
 
     void OnDestroy()
     {
-        if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
-            PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= TerminateChallengeCallback;
+        if (_PlayerManagerScr._BarProgressSpriteScr._FillCountChangedCallback != null)
+            _PlayerManagerScr._BarProgressSpriteScr._FillCountChangedCallback -= TerminateChallengeCallback;
     }
 }

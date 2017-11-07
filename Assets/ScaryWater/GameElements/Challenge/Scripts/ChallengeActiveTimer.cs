@@ -51,7 +51,7 @@ public class ChallengeActiveTimer : MonoBehaviour
 
         else
         {
-            _ChallengeButton.interactable = false;
+            //_ChallengeButton.interactable = false;
             _ChallengeButton.GetComponent<Image>().sprite = _arrOfChallengeBtnSprites[0];
             _InfoText.text = "Locked";
         }
@@ -72,8 +72,6 @@ public class ChallengeActiveTimer : MonoBehaviour
     void OnChallengeNotAvailable()
     {
         miTimerActive = 0;
-        //_InfoText.text = "LOCKED";
-        //_ChallengeButton.interactable = false;
         _InfoText.text = " ";
         _ChallengeButton.gameObject.SetActive(false);
     }

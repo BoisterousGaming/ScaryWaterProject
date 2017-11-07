@@ -78,7 +78,7 @@ public class BarProgressSprite : MonoBehaviour
             else
             {
                 mfCurTargetValue = mfStartValue + mfDifference * mfProgress;
-                Debug.Log("CurTargetValue: " + mfCurTargetValue);
+                //Debug.Log("CurTargetValue: " + mfCurTargetValue);
                 miNumberOfFills = (int)mfCurTargetValue;
 
                 if (miNumberOfFills != miCurNumberOfFills)

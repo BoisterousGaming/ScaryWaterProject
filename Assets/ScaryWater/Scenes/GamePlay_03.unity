@@ -4480,6 +4480,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc20ffbfbef204b70a0d46ea730d45cf, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1080527643 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114763699280955760, guid: bc20ffbfbef204b70a0d46ea730d45cf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1080527642}
+  m_Script: {fileID: 11500000, guid: 552ce4f3732e74756bed50f5841c7185, type: 3}
 --- !u!1 &1081326208 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1608313370870246, guid: 14fdb27b7a11d4252b161de27827b849,
@@ -4684,6 +4690,16 @@ Prefab:
       propertyPath: _CameraControllerScr
       value: 
       objectReference: {fileID: 1376652683}
+    - target: {fileID: 114570125506277722, guid: 505ab4c74bbbea94cad08a82c7edf4c9,
+        type: 2}
+      propertyPath: _EnvironmentManagerScr
+      value: 
+      objectReference: {fileID: 1675550138}
+    - target: {fileID: 114570125506277722, guid: 505ab4c74bbbea94cad08a82c7edf4c9,
+        type: 2}
+      propertyPath: _MiniGameManagerScr
+      value: 
+      objectReference: {fileID: 1080527643}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 505ab4c74bbbea94cad08a82c7edf4c9, type: 2}
   m_IsPrefabParent: 0
@@ -5056,6 +5072,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fc439ec9f4b5044e982e156df962960, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1675550138 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114884170628009932, guid: 1fc439ec9f4b5044e982e156df962960,
+    type: 2}
+  m_PrefabInternal: {fileID: 1675550137}
+  m_Script: {fileID: 11500000, guid: 18e3058037bbb4d94b0e51c8c9df139e, type: 3}
 --- !u!1001 &1834983001
 Prefab:
   m_ObjectHideFlags: 0

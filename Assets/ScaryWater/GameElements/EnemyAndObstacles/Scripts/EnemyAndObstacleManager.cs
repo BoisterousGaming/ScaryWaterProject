@@ -66,7 +66,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
 		//Debug.Log("obsType: " + obsType);
 
-		if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidObstacles)
+		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidObstacles)
 			MiniGameManager.Instance._iObstaclesTouched += 1;
 	}
 
@@ -119,7 +119,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
 		//Debug.Log("enemyType: " + enemyType);
 
-		if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.AvoidEnemy)
+		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidEnemy)
 			MiniGameManager.Instance._iEnemiesStunned += 1;
     }
 

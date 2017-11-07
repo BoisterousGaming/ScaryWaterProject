@@ -112,7 +112,7 @@ public class EnemyHandler : MonoBehaviour
             if (_eEnemyState.Equals(eEnemyState.Active))
             {
 				_eEnemyState = eEnemyState.Stunned;
-				if (MiniGameManager.Instance.AutoImplementedProperties_eMiniGameState == eMiniGameState.StunEnemy)
+				if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.StunEnemy)
 					MiniGameManager.Instance._iEnemiesStunned += 1;
             }
 
