@@ -91,6 +91,10 @@ public class StoreTabUIHandler : GUIItemsManager
 
 				UICanvasHandler.Instance.LoadScreen("StoreMoneyCanvas", null, true);
                 break;
+
+            case "BackBtn":
+                OnPressBackBtn();
+                break;
         }
     }
 
@@ -108,13 +112,7 @@ public class StoreTabUIHandler : GUIItemsManager
 
     public override void OnBackButton() 
     {
-        UICanvasHandler.Instance.RemoveAllActiveCanvas();
-
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-            UICanvasHandler.Instance.LoadScreen("MainMenuCanvas", null, true);
-
-        else
-            UICanvasHandler.Instance.LoadScreen("GameOverCanvas", null, true);
+        OnPressBackBtn();
     }
 
     public void DisplayCoinAmount()
@@ -125,5 +123,16 @@ public class StoreTabUIHandler : GUIItemsManager
     public void DisplayButterflyAmount()
     {
         _ButterflyCountText.text = DataManager.GetTotalButterflyAmount().ToString();
+    }
+
+    void OnPressBackBtn()
+    {
+        UICanvasHandler.Instance.RemoveAllActiveCanvas();
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            UICanvasHandler.Instance.LoadScreen("MainMenuCanvas", null, true);
+
+        else
+            UICanvasHandler.Instance.LoadScreen("GameOverCanvas", null, true);
     }
 }

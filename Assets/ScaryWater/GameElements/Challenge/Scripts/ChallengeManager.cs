@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class ChallengeManager : MonoBehaviour 
 {
+    static bool mbChallengeIsComplete = false;
     static ChallengeManager mInstance;
 
     public PlayerManager _PlayerManagerScr;
+    public int _iHowManySetsToCover = 6;
 
     public static ChallengeManager Instance
     {
@@ -27,9 +28,17 @@ public class ChallengeManager : MonoBehaviour
     {
         if (_PlayerManagerScr._BarProgressSpriteScr != null)
             _PlayerManagerScr._BarProgressSpriteScr._FillCountChangedCallback += TerminateChallengeCallback;
+
+        _iHowManySetsToCover *= (int)DataHandler._fEnvironmentSetLength;
     }
 
-    public static void ChallengeIsComplete()
+    void Update()
+    {
+        if (_PlayerManagerScr._playerHandler._tPlayerTransform.position.z > _iHowManySetsToCover)
+            ChallengeIsComplete();    
+    }
+
+    public void ChallengeIsComplete()
     {
         PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("death");
         GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
@@ -38,10 +47,14 @@ public class ChallengeManager : MonoBehaviour
             UICanvasHandler.Instance.DestroyScreen(tCanvas);
 
         UICanvasHandler.Instance.LoadScreen("GameOverCanvas", null, true);
+        mbChallengeIsComplete = true;
     }
 
     public static void TerminateChallengeCallback(int val)
     {
+        if (mbChallengeIsComplete)
+            return;
+        
         PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("death");
         GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 

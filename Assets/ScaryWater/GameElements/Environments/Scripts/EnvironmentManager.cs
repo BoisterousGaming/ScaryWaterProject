@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public enum eSetType
 {
@@ -42,29 +42,20 @@ public class MiniGameSetHandler
 
 public class EnvironmentManager : MonoBehaviour
 {
-    public enum eEnvironmentState
-    {
-        None = 0,
-        Instatiate
-    }
-
-    List<GameObject> mListOfInstatiatedSets = new List<GameObject>();
     List<EnvironmentHandler> mListOfEnvironmentHandler = new List<EnvironmentHandler>();
-    eEnvironmentState meEnvironmentState = eEnvironmentState.None;
     eSetType meSetType = eSetType.None;
-    int miCount;
-    int miSetCount;
-    int miSetHandlerPrefabIndex;
-    int miSetPrefabIndex;
+    int miCount = 0;
+    int miSetHandlerPrefabIndex = 0;
+    int miSetPrefabIndex = 0;
     int miChallengeSetPrefabIndex = 0;
-    float mfSetPosZ;
-    float mfPlayerTravelHowFarBeforeTheNextSetGenerate;
-    float mfLowTireSetInstantiationTimeLimit = 60f;
-    float mfMediumTireSetInstantiationTimeLimit = 60f;
+    int miNumberOfSetSpawnAtATime = 6;
+    int miNumberOfSetsToDeleteFromBack = 3;
+    float mfLowTireSetInstantiationTimeLimit = 320f;
+    float mfMediumTireSetInstantiationTimeLimit = 600f;
     float mfStartTime;
     bool mbInstantiateMinigameSet = false;
     bool mbInstantiateChallengeSet = false;
-    Vector3 mvTempPos;
+    Vector3 mvPositionForSet = Vector3.zero;
     static EnvironmentManager mInstance = null;
 
     public EnvironmentHandler _currentActiveEnvironmentHandler = null;
@@ -74,11 +65,10 @@ public class EnvironmentManager : MonoBehaviour
     public List<GameObject> _listOfHighTireSets;
     public List<GameObject> _listOfChallengeSets;
     public List<MiniGameSetHandler> _listOfMiniGameSets = new List<MiniGameSetHandler>();
-	public int _iNumberOfActiveTilesOnScreen = 3;
     public PlayerManager _playerManager; 
-    [HideInInspector] public Vector3 _vCurrentPlatformPosition;
-    [HideInInspector] public List<PlatformHandler> _listOfPlatformHandler = new List<PlatformHandler>();
-    [HideInInspector] public eSetTire _eSetTire = eSetTire.Low;
+    public Vector3 _vCurrentPlatformPosition;
+    public List<PlatformHandler> _listOfPlatformHandler = new List<PlatformHandler>();
+    public eSetTire _eSetTire = eSetTire.Low;
 
 	public static EnvironmentManager Instance
     {
@@ -92,25 +82,25 @@ public class EnvironmentManager : MonoBehaviour
 
 		else if (mInstance != this)
 			Destroy(this.gameObject);
-    }
 
-    void Start()
-    {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 4)
             ChallengeTypeSetInstantiation();
 
         else
             _eSetTire = eSetTire.Low;
-        
+    }
+
+    void Start()
+    {
         _GenerateRandomValueScr = new GenerateRandomValueScr();
         _GenerateRandomValueScr._EnvironmentManager = this;
         mfStartTime = Time.time;
-        miCount = 1;
-        mfPlayerTravelHowFarBeforeTheNextSetGenerate = 20.0f;
-        miSetCount += 1;
-        mfSetPosZ = DataHandler._fEnvironmentSetLength;
-        SetPosition();
-        //Invoke("SetPosition", 0.75f);
+        SetTireOfEnvToSpawn();
+    }
+
+    void Update()
+    {
+        InitializeTheNextSets();
     }
 
 	void ChooseEnvironmentToSpawn(Vector3 Position, eSetTire setTire)
@@ -148,9 +138,7 @@ public class EnvironmentManager : MonoBehaviour
 		}
 
         else if (setTire == eSetTire.Challenge)
-        {
             InstantiateSet(Position, _listOfChallengeSets[miChallengeSetPrefabIndex]);
-        }
 	}
 
 	void InstantiateSet(Vector3 Position, GameObject currentSet)
@@ -161,7 +149,6 @@ public class EnvironmentManager : MonoBehaviour
 		_currentActiveEnvironmentHandler = tGoSet.GetComponent<EnvironmentHandler>();
 		_currentActiveEnvironmentHandler._environmentManager = this;
 		mListOfEnvironmentHandler.Add(_currentActiveEnvironmentHandler);
-		mListOfInstatiatedSets.Add(tGoSet);
 	}
 
 	public void MiniGameTypeSetInstantiation(eSetType setType, bool state, bool miniGameState)
@@ -171,9 +158,9 @@ public class EnvironmentManager : MonoBehaviour
 
         if (miniGameState)
         {
-			Vector3 tLastSetPos = mListOfInstatiatedSets[mListOfInstatiatedSets.Count - 1].transform.position;
-			Destroy(mListOfInstatiatedSets[mListOfInstatiatedSets.Count - 1]);
-			mListOfInstatiatedSets.RemoveAt(mListOfInstatiatedSets.Count - 1);
+            Vector3 tLastSetPos = mListOfEnvironmentHandler[mListOfEnvironmentHandler.Count - 1].transform.position;
+            Destroy(mListOfEnvironmentHandler[mListOfEnvironmentHandler.Count - 1].gameObject);
+            mListOfEnvironmentHandler.RemoveAt(mListOfEnvironmentHandler.Count - 1);
 			ChooseEnvironmentToSpawn(tLastSetPos, eSetTire.MiniGame);
         }
 	}
@@ -182,137 +169,77 @@ public class EnvironmentManager : MonoBehaviour
     {
         _eSetTire = eSetTire.Challenge;
         mbInstantiateChallengeSet = true;
-        SetPosition();
     }
 
-    public Vector3 GetNextPlatformPosition(float MaxDistanceOn_X_Axis, float DistanceOn_Z_Axis, float X_Axis)
+    void SetTireOfEnvToSpawn()
     {
-        Vector3 tRequiredPosition = Vector3.zero;
-        for (int i = 0; i < _listOfPlatformHandler.Count; i++)
+        int tLimit = 6;
+        if (mListOfEnvironmentHandler.Any())
+            tLimit = miNumberOfSetSpawnAtATime - mListOfEnvironmentHandler.Count;
+        
+        for (int i = 0; i < tLimit; i++)
         {
-            PlatformHandler element = _listOfPlatformHandler[i];
-            Vector3 tPos = element.transform.position;
-		    if (Mathf.Abs(tPos.x - X_Axis) <= MaxDistanceOn_X_Axis & tPos.z - _vCurrentPlatformPosition.z <= DistanceOn_Z_Axis & tPos.z - _vCurrentPlatformPosition.z >= DistanceOn_Z_Axis)
-			{
-				tRequiredPosition = tPos;
-                break;
-		    }
-        }
-        return tRequiredPosition;
-    }
+            if (!mbInstantiateMinigameSet & !mbInstantiateChallengeSet)
+            {
+                if (Time.time - mfStartTime < mfLowTireSetInstantiationTimeLimit)
+                    ChooseEnvironmentToSpawn(mvPositionForSet, eSetTire.Low);
 
-    void Update()
-    {
-        EnvironmentStateHandler();
-        InitializeTheNextSet();
-    }
+                else if (Time.time - mfStartTime > mfLowTireSetInstantiationTimeLimit & Time.time - mfStartTime < mfMediumTireSetInstantiationTimeLimit)
+                    ChooseEnvironmentToSpawn(mvPositionForSet, eSetTire.Medium);
 
-    void EnvironmentStateHandler()
-    {
-		switch (meEnvironmentState)
-		{
-			case eEnvironmentState.None:
-				break;
+                else if (Time.time - mfStartTime > mfMediumTireSetInstantiationTimeLimit)
+                    ChooseEnvironmentToSpawn(mvPositionForSet, eSetTire.High);
+            }
 
-			case eEnvironmentState.Instatiate:
-				miSetCount += 1;
-				SetPosition();
+            else if (mbInstantiateMinigameSet & !mbInstantiateChallengeSet)
+                ChooseEnvironmentToSpawn(mvPositionForSet, eSetTire.MiniGame);
 
-				if (miSetCount > _iNumberOfActiveTilesOnScreen)
-				{
-					Destroy(mListOfInstatiatedSets[0]);
-					mListOfInstatiatedSets.RemoveAt(0);
-				}
+            else if (!mbInstantiateMinigameSet & mbInstantiateChallengeSet)
+            {
+                ChooseEnvironmentToSpawn(mvPositionForSet, eSetTire.Challenge);
 
-				meEnvironmentState = eEnvironmentState.None;
-				break;
-		}
-    }
+                if (miChallengeSetPrefabIndex < _listOfChallengeSets.Count - 1)
+                    miChallengeSetPrefabIndex++;
+            }
 
-    void SetPosition()
-    {
-        if (miSetCount == 1 & !mbInstantiateMinigameSet & !mbInstantiateChallengeSet)
-        {
-            ChooseEnvironmentToSpawn(new Vector3(0, 0, 0), eSetTire.Low);
-        }
-
-        else if (miSetCount == 2 & !mbInstantiateMinigameSet & !mbInstantiateChallengeSet)
-        {
-            ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.Low);
-        }
-
-        else if (miSetCount > 2 & !mbInstantiateMinigameSet & !mbInstantiateChallengeSet)
-        {
-			if (Time.time - mfStartTime < mfLowTireSetInstantiationTimeLimit)
-			{
-				mfSetPosZ += DataHandler._fEnvironmentSetLength;
-				ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.Low);
-			}
-
-			else if (Time.time - mfStartTime > mfLowTireSetInstantiationTimeLimit & Time.time - mfStartTime < mfMediumTireSetInstantiationTimeLimit)
-			{
-				mfSetPosZ += DataHandler._fEnvironmentSetLength;
-				ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.Medium);
-			}
-
-			else if (Time.time - mfStartTime > mfMediumTireSetInstantiationTimeLimit)
-			{
-				mfSetPosZ += DataHandler._fEnvironmentSetLength;
-				ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.High);
-			}
-        }
-
-        else if (mbInstantiateMinigameSet & !mbInstantiateChallengeSet)
-        {
-            mfSetPosZ += DataHandler._fEnvironmentSetLength;
-            ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.MiniGame);
-        }
-
-        else if (miSetCount == 1 & mbInstantiateChallengeSet)
-        {
-            miChallengeSetPrefabIndex = 0;
-            ChooseEnvironmentToSpawn(new Vector3(0, 0, 0), eSetTire.Challenge);
-        }
-
-        else if (miSetCount == 2 & mbInstantiateChallengeSet)
-        {
-            if (miChallengeSetPrefabIndex < _listOfChallengeSets.Count)
-                miChallengeSetPrefabIndex += 1;
-            
-            ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.Challenge);    
-        }
-
-        else if (miSetCount > 2 & mbInstantiateChallengeSet)
-        {
-            if (miChallengeSetPrefabIndex < _listOfChallengeSets.Count)
-                miChallengeSetPrefabIndex += 1;
-            
-            mfSetPosZ += DataHandler._fEnvironmentSetLength;
-            ChooseEnvironmentToSpawn(new Vector3(0, 0, mfSetPosZ), eSetTire.Challenge);
+            mvPositionForSet.x = 0f;
+            mvPositionForSet.y = 0f;
+            mvPositionForSet.z += DataHandler._fEnvironmentSetLength;
         }
     }
 
-	void InitializeTheNextSet()
+    void InitializeTheNextSets()
 	{
-		if (miCount == 1)
-		{
-			if (_playerManager._playerHandler._tPlayerTransform.position.z > mfPlayerTravelHowFarBeforeTheNextSetGenerate)
-			{
-				meEnvironmentState = eEnvironmentState.Instatiate;
-				mfPlayerTravelHowFarBeforeTheNextSetGenerate += DataHandler._fEnvironmentSetLength;
-				miCount += 1;
-			}
-		}
-
-		else if (miCount > 1)
-		{
-			if (_playerManager._playerHandler._tPlayerTransform.position.z > mfPlayerTravelHowFarBeforeTheNextSetGenerate)
-			{
-				meEnvironmentState = eEnvironmentState.Instatiate;
-				mfPlayerTravelHowFarBeforeTheNextSetGenerate += DataHandler._fEnvironmentSetLength;
-			}
-		}
+        if (!mListOfEnvironmentHandler.Any())
+            return;
+        
+        float tSetPos = mListOfEnvironmentHandler[4].transform.position.z;
+        if (_playerManager._playerHandler._tPlayerTransform.position.z > tSetPos)
+        {
+            if (miCount > 0)
+                DeleteSetsFromBack();
+            
+            if (miCount < 2)
+                miCount++;
+            
+            SetTireOfEnvToSpawn();
+        }
 	}
+
+    void DeleteSetsFromBack()
+    {
+        if (!mListOfEnvironmentHandler.Any())
+            return;
+        
+        if (mListOfEnvironmentHandler.Count < miNumberOfSetSpawnAtATime)
+            return;
+        
+        for (int i = 0; i < miNumberOfSetsToDeleteFromBack & miNumberOfSetsToDeleteFromBack < mListOfEnvironmentHandler.Count; i++)
+        {
+            Destroy(mListOfEnvironmentHandler[0].gameObject);
+            mListOfEnvironmentHandler.RemoveAt(0);
+        }
+    }
 
     public bool ComparePlatformAndPlayerPositionForLanding(Vector3 PlayerPosition, float Difference)
     {
@@ -350,17 +277,25 @@ public class EnvironmentManager : MonoBehaviour
         return tRequiredPosition;
     }
 
-    bool ConditionForDistanceChecking(Vector3 FirstPosition, Vector3 SecondPosition, float MinDistance)
-	{
-        bool bRequiredState = false;
-		if (Mathf.Abs(FirstPosition.x - SecondPosition.x) > MinDistance & Mathf.Abs(FirstPosition.z - SecondPosition.z) > MinDistance)
-            bRequiredState = true;
-		return bRequiredState;
-	}
-
     public void SetCurrentPlatformPosition(float X_Pos, float Y_Pos, float Z_Pos)
     {
         _vCurrentPlatformPosition = new Vector3(X_Pos, Y_Pos, Z_Pos);
+    }
+
+    public Vector3 GetNextPlatformPosition(float MaxDistanceOn_X_Axis, float DistanceOn_Z_Axis, float X_Axis)
+    {
+        Vector3 tRequiredPosition = Vector3.zero;
+        for (int i = 0; i < _listOfPlatformHandler.Count; i++)
+        {
+            PlatformHandler element = _listOfPlatformHandler[i];
+            Vector3 tPos = element.transform.position;
+            if (Mathf.Abs(tPos.x - X_Axis) <= MaxDistanceOn_X_Axis & tPos.z - _vCurrentPlatformPosition.z <= DistanceOn_Z_Axis & tPos.z - _vCurrentPlatformPosition.z >= DistanceOn_Z_Axis)
+            {
+                tRequiredPosition = tPos;
+                break;
+            }
+        }
+        return tRequiredPosition;
     }
 
     public void UpdatePlatformState(float centerPoint, ePlatformHandlerType platformState, bool state)

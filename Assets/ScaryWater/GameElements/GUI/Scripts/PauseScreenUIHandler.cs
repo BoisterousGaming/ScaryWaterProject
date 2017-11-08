@@ -46,6 +46,10 @@ public class PauseScreenUIHandler : GUIItemsManager
                 Time.timeScale = 1.0f;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 break;
+
+            case "HomeBtn":
+                SceneManager.LoadScene(0, LoadSceneMode.Single);
+                break;
         }
     }
 

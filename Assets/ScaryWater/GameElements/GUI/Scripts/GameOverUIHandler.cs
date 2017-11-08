@@ -65,7 +65,8 @@ public class GameOverUIHandler : GUIItemsManager
             case "SettingsBtn":
                 break;
 
-            case "FacebookBtn":
+            case "HomeBtn":
+                SceneManager.LoadScene(0, LoadSceneMode.Single);
                 break;
 
             case "StoreBtn":
