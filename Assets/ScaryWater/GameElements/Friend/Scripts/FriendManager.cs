@@ -31,6 +31,16 @@ public class FriendManager : MonoBehaviour
         
         if (!_bAirWingIsActive)
         {
+            DataManager.SubstarctFromAirwingAmount(1);
+
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            if (tCanvas != null)
+            {
+                GameplayAreaUIHandler tScr = tCanvas.GetComponent<GameplayAreaUIHandler>();
+                tScr.DisplayAirwingCount();
+                tScr.SetAirwingBtnState(false);
+            }
+
 			GameObject goAirWings = Instantiate(_airWingsPrefab);
 			goAirWings.transform.SetParent(this.transform);
 			goAirWings.transform.position = new Vector3(PlayerManager.Instance._playerHandler.transform.position.x, 10f, PlayerManager.Instance._playerHandler.transform.position.z - 20f);

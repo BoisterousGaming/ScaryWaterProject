@@ -261,7 +261,7 @@ public class PlayerHandler : MonoBehaviour
 		transform.position = _vPlayerRequiredPosition;
 		_vCurPlatformPosition = _vNextPlatformPosition;
 		miJumpDistance = 30;
-        Debug.Log("PlayerReqPosition: " + _vPlayerRequiredPosition + " CurPlatformPosition: " + _vNextPlatformPosition);
+        //Debug.Log("PlayerReqPosition: " + _vPlayerRequiredPosition + " CurPlatformPosition: " + _vNextPlatformPosition);
         //_Animator.SetTrigger("LongJump");
         DoJumpToNextPlatform(DataHandler._fPlayerSpiderInitiatedJumpHeight, miJumpDistance, 17, "long_jump_root_motion");
 	}
@@ -272,6 +272,10 @@ public class PlayerHandler : MonoBehaviour
 		PoisonHandler poisonHandler = mGoPoison.GetComponent<PoisonHandler>();
 		poisonHandler._playerHandler = this;
         poisonHandler.Initialize();
+
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+        if (tCanvas != null)
+            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayPoisonCount();
     }
 
     void OnDestroy()

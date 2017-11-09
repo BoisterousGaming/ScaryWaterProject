@@ -110,6 +110,10 @@ public class CollectableAndFoodManager : MonoBehaviour
             DataManager.AddToCSessionPoisonAmount(1);
             mbShouldDestroyCGO = true;
             mTempGameObject = scr.gameObject;
+
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            if (tCanvas != null)
+                tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayPoisonCount();
 		}
 
         else if (scr._eCollectableType == eCollectableType.AirWing)
@@ -142,6 +146,10 @@ public class CollectableAndFoodManager : MonoBehaviour
 
 		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectPowerUp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidPowerUp)
 			MiniGameManager.Instance._iPowerUpsCollected += 1;
+
+        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+        if (tCanvas != null)
+            tCanvas.GetComponent<GameplayAreaUIHandler>().SetMagnetBtnState(false);
     }
 
 	void MagnetHandler()
@@ -153,7 +161,13 @@ public class CollectableAndFoodManager : MonoBehaviour
 		    SearchForSpecificElement(eCollectableType.StartCoin, DataHandler._fPlayerCoinCollectionDistanceForMagnet);
 
 		else if (mfTempPlayerCoinMagnetLifeDurationInSecond > 0f && mfTempPlayerCoinMagnetLifeDurationInSecond < 0.5f)
-		    mbMagnetIsAttachedToPlayer = false;
+        {
+            mbMagnetIsAttachedToPlayer = false;
+
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            if (tCanvas != null)
+                tCanvas.GetComponent<GameplayAreaUIHandler>().SetMagnetBtnState(true);
+        }	    
 	}
 
 	void SearchForSpecificElement(eCollectableType SpecificElement, float MaxDistanceAllowed)

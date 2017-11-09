@@ -128,6 +128,10 @@ public class AirWingsScr : MonoBehaviour
 			PlayerManager.Instance._playerHandler._vNextPlatformPosition = mvLandingPadPosition;
             PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
 			PlayerManager.Instance._playerHandler.DoSingleJump();
+
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            if (tCanvas != null)
+                tCanvas.GetComponent<GameplayAreaUIHandler>().SetAirwingBtnState(true);
         }
 	}
 

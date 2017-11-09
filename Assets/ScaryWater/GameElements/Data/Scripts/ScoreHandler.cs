@@ -144,6 +144,6 @@ public class ScoreHandler : MonoBehaviour
 
 		GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 		if (tCanvas != null)
-            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayScore();
+            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayCurrentScore();
     }
 }

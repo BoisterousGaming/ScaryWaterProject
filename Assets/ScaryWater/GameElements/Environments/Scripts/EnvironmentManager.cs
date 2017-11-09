@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class EnvironmentManager : MonoBehaviour
     int miSetPrefabIndex = 0;
     int miChallengeSetPrefabIndex = 0;
     int miNumberOfSetSpawnAtATime = 6;
-    int miNumberOfSetsToDeleteFromBack = 3;
+    int miNumberOfSetsToDeleteFromBack = 1;
     float mfLowTireSetInstantiationTimeLimit = 320f;
     float mfMediumTireSetInstantiationTimeLimit = 600f;
     float mfStartTime;
@@ -157,13 +158,35 @@ public class EnvironmentManager : MonoBehaviour
 		mbInstantiateMinigameSet = state;
 
         if (miniGameState)
-        {
-            Vector3 tLastSetPos = mListOfEnvironmentHandler[mListOfEnvironmentHandler.Count - 1].transform.position;
-            Destroy(mListOfEnvironmentHandler[mListOfEnvironmentHandler.Count - 1].gameObject);
-            mListOfEnvironmentHandler.RemoveAt(mListOfEnvironmentHandler.Count - 1);
-			ChooseEnvironmentToSpawn(tLastSetPos, eSetTire.MiniGame);
-        }
+            ManipulateInstantiatedSets();
+
+        if (!state)
+            ManipulateInstantiatedSets();
 	}
+
+    void ManipulateInstantiatedSets()
+    {
+        int tMinIndex = 0;
+        for (int i = 0; i < mListOfEnvironmentHandler.Count; i++)
+        {
+            if (_playerManager._playerHandler._tPlayerTransform.position.z > mListOfEnvironmentHandler[i].transform.position.z)
+            {
+                tMinIndex = i + 2;
+                break;
+            }
+        }
+
+        mvPositionForSet = mListOfEnvironmentHandler[tMinIndex].transform.position;
+
+        for (int i = tMinIndex; i < mListOfEnvironmentHandler.Count; i++)
+            Destroy(mListOfEnvironmentHandler[i].gameObject);
+
+        int tRemove = mListOfEnvironmentHandler.Count - tMinIndex;
+        mListOfEnvironmentHandler.RemoveRange(tMinIndex, tRemove);
+
+        int tRange = (mListOfEnvironmentHandler.Count - 1) - tMinIndex;
+        SetTireOfEnvToSpawn(tRange + 1);
+    }
 
     public void ChallengeTypeSetInstantiation()
     {
@@ -171,9 +194,9 @@ public class EnvironmentManager : MonoBehaviour
         mbInstantiateChallengeSet = true;
     }
 
-    void SetTireOfEnvToSpawn()
+    void SetTireOfEnvToSpawn(int limit = 6)
     {
-        int tLimit = 6;
+        int tLimit = limit;
         if (mListOfEnvironmentHandler.Any())
             tLimit = miNumberOfSetSpawnAtATime - mListOfEnvironmentHandler.Count;
         
@@ -213,7 +236,7 @@ public class EnvironmentManager : MonoBehaviour
         if (!mListOfEnvironmentHandler.Any())
             return;
         
-        float tSetPos = mListOfEnvironmentHandler[4].transform.position.z;
+        float tSetPos = mListOfEnvironmentHandler[miNumberOfSetsToDeleteFromBack + 1].transform.position.z;
         if (_playerManager._playerHandler._tPlayerTransform.position.z > tSetPos)
         {
             if (miCount > 0)

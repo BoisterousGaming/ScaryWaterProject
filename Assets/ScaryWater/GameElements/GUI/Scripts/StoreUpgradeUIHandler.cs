@@ -54,6 +54,10 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 		_arrOfAllTextElement[2].text = miPoisonCount.ToString();
 		_arrOfAllTextElement[4].text = miAirwingCount.ToString();
 		_arrOfAllTextElement[6].text = miMagnetCount.ToString();
+        _arrOfAllTextElement[8].text = DataManager.GetLiveAmount().ToString();
+        _arrOfAllTextElement[9].text = DataManager.GetPoisonAmount().ToString();
+        _arrOfAllTextElement[10].text = DataManager.GetAirwingAmount().ToString();
+        _arrOfAllTextElement[11].text = DataManager.GetMagnetAmount().ToString();
 
         miTotalLivePrice = miLiveCount * miLivePrice;
         _arrOfAllTextElement[1].text = miTotalLivePrice.ToString();
@@ -98,6 +102,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 {
                     DataManager.AddToLiveAmount(miLiveCount);
                     DataManager.SubstractFromTotalCoin(miTotalLivePrice);
+                    _arrOfAllTextElement[8].text = DataManager.GetLiveAmount().ToString();
                 }
 
                 else
@@ -129,6 +134,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				{
                     DataManager.AddToPoisonAmount(miPoisonCount);
                     DataManager.SubstractFromTotalCoin(miTotalPoisonPrice);
+                    _arrOfAllTextElement[9].text = DataManager.GetPoisonAmount().ToString();
 				}
 
                 else
@@ -160,6 +166,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				{
                     DataManager.AddToAirwingAmount(miAirwingCount);
                     DataManager.SubstractFromTotalCoin(miTotalAirwingPrice);
+                    _arrOfAllTextElement[10].text = DataManager.GetAirwingAmount().ToString();
 				}
 
                 else
@@ -191,6 +198,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				{
                     DataManager.AddToMagnetAmount(miMagnetCount);
                     DataManager.SubstractFromTotalCoin(miTotalMagnetPrice);
+                    _arrOfAllTextElement[11].text = DataManager.GetMagnetAmount().ToString();
 				}
 
                 else

@@ -95,7 +95,7 @@ public class CollectableHandler : MonoBehaviour
 
         GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
         if (tCanvas != null)
-            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayCoin();
+            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayCoinCount();
 
 		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectCoins)
 			MiniGameManager.Instance._iCoinsCollected += miCoinValue;
@@ -109,7 +109,7 @@ public class CollectableHandler : MonoBehaviour
 		GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 
 		if (tCanvas != null)
-            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayButterfly();
+            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayButterflyCount();
         
 		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectButterflies)
 			MiniGameManager.Instance._iButterfliesCollected += miButterflyValue;

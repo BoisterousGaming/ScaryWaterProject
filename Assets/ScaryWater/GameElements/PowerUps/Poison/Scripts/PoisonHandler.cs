@@ -28,5 +28,6 @@ public class PoisonHandler : MonoBehaviour
 			mtTransform.GetComponent<Rigidbody>().AddForce(mtTransform.forward * 150f);
 			Destroy(this.gameObject, 1f);
         }
+        //Debug.Log("PoisonCount: " + DataManager.GetPoisonAmount());
     }
 }

@@ -35,8 +35,7 @@ public class PauseScreenUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "ResumeBtn":
-                Time.timeScale = 1.0f;
-                UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+                OnPressBackBtn();
                 break;
 
             case "SettingBtn":
@@ -48,12 +47,18 @@ public class PauseScreenUIHandler : GUIItemsManager
                 break;
 
             case "HomeBtn":
+                Time.timeScale = 1.0f;
                 SceneManager.LoadScene(0, LoadSceneMode.Single);
                 break;
         }
     }
 
     public override void OnBackButton()
+    {
+        OnPressBackBtn();
+    }
+
+    void OnPressBackBtn()
     {
         Time.timeScale = 1.0f;
         UICanvasHandler.Instance.DestroyScreen(this.gameObject);

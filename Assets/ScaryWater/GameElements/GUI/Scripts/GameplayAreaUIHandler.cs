@@ -11,11 +11,9 @@ public class GameplayAreaUIHandler : GUIItemsManager
     static GameplayAreaUIHandler mInstance;
 
     //public BarProgress _HealthBar;
-    public Text _Score;
-    public Text _HealthCount;
-    public Text _CoinCount;
-    public Text _ButterflyCount;
-    public Text _SwipeInfo;
+    public Text[] _arrOfAllTextElement;
+    public Button _magnetBtn;
+    public Button _airwingBtn;
 	public Image _CoinImage;
 	public Image _ButterflyImage;
     public RectTransform _LeftLanePosRect;
@@ -42,7 +40,11 @@ public class GameplayAreaUIHandler : GUIItemsManager
 
     void Start()
     {
-        _HealthCount.text = DataManager.GetLiveAmount().ToString();
+        _arrOfAllTextElement[3].text = DataManager.GetLiveAmount().ToString();
+        _arrOfAllTextElement[4].text = DataManager.GetPoisonAmount().ToString();
+        _arrOfAllTextElement[5].text = DataManager.GetMagnetAmount().ToString();
+        _arrOfAllTextElement[6].text = DataManager.GetAirwingAmount().ToString();
+
         Invoke("InitializeCallback", 1.0f);
     }
 
@@ -68,28 +70,34 @@ public class GameplayAreaUIHandler : GUIItemsManager
         mButterflySpriteScr.Initialize();
 	}
 
+    public void DisplayCurrentScore()
+    {
+        _arrOfAllTextElement[0].text = DataManager.GetCSessionScore().ToString();
+    }
+
+    public void DisplayCoinCount()
+    {
+        _arrOfAllTextElement[1].text = DataManager.GetCSessionCoinAmount().ToString(); 
+    }
+
+    public void DisplayButterflyCount()
+    {
+        _arrOfAllTextElement[2].text = DataManager.GetCSessionButterflyAmount().ToString();
+    }
+
     void PrintHealthCountCallback(int val)
     {
-        if (_HealthCount != null)
-            _HealthCount.text = val.ToString();
+        _arrOfAllTextElement[3].text = val.ToString();
     }
 
-    public void DisplayCoin()
+    public void DisplayPoisonCount()
     {
-        if (_CoinCount != null)
-            _CoinCount.text = DataManager.GetCSessionCoinAmount().ToString();
+        _arrOfAllTextElement[4].text = DataManager.GetPoisonAmount().ToString();
     }
 
-    public void DisplayButterfly()
+    public void DisplayAirwingCount()
     {
-        if (_ButterflyCount != null)
-            _ButterflyCount.text = DataManager.GetCSessionButterflyAmount().ToString();
-    }
-
-    public void DisplayScore()
-    {
-        if (_Score != null)
-            _Score.text = DataManager.GetCSessionScore().ToString();
+        _arrOfAllTextElement[6].text = DataManager.GetAirwingAmount().ToString();
     }
 
     public override void OnButtonCallBack(GUIItem item)
@@ -107,15 +115,13 @@ public class GameplayAreaUIHandler : GUIItemsManager
                 {
                     DataManager.SubstarctFromMagnetAmount(1);
                     CollectableAndFoodManager.Instance.EnableMagnet();
+                    _arrOfAllTextElement[5].text = DataManager.GetMagnetAmount().ToString();
                 }
                 break;
 
 			case "AirWingBtn":
                 if (DataManager.GetAirwingAmount() > 0)
-                {
-                    DataManager.SubstarctFromAirwingAmount(1);
                     FriendManager.Instance.InstantiateAirWings(PlayerManager.Instance._playerHandler._tPlayerTransform.position.x);
-                }
 				break;
 		}
     }
@@ -135,5 +141,15 @@ public class GameplayAreaUIHandler : GUIItemsManager
     {
         if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
             PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PrintHealthCountCallback;
+    }
+
+    public void SetMagnetBtnState(bool state = true)
+    {
+        _magnetBtn.interactable = state;
+    }
+
+    public void SetAirwingBtnState(bool state = true)
+    {
+        _airwingBtn.interactable = state;
     }
 }
