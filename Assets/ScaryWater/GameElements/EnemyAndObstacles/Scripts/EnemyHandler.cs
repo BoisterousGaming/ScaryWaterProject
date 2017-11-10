@@ -38,11 +38,6 @@ public class EnemyHandler : MonoBehaviour
         EnemyAndObstacleManager.Instance._listOfEnemyHandlers.Add(this);
     }
 
-    void Start()
-    {
-        DetectEnemyType();
-    }
-
     void Update()
 	{
 		if (PlayerManager.Instance._playerHandler._tPlayerTransform.position.z - this.transform.position.z >= 20f)
@@ -126,14 +121,5 @@ public class EnemyHandler : MonoBehaviour
             mTempGameObject = other.gameObject;
             mbShouldDestroyTempGO = true;
         }
-    }
-
-    void DetectEnemyType(string audioBlueHeron = "BlueHeronSound", string audioSnake = "SnakeSound")
-    {
-        if (this._eEnemyType == eEnemyType.BlueHeron)
-            CEffectsPlayer.Instance.Play(audioBlueHeron);
-
-        else if (this._eEnemyType == eEnemyType.Snake)
-            CEffectsPlayer.Instance.Play(audioSnake);
     }
 }

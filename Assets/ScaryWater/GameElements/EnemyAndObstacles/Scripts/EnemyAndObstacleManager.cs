@@ -29,7 +29,12 @@ public class EnemyAndObstacleManager : MonoBehaviour
 			Destroy(this.gameObject);
     }
 
-    void OnEnable()
+    void Start()
+    {
+        Invoke("OnStart", 2);
+    }
+
+    void OnStart()
     {
         PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += PlayerIsDead;    
     }
