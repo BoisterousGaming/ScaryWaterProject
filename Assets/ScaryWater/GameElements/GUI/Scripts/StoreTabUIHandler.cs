@@ -40,6 +40,9 @@ public class StoreTabUIHandler : GUIItemsManager
     public override void OnButtonCallBack(GUIItem item)
     {
         //Debug.Log("Button Pressed: " + item.gameObject.name);
+
+        CEffectsPlayer.Instance.Play("GeneralClick");
+
         ChangeButtonImage(item);
 
         switch (item.gameObject.name)

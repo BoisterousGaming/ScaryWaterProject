@@ -65,6 +65,7 @@ public class BirdHandler : MonoBehaviour
 
     void Start()
     {
+        DetectBirdType("KingfisherIncomingSound", "DragonflyIncomingSound", false);
         mvLandingPadPosition = new Vector3(_tPointE.position.x, 0f, _tPointE.position.z);
 		_tPointA.GetComponent<MeshRenderer> ().enabled = false;
 		_tPointB.GetComponent<MeshRenderer> ().enabled = false;
@@ -256,13 +257,21 @@ public class BirdHandler : MonoBehaviour
 		}
 	}
 
-    void DetectBirdType()
+    void DetectBirdType(string audioKingfisher = "KingfisherFlight", string audioDragonfly = "DragonflyFlight", bool state = true)
     {
         if (this._eBirdType == eBirdType.Kingfisher)
-            SetPlayerPositionForKingfisher();
+        {
+            CEffectsPlayer.Instance.Play(audioKingfisher);
+            if (state)
+                SetPlayerPositionForKingfisher();
+        }
 
         else if (this._eBirdType == eBirdType.Dragonfly)
-            SetPlayerPositionForDragonfly();
+        {
+            CEffectsPlayer.Instance.Play(audioDragonfly);
+            if (state)
+                SetPlayerPositionForDragonfly();
+        }
     }
 
     void SetPlayerPositionForKingfisher()

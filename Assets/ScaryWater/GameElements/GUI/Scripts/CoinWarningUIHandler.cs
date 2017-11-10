@@ -25,6 +25,9 @@ public class CoinWarningUIHandler : GUIItemsManager
 	public override void OnButtonCallBack(GUIItem item)
 	{
 		//Debug.Log("Button Pressed: " + item.gameObject.name);
+
+        CEffectsPlayer.Instance.Play("GeneralClick");
+
         switch (item.gameObject.name)
         {
             case "CloseBtn":

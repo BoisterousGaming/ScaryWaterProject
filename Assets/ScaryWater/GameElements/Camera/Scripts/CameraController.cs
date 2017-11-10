@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     Transform mtPlayerTransform;
     Transform mTransform;
+    Quaternion mInitialRotation;
     Vector3 mvOffset;
     Vector3 mvOriginalPosition;
     Vector3 mvOriginalLocalPosition;
@@ -17,6 +18,7 @@ public class CameraController : MonoBehaviour
     void Initialize()
     {
         mTransform = transform;
+        mInitialRotation = transform.rotation;
 		if (mtPlayerTransform == null)
 		{
 			mtPlayerTransform = PlayerManager.Instance._playerHandler._tPlayerTransform;
@@ -53,5 +55,8 @@ public class CameraController : MonoBehaviour
             tPlayerPosition.z = tCamPos.z;
             transform.position = tPlayerPosition;
         }
+
+        if (FriendManager._bPlayerIsWithAFriend)
+            mTransform.rotation = mInitialRotation;
     }
 }

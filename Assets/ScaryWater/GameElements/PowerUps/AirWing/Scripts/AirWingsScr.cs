@@ -27,6 +27,16 @@ public class AirWingsScr : MonoBehaviour
     bool mbPlayerTriggerEnterChecking = true;
 
     public FriendManager _friendManager;
+    public Transform _tPointA;
+    public Transform _tPointB;
+    public Transform _tPointC;
+    public Transform _tPointD;
+    public Transform _tPointE;
+    public Transform _tPointF;
+    public Transform _tPointG1;
+    public Transform _tPointG2;
+    public Transform _tPointH1;
+    public Transform _tPointH2;
     public float _fBirdMoveTowardPlayerSpeed = 50f;
     public float _fBirdMoveForwardSpeed = 25f;
     public float _fBirdGettingOutOfTheSceneSpeed = 25f;
@@ -138,6 +148,9 @@ public class AirWingsScr : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (FriendManager._bPlayerIsWithAFriend)
+            return;
+
+        if (_friendManager._playerManager._bPlayerIsDead)
             return;
 
 		if (other.CompareTag("Player"))

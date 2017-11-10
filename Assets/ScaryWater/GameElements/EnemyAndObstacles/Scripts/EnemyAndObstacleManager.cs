@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAndObstacleManager : MonoBehaviour
 {
     static EnemyAndObstacleManager mInstance = null;
+    bool mbPlayDeathAudio = false;
 
     public List<EnemyHandler> _listOfEnemyHandlers = new List<EnemyHandler>();
     public List<ObstacleHandler> _listOfObstacleHandlers = new List<ObstacleHandler>();
@@ -26,6 +27,21 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
 		else if (mInstance != this)
 			Destroy(this.gameObject);
+    }
+
+    void OnEnable()
+    {
+        PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += PlayerIsDead;    
+    }
+
+    void OnDisable()
+    {
+        PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PlayerIsDead; 
+    }
+
+    void PlayerIsDead(int val)
+    {
+        mbPlayDeathAudio = true;
     }
 
     public void ApplyDamageBasedOnObstacle(eObstacleType obsType)
@@ -77,6 +93,15 @@ public class EnemyAndObstacleManager : MonoBehaviour
         
 		GameObject HudObj = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 		GameplayAreaUIHandler tHudScr = HudObj.GetComponent<GameplayAreaUIHandler>();
+
+        if (mbPlayDeathAudio)
+        {
+            mbPlayDeathAudio = false;
+            CEffectsPlayer.Instance.Play("PlayerEnemyDeath");
+        }
+
+        else
+            CEffectsPlayer.Instance.Play("PlayerLifeReduce");
 
 		switch (enemyType)
 		{

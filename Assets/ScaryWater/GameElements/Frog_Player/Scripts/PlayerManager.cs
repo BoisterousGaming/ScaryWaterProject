@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public CameraController _CameraControllerScr;
     public EnvironmentManager _EnvironmentManagerScr;
     public MiniGameManager _MiniGameManagerScr;
+    public bool _bPlayerIsDead = false;
 
     public static PlayerManager Instance
     {

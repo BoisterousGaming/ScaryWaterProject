@@ -4,36 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Kingfisher
-  - Dragonfly
-  - Spider
-  - Duck
-  - BirdInstantiate
-  - MiniGameOrb
-  - CollectablePoison
-  - BugHealth
-  - StarCoin
-  - Butterfly
-  - HorsetailHealth
-  - FireflyHealth
-  - CattailHealth
-  - PickerelweedHealth
-  - CoinMagnet
-  - IrisHealth
-  - BlueHeron
-  - Snake
-  - Crab
   - Poison
-  - StoreGUI
-  - SolidPlatform
   - BatInstantiation
   - HawkInstantiation
-  - EndTrigger
-  - Coin
-  - ActiveEnemy
-  - LooseyPlatform
-  - MediumTireHealing
-  - HighTireHealing
   layers:
   - Default
   - TransparentFX

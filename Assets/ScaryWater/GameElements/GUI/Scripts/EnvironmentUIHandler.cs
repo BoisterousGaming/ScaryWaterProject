@@ -93,6 +93,7 @@ public class EnvironmentUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "LeftBtn":
+                CEffectsPlayer.Instance.Play("ArrowClick");
                 if (miCurrentIndex > 0)
                 {
                     miCurrentIndex -= 1;
@@ -101,6 +102,7 @@ public class EnvironmentUIHandler : GUIItemsManager
                 break;
 
             case "RightBtn":
+                CEffectsPlayer.Instance.Play("ArrowClick");
                 if (miCurrentIndex < _listOfEnvironmentPreview.Count - 1)
                 {
                     miCurrentIndex += 1;
@@ -109,6 +111,7 @@ public class EnvironmentUIHandler : GUIItemsManager
                 break;
 
             case "PlayBtn":
+                CEffectsPlayer.Instance.Play("GeneralClick");
                 DataManager.SetActiveEnvID(_iCurrentEnvID);
                 miSelectedLevelToLoad = _iCurrentEnvID;
                 int tSceneIndex = ++miSelectedLevelToLoad;
@@ -116,6 +119,7 @@ public class EnvironmentUIHandler : GUIItemsManager
                 break;
 
             case "BuyBtn":
+                CEffectsPlayer.Instance.Play("GeneralClick");
                 foreach (KeyValuePair<eEnvID, float> element in mDictOfEnvPrice)
                 {
                     if ((int)element.Key == _iCurrentEnvID)

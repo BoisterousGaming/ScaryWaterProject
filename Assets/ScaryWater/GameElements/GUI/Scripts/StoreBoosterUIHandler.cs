@@ -109,12 +109,14 @@ public class StoreBoosterUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "Coin2XBuyBtn":
-                DataManager.SetCoinValue(2);        //cRamappa
+                CEffectsPlayer.Instance.Play("BuyCash");
+                DataManager.SetCoinValue(2);                                    //cRamappa
                 _Coin2XPrice.text = " ";
                 _Coin2XBtn.interactable = false;
                 break;
 
             case "MagnetTimeBuyBtn":
+                CEffectsPlayer.Instance.Play("BuyCoin");
                 if (DataManager.GetMagnetTime() != -1)
                 {
 					int tIndex = DataManager.GetMagnetTime();
@@ -122,6 +124,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
                     if (DataManager.GetTotalCoinAmount() >= _arrOfMagnetTimePrice[tIndex])
                     {
+                        CEffectsPlayer.Instance.Play("UpgradeSound");
                         DataManager.SetMagnetTime(tIndex);
 						_arrOfMagnetTimeMeter[tIndex].color = mFullColor;
 						_MagnetTimePrice.text = _arrOfMagnetTimePrice[tIndex].ToString();
@@ -139,6 +142,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                 {
                     if (DataManager.GetTotalCoinAmount() >= _arrOfMagnetTimePrice[0])
                     {
+                        CEffectsPlayer.Instance.Play("UpgradeSound");
                         DataManager.SetMagnetTime(0);
                         _arrOfMagnetTimeMeter[0].color = mFullColor;
                         _MagnetTimePrice.text = _arrOfMagnetTimePrice[1].ToString();
@@ -151,6 +155,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                 break;
 
             case "PoisonRangeBuyBtn":
+                CEffectsPlayer.Instance.Play("BuyCoin");
 				if (DataManager.GetPoisonRange() != -1)
 				{
                     int tIndex = DataManager.GetPoisonRange();
@@ -158,6 +163,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
 					if (DataManager.GetTotalCoinAmount() >= _arrOfPoisonRangePrice[tIndex])
 					{
+                        CEffectsPlayer.Instance.Play("UpgradeSound");
                         DataManager.SetPoisonRange(tIndex);
 						_arrOfPoisonRangeMeter[tIndex].color = mFullColor;
 						_PoisonRangePrice.text = _arrOfPoisonRangePrice[tIndex].ToString();
@@ -175,6 +181,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 				{
 					if (DataManager.GetTotalCoinAmount() >= _arrOfPoisonRangePrice[0])
 					{
+                        CEffectsPlayer.Instance.Play("UpgradeSound");
 						DataManager.SetPoisonRange(0);
 						_arrOfPoisonRangeMeter[0].color = mFullColor;
 						_PoisonRangePrice.text = _arrOfPoisonRangePrice[1].ToString();

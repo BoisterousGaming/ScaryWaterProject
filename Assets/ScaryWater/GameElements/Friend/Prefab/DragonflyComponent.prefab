@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 114887247267880066}
   m_Layer: 0
   m_Name: BirdInitiateTrigger
-  m_TagString: BirdInstantiate
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -134,7 +134,6 @@ public class CollectableHandler : MonoBehaviour
             if (!mbSkipChecking)
             {
                 mbSkipChecking = true;
-
                 CollectableAndFoodManager.Instance.CompareCollectableElements(this);
 
                 if (this._eCollectableType == eCollectableType.StartCoin)
@@ -142,7 +141,7 @@ public class CollectableHandler : MonoBehaviour
                     mbShouldDestroy = true;
 
                     CoinCount();
-
+                    CEffectsPlayer.Instance.Play("CoinCollection");
 					GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 					if (tCanvas != null)
 						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateCoin();
@@ -154,7 +153,7 @@ public class CollectableHandler : MonoBehaviour
                     mbShouldDestroy = true;
 
                     ButterflyCount();
-
+                    CEffectsPlayer.Instance.Play("ButterflyCollection");
 					GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 					if (tCanvas != null)
 						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateButterfly();

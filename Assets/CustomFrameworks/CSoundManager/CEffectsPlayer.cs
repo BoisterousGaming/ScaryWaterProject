@@ -126,9 +126,7 @@ public class CEffectsPlayer : MonoBehaviour
 	public void Stop()
 	{
 		if(_AudioSource.isPlaying)
-		{
-			_AudioSource.Stop();
-		}
+            _AudioSource.Stop();
 	}
 
 	//Clear audio source and table

@@ -11,6 +11,7 @@ public class FriendManager : MonoBehaviour
     public List<Transform> _listOfFriends = new List<Transform>();
     public static bool _bAirWingIsActive;
     public static bool _bPlayerIsWithAFriend;
+    public PlayerManager _playerManager; 
 
     static FriendManager mInstance = null;
 
@@ -43,7 +44,7 @@ public class FriendManager : MonoBehaviour
 
 			GameObject goAirWings = Instantiate(_airWingsPrefab);
 			goAirWings.transform.SetParent(this.transform);
-			goAirWings.transform.position = new Vector3(PlayerManager.Instance._playerHandler.transform.position.x, 10f, PlayerManager.Instance._playerHandler.transform.position.z - 20f);
+            goAirWings.transform.position = new Vector3(_playerManager._playerHandler.transform.position.x, 10f, _playerManager._playerHandler.transform.position.z - 20f);
 			mAirWingsScr = (AirWingsScr)goAirWings.GetComponent<AirWingsScr>();
 			mAirWingsScr._friendManager = this;
             mAirWingsScr._landingXPos = xPos;

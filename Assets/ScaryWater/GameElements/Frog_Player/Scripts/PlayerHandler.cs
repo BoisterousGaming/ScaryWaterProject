@@ -145,6 +145,8 @@ public class PlayerHandler : MonoBehaviour
 
             else
             {
+                _playerManager._bPlayerIsDead = true;
+                CEffectsPlayer.Instance.Play("PlayerWaterDeath");
                 _jumpActionScr.StopJump("death");
 
                 BarProgressSprite tHealthBarScr = _playerManager._BarProgressSpriteScr;
@@ -189,6 +191,7 @@ public class PlayerHandler : MonoBehaviour
         _vNextPlatformPosition = mvTempPos;
         _vPlayerRequiredPosition = mvTempPos;
 		_eControlState = eControlState.Active;
+        _playerManager._bPlayerIsDead = true;
         DoSingleJump();
 	}
 
@@ -249,6 +252,7 @@ public class PlayerHandler : MonoBehaviour
         //_Animator.SetTrigger("LongJump");
         DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, miJumpDistance, 17, "long_jump_root_motion");
         _playerManager._BarProgressSpriteScr.AddDamage(0.03f, _playerManager.PlayerDeathHandler);
+        CEffectsPlayer.Instance.Play("LongJump");
     }
 
 	public void DoSpiderJump()
@@ -268,6 +272,9 @@ public class PlayerHandler : MonoBehaviour
 
     public void DoPoisonThrow()
     {
+        if (FriendManager._bPlayerIsWithAFriend)
+            return;
+        
 		GameObject mGoPoison = Instantiate(_playerManager._poisonPrefab);
 		PoisonHandler poisonHandler = mGoPoison.GetComponent<PoisonHandler>();
 		poisonHandler._playerHandler = this;

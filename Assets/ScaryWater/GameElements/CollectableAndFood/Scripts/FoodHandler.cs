@@ -42,6 +42,7 @@ public class FoodHandler : MonoBehaviour
             if (!mbSkipChecking)
             {
                 mbSkipChecking = true;
+                CEffectsPlayer.Instance.Play("FoodCollection");
 				CollectableAndFoodManager.Instance.ApplyHealthBasedOnFood(_eFoodType);
             }
 

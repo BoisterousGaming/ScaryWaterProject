@@ -192,6 +192,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 
 		if (tSkinData != null)
 		{
+            CEffectsPlayer.Instance.Play("SkinTapEquip");
             _SelectedSkinBorderImg.transform.SetParent(tSkinData.transform);
             _SelectedSkinBorderImg.GetComponent<RectTransform>().position = tSkinData.transform.GetChild(0).GetComponent<RectTransform>().position;
 			SkinDataHandler(tSkinData);
@@ -202,6 +203,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         { 
             case "BuyBtn":
+                CEffectsPlayer.Instance.Play("BuyCoin");
                 foreach(SkinDataScr element in _listOfSkins)
                 {
                     if (element._iSkinID == _SelectedSkinID)
@@ -228,6 +230,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
                 break;
 
             case "EquipBtn":
+                CEffectsPlayer.Instance.Play("SkinTapEquip");
                 foreach(SkinDataScr element in _listOfSkins)
                 {
                     if (element._iSkinID == _SelectedSkinID)

@@ -44,6 +44,7 @@ public class ObstacleHandler : MonoBehaviour
             if (!mbSkipChecking)
             {
                 mbSkipChecking = true;
+                CEffectsPlayer.Instance.Play("ObstacleCollision");
 				EnemyAndObstacleManager.Instance.ApplyDamageBasedOnObstacle(_eObstacleType);
                 Debug.Log("Name of the obstacle: " + this.gameObject.name + ", Position: " + this.transform.position);
             }
