@@ -151,7 +151,7 @@ public class PlayerHandler : MonoBehaviour
             {
                 _iLaneNumber = miDeathLane;
                 _playerManager._bPlayerIsDead = true;
-                CEffectsPlayer.Instance.Play("PlayerWaterDeath");
+                //CEffectsPlayer.Instance.Play("PlayerWaterDeath");
                 _touchInputHandlerScr._eInputType = eInputType.None;
                 _bSwipedLeftOrRight = false;
                 _jumpActionScr.StopJump("death");
@@ -259,7 +259,7 @@ public class PlayerHandler : MonoBehaviour
         //_Animator.SetTrigger("LongJump");
         DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, miJumpDistance, 17, "long_jump_root_motion");
         _playerManager._BarProgressSpriteScr.AddDamage(0.03f, _playerManager.PlayerDeathHandler);
-        CEffectsPlayer.Instance.Play("LongJump");
+        //CEffectsPlayer.Instance.Play("LongJump");
     }
 
 	public void DoSpiderJump()

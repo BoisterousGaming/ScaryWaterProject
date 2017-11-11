@@ -125,13 +125,13 @@ public class StoreMoneyUIHandler : GUIItemsManager
 
     void AddCoin(int index)
     {
-        CEffectsPlayer.Instance.Play("BuyCash");
+        //CEffectsPlayer.Instance.Play("BuyCash");
         DataManager.AddToTotalCoin(mDictOfCoinContent.Values.ElementAt(index));
     }
 
     void AddButterfly(int index)
     {
-        CEffectsPlayer.Instance.Play("BuyCash");
+        //CEffectsPlayer.Instance.Play("BuyCash");
         DataManager.AddToTotalButterfly(mDictOfButterflyContent.Values.ElementAt(index));
     }
 }

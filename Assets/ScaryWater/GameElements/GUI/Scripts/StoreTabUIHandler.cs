@@ -41,7 +41,7 @@ public class StoreTabUIHandler : GUIItemsManager
     {
         //Debug.Log("Button Pressed: " + item.gameObject.name);
 
-        CEffectsPlayer.Instance.Play("GeneralClick");
+        //CEffectsPlayer.Instance.Play("GeneralClick");
 
         ChangeButtonImage(item);
 

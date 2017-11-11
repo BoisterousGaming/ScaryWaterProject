@@ -29,7 +29,7 @@ public class PurchaseSkinUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "YesBtn":
-                CEffectsPlayer.Instance.Play("PostitiveSound");
+                //CEffectsPlayer.Instance.Play("PostitiveSound");
                 GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("StorePlayerSkinCanvas");
                 if (tCanvas != null)
                 {
@@ -57,7 +57,7 @@ public class PurchaseSkinUIHandler : GUIItemsManager
                 break;
 
             case "NoBtn":
-                CEffectsPlayer.Instance.Play("NegativeSound");
+                //CEffectsPlayer.Instance.Play("NegativeSound");
                 UICanvasHandler.Instance.DestroyScreen(this.gameObject);
                 break;
         }

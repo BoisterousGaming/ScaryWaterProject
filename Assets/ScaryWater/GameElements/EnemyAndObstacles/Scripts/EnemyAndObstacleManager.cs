@@ -102,11 +102,11 @@ public class EnemyAndObstacleManager : MonoBehaviour
         if (mbPlayDeathAudio)
         {
             mbPlayDeathAudio = false;
-            CEffectsPlayer.Instance.Play("PlayerEnemyDeath");
+            //CEffectsPlayer.Instance.Play("PlayerEnemyDeath");
         }
 
         else
-            CEffectsPlayer.Instance.Play("PlayerLifeReduce");
+            //CEffectsPlayer.Instance.Play("PlayerLifeReduce");
 
 		switch (enemyType)
 		{

@@ -114,14 +114,14 @@ public class GameplayAreaUIHandler : GUIItemsManager
 		switch (item.gameObject.name)
 		{
 			case "PauseBtn":
-                CEffectsPlayer.Instance.Play("GeneralClick");
+                //CEffectsPlayer.Instance.Play("GeneralClick");
                 UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas", null, true);
 				break;
 
             case "MagnetBtn":
                 if (DataManager.GetMagnetAmount() > 0)
                 {
-                    CEffectsPlayer.Instance.Play("MagnetActive");
+                    //CEffectsPlayer.Instance.Play("MagnetActive");
                     DataManager.SubstarctFromMagnetAmount(1);
                     CollectableAndFoodManager.Instance.EnableMagnet();
                     _arrOfAllTextElement[5].text = DataManager.GetMagnetAmount().ToString();
@@ -129,7 +129,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
                 break;
 
 			case "AirWingBtn":
-                CEffectsPlayer.Instance.Play("AirwingsActive");
+                //CEffectsPlayer.Instance.Play("AirwingsActive");
                 if (DataManager.GetAirwingAmount() > 0)
                     FriendManager.Instance.InstantiateAirWings(PlayerManager.Instance._playerHandler._tPlayerTransform.position.x);
 				break;

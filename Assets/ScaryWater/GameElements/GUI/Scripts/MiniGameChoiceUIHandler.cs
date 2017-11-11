@@ -38,14 +38,14 @@ public class MiniGameChoiceUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "YesBtn":
-                CEffectsPlayer.Instance.Play("PostitiveSound");
+                //CEffectsPlayer.Instance.Play("PostitiveSound");
                 Time.timeScale = 1f;
                 MiniGameManager.Instance.ActivateMiniGame(Time.time);
                 DestroyCanvas();
                 break;
 
             case "NoBtn":
-                CEffectsPlayer.Instance.Play("NegativeSound");
+                //CEffectsPlayer.Instance.Play("NegativeSound");
 				Time.timeScale = 1f;
                 DestroyCanvas();
                 break;

@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
         else if (mInstance != this)
             Destroy(this.gameObject);
 
-        InitializeAudioOnAwake();
+        //InitializeAudioOnAwake();
     }
 
     void InitializeAudioOnAwake()

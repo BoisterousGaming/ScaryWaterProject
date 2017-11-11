@@ -65,7 +65,7 @@ public class EnemyHandler : MonoBehaviour
             if (!mbSkipChecking)
             {
                 mbSkipChecking = true;
-                CEffectsPlayer.Instance.Play("EnemyCollision");
+                //CEffectsPlayer.Instance.Play("EnemyCollision");
 
                 if (_eEnemyState.Equals(eEnemyState.Active))
                 {

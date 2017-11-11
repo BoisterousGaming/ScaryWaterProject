@@ -32,7 +32,7 @@ public class MainMenuUIHandler : GUIItemsManager
         if (mbIsAnimating)
             return;
 
-        CEffectsPlayer.Instance.Play("GeneralClick");
+        //CEffectsPlayer.Instance.Play("GeneralClick");
 
         switch (item.name)
         {

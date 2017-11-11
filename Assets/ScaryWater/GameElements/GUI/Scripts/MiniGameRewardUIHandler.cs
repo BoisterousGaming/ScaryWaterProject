@@ -35,7 +35,7 @@ public class MiniGameRewardUIHandler : GUIItemsManager
 	{
 		//Debug.Log("Button Pressed: " + item.gameObject.name);
 
-        CEffectsPlayer.Instance.Play("GeneralClick");
+        //CEffectsPlayer.Instance.Play("GeneralClick");
 
 		switch (item.gameObject.name)
 		{

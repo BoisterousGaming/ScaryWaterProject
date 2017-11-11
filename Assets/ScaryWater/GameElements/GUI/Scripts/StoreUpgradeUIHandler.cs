@@ -83,7 +83,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
 			case "LivesDecBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
                 if (miLiveCount > 1)
                     miLiveCount -= 1;
 
@@ -96,11 +96,11 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				break;
 
             case "LivesIncBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");                 int tValue = DataManager.GetLiveAmount();                 int tCount = miLiveCount;                 miTempCount += 1;                 tValue += miTempCount;                 if (tValue <= 999)                 {                     miLiveCount += 1;                     miTotalLivePrice = miLiveCount * miLivePrice;                     _arrOfAllTextElement[0].text = miLiveCount.ToString();                     _arrOfAllTextElement[1].text = miTotalLivePrice.ToString();
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");                 int tValue = DataManager.GetLiveAmount();                 int tCount = miLiveCount;                 miTempCount += 1;                 tValue += miTempCount;                 if (tValue <= 999)                 {                     miLiveCount += 1;                     miTotalLivePrice = miLiveCount * miLivePrice;                     _arrOfAllTextElement[0].text = miLiveCount.ToString();                     _arrOfAllTextElement[1].text = miTotalLivePrice.ToString();
                     _arrOfAllBtnElement[0].interactable = true;                 }                  else                     miTempCount = tCount;                 break;
 
             case "LivesBuyBtn":
-                CEffectsPlayer.Instance.Play("BuyCoin");
+                //CEffectsPlayer.Instance.Play("BuyCoin");
                 if (DataManager.GetTotalCoinAmount() >= miTotalLivePrice)
                 {
                     DataManager.AddToLiveAmount(miLiveCount);
@@ -113,7 +113,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "PoisonDecBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
 				if (miPoisonCount > 1)
 					miPoisonCount -= 1;
 
@@ -126,7 +126,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "PoisonIncBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
 				miPoisonCount += 1;
 				miTotalPoisonPrice = miPoisonCount * miPoisonPrice;
                 _arrOfAllTextElement[2].text = miPoisonCount.ToString();
@@ -135,7 +135,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "PoisonBuyBtn":
-                CEffectsPlayer.Instance.Play("BuyCoin");
+                //CEffectsPlayer.Instance.Play("BuyCoin");
 				if (DataManager.GetTotalCoinAmount() >= miTotalPoisonPrice)
 				{
                     DataManager.AddToPoisonAmount(miPoisonCount);
@@ -148,7 +148,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "AirwingsDecBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
 				if (miAirwingCount > 1)
 					miAirwingCount -= 1;
 
@@ -161,7 +161,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "AirwingsIncBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
 				miAirwingCount += 1;
 				miTotalAirwingPrice = miAirwingCount * miAirwingPrice;
                 _arrOfAllTextElement[4].text = miAirwingCount.ToString();
@@ -170,7 +170,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "AirwingsBuyBtn":
-                CEffectsPlayer.Instance.Play("BuyCoin");
+                //CEffectsPlayer.Instance.Play("BuyCoin");
 				if (DataManager.GetTotalCoinAmount() >= miTotalAirwingPrice)
 				{
                     DataManager.AddToAirwingAmount(miAirwingCount);
@@ -183,7 +183,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "MagnetDecBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
 				if (miMagnetCount > 1)
 					miMagnetCount -= 1;
 
@@ -196,7 +196,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "MagnetIncBtn":
-                CEffectsPlayer.Instance.Play("PlusMinusSound");
+                //CEffectsPlayer.Instance.Play("PlusMinusSound");
 				miMagnetCount += 1;
 				miTotalMagnetPrice = miMagnetCount * miMagnetPrice;
                 _arrOfAllTextElement[6].text = miMagnetCount.ToString();
@@ -205,7 +205,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 break;
 
             case "MagnetBuyBtn":
-                CEffectsPlayer.Instance.Play("BuyCoin");
+                //CEffectsPlayer.Instance.Play("BuyCoin");
 				if (DataManager.GetTotalCoinAmount() >= miTotalMagnetPrice)
 				{
                     DataManager.AddToMagnetAmount(miMagnetCount);

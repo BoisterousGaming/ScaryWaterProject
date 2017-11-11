@@ -100,7 +100,7 @@ public class CollectableAndFoodManager : MonoBehaviour
 		
 		else if (scr._eCollectableType == eCollectableType.Magnet)
 		{
-            CEffectsPlayer.Instance.Play("MagnetActive");
+            //CEffectsPlayer.Instance.Play("MagnetActive");
 			EnableMagnet();
             mbShouldDestroyCGO = true;
             mTempGameObject = scr.gameObject;
@@ -108,7 +108,7 @@ public class CollectableAndFoodManager : MonoBehaviour
 
 		else if (scr._eCollectableType == eCollectableType.Poison)
 		{
-            CEffectsPlayer.Instance.Play("OtherCollection");
+            //CEffectsPlayer.Instance.Play("OtherCollection");
             DataManager.AddToCSessionPoisonAmount(1);
             mbShouldDestroyCGO = true;
             mTempGameObject = scr.gameObject;
@@ -120,7 +120,7 @@ public class CollectableAndFoodManager : MonoBehaviour
 
         else if (scr._eCollectableType == eCollectableType.AirWing)
         {
-            CEffectsPlayer.Instance.Play("AirwingsActive");
+            //CEffectsPlayer.Instance.Play("AirwingsActive");
             FriendManager.Instance.InstantiateAirWings(scr._xAxisPosition);
             mbShouldDestroyCGO = true;
             mTempGameObject = scr.gameObject;
