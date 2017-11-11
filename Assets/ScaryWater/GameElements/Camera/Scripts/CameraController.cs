@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
             transform.position = tPlayerPosition;
         }
 
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (!FriendManager._bPlayerIsWithAFriend)
             mTransform.rotation = mInitialRotation;
     }
 }

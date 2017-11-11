@@ -16,9 +16,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
     public Button _airwingBtn;
 	public Image _CoinImage;
 	public Image _ButterflyImage;
-    public RectTransform _LeftLanePosRect;
-    public RectTransform _MiddleLanePosRect;
-    public RectTransform _RightLanePosRect;
+    public RectTransform _CenterPointRect;
 	public RectTransform _CoinTargetPosRect;
 	public RectTransform _ButterflyTargetPosRect;
 
@@ -54,20 +52,29 @@ public class GameplayAreaUIHandler : GUIItemsManager
     }
 
 
-	public void InstantiateCoin()
+	public void InstantiateCoin(Transform coinTransform = null, bool state = false)
 	{
-		Image tGoCoin = Instantiate(_CoinImage);
+        Image tGoCoin = Instantiate(_CoinImage);
         mCoinSpriteScr = tGoCoin.GetComponent<CoinSpriteScr>();
         mCoinSpriteScr._GameplayAreaUIHandlerScr = this;
-        mCoinSpriteScr.Initialize();
+        RectTransform tRectTransform = this.GetComponent<RectTransform>();
+        if (state)
+            mCoinSpriteScr.Initialize(null, _CenterPointRect, false);
+        else
+            mCoinSpriteScr.Initialize(coinTransform, tRectTransform);
 	}
 
-	public void InstantiateButterfly()
+	public void InstantiateButterfly(Transform butterflyTransform = null, bool state = false)
 	{
-		Image tGoButterfly = Instantiate(_ButterflyImage);
+        Image tGoButterfly = Instantiate(_ButterflyImage);
         mButterflySpriteScr = tGoButterfly.GetComponent<ButterflySpriteScr>();
         mButterflySpriteScr._GameplayAreaUIHandlerScr = this;
-        mButterflySpriteScr.Initialize();
+        RectTransform tRectTransform = this.GetComponent<RectTransform>();
+        if (state)
+            mButterflySpriteScr.Initialize(null, _CenterPointRect, false);
+
+        else
+            mButterflySpriteScr.Initialize(butterflyTransform, tRectTransform);
 	}
 
     public void DisplayCurrentScore()

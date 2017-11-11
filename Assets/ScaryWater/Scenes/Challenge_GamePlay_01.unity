@@ -5451,6 +5451,11 @@ Prefab:
       propertyPath: mfSecondsInFullDay
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 114574870636103452, guid: 20967625654552144aa3bbfdf49a8bda,
+        type: 2}
+      propertyPath: _sunLight
+      value: 
+      objectReference: {fileID: 163521996}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20967625654552144aa3bbfdf49a8bda, type: 2}
   m_IsPrefabParent: 0

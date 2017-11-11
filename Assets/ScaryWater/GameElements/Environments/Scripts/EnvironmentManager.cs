@@ -264,19 +264,25 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    public bool ComparePlatformAndPlayerPositionForLanding(Vector3 PlayerPosition, float Difference)
+    public bool ComparePlatformAndPlayerPositionForLanding(Vector3 PlayerPosition, float Difference, out int deathlane)
     {
         bool bRequiredState = false;
+        deathlane = 0;
         for (int i = 0; i < _listOfPlatformHandler.Count; i++)
         {
             PlatformHandler element = _listOfPlatformHandler[i];
-            if (element._eSupportType == ePlatformHandlerType.Fixed)
+
+            if (Vector3.Distance(element.GetTransform.position, PlayerPosition) < Difference)
             {
-                if (Vector3.Distance(element.GetTransform.position, PlayerPosition) < Difference)
+                if (element._eSupportType == ePlatformHandlerType.Fixed)
                 {
-					bRequiredState = true;
-					break;
+                    bRequiredState = true;
+                    break;  
                 }
+
+                float relativePos = element.GetTransform.position.x / DataHandler._fSpaceBetweenLanes;
+                int lane = Mathf.RoundToInt(relativePos);
+                deathlane = lane;
             }
         }
         return bRequiredState;

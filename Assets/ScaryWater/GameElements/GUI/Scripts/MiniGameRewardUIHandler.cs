@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MiniGameRewardUIHandler : GUIItemsManager 
 {
 	static MiniGameRewardUIHandler mInstance;
 
-	public Text _InfoText;
+    public TextMeshProUGUI _InfoText;
 
 	public static MiniGameRewardUIHandler Instance
 	{

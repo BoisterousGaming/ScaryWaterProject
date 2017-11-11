@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class ButterflySpriteScr : MonoBehaviour 
 {
-	RectTransform mTempRectTransform;
+    RectTransform mRectTransform;
 	float mfLerpingSpeed = 2f;
 
 	public GameplayAreaUIHandler _GameplayAreaUIHandlerScr;
 
-	public void Initialize()
+    public void Initialize(Transform butterflyTransform = null, RectTransform desireRect = null, bool state = true)
 	{
-		RectTransform tButterflyRect = this.GetComponent<RectTransform>();
-		this.transform.SetParent(_GameplayAreaUIHandlerScr.transform);
-		tButterflyRect.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        mRectTransform = this.GetComponent<RectTransform>();
+        this.transform.SetParent(_GameplayAreaUIHandlerScr.transform);
 
-		if (PlayerManager.Instance._playerHandler._iLaneNumber == -1)
-			tButterflyRect.position = _GameplayAreaUIHandlerScr._LeftLanePosRect.position;
+        if (state)
+        {
+            Vector3 tWorldPos = butterflyTransform.position;
+            Vector2 tScreenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, tWorldPos);
+            Vector2 tCanvasPos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(desireRect, tScreenPos, UICanvasHandler.Instance._RenderingCamera, out tCanvasPos);
+            tCanvasPos = 0.5f * desireRect.sizeDelta + tCanvasPos;
+            mRectTransform.anchoredPosition = tCanvasPos;
+        }
 
-		else if (PlayerManager.Instance._playerHandler._iLaneNumber == 0)
-			tButterflyRect.position = _GameplayAreaUIHandlerScr._MiddleLanePosRect.position;
+        else
+            mRectTransform = desireRect;
 
-		else if (PlayerManager.Instance._playerHandler._iLaneNumber == 1)
-			tButterflyRect.position = _GameplayAreaUIHandlerScr._RightLanePosRect.position;
+        this.GetComponent<RectTransform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);
 	}
 
 	void Update () 
     {
-		mTempRectTransform = this.GetComponent<RectTransform>();
-		mTempRectTransform.position = Vector3.Lerp(mTempRectTransform.position, _GameplayAreaUIHandlerScr._ButterflyTargetPosRect.position, Time.deltaTime * mfLerpingSpeed);
+		mRectTransform = this.GetComponent<RectTransform>();
+		mRectTransform.position = Vector3.Lerp(mRectTransform.position, _GameplayAreaUIHandlerScr._ButterflyTargetPosRect.position, Time.deltaTime * mfLerpingSpeed);
 
-		if (Vector3.Distance(mTempRectTransform.position, _GameplayAreaUIHandlerScr._ButterflyTargetPosRect.position) < 1f)
+		if (Vector3.Distance(mRectTransform.position, _GameplayAreaUIHandlerScr._ButterflyTargetPosRect.position) < 1f)
 			Destroy(this.gameObject);
 	}
 }

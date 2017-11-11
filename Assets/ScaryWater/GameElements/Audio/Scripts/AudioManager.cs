@@ -66,6 +66,8 @@ public class AudioManager : MonoBehaviour
         if (!ambienceState)
             return;
 
+        else if (ambienceState)
+            CAmbientSFX.Instance.Play("StormAmbience");
         // else play ambience
     }
 }

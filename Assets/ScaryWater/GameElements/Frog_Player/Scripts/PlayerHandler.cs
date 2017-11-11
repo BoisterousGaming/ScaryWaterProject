@@ -14,6 +14,7 @@ public enum eControlState
 public class PlayerHandler : MonoBehaviour
 {
     Vector3 mvTempPos;
+    int miDeathLane = 0;
     float mfTimeInGameLoadingBufferState = 0.0f;
 	float miJumpDistance = 10;
 	bool mbInGameLoadingBufferState = true;
@@ -80,6 +81,9 @@ public class PlayerHandler : MonoBehaviour
 
     void InputHandlerCallback(eInputType Input)
     {
+        if (_playerManager._bPlayerIsDead)
+            return;
+        
         switch(Input)
         {
             case eInputType.SingleTap:
@@ -130,7 +134,7 @@ public class PlayerHandler : MonoBehaviour
 
         if (_playerManager._EnvironmentManagerScr != null)
         {
-            if (_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f))
+            if (_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f, out miDeathLane))
             {
                 if (ScoreHandler._OnScoreEventCallback != null)
                     ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);
@@ -145,8 +149,11 @@ public class PlayerHandler : MonoBehaviour
 
             else
             {
+                _iLaneNumber = miDeathLane;
                 _playerManager._bPlayerIsDead = true;
                 CEffectsPlayer.Instance.Play("PlayerWaterDeath");
+                _touchInputHandlerScr._eInputType = eInputType.None;
+                _bSwipedLeftOrRight = false;
                 _jumpActionScr.StopJump("death");
 
                 BarProgressSprite tHealthBarScr = _playerManager._BarProgressSpriteScr;
@@ -191,7 +198,7 @@ public class PlayerHandler : MonoBehaviour
         _vNextPlatformPosition = mvTempPos;
         _vPlayerRequiredPosition = mvTempPos;
 		_eControlState = eControlState.Active;
-        _playerManager._bPlayerIsDead = true;
+        _playerManager._bPlayerIsDead = false;
         DoSingleJump();
 	}
 
@@ -232,7 +239,7 @@ public class PlayerHandler : MonoBehaviour
 		_vCurPlatformPosition = _vNextPlatformPosition;
 		miJumpDistance = 10;
         //_Animator.SetTrigger("Jump");
-        DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, miJumpDistance, 17, "short_jump_root_motion");
+        DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance, 17, "short_jump_root_motion");
 	}
 
     public void DoDoubleJump()

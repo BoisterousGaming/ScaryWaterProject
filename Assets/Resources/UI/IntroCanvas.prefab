@@ -316,7 +316,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0
-  _Duration: 5
+  _Duration: 1
 --- !u!114 &114277672298338934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _StartDelay: 0
-  _Duration: 1
+  _Duration: 0.2
 --- !u!114 &114689468166650870
 MonoBehaviour:
   m_ObjectHideFlags: 1

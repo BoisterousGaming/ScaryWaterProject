@@ -56,6 +56,11 @@ public class IntroUIHandler : GUIItemsManager
 
     void LoadMainMenu()
     {
+        UICanvasHandler.Instance.CloseScreen(this.name, AfterScreenClosed);
+    }
+
+    void AfterScreenClosed()
+    {
         UICanvasHandler.Instance.DestroyScreen(this.gameObject);
         UICanvasHandler.Instance.LoadScreen("MainMenuCanvas");
     }

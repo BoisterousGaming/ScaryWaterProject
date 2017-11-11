@@ -41,6 +41,9 @@ public class PauseScreenUIHandler : GUIItemsManager
                 break;
 
             case "SettingBtn":
+                DataManager.SetSettingsCanvasExitTarget(1);
+                UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+                UICanvasHandler.Instance.LoadScreen("SettingsCanvas");
                 break;
 
             case "ReplayBtn":

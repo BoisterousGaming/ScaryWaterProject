@@ -54,6 +54,9 @@ public class MainMenuUIHandler : GUIItemsManager
                 break;
 
             case "SettingsBtn":
+                DataManager.SetSettingsCanvasExitTarget(0);
+                UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+                UICanvasHandler.Instance.LoadScreen("SettingsCanvas");
 				break;
 
             case "FacebookBtn":

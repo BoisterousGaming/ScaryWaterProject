@@ -144,7 +144,7 @@ public class CollectableHandler : MonoBehaviour
                     CEffectsPlayer.Instance.Play("CoinCollection");
 					GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 					if (tCanvas != null)
-						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateCoin();
+						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateCoin(this.transform);
 
                 }
 
@@ -156,7 +156,7 @@ public class CollectableHandler : MonoBehaviour
                     CEffectsPlayer.Instance.Play("ButterflyCollection");
 					GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 					if (tCanvas != null)
-						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateButterfly();
+						tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateButterfly(this.transform);
 				}
             }
         }

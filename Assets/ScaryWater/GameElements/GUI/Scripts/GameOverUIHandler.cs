@@ -65,6 +65,9 @@ public class GameOverUIHandler : GUIItemsManager
                 break;
 
             case "SettingsBtn":
+                DataManager.SetSettingsCanvasExitTarget(2);
+                UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+                UICanvasHandler.Instance.LoadScreen("SettingsCanvas");
                 break;
 
             case "HomeBtn":
