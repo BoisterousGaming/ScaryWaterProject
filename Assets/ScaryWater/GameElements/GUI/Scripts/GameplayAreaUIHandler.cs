@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameplayAreaUIHandler : GUIItemsManager 
 {
     int miCurrentScore;
     CoinSpriteScr mCoinSpriteScr;
     ButterflySpriteScr mButterflySpriteScr;
+    OnScreenScoreScr mOnScreenScoreScr;
+    BrokenHeartScr mBrokenHeartScr;
     static GameplayAreaUIHandler mInstance;
 
-    //public BarProgress _HealthBar;
-    public Text[] _arrOfAllTextElement;
+    public TextMeshProUGUI[] _arrOfAllTMPTextElement;
     public Button _magnetBtn;
     public Button _airwingBtn;
 	public Image _CoinImage;
 	public Image _ButterflyImage;
+    public TextMeshProUGUI _OnScreenScore;
     public RectTransform _CenterPointRect;
 	public RectTransform _CoinTargetPosRect;
 	public RectTransform _ButterflyTargetPosRect;
+    public RectTransform _ScoreTargetPosRect;
+    public GameObject _BrokenHeart;
 
 	public static GameplayAreaUIHandler Instance
 	{
@@ -38,10 +43,10 @@ public class GameplayAreaUIHandler : GUIItemsManager
 
     void Start()
     {
-        _arrOfAllTextElement[3].text = DataManager.GetLiveAmount().ToString();
-        _arrOfAllTextElement[4].text = DataManager.GetPoisonAmount().ToString();
-        _arrOfAllTextElement[5].text = DataManager.GetMagnetAmount().ToString();
-        _arrOfAllTextElement[6].text = DataManager.GetAirwingAmount().ToString();
+        _arrOfAllTMPTextElement[3].text = DataManager.GetLiveAmount().ToString();
+        _arrOfAllTMPTextElement[4].text = DataManager.GetPoisonAmount().ToString();
+        _arrOfAllTMPTextElement[5].text = DataManager.GetMagnetAmount().ToString();
+        _arrOfAllTMPTextElement[6].text = DataManager.GetAirwingAmount().ToString();
 
         Invoke("InitializeCallback", 1.0f);
     }
@@ -49,6 +54,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
     void InitializeCallback()
     {
         PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += PrintHealthCountCallback;
+        //PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += BrokenHeart;
     }
 
 
@@ -77,34 +83,52 @@ public class GameplayAreaUIHandler : GUIItemsManager
             mButterflySpriteScr.Initialize(butterflyTransform, tRectTransform);
 	}
 
+    public void DisplayOnScreenScore(int scoreValue = 0)
+    {
+        TextMeshProUGUI tGoScore = Instantiate(_OnScreenScore);
+        mOnScreenScoreScr = tGoScore.GetComponent<OnScreenScoreScr>();
+        mOnScreenScoreScr._GameplayAreaUIHandlerScr = this;
+        RectTransform tRectTransform = this.GetComponent<RectTransform>();
+        mOnScreenScoreScr.Initialize(scoreValue, tRectTransform);
+    }
+
+    public void BrokenHeart(int val)
+    {
+        GameObject tGoBrokenHeart = Instantiate(_BrokenHeart);
+        mBrokenHeartScr = tGoBrokenHeart.GetComponent<BrokenHeartScr>();
+        mBrokenHeartScr._GameplayAreaUIHandlerScr = this;
+        RectTransform tRectTransform = this.GetComponent<RectTransform>();
+        mBrokenHeartScr.Initialize(tRectTransform);
+    }
+
     public void DisplayCurrentScore()
     {
-        _arrOfAllTextElement[0].text = DataManager.GetCSessionScore().ToString();
+        _arrOfAllTMPTextElement[0].text = DataManager.GetCSessionScore().ToString();
     }
 
     public void DisplayCoinCount()
     {
-        _arrOfAllTextElement[1].text = DataManager.GetCSessionCoinAmount().ToString(); 
+        _arrOfAllTMPTextElement[1].text = DataManager.GetCSessionCoinAmount().ToString(); 
     }
 
     public void DisplayButterflyCount()
     {
-        _arrOfAllTextElement[2].text = DataManager.GetCSessionButterflyAmount().ToString();
+        _arrOfAllTMPTextElement[2].text = DataManager.GetCSessionButterflyAmount().ToString();
     }
 
     void PrintHealthCountCallback(int val)
     {
-        _arrOfAllTextElement[3].text = val.ToString();
+        _arrOfAllTMPTextElement[3].text = val.ToString();
     }
 
     public void DisplayPoisonCount()
     {
-        _arrOfAllTextElement[4].text = DataManager.GetPoisonAmount().ToString();
+        _arrOfAllTMPTextElement[4].text = DataManager.GetPoisonAmount().ToString();
     }
 
     public void DisplayAirwingCount()
     {
-        _arrOfAllTextElement[6].text = DataManager.GetAirwingAmount().ToString();
+        _arrOfAllTMPTextElement[6].text = DataManager.GetAirwingAmount().ToString();
     }
 
     public override void OnButtonCallBack(GUIItem item)
@@ -124,7 +148,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
                     //CEffectsPlayer.Instance.Play("MagnetActive");
                     DataManager.SubstarctFromMagnetAmount(1);
                     CollectableAndFoodManager.Instance.EnableMagnet();
-                    _arrOfAllTextElement[5].text = DataManager.GetMagnetAmount().ToString();
+                    _arrOfAllTMPTextElement[5].text = DataManager.GetMagnetAmount().ToString();
                 }
                 break;
 
@@ -150,7 +174,10 @@ public class GameplayAreaUIHandler : GUIItemsManager
     void OnDisable()
     {
         if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
+        {
             PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PrintHealthCountCallback;
+            //PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= BrokenHeart;
+        }
     }
 
     public void SetMagnetBtnState(bool state = true)

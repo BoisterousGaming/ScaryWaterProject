@@ -55,6 +55,7 @@ public class ScoreHandler : MonoBehaviour
     static ScoreHandler mInstance;
     eScoreType meScoreType = eScoreType.None;
     Dictionary<eScoreType, int> mDictOfScore = new Dictionary<eScoreType, int>();
+    List<eScoreType> mListOfElementsScoreDisplay = new List<eScoreType>();
     int miCurrentScore;
     int miTempCurrentScore;
 
@@ -65,6 +66,7 @@ public class ScoreHandler : MonoBehaviour
     {
         mInstance = this;
         ScoreDictionaryDataInitializers();
+        ElementsScoreOnScreenDisplayDataInitializers();
     }
 
     void OnEnable()
@@ -126,24 +128,88 @@ public class ScoreHandler : MonoBehaviour
         mDictOfScore.Add(eScoreType.HawkEscaping, 100);
     }
 
-    void ScoreUpdateHandler(eScoreType Type)
+    void ElementsScoreOnScreenDisplayDataInitializers()
     {
-        //Debug.Log("ScoreType: " + Type);
-        foreach(KeyValuePair<eScoreType, int> elemet in mDictOfScore)
+        //mListOfElementsScoreDisplay.Add(eScoreType.HighAndLongJump);
+        mListOfElementsScoreDisplay.Add(eScoreType.Butterfly);
+        mListOfElementsScoreDisplay.Add(eScoreType.Firefly);
+        mListOfElementsScoreDisplay.Add(eScoreType.Bug);
+        mListOfElementsScoreDisplay.Add(eScoreType.Worm);
+        mListOfElementsScoreDisplay.Add(eScoreType.Insect);
+        mListOfElementsScoreDisplay.Add(eScoreType.Cattail);
+        mListOfElementsScoreDisplay.Add(eScoreType.Pickerelweed);
+        mListOfElementsScoreDisplay.Add(eScoreType.Iris);
+        mListOfElementsScoreDisplay.Add(eScoreType.Horsetail);
+        mListOfElementsScoreDisplay.Add(eScoreType.Kingfisher);
+        mListOfElementsScoreDisplay.Add(eScoreType.Dragonfly);
+        mListOfElementsScoreDisplay.Add(eScoreType.Spider);
+        mListOfElementsScoreDisplay.Add(eScoreType.SnakeJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.SnakeKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.SnakeEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.CrabJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.CrabKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.CrabEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.RaccoonJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.RaccoonKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.RaccoonEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.BatJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.BatKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.BatEscaping);
+        mListOfElementsScoreDisplay.Add(eScoreType.HawkJumpingOver);
+        mListOfElementsScoreDisplay.Add(eScoreType.HawkKilling);
+        mListOfElementsScoreDisplay.Add(eScoreType.HawkEscaping);
+    }
+
+    void ScoreUpdateHandler(eScoreType scoreType)
+    {
+        foreach(KeyValuePair<eScoreType, int> element in mDictOfScore)
         {
-            if (elemet.Key.Equals(Type))
+            if (element.Key.Equals(scoreType))
             {
-                //Debug.Log("Element Key: " + elemet.Key + ", Value: " + elemet.Value);
-                miCurrentScore = elemet.Value;
+                miCurrentScore = element.Value;
                 break;
             }
         }
 
+        DisplayScoreOnScreen(scoreType);
         DataManager.AddToHighScore(miCurrentScore);
         DataManager.AddToCSessionScore(miCurrentScore);
 
 		GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 		if (tCanvas != null)
             tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayCurrentScore();
+    }
+
+    void DisplayScoreOnScreen(eScoreType scoreType)
+    {
+        for (int i = 0; i < mListOfElementsScoreDisplay.Count; i++)
+        {
+            eScoreType tScoreElement = mListOfElementsScoreDisplay[i];
+            if (tScoreElement.Equals(scoreType))
+            {
+                foreach (KeyValuePair<eScoreType, int> element in mDictOfScore)
+                {
+                    if (tScoreElement.Equals(element.Key))
+                    {
+                        GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+                        if (tCanvas != null)
+                            tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayOnScreenScore(element.Value);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

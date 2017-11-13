@@ -27,6 +27,7 @@ public enum eMiniGameTypes
 public class MiniGameHandler : MonoBehaviour 
 {
     bool mbLockTrigger = false;
+    bool mbRenderIsDisable = false;
 
     public eMiniGameTypes _eMiniGameTypes = eMiniGameTypes.None;
     public int _iCoinsNeedsToCollect;
@@ -43,12 +44,27 @@ public class MiniGameHandler : MonoBehaviour
 
     void OnEnable()
     {
-        MiniGameManager.Instance._listOfMinGameHandlers.Add(this);    
+        MiniGameManager.Instance._listOfMinGameHandlers.Add(this); 
     }
 
-    void OnDestroy()
+    void Update()
     {
-        MiniGameManager.Instance._listOfMinGameHandlers.Remove(this);
+        SetVisibility();
+    }
+
+    void SetVisibility()
+    {
+        if (MiniGameManager._bMinGameIsActive & !mbRenderIsDisable)
+            VisibilityState(true, false);
+
+        else if (!MiniGameManager._bMinGameIsActive & mbRenderIsDisable)
+            VisibilityState(false, true);
+    }
+
+    void VisibilityState(bool state, bool renderState)
+    {
+        mbRenderIsDisable = state;
+        this.GetComponent<MeshRenderer>().enabled = renderState;
     }
 
     void OnTriggerEnter(Collider other)
@@ -63,6 +79,11 @@ public class MiniGameHandler : MonoBehaviour
             if (other.CompareTag("Player"))
                 MiniGameManager.Instance.CheckIfMiniGameCanBeActivated(this);
         }
+    }
+
+    void OnDestroy()
+    {
+        MiniGameManager.Instance._listOfMinGameHandlers.Remove(this);
     }
 }
 

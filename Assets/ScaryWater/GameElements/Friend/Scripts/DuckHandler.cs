@@ -127,6 +127,7 @@ public class DuckHandler : MonoBehaviour
 				PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
 				other.GetComponent<Rigidbody>().useGravity = false;
 				other.GetComponent<Rigidbody>().isKinematic = true;
+                FriendManager._eFriendType = eFriendType.Duck;
                 SetPlayerPositionForDuck();
 
 				meDuckState = eDuckState.MoveToPointA;

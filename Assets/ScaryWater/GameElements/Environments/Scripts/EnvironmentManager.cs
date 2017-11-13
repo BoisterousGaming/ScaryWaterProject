@@ -51,8 +51,8 @@ public class EnvironmentManager : MonoBehaviour
     int miChallengeSetPrefabIndex = 0;
     int miNumberOfSetSpawnAtATime = 6;
     int miNumberOfSetsToDeleteFromBack = 1;
-    float mfLowTireSetInstantiationTimeLimit = 320f;
-    float mfMediumTireSetInstantiationTimeLimit = 600f;
+    float mfLowTireSetInstantiationTimeLimit = 45f;
+    float mfMediumTireSetInstantiationTimeLimit = 75f;
     float mfStartTime;
     bool mbInstantiateMinigameSet = false;
     bool mbInstantiateChallengeSet = false;
@@ -84,7 +84,7 @@ public class EnvironmentManager : MonoBehaviour
 		else if (mInstance != this)
 			Destroy(this.gameObject);
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 4)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Challenge_GamePlay_01")
             ChallengeTypeSetInstantiation();
 
         else

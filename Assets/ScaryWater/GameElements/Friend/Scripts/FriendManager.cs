@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum eFriendType
+{
+    None = 0,
+    Spider,
+    Duck,
+    Kingfisher,
+    Dragonfly
+}
+
 public class FriendManager : MonoBehaviour
 {
     AirWingsScr mAirWingsScr;
 
+    public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
     public List<AirWingsScr> _listOfAirWingsScr = new List<AirWingsScr>();
     public List<Transform> _listOfFriends = new List<Transform>();

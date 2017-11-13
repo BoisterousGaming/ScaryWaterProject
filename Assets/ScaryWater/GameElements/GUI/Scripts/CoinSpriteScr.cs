@@ -33,7 +33,7 @@ public class CoinSpriteScr : MonoBehaviour
 
 	void Update () 
     {
-		mRectTransform = this.GetComponent<RectTransform>();
+		//mRectTransform = this.GetComponent<RectTransform>();
 		mRectTransform.position = Vector3.Lerp(mRectTransform.position, _GameplayAreaUIHandlerScr._CoinTargetPosRect.position, Time.deltaTime * mfLerpingSpeed);
 
 		if (Vector3.Distance(mRectTransform.position, _GameplayAreaUIHandlerScr._CoinTargetPosRect.position) < 1f)

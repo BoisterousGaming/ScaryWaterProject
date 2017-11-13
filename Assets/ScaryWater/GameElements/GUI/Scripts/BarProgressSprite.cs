@@ -14,6 +14,10 @@ public class BarProgressSprite : MonoBehaviour
 	float mfTime = 1;
 	float mfCount = 0;
 	float mfProgress = 0;
+    float mfKingfisherBarPosYAxis = 2.25f;
+    float mfDragonflyBarPosYAxis = 2.25f;
+    float mfDuckBarPosYAxis = 2.2f;
+    float mfBarInitialPosYAxis = 1.5f;
 	int miNumberOfFills;
 	int miCurNumberOfFills;
 	bool mbAnimating = false;
@@ -25,8 +29,9 @@ public class BarProgressSprite : MonoBehaviour
     //public Gradient _Gradient;
     public float _TargetValue = 3;
     public float _Speed = 10;
-    public GameObject _ProgressBar;
     public float _CurrentFillAmount;
+    public GameObject _ProgressBar;
+    public PlayerHandler _PlayerHandlerScr;
 
     public static BarProgressSprite Instance
     {
@@ -36,10 +41,11 @@ public class BarProgressSprite : MonoBehaviour
     void Awake()
     {
         mInstance = this;
-        _TargetValue = DataManager.GetLiveAmount() + 0.9f;
+        _TargetValue = DataManager.GetLiveAmount() + 0.99f;
         mfTargetValue = _TargetValue;
         mfCurTargetValue = mfTargetValue;
         miCurNumberOfFills = DataManager.GetLiveAmount() + 1;
+        mfBarInitialPosYAxis = this.transform.position.y;
     }
 
     void Update()
@@ -97,7 +103,8 @@ public class BarProgressSprite : MonoBehaviour
             //_ProgressBar.color = _Gradient.Evaluate(_ProgressBar.fillAmount);
         }
 
-        HideProgressBar();
+        //HideProgressBar();
+        SetBarPosition();
     }
 
     void CheckNewTargetValue()
@@ -155,5 +162,32 @@ public class BarProgressSprite : MonoBehaviour
         
         GetComponent<SpriteRenderer>().color = tColor;
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = tColor;
+    }
+
+    void SetBarPosition()
+    {
+        if (FriendManager._bPlayerIsWithAFriend)
+        {
+            if (FriendManager._eFriendType == eFriendType.Duck)
+                SetPos(mfDuckBarPosYAxis);
+
+            else if (FriendManager._eFriendType == eFriendType.Kingfisher)
+                SetPos(mfKingfisherBarPosYAxis);
+
+            else if (FriendManager._eFriendType == eFriendType.Dragonfly)
+                SetPos(mfDragonflyBarPosYAxis);
+        }
+
+        else
+            SetPos(mfBarInitialPosYAxis);
+    }
+
+    void SetPos(float offset)
+    {
+        mvTempVector.x = this.transform.position.x;
+        mvTempVector.y = _PlayerHandlerScr.transform.position.y + offset;
+        mvTempVector.z = this.transform.position.z;
+
+        this.transform.position = mvTempVector;
     }
 }

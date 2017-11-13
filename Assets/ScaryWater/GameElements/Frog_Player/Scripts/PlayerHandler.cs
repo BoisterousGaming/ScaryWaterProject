@@ -14,9 +14,11 @@ public enum eControlState
 public class PlayerHandler : MonoBehaviour
 {
     Vector3 mvTempPos;
+    int miCount = 0;
     int miDeathLane = 0;
-    float mfTimeInGameLoadingBufferState = 0.0f;
-	float miJumpDistance = 10;
+    float mfTimeInGameLoadingBufferState = 0f;
+    float miJumpDistance = 10f;
+    float mfDrownOffset = 3f;
 	bool mbInGameLoadingBufferState = true;
     bool mbLockHighAndLongJumpAction;
     bool mbPerformingSpiderJump = false;
@@ -77,6 +79,9 @@ public class PlayerHandler : MonoBehaviour
 
 		_jumpActionScr.CustomUpdate();
         _touchInputHandlerScr.CustomUpdate();
+
+        if (_playerManager._bPlayerIsDead)
+            DrownThePlayer();
 	}
 
     void InputHandlerCallback(eInputType Input)
@@ -125,6 +130,7 @@ public class PlayerHandler : MonoBehaviour
 
     void JumpFinished()
     {
+        miCount++;
         //Jump finished now what to do check if platform is available below player then jump again
         //Or depending on swipe you can change the jump parameters for next jump
         if (_playerManager._CameraControllerScr != null)
@@ -136,8 +142,11 @@ public class PlayerHandler : MonoBehaviour
         {
             if (_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f, out miDeathLane))
             {
-                if (ScoreHandler._OnScoreEventCallback != null)
-                    ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);
+                if (miCount > 1)
+                {
+                    if (ScoreHandler._OnScoreEventCallback != null)
+                        ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);    
+                }
 
                 transform.position = _vPlayerRequiredPosition;
                 _vCurPlatformPosition = _vNextPlatformPosition;
@@ -187,10 +196,19 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
+    void DrownThePlayer()
+    {
+        Vector3 tDestinationPos = Vector3.zero;
+        tDestinationPos.x = transform.position.x;
+        tDestinationPos.y = transform.position.y - mfDrownOffset;
+        tDestinationPos.z = transform.position.z;
+        transform.position = Vector3.MoveTowards(transform.position, tDestinationPos, Time.deltaTime * 2f);
+    }
+
 	IEnumerator IRespawnThePlayer(Vector3 SpawnPosition)
 	{
 		yield return new WaitForSeconds(2f);
-
+        _playerManager._bPlayerIsDead = false;
         mvTempPos.x = SpawnPosition.x;
         mvTempPos.y = SpawnPosition.y + 0.5f;
         mvTempPos.z = SpawnPosition.z;
@@ -198,7 +216,7 @@ public class PlayerHandler : MonoBehaviour
         _vNextPlatformPosition = mvTempPos;
         _vPlayerRequiredPosition = mvTempPos;
 		_eControlState = eControlState.Active;
-        _playerManager._bPlayerIsDead = false;
+
         DoSingleJump();
 	}
 

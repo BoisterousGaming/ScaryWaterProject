@@ -262,6 +262,7 @@ public class BirdHandler : MonoBehaviour
         if (this._eBirdType == eBirdType.Kingfisher)
         {
             //CEffectsPlayer.Instance.Play(audioKingfisher);
+            FriendManager._eFriendType = eFriendType.Kingfisher;
             if (state)
                 SetPlayerPositionForKingfisher();
         }
@@ -269,6 +270,7 @@ public class BirdHandler : MonoBehaviour
         else if (this._eBirdType == eBirdType.Dragonfly)
         {
             //CEffectsPlayer.Instance.Play(audioDragonfly);
+            FriendManager._eFriendType = eFriendType.Dragonfly;
             if (state)
                 SetPlayerPositionForDragonfly();
         }

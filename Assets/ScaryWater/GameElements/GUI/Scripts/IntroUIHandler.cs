@@ -7,6 +7,7 @@ public class IntroUIHandler : GUIItemsManager
 {
     static IntroUIHandler mInstance;
     float mfTimerDuration = 10f;
+    bool mbDisableTimer = false;
 
     public Text _TimerText;
 
@@ -30,13 +31,19 @@ public class IntroUIHandler : GUIItemsManager
     {
         if (_TimerText != null)
         {
-            if (mfTimerDuration > 0.1f)
-                mfTimerDuration -= Time.deltaTime;
+            if (!mbDisableTimer)
+            {
+                if (mfTimerDuration > 0.1f)
+                    mfTimerDuration -= Time.deltaTime;
 
-            else if (mfTimerDuration < 0.2f)
-                LoadMainMenu();
+                else if (mfTimerDuration < 0.2f)
+                {
+                    mbDisableTimer = true;
+                    LoadMainMenu();
+                }
 
-            _TimerText.text = Mathf.Round(mfTimerDuration).ToString();
+                _TimerText.text = Mathf.Round(mfTimerDuration).ToString();    
+            }
         }
     }
 

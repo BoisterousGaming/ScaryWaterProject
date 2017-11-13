@@ -39,7 +39,6 @@ public class MiniGameManager : MonoBehaviour
     float mfTempMiniGameLength;
     bool mbSkipInfo;
     bool mbSkipReward;
-    bool mbMinGameIsActive;
     bool mbActive;
     bool mbDoOnce = true;
 
@@ -55,6 +54,7 @@ public class MiniGameManager : MonoBehaviour
 	public int _iPowerUpsCollected;
     public int _iObstaclesTouched;
     public int _iPlayerDeathCount;
+    public static bool _bMinGameIsActive;
     public string[] _arrOfMiniGameInfo;
     public List<MiniGameHandler> _listOfMinGameHandlers = new List<MiniGameHandler>();
 
@@ -79,7 +79,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void CheckIfMiniGameCanBeActivated(MiniGameHandler scr)
     {
-        if (!mbMinGameIsActive)
+        if (!_bMinGameIsActive)
         {
 			UICanvasHandler.Instance.LoadScreen("MiniGameChioceCanvas", null, true);
 			GetPropertiesOfMiniGame(scr);
@@ -107,7 +107,7 @@ public class MiniGameManager : MonoBehaviour
 			mMiniGameInfoUIHandlerScr = tInfoCanvas.GetComponent<MiniGameInfoUIHandler>();
         
         PlayerManager.Instance._playerHandler._eControlState = eControlState.Active;
-        mbMinGameIsActive = true;
+        _bMinGameIsActive = true;
         mbActive = true;
         mbSkipInfo = false;
         mbSkipReward = false;
@@ -288,7 +288,7 @@ public class MiniGameManager : MonoBehaviour
            mCurrentMiniGameHandlerScr = null;
         
         mbActive = false;
-        mbMinGameIsActive = false;
+        _bMinGameIsActive = false;
 		_eMiniGameState = eMiniGameState.None;
 		EnvironmentManager.Instance.MiniGameTypeSetInstantiation(eSetType.AllType, false, false);
 		yield return new WaitForSeconds(2f);
