@@ -44,25 +44,4 @@ public static class DataHandler
     public const int _iMagnetTimePrice = 200;
     public const int _iPoisonRangePrice = 200;
     #endregion
-
-    #region Process For SingletonClass
-    //static DataHandler mInsatnce = null;
-
-    //private DataHandler()
-    //{
-
-    //}
-
-    //public static DataHandler Instance
-    //{
-    //    get
-    //    {
-    //        if (mInsatnce == null)
-    //        {
-    //            mInsatnce = new DataHandler();
-    //        }
-    //        return mInsatnce;
-    //    }
-    //}
-    #endregion
 }
