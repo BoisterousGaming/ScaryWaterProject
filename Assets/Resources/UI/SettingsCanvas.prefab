@@ -1992,7 +1992,16 @@ MonoBehaviour:
   _AnimatingItems:
   - {fileID: 114384062335128602}
   _BackToScreen: 
-  _bLoadingFromGameOverScreen: 0
+  _MusicBtn: {fileID: 114264253984728442}
+  _SFXBtn: {fileID: 114806615911916206}
+  _MusicBtnText: {fileID: 114245114084223986}
+  _SFXBtnText: {fileID: 114572327694315654}
+  _MusicBtnOnColor: {r: 0.6117647, g: 0.8862745, b: 0.08627451, a: 1}
+  _SFXBtnOnColor: {r: 0.6117647, g: 0.8862745, b: 0.08627451, a: 1}
+  _BtnOffColor: {r: 0.7137255, g: 0.7137255, b: 0.7137255, a: 1}
+  _MusicBtnOnTextColor: {r: 0.2, g: 0.28627452, b: 0.03137255, a: 1}
+  _SFXBtnOnTextColor: {r: 0.2, g: 0.28627452, b: 0.03137255, a: 1}
+  _BtnOffTextColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
 --- !u!114 &114900066480731406
 MonoBehaviour:
   m_ObjectHideFlags: 1

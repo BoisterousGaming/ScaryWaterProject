@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
 public class SettingsUIHandler : GUIItemsManager 
 {
     static SettingsUIHandler mInstance;
 
-    public bool _bLoadingFromGameOverScreen = false;
+    public Button _MusicBtn;
+    public Button _SFXBtn;
+    public TextMeshProUGUI _MusicBtnText;
+    public TextMeshProUGUI _SFXBtnText;
+    public Color _MusicBtnOnColor;
+    public Color _SFXBtnOnColor;
+    public Color _BtnOffColor;
+    public Color _MusicBtnOnTextColor;
+    public Color _SFXBtnOnTextColor;
+    public Color _BtnOffTextColor;
 
     public static SettingsUIHandler Instance
     {
@@ -24,9 +36,60 @@ public class SettingsUIHandler : GUIItemsManager
             Destroy(this.gameObject);
 	}
 
-	public override void OnButtonCallBack(GUIItem item)
+    void Start()
+    {
+        SetMusicBtnColorState();
+        SetSFXBtnColorState();
+    }
+
+    public override void OnButtonCallBack(GUIItem item)
 	{
 		//Debug.Log("Button Pressed: " + item.gameObject.name);
+
+        switch (item.gameObject.name)
+        {
+            case "MusicBtn":
+                if (CMusicPlayer.Instance.Mute)
+                {
+                    CMusicPlayer.Instance.Mute = false;
+                    SetMusicBtnColorState();
+                }
+                else
+                {
+                    CMusicPlayer.Instance.Mute = true;
+                    SetMusicBtnColorState();
+                }
+                break;
+
+            case "SFXBtn":
+                if (CEffectsPlayer.Instance.Mute)
+                {
+                    CEffectsPlayer.Instance.Mute = false;
+                    SetSFXBtnColorState();
+                }
+                else
+                {
+                    CEffectsPlayer.Instance.Mute = true;
+                    SetSFXBtnColorState();
+                }
+                break;
+
+            case "AdvGraphicBtn":
+                break;
+
+            case "GraphicBtn":
+                break;
+
+            case "StatBtn":
+                break;
+
+            case "GameInfoBtn":
+                break;
+
+            case "BackBtn":
+                OnClickBackBtn();
+                break;
+        }
 	}
 
     public override void OnBackButton()
@@ -50,5 +113,37 @@ public class SettingsUIHandler : GUIItemsManager
     {
         UICanvasHandler.Instance.DestroyScreen(this.gameObject);
         UICanvasHandler.Instance.LoadScreen(canvasName);
+    }
+
+    void SetMusicBtnColorState()
+    {
+        if (CMusicPlayer.Instance.Mute)
+        {
+            _MusicBtn.GetComponent<Image>().color = _BtnOffColor;
+            _MusicBtnText.color = _BtnOffTextColor;
+            _MusicBtnText.text = "Music : Off";
+        }
+        else
+        {
+            _MusicBtn.GetComponent<Image>().color = _MusicBtnOnColor;
+            _MusicBtnText.color = _MusicBtnOnTextColor;
+            _MusicBtnText.text = "Music : On";
+        }
+    }
+
+    void SetSFXBtnColorState()
+    {
+        if (CEffectsPlayer.Instance.Mute)
+        {
+            _SFXBtn.GetComponent<Image>().color = _BtnOffColor;
+            _SFXBtnText.color = _BtnOffTextColor;
+            _SFXBtnText.text = "Sfx : Off";
+        }
+        else
+        {
+            _SFXBtn.GetComponent<Image>().color = _SFXBtnOnColor;
+            _SFXBtnText.color = _SFXBtnOnTextColor;
+            _SFXBtnText.text = "Sfx : On";
+        }
     }
 }
