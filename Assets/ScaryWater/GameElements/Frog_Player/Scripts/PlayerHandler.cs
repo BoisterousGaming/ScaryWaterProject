@@ -310,7 +310,7 @@ public class PlayerHandler : MonoBehaviour
             tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayPoisonCount();
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         if (_touchInputHandlerScr._InputTypeChangedCallback != null)
             _touchInputHandlerScr._InputTypeChangedCallback -= InputHandlerCallback;

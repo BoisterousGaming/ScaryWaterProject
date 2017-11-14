@@ -1353,6 +1353,7 @@ MonoBehaviour:
   _bSwipedLeftOrRight: 0
   _rigidBodyOfPlayer: {fileID: 54470430337402746}
   _BarProgressSpriteScr: {fileID: 114287851501462006}
+  _BrokenHeart: {fileID: 0}
 --- !u!114 &114287851501462006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public EnvironmentManager _EnvironmentManagerScr;
     public MiniGameManager _MiniGameManagerScr;
     public bool _bPlayerIsDead = false;
+    public ParticleSystem _BrokenHeart;
 
     public static PlayerManager Instance
     {
@@ -39,6 +40,8 @@ public class PlayerManager : MonoBehaviour
 
 		else
             Debug.LogWarning("Player prefab dose not exist!");
+
+        Invoke("AfterStart", 2);
     }
 
     void PlayerSpawnLoc(Vector3 SpawnPos)
@@ -77,5 +80,25 @@ public class PlayerManager : MonoBehaviour
     public void PlayerMaxHealthLimit()
     {
         Debug.Log("You have reached the max limit of health bar count!");
+    }
+
+    void AfterStart()
+    {
+        _BarProgressSpriteScr._FillCountChangedCallback += BrokenHeartCallback;
+    }
+
+    void BrokenHeartCallback(int val)
+    {
+        Vector3 tPlayerPos;
+        tPlayerPos.x = _playerHandler._tPlayerTransform.position.x;
+        tPlayerPos.y = _playerHandler._tPlayerTransform.position.y + 1.5f;
+        tPlayerPos.z = _playerHandler._tPlayerTransform.position.z;
+        _BrokenHeart.transform.position = tPlayerPos;
+        _BrokenHeart.Play();
+    }
+
+    void OnDisable()
+    {
+        _BarProgressSpriteScr._FillCountChangedCallback -= BrokenHeartCallback;
     }
 }
