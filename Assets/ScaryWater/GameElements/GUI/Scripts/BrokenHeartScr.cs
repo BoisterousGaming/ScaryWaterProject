@@ -27,15 +27,15 @@ public class BrokenHeartScr : MonoBehaviour
         this.transform.SetParent(_GameplayAreaUIHandlerScr.transform);
 
         Vector3 tWorldPos = PlayerManager.Instance._playerHandler._tPlayerTransform.position;
-        Vector2 tScreenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, tWorldPos);
-        Vector2 tCanvasPos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(desireRect, tScreenPos, UICanvasHandler.Instance._RenderingCamera, out tCanvasPos);
-        tCanvasPos = 0.5f * desireRect.sizeDelta + tCanvasPos;
-        mRectTransform.anchoredPosition = tCanvasPos;
-        _LeftSideRect.anchoredPosition = tCanvasPos;
-        _RightSideRect.anchoredPosition = tCanvasPos;
-        _LeftSideTargetRect.anchoredPosition = tCanvasPos;
-        _RightSideTargetRect.anchoredPosition = tCanvasPos;
+        //Vector2 tScreenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, tWorldPos);
+        //Vector2 tCanvasPos;
+        //RectTransformUtility.ScreenPointToLocalPointInRectangle(desireRect, tScreenPos, UICanvasHandler.Instance._RenderingCamera, out tCanvasPos);
+        //tCanvasPos = 0.5f * desireRect.sizeDelta + tCanvasPos;
+        //mRectTransform.anchoredPosition = tCanvasPos;
+        //_LeftSideRect.anchoredPosition = tCanvasPos;
+        //_RightSideRect.anchoredPosition = tCanvasPos;
+        //_LeftSideTargetRect.anchoredPosition = tCanvasPos;
+        //_RightSideTargetRect.anchoredPosition = tCanvasPos;
 
         this.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
     }

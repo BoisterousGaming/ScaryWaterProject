@@ -43,7 +43,6 @@ public class MiniGameSetHandler
 
 public class EnvironmentManager : MonoBehaviour
 {
-    List<EnvironmentHandler> mListOfEnvironmentHandler = new List<EnvironmentHandler>();
     eSetType meSetType = eSetType.None;
     int miCount = 0;
     int miSetHandlerPrefabIndex = 0;
@@ -58,7 +57,9 @@ public class EnvironmentManager : MonoBehaviour
     bool mbInstantiateChallengeSet = false;
     Vector3 mvPositionForSet = Vector3.zero;
     static EnvironmentManager mInstance = null;
+    List<EnvironmentHandler> mListOfEnvironmentHandler = new List<EnvironmentHandler>();
 
+    public DayNightHandler _DayNightHandlerScr;
     public EnvironmentHandler _currentActiveEnvironmentHandler = null;
     public GenerateRandomValueScr _GenerateRandomValueScr;
     public List<GameObject> _listOfLowTireSets;
@@ -102,9 +103,10 @@ public class EnvironmentManager : MonoBehaviour
     void Update()
     {
         InitializeTheNextSets();
+        SetFireflyParticleState();
     }
 
-	void ChooseEnvironmentToSpawn(Vector3 Position, eSetTire setTire)
+    void ChooseEnvironmentToSpawn(Vector3 Position, eSetTire setTire)
 	{
 		if (setTire == eSetTire.Low)
 		{
@@ -337,6 +339,24 @@ public class EnvironmentManager : MonoBehaviour
 				element.GetComponent<MeshRenderer>().enabled = state;
 				element._eSupportType = platformState;
 			}
+        }
+    }
+
+    void SetFireflyParticleState()
+    {
+        for (int i = 0; i < mListOfEnvironmentHandler.Count; i++)
+        {
+            EnvironmentHandler tEnvHandlerScr = mListOfEnvironmentHandler[i];
+            if (_DayNightHandlerScr._bNightTime)
+            {
+                if (tEnvHandlerScr._Firefly.isStopped)
+                    tEnvHandlerScr._Firefly.Play();
+            }
+            else
+            {
+                if (tEnvHandlerScr._Firefly.isPlaying)
+                    tEnvHandlerScr._Firefly.Stop();
+            }
         }
     }
 }
