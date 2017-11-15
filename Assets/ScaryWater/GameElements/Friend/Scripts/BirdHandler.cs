@@ -49,7 +49,6 @@ public class BirdHandler : MonoBehaviour
     public float _fPlayerLandingSpeed = 5f;
     public float _fRotationSpeed = 5f;
     public BirdInitiate _BirdInitiateScr;
-    public FrirendSurroundingScr _SurroundingColliderScr;
 
 	void OnEnable()
 	{
@@ -189,15 +188,14 @@ public class BirdHandler : MonoBehaviour
 
     void PlayerMoveTowardsLandingPad()
     {
-        GetComponent<Collider>().enabled = false;
+        transform.GetComponent<SphereCollider>().enabled = false;
         meBirdState = eBirdState.PointF;
 
         PlayerManager.Instance._playerHandler._tPlayerTransform.position = Vector3.MoveTowards(PlayerManager.Instance._playerHandler._tPlayerTransform.position, mvLandingPadPosition, _fPlayerLandingSpeed * Time.deltaTime);
 
         if (mvLandingPadPosition.y - PlayerManager.Instance._playerHandler._tPlayerTransform.position.y < 0.1f)
         {
-            FriendManager._bPlayerIsWithAFriend = false;
-            FriendManager._bPlayerIsWithinFriendSurrounding = false;
+            FriendManager.SetPlayerIsWithFriendState(false);
 
             PlayerManager.Instance._playerHandler._tPlayerTransform.SetParent(PlayerManager.Instance.transform);
 			PlayerManager.Instance._playerHandler._tPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
@@ -214,7 +212,7 @@ public class BirdHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
             return;
 
         if (other.CompareTag("Player"))
@@ -222,8 +220,6 @@ public class BirdHandler : MonoBehaviour
             if (mbDetectPlayer)
             {
                 mbDetectPlayer = false;
-                _SurroundingColliderScr.GetComponent<Collider>().enabled = false;
-
                 PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
                 if (ScoreHandler._OnScoreEventCallback != null)
                 {
@@ -236,7 +232,7 @@ public class BirdHandler : MonoBehaviour
 
                 other.transform.SetParent(transform);
 
-                FriendManager._bPlayerIsWithAFriend = true;
+                FriendManager.SetPlayerIsWithFriendState(true);
                 PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
                 other.GetComponent<Rigidbody>().useGravity = false;
                 other.GetComponent<Rigidbody>().isKinematic = true;

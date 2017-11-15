@@ -73,7 +73,7 @@ public class MiniGameHandler : MonoBehaviour
         {
             mbLockTrigger = true;
 
-			if (FriendManager._bPlayerIsWithAFriend)
+            if (FriendManager.GetPlayerIsWithFriendState())
 				return;
 
             if (other.CompareTag("Player"))

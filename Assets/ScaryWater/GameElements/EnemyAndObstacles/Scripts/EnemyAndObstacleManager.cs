@@ -51,7 +51,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
     public void ApplyDamageBasedOnObstacle(eObstacleType obsType)
     {
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
             return;
 
 		switch (obsType)
@@ -93,7 +93,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
     public void ApplyDamageBasedOnEnemy(eEnemyType enemyType)
     {
-		if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
 			return;
         
 		GameObject HudObj = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");

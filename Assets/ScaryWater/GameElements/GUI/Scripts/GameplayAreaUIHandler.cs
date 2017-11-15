@@ -23,7 +23,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
 	public RectTransform _CoinTargetPosRect;
 	public RectTransform _ButterflyTargetPosRect;
     public RectTransform _ScoreTargetPosRect;
-    public GameObject _BrokenHeart;
 
 	public static GameplayAreaUIHandler Instance
 	{
@@ -54,7 +53,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
     void InitializeCallback()
     {
         PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += PrintHealthCountCallback;
-        //PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += BrokenHeart;
     }
 
 
@@ -90,15 +88,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
         mOnScreenScoreScr._GameplayAreaUIHandlerScr = this;
         RectTransform tRectTransform = this.GetComponent<RectTransform>();
         mOnScreenScoreScr.Initialize(scoreValue, tRectTransform);
-    }
-
-    public void BrokenHeart(int val)
-    {
-        GameObject tGoBrokenHeart = Instantiate(_BrokenHeart);
-        mBrokenHeartScr = tGoBrokenHeart.GetComponent<BrokenHeartScr>();
-        mBrokenHeartScr._GameplayAreaUIHandlerScr = this;
-        RectTransform tRectTransform = this.GetComponent<RectTransform>();
-        mBrokenHeartScr.Initialize(tRectTransform);
     }
 
     public void DisplayCurrentScore()
@@ -154,7 +143,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
 
 			case "AirWingBtn":
                 //CEffectsPlayer.Instance.Play("AirwingsActive");
-                FriendManager._bPlayerPressedTheAirwingBtn = true;
                 if (DataManager.GetAirwingAmount() > 0)
                     FriendManager.Instance.InstantiateAirWings(PlayerManager.Instance._playerHandler._tPlayerTransform.position.x);
 				break;
@@ -175,10 +163,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
     void OnDisable()
     {
         if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
-        {
             PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PrintHealthCountCallback;
-            //PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= BrokenHeart;
-        }
     }
 
     public void SetMagnetBtnState(bool state = true)

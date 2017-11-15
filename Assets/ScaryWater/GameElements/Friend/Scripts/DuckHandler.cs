@@ -25,7 +25,6 @@ public class DuckHandler : MonoBehaviour
     public float _fSpeedB = 40f;
     public float _fSpeedC = 25f;
     public float _fRotationSpeed = 5f;
-    public FrirendSurroundingScr _SurroundingColliderScr;
 
 	void OnEnable()
 	{
@@ -79,11 +78,10 @@ public class DuckHandler : MonoBehaviour
 
                 if (_tPointC.localPosition.z - transform.localPosition.z < 0.1f)
                 {
-                    GetComponent<Collider>().enabled = false;
+                    transform.GetComponent<BoxCollider>().enabled = false;
                     meDuckState = eDuckState.MoveToPointD;
 
-                    FriendManager._bPlayerIsWithAFriend = false;
-                    FriendManager._bPlayerIsWithinFriendSurrounding = false;
+                    FriendManager.SetPlayerIsWithFriendState(false);
 
                     PlayerManager.Instance._playerHandler._tPlayerTransform.SetParent(PlayerManager.Instance.transform);
                     PlayerManager.Instance._playerHandler._tPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
@@ -110,7 +108,7 @@ public class DuckHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
             return;
 
         if (other.CompareTag("Player"))
@@ -118,15 +116,13 @@ public class DuckHandler : MonoBehaviour
             if (!mbSkipChecking)
             {
                 mbSkipChecking = false;
-                _SurroundingColliderScr.GetComponent<Collider>().enabled = false;
-
                 PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
                 if (ScoreHandler._OnScoreEventCallback != null)
                     ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
 
                 other.transform.SetParent(transform);
 
-                FriendManager._bPlayerIsWithAFriend = true;
+                FriendManager.SetPlayerIsWithFriendState(true);
                 PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
                 other.GetComponent<Rigidbody>().useGravity = false;
                 other.GetComponent<Rigidbody>().isKinematic = true;

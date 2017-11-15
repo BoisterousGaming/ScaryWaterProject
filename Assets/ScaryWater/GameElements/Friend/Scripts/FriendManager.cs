@@ -14,15 +14,13 @@ public enum eFriendType
 public class FriendManager : MonoBehaviour
 {
     AirWingsScr mAirWingsScr;
+    static bool mbPlayerIsWithAFriend = false;
+    static bool mbAirWingIsActive = false;
 
     public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
     public List<AirWingsScr> _listOfAirWingsScr = new List<AirWingsScr>();
     public List<Transform> _listOfFriends = new List<Transform>();
-    public static bool _bAirWingIsActive = false;
-    public static bool _bPlayerIsWithAFriend = false;
-    public static bool _bPlayerIsWithinFriendSurrounding = false;
-    public static bool _bPlayerPressedTheAirwingBtn = false;
     public PlayerManager _playerManager; 
 
     static FriendManager mInstance = null;
@@ -37,20 +35,13 @@ public class FriendManager : MonoBehaviour
         mInstance = this;    
     }
 
-    void Update()
-    {
-        if (_bPlayerPressedTheAirwingBtn)
-            InstantiateAirWings(PlayerManager.Instance._playerHandler._tPlayerTransform.position.x);
-    }
-
     public void InstantiateAirWings(float xPos)
     {
-        if (_playerManager._bPlayerIsDead | _bPlayerIsWithAFriend | _bPlayerIsWithinFriendSurrounding)
+        if (_playerManager.GetPlayerDeadState() | mbPlayerIsWithAFriend)
             return;
-        
-        if (!_bAirWingIsActive)
+
+        if (!mbAirWingIsActive)
         {
-            _bPlayerPressedTheAirwingBtn = false;
             DataManager.SubstarctFromAirwingAmount(1);
 
             GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
@@ -68,7 +59,22 @@ public class FriendManager : MonoBehaviour
 			mAirWingsScr._friendManager = this;
             mAirWingsScr._landingXPos = xPos;
 			_listOfAirWingsScr.Add(mAirWingsScr);
-            _bAirWingIsActive = true;
+            mbAirWingIsActive = true;
         }
+    }
+
+    public static void SetPlayerIsWithFriendState(bool state = true)
+    {
+        mbPlayerIsWithAFriend = state;
+    }
+
+    public static bool GetPlayerIsWithFriendState()
+    {
+        return mbPlayerIsWithAFriend;
+    }
+
+    public static void SetAirwingActiveState(bool state = true)
+    {
+        mbAirWingIsActive = state;
     }
 }

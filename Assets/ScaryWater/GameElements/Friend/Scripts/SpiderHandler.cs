@@ -25,7 +25,7 @@ public class SpiderHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
             return;
 
 		if (other.CompareTag("Player"))

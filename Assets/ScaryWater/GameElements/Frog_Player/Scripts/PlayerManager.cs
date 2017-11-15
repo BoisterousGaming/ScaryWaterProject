@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
 	static PlayerManager mInstance;
     int miEquipedSkinID;
+    bool mbPlayerIsDead = false;
 
     public GameObject _playerPrefab;
     public GameObject _poisonPrefab;
@@ -16,7 +17,6 @@ public class PlayerManager : MonoBehaviour
     public CameraController _CameraControllerScr;
     public EnvironmentManager _EnvironmentManagerScr;
     public MiniGameManager _MiniGameManagerScr;
-    public bool _bPlayerIsDead = false;
     public ParticleSystem _BrokenHeart;
 
     public static PlayerManager Instance
@@ -95,6 +95,16 @@ public class PlayerManager : MonoBehaviour
         tPlayerPos.z = _playerHandler._tPlayerTransform.position.z;
         _BrokenHeart.transform.position = tPlayerPos;
         _BrokenHeart.Play();
+    }
+
+    public void SetPlayerDeadState(bool state = true)
+    {
+        mbPlayerIsDead = state;
+    }
+
+    public bool GetPlayerDeadState()
+    {
+        return mbPlayerIsDead;
     }
 
     void OnDisable()

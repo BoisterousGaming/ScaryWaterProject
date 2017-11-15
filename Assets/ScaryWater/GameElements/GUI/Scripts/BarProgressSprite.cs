@@ -166,7 +166,7 @@ public class BarProgressSprite : MonoBehaviour
     {
         Color tColor;
 
-        if (!FriendManager._bPlayerIsWithAFriend)
+        if (!FriendManager.GetPlayerIsWithFriendState())
             tColor = new Color(1f, 1f, 1f, 1f);
         else
             tColor = new Color(1f, 1f, 1f, 0f);
@@ -177,7 +177,7 @@ public class BarProgressSprite : MonoBehaviour
 
     void SetBarPosition()
     {
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
         {
             if (FriendManager._eFriendType == eFriendType.Duck)
                 SetPos(mfDuckBarPosYAxis);

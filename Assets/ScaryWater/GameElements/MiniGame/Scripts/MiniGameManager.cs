@@ -201,7 +201,7 @@ public class MiniGameManager : MonoBehaviour
 		// Collecting elements
 		if (!AvoidElement)
 		{
-			if (Time.time - mfMiniGameStartTime < MiniGameLength)
+            if (Time.time - mfMiniGameStartTime < MiniGameLength & CurrentAmount < RequiredAmount)
 			{
 				if (mfTempMiniGameLength > 0f)
 					mfTempMiniGameLength -= Time.deltaTime;
@@ -219,21 +219,18 @@ public class MiniGameManager : MonoBehaviour
 					mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[(int)CurrentMiniGameType] + " " + CurrentAmount + "/" + RequiredAmount + "  <-->  " + "Time left: " + Mathf.Round(mfTempMiniGameLength);
 			}
 
-			else
+            else if (CurrentAmount >= RequiredAmount)
 			{
-				if (CurrentAmount >= RequiredAmount)
-                {
-                    StartCoroutine(IResetMiniGameState(false));
-                    RewardInfo();
-                }
-
-				else if (CurrentAmount < RequiredAmount)
-				{
-					if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
-						mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[_arrOfMiniGameInfo.Length - 1];
-                    StartCoroutine(IResetMiniGameState(true));
-				}
+                StartCoroutine(IResetMiniGameState(false));
+                RewardInfo();
 			}
+
+            else if (Time.time - mfMiniGameStartTime > MiniGameLength & CurrentAmount < RequiredAmount)
+            {
+                if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
+                    mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[_arrOfMiniGameInfo.Length - 1];
+                StartCoroutine(IResetMiniGameState(true));
+            }
 		}
 
 
@@ -243,42 +240,36 @@ public class MiniGameManager : MonoBehaviour
 		// Avoiding elements
 		if (AvoidElement)
 		{
-			if (Time.time - mfMiniGameStartTime < MiniGameLength)
+            if (Time.time - mfMiniGameStartTime < MiniGameLength & CurrentAmount == RequiredAmount)
 			{
-				if (CurrentAmount == RequiredAmount)
-				{
-					if (mfTempMiniGameLength > 0f)
-						mfTempMiniGameLength -= Time.deltaTime;
+                if (mfTempMiniGameLength > 0f)
+                    mfTempMiniGameLength -= Time.deltaTime;
 
-                    if (mbDoOnce)
+                if (mbDoOnce)
                 {
                     mbDoOnce = false;
-                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, true);    
+                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, true);
                 }
 
                 else
-                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, false);  
+                    EnvironmentManager.Instance.MiniGameTypeSetInstantiation(CurrentSetType, true, false);
 
-					if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
-						mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[(int)CurrentMiniGameType] + " " + Mathf.Round(mfTempMiniGameLength) + " seconds.";
-				}
+                if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
+                    mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[(int)CurrentMiniGameType] + " " + Mathf.Round(mfTempMiniGameLength) + " seconds.";
 			}
 
-			else
+            else if (Time.time - mfMiniGameStartTime > MiniGameLength & CurrentAmount == RequiredAmount)
 			{
-				if (CurrentAmount == RequiredAmount)
-                {
-                    StartCoroutine(IResetMiniGameState(false));
-                    RewardInfo();
-                }
-					
-				else if (CurrentAmount > RequiredAmount)
-				{
-					if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
-						mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[_arrOfMiniGameInfo.Length - 1];
-                    StartCoroutine(IResetMiniGameState(true));
-				}
+                StartCoroutine(IResetMiniGameState(false));
+                RewardInfo();
 			}
+
+            else if (CurrentAmount > RequiredAmount)
+            {
+                if (mMiniGameInfoUIHandlerScr._miniGameInfoText != null)
+                    mMiniGameInfoUIHandlerScr._miniGameInfoText.text = _arrOfMiniGameInfo[_arrOfMiniGameInfo.Length - 1];
+                StartCoroutine(IResetMiniGameState(true));
+            }
 		}
     }
 

@@ -6,16 +6,21 @@ public class FrirendSurroundingScr : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-            FriendManager._bPlayerIsWithinFriendSurrounding = true;
+        SetAirwingBtnState(other, false);
     }
 
     void OnTriggerExit(Collider other)
     {
+        SetAirwingBtnState(other, true); 
+    }
+
+    void SetAirwingBtnState(Collider other = null, bool state = false)
+    {
         if (other.CompareTag("Player"))
         {
-            FriendManager._bPlayerIsWithinFriendSurrounding = false;
-            GetComponent<Collider>().enabled = false;    
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            if (tCanvas != null)
+                tCanvas.GetComponent<GameplayAreaUIHandler>()._airwingBtn.enabled = false;    
         }
     }
 }

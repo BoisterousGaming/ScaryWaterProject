@@ -80,13 +80,13 @@ public class PlayerHandler : MonoBehaviour
 		_jumpActionScr.CustomUpdate();
         _touchInputHandlerScr.CustomUpdate();
 
-        if (_playerManager._bPlayerIsDead)
+        if (_playerManager.GetPlayerDeadState())
             DrownThePlayer();
 	}
 
     void InputHandlerCallback(eInputType Input)
     {
-        if (_playerManager._bPlayerIsDead)
+        if (_playerManager.GetPlayerDeadState())
             return;
         
         switch(Input)
@@ -159,7 +159,8 @@ public class PlayerHandler : MonoBehaviour
             else
             {
                 _iLaneNumber = miDeathLane;
-                _playerManager._bPlayerIsDead = true;
+                _playerManager.SetPlayerDeadState(true);
+                SetPlayerColliderState(false);
                 //CEffectsPlayer.Instance.Play("PlayerWaterDeath");
                 _touchInputHandlerScr._eInputType = eInputType.None;
                 _bSwipedLeftOrRight = false;
@@ -208,7 +209,8 @@ public class PlayerHandler : MonoBehaviour
 	IEnumerator IRespawnThePlayer(Vector3 SpawnPosition)
 	{
 		yield return new WaitForSeconds(2f);
-        _playerManager._bPlayerIsDead = false;
+        SetPlayerColliderState();
+        _playerManager.SetPlayerDeadState(false);
         mvTempPos.x = SpawnPosition.x;
         mvTempPos.y = SpawnPosition.y + 0.5f;
         mvTempPos.z = SpawnPosition.z;
@@ -219,6 +221,11 @@ public class PlayerHandler : MonoBehaviour
 
         DoSingleJump();
 	}
+
+    void SetPlayerColliderState(bool state = true)
+    {
+        transform.GetComponent<SphereCollider>().enabled = state;
+    }
 
 	public void DoPlayerShiftLeft()
 	{
@@ -297,7 +304,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void DoPoisonThrow()
     {
-        if (FriendManager._bPlayerIsWithAFriend)
+        if (FriendManager.GetPlayerIsWithFriendState())
             return;
         
 		GameObject mGoPoison = Instantiate(_playerManager._poisonPrefab);

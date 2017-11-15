@@ -9,7 +9,8 @@ public enum eAirWingState
     MoveForward,
     MoveDown,
     DropPlayer,
-    LeaveTheScene
+    LeaveTheScene,
+    InCaseFailure
 }
 
 public class AirWingsScr : MonoBehaviour 
@@ -25,6 +26,7 @@ public class AirWingsScr : MonoBehaviour
     Vector3 mvTempPos;
     float mfSqrLen;
     bool mbPlayerTriggerEnterChecking = true;
+    bool mbForceStateChanged = false;
 
     public FriendManager _friendManager;
     public Transform _tPointA;
@@ -58,6 +60,11 @@ public class AirWingsScr : MonoBehaviour
         meAirWingState = eAirWingState.CatchPlayer;
     }
 
+    void LateUpdate()
+    {
+        ForceChangeState();
+    }
+
     void FixedUpdate()
     {
         AirWingStateHandler();    
@@ -65,7 +72,32 @@ public class AirWingsScr : MonoBehaviour
 
     void ForceChangeState()
     {
+        if (mbForceStateChanged)
+            return;
         
+        if (PlayerManager.Instance.GetPlayerDeadState())
+        {
+            mbForceStateChanged = true;
+
+            DataManager.AddToAirwingAmount(1);
+            FriendManager.SetPlayerIsWithFriendState(false);
+            FriendManager.SetAirwingActiveState(false);
+
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            if (tCanvas != null)
+            {
+                GameplayAreaUIHandler tScr = tCanvas.GetComponent<GameplayAreaUIHandler>();
+                tScr.DisplayAirwingCount();
+                tScr.SetAirwingBtnState(true);
+            }
+
+            transform.GetComponent<SphereCollider>().enabled = false;
+            mvTempPos.x = transform.position.x;
+            mvTempPos.y = transform.position.y + 50f;
+            mvTempPos.z = transform.position.z + 100f;
+            mvFinalDestination = mvTempPos;
+            meAirWingState = eAirWingState.InCaseFailure;
+        }
     }
 
     void AirWingStateHandler()
@@ -107,17 +139,26 @@ public class AirWingsScr : MonoBehaviour
                 break;
 
             case eAirWingState.LeaveTheScene:
-                transform.position = Vector3.MoveTowards(mtAirWingTransform.position, mvFinalDestination, Time.deltaTime * _fBirdMoveForwardSpeed);
-                SmoothLook(mvFinalDestination);
-
-				mvOffset = mvFinalDestination - mtAirWingTransform.position;
-				mfSqrLen = mvOffset.sqrMagnitude;
-				if (mfSqrLen < 2f * 2f)
-				{
-                    meAirWingState = eAirWingState.None;
-					Destroy(this.gameObject);
-				}
+                GoToFinalDestination();
                 break;
+
+            case eAirWingState.InCaseFailure:
+                GoToFinalDestination();
+                break;
+        }
+    }
+
+    void GoToFinalDestination()
+    {
+        transform.position = Vector3.MoveTowards(mtAirWingTransform.position, mvFinalDestination, Time.deltaTime * _fBirdMoveForwardSpeed);
+        SmoothLook(mvFinalDestination);
+
+        mvOffset = mvFinalDestination - mtAirWingTransform.position;
+        mfSqrLen = mvOffset.sqrMagnitude;
+        if (mfSqrLen < 2f * 2f)
+        {
+            meAirWingState = eAirWingState.None;
+            Destroy(this.gameObject);
         }
     }
 
@@ -125,13 +166,13 @@ public class AirWingsScr : MonoBehaviour
 	{
 		transform.GetComponent<SphereCollider>().enabled = false;
         meAirWingState = eAirWingState.LeaveTheScene;
-        FriendManager._bAirWingIsActive = false;
+        FriendManager.SetAirwingActiveState(false);
 
         mtPlayerTransform.position = Vector3.MoveTowards(mtPlayerTransform.position, mvLandingPadPosition, 10 * Time.deltaTime);
 
         if (mvLandingPadPosition.y - mtPlayerTransform.position.y < 0.1f)
         {
-            FriendManager._bPlayerIsWithAFriend = false;
+            FriendManager.SetPlayerIsWithFriendState(false);
 			mtPlayerTransform.SetParent(PlayerManager.Instance.transform);
 			mtPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
 			mtPlayerTransform.GetComponent<Rigidbody>().useGravity = true;
@@ -151,10 +192,7 @@ public class AirWingsScr : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (FriendManager._bPlayerIsWithAFriend)
-            return;
-
-        if (_friendManager._playerManager._bPlayerIsDead)
+        if (FriendManager.GetPlayerIsWithFriendState() | _friendManager._playerManager.GetPlayerDeadState())
             return;
 
 		if (other.CompareTag("Player"))
@@ -168,7 +206,7 @@ public class AirWingsScr : MonoBehaviour
 					ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
                 
 				other.transform.SetParent(transform);
-				FriendManager._bPlayerIsWithAFriend = true;
+                FriendManager.SetPlayerIsWithFriendState(true);
 
 				mvTempPos.x = _landingXPos;
 				mvTempPos.y = 5f;
