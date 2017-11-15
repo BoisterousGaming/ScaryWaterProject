@@ -46,6 +46,7 @@ public class DataManager : MonoBehaviour
     static string msChallengeActiveTimeStampTarget = "CATimeStampTarget";
 
     static string msSettingScreenExitTarget = "SettingScreenExitTarget";
+    static string msMainMenuScreenLoadingState = "MainMenuScreenLoadingState";
     #endregion
 
     public static DataManager Instance
@@ -446,6 +447,11 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt(msSettingScreenExitTarget, Value);
     }
 
+    public static void SetMainMenuScreenLoadingState(int Value)
+    {
+        PlayerPrefs.SetInt(msMainMenuScreenLoadingState, Value);
+    }
+
     //-----------------------------------------------------------------------------------------------//
 
     public static int GetTotalCoinAmount()
@@ -651,6 +657,14 @@ public class DataManager : MonoBehaviour
         int tValue = 0;
         if (PlayerPrefs.HasKey(msSettingScreenExitTarget))
             tValue = PlayerPrefs.GetInt(msSettingScreenExitTarget);
+        return tValue;
+    }
+
+    public static int GetMainMenuScreenLoadingState()
+    {
+        int tValue = 0;
+        if (PlayerPrefs.HasKey(msMainMenuScreenLoadingState))
+            tValue = PlayerPrefs.GetInt(msMainMenuScreenLoadingState);
         return tValue;
     }
 }

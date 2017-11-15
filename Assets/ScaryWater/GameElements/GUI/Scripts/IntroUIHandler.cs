@@ -27,6 +27,11 @@ public class IntroUIHandler : GUIItemsManager
             Destroy(this.gameObject);
     }
 
+    void Start()
+    {
+        CheckOnStart();
+    }
+
     void Update()
     {
         if (_TimerText != null)
@@ -58,6 +63,16 @@ public class IntroUIHandler : GUIItemsManager
             case "SkipBtn":
                 LoadMainMenu();
                 break;
+        }
+    }
+
+    void CheckOnStart()
+    {
+        if (DataManager.GetMainMenuScreenLoadingState() == 1)
+        {
+            DataManager.SetMainMenuScreenLoadingState(0);
+            UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+            UICanvasHandler.Instance.LoadScreen("MainMenuCanvas");
         }
     }
 

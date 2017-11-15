@@ -84,7 +84,7 @@ public class PlayerManager : MonoBehaviour
 
     void AfterStart()
     {
-        _BarProgressSpriteScr._FillCountChangedCallback += BrokenHeartCallback;
+        _BarProgressSpriteScr._FillsCountReducedCallback += BrokenHeartCallback;
     }
 
     void BrokenHeartCallback(int val)
@@ -99,6 +99,6 @@ public class PlayerManager : MonoBehaviour
 
     void OnDisable()
     {
-        _BarProgressSpriteScr._FillCountChangedCallback -= BrokenHeartCallback;
+        _BarProgressSpriteScr._FillsCountReducedCallback -= BrokenHeartCallback;
     }
 }

@@ -25,6 +25,7 @@ public class DuckHandler : MonoBehaviour
     public float _fSpeedB = 40f;
     public float _fSpeedC = 25f;
     public float _fRotationSpeed = 5f;
+    public FrirendSurroundingScr _SurroundingColliderScr;
 
 	void OnEnable()
 	{
@@ -78,10 +79,11 @@ public class DuckHandler : MonoBehaviour
 
                 if (_tPointC.localPosition.z - transform.localPosition.z < 0.1f)
                 {
-                    transform.tag = "Untagged";
-                    transform.GetComponent<BoxCollider>().enabled = false;
+                    GetComponent<Collider>().enabled = false;
                     meDuckState = eDuckState.MoveToPointD;
+
                     FriendManager._bPlayerIsWithAFriend = false;
+                    FriendManager._bPlayerIsWithinFriendSurrounding = false;
 
                     PlayerManager.Instance._playerHandler._tPlayerTransform.SetParent(PlayerManager.Instance.transform);
                     PlayerManager.Instance._playerHandler._tPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
@@ -108,33 +110,34 @@ public class DuckHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-		if (FriendManager._bPlayerIsWithAFriend)
-			return;
-        
+        if (FriendManager._bPlayerIsWithAFriend)
+            return;
+
         if (other.CompareTag("Player"))
         {
-			if (!mbSkipChecking)
-			{
-				mbSkipChecking = false;
+            if (!mbSkipChecking)
+            {
+                mbSkipChecking = false;
+                _SurroundingColliderScr.GetComponent<Collider>().enabled = false;
 
                 PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
-				if (ScoreHandler._OnScoreEventCallback != null)
-					ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
+                if (ScoreHandler._OnScoreEventCallback != null)
+                    ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
 
-				other.transform.SetParent(transform);
+                other.transform.SetParent(transform);
 
-				FriendManager._bPlayerIsWithAFriend = true;
-				PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
-				other.GetComponent<Rigidbody>().useGravity = false;
-				other.GetComponent<Rigidbody>().isKinematic = true;
+                FriendManager._bPlayerIsWithAFriend = true;
+                PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
+                other.GetComponent<Rigidbody>().useGravity = false;
+                other.GetComponent<Rigidbody>().isKinematic = true;
                 FriendManager._eFriendType = eFriendType.Duck;
                 SetPlayerPositionForDuck();
 
-				meDuckState = eDuckState.MoveToPointA;
+                meDuckState = eDuckState.MoveToPointA;
 
-				if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
-			}
+                if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                    MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+            }
         }
     }
 

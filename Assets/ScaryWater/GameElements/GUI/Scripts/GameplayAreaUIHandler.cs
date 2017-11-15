@@ -154,6 +154,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
 
 			case "AirWingBtn":
                 //CEffectsPlayer.Instance.Play("AirwingsActive");
+                FriendManager._bPlayerPressedTheAirwingBtn = true;
                 if (DataManager.GetAirwingAmount() > 0)
                     FriendManager.Instance.InstantiateAirWings(PlayerManager.Instance._playerHandler._tPlayerTransform.position.x);
 				break;

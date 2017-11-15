@@ -20,12 +20,15 @@ public class BarProgressSprite : MonoBehaviour
     float mfBarInitialPosYAxis = 1.5f;
 	int miNumberOfFills;
 	int miCurNumberOfFills;
+    int miPreviousNumberOfFills;
 	bool mbAnimating = false;
     bool mbEmptyTheBar = false;
     Vector3 mvTempVector;
 
     public delegate void FillsCountChanged(int val);
     public FillsCountChanged _FillCountChangedCallback;
+    public delegate void FillsCountReduced(int val);
+    public FillsCountReduced _FillsCountReducedCallback;
     //public Gradient _Gradient;
     public float _TargetValue = 3;
     public float _Speed = 10;
@@ -45,6 +48,7 @@ public class BarProgressSprite : MonoBehaviour
         mfTargetValue = _TargetValue;
         mfCurTargetValue = mfTargetValue;
         miCurNumberOfFills = DataManager.GetLiveAmount() + 1;
+        miPreviousNumberOfFills = miCurNumberOfFills;
         mfBarInitialPosYAxis = this.transform.position.y;
     }
 
@@ -74,6 +78,13 @@ public class BarProgressSprite : MonoBehaviour
                     DataManager.SetLiveAmount(miCurNumberOfFills);
                     if (_FillCountChangedCallback != null)
                         _FillCountChangedCallback(miCurNumberOfFills);
+
+                    if (miCurNumberOfFills < miPreviousNumberOfFills)
+                    {
+                        miPreviousNumberOfFills = miCurNumberOfFills;
+                        if (_FillsCountReducedCallback != null)
+                            _FillsCountReducedCallback(miPreviousNumberOfFills);
+                    }
                 }
 
                 mvTempVector.x = 1.0f;

@@ -49,6 +49,7 @@ public class BirdHandler : MonoBehaviour
     public float _fPlayerLandingSpeed = 5f;
     public float _fRotationSpeed = 5f;
     public BirdInitiate _BirdInitiateScr;
+    public FrirendSurroundingScr _SurroundingColliderScr;
 
 	void OnEnable()
 	{
@@ -188,8 +189,7 @@ public class BirdHandler : MonoBehaviour
 
     void PlayerMoveTowardsLandingPad()
     {
-        transform.tag = "Untagged";
-        transform.GetComponent<SphereCollider>().enabled = false;
+        GetComponent<Collider>().enabled = false;
         meBirdState = eBirdState.PointF;
 
         PlayerManager.Instance._playerHandler._tPlayerTransform.position = Vector3.MoveTowards(PlayerManager.Instance._playerHandler._tPlayerTransform.position, mvLandingPadPosition, _fPlayerLandingSpeed * Time.deltaTime);
@@ -197,6 +197,8 @@ public class BirdHandler : MonoBehaviour
         if (mvLandingPadPosition.y - PlayerManager.Instance._playerHandler._tPlayerTransform.position.y < 0.1f)
         {
             FriendManager._bPlayerIsWithAFriend = false;
+            FriendManager._bPlayerIsWithinFriendSurrounding = false;
+
             PlayerManager.Instance._playerHandler._tPlayerTransform.SetParent(PlayerManager.Instance.transform);
 			PlayerManager.Instance._playerHandler._tPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
 			PlayerManager.Instance._playerHandler.GetComponent<Rigidbody>().useGravity = true;
@@ -212,17 +214,18 @@ public class BirdHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-		if (FriendManager._bPlayerIsWithAFriend)
-			return;
+        if (FriendManager._bPlayerIsWithAFriend)
+            return;
 
-		if (other.CompareTag("Player"))
-		{
-			if (mbDetectPlayer)
-			{
-				mbDetectPlayer = false;
+        if (other.CompareTag("Player"))
+        {
+            if (mbDetectPlayer)
+            {
+                mbDetectPlayer = false;
+                _SurroundingColliderScr.GetComponent<Collider>().enabled = false;
 
                 PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
-				if (ScoreHandler._OnScoreEventCallback != null)
+                if (ScoreHandler._OnScoreEventCallback != null)
                 {
                     if (_eBirdType.Equals(eBirdType.Kingfisher))
                         ScoreHandler._OnScoreEventCallback(eScoreType.Kingfisher);
@@ -231,20 +234,20 @@ public class BirdHandler : MonoBehaviour
                         ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
                 }
 
-				other.transform.SetParent(transform);
+                other.transform.SetParent(transform);
 
-				FriendManager._bPlayerIsWithAFriend = true;
-				PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
-				other.GetComponent<Rigidbody>().useGravity = false;
-				other.GetComponent<Rigidbody>().isKinematic = true;
+                FriendManager._bPlayerIsWithAFriend = true;
+                PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
+                other.GetComponent<Rigidbody>().useGravity = false;
+                other.GetComponent<Rigidbody>().isKinematic = true;
                 DetectBirdType();
 
-				meBirdState = eBirdState.PointC;
+                meBirdState = eBirdState.PointC;
 
-				if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
-			}
-		}
+                if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                    MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+            }
+        }
     }
 
     void SmoothLook(Vector3 Direction)

@@ -19,8 +19,10 @@ public class FriendManager : MonoBehaviour
     public GameObject _airWingsPrefab;
     public List<AirWingsScr> _listOfAirWingsScr = new List<AirWingsScr>();
     public List<Transform> _listOfFriends = new List<Transform>();
-    public static bool _bAirWingIsActive;
-    public static bool _bPlayerIsWithAFriend;
+    public static bool _bAirWingIsActive = false;
+    public static bool _bPlayerIsWithAFriend = false;
+    public static bool _bPlayerIsWithinFriendSurrounding = false;
+    public static bool _bPlayerPressedTheAirwingBtn = false;
     public PlayerManager _playerManager; 
 
     static FriendManager mInstance = null;
@@ -35,13 +37,20 @@ public class FriendManager : MonoBehaviour
         mInstance = this;    
     }
 
+    void Update()
+    {
+        if (_bPlayerPressedTheAirwingBtn)
+            InstantiateAirWings(PlayerManager.Instance._playerHandler._tPlayerTransform.position.x);
+    }
+
     public void InstantiateAirWings(float xPos)
     {
-        if (_bPlayerIsWithAFriend)
+        if (_playerManager._bPlayerIsDead | _bPlayerIsWithAFriend | _bPlayerIsWithinFriendSurrounding)
             return;
         
         if (!_bAirWingIsActive)
         {
+            _bPlayerPressedTheAirwingBtn = false;
             DataManager.SubstarctFromAirwingAmount(1);
 
             GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");

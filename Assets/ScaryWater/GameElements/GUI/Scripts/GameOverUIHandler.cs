@@ -71,6 +71,7 @@ public class GameOverUIHandler : GUIItemsManager
                 break;
 
             case "HomeBtn":
+                DataManager.SetMainMenuScreenLoadingState(1);
                 SceneManager.LoadScene(0, LoadSceneMode.Single);
                 break;
 

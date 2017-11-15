@@ -55,12 +55,17 @@ public class AirWingsScr : MonoBehaviour
         mtAirWingTransform = transform;
         _friendManager._listOfFriends.Add(this.transform);
         mtPlayerTransform = PlayerManager.Instance._playerHandler.transform;
-        meAirWingState = eAirWingState.CatchPlayer;    
+        meAirWingState = eAirWingState.CatchPlayer;
     }
 
     void FixedUpdate()
     {
         AirWingStateHandler();    
+    }
+
+    void ForceChangeState()
+    {
+        
     }
 
     void AirWingStateHandler()
@@ -118,7 +123,6 @@ public class AirWingsScr : MonoBehaviour
 
 	void PlayerMoveTowardsLandingPad()
 	{
-		transform.tag = "Untagged";
 		transform.GetComponent<SphereCollider>().enabled = false;
         meAirWingState = eAirWingState.LeaveTheScene;
         FriendManager._bAirWingIsActive = false;
