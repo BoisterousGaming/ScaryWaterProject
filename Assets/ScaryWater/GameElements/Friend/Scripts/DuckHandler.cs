@@ -139,8 +139,12 @@ public class DuckHandler : MonoBehaviour
 
     void SmoothLook(Vector3 Direction)
     {
-        var targetRotation = Quaternion.LookRotation(Direction - transform.localPosition);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
+        Vector3 diff = Direction - transform.localPosition;
+        if (Vector3.SqrMagnitude(diff) > 0)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(diff);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
+        }
     }
 
     void SetPlayerPositionForDuck()

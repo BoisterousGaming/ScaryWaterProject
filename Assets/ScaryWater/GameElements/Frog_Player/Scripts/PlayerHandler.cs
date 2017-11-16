@@ -13,15 +13,15 @@ public enum eControlState
 
 public class PlayerHandler : MonoBehaviour
 {
-    Vector3 mvTempPos;
-    int miCount = 0;
     int miDeathLane = 0;
     float mfTimeInGameLoadingBufferState = 0f;
     float miJumpDistance = 10f;
     float mfDrownOffset = 3f;
+    float mfPlayerOldZPosition = 0f;
 	bool mbInGameLoadingBufferState = true;
     bool mbLockHighAndLongJumpAction;
     bool mbPerformingSpiderJump = false;
+    Vector3 mvTempPos;
 
     public int _iLaneNumber;
     public eControlState _eControlState = eControlState.None;
@@ -82,7 +82,19 @@ public class PlayerHandler : MonoBehaviour
 
         if (_playerManager.GetPlayerDeadState())
             DrownThePlayer();
+
+        AddCommonScore();
 	}
+
+    void AddCommonScore()
+    {
+        if (_tPlayerTransform.position.z - mfPlayerOldZPosition > 10f)
+        {
+            mfPlayerOldZPosition = _tPlayerTransform.position.z;
+            if (ScoreHandler._OnScoreEventCallback != null)
+                        ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);   
+        }
+    }
 
     void InputHandlerCallback(eInputType Input)
     {
@@ -130,7 +142,6 @@ public class PlayerHandler : MonoBehaviour
 
     void JumpFinished()
     {
-        miCount++;
         //Jump finished now what to do check if platform is available below player then jump again
         //Or depending on swipe you can change the jump parameters for next jump
         if (_playerManager._CameraControllerScr != null)
@@ -142,12 +153,6 @@ public class PlayerHandler : MonoBehaviour
         {
             if (_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForLanding(transform.position, 2f, out miDeathLane))
             {
-                if (miCount > 1)
-                {
-                    if (ScoreHandler._OnScoreEventCallback != null)
-                        ScoreHandler._OnScoreEventCallback(eScoreType.NormalJump);    
-                }
-
                 transform.position = _vPlayerRequiredPosition;
                 _vCurPlatformPosition = _vNextPlatformPosition;
                 miJumpDistance = 10;

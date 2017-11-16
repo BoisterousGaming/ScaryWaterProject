@@ -143,6 +143,7 @@ public class ScoreHandler : MonoBehaviour
         mListOfElementsScoreDisplay.Add(eScoreType.Kingfisher);
         mListOfElementsScoreDisplay.Add(eScoreType.Dragonfly);
         mListOfElementsScoreDisplay.Add(eScoreType.Spider);
+        mListOfElementsScoreDisplay.Add(eScoreType.Duck);
         mListOfElementsScoreDisplay.Add(eScoreType.SnakeJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.SnakeKilling);
         mListOfElementsScoreDisplay.Add(eScoreType.SnakeEscaping);

@@ -16,6 +16,9 @@ public class FrirendSurroundingScr : MonoBehaviour
 
     void SetAirwingBtnState(Collider other = null, bool state = false)
     {
+        if (FriendManager.GetPlayerIsWithFriendState())
+            return;
+        
         if (other.CompareTag("Player"))
         {
             FriendManager._PlayerIsColseToAnotherFriend = !state;

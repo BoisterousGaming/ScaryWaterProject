@@ -142,9 +142,9 @@ public class BirdHandler : MonoBehaviour
 
                 if (_tPointF.localPosition.z - transform.localPosition.z < 0.1f)
                 {
-                    int i = Random.Range(0, 1);
+                    int tValue = Random.Range(0, 1);
 
-                    if (i == 0)
+                    if (tValue == 0)
                         meBirdState = eBirdState.PointG1;
 
                     else
@@ -251,7 +251,7 @@ public class BirdHandler : MonoBehaviour
 		Vector3 diff = Direction - transform.localPosition;
 		if (Vector3.SqrMagnitude (diff) > 0) 
         {
-			var targetRotation = Quaternion.LookRotation (diff);
+            Quaternion targetRotation = Quaternion.LookRotation (diff);
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
 		}
 	}

@@ -60,7 +60,7 @@ public class AirWingsScr : MonoBehaviour
         meAirWingState = eAirWingState.CatchPlayer;
     }
 
-    void LateUpdate()
+    void Update()
     {
         ForceChangeState();
     }
@@ -78,7 +78,7 @@ public class AirWingsScr : MonoBehaviour
         if (PlayerManager.Instance.GetPlayerDeadState() | FriendManager._PlayerIsColseToAnotherFriend)
         {
             mbForceStateChanged = true;
-
+            transform.GetComponent<SphereCollider>().enabled = false;
             DataManager.AddToAirwingAmount(1);
             FriendManager.SetPlayerIsWithFriendState(false);
             FriendManager.SetAirwingActiveState(false);
@@ -92,7 +92,6 @@ public class AirWingsScr : MonoBehaviour
                 tScr.SetAirwingBtnState(true);
             }
 
-            transform.GetComponent<SphereCollider>().enabled = false;
             mvTempPos.x = transform.position.x;
             mvTempPos.y = transform.position.y + 50f;
             mvTempPos.z = transform.position.z + 100f;
@@ -245,8 +244,12 @@ public class AirWingsScr : MonoBehaviour
 
     void SmoothLook(Vector3 Direction)
 	{
-		var targetRotation = Quaternion.LookRotation(Direction - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
+        Vector3 diff = Direction - transform.localPosition;
+        if (Vector3.SqrMagnitude(diff) > 0)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(diff);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _fRotationSpeed * Time.deltaTime);
+        }
 	}
 
     void SetPlayerPositionForAirWings()
