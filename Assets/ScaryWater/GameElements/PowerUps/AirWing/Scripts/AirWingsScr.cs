@@ -74,14 +74,15 @@ public class AirWingsScr : MonoBehaviour
     {
         if (mbForceStateChanged)
             return;
-        
-        if (PlayerManager.Instance.GetPlayerDeadState())
+
+        if (PlayerManager.Instance.GetPlayerDeadState() | FriendManager._PlayerIsColseToAnotherFriend)
         {
             mbForceStateChanged = true;
 
             DataManager.AddToAirwingAmount(1);
             FriendManager.SetPlayerIsWithFriendState(false);
             FriendManager.SetAirwingActiveState(false);
+            FriendManager._PlayerIsColseToAnotherFriend = false;
 
             GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
             if (tCanvas != null)

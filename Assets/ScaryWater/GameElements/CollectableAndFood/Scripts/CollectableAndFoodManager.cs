@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CollectableAndFoodManager : MonoBehaviour
 {
-    Vector3 mvTempVector;
     float mfPlayerCoinMagnetLifeDurationInSecond;
 	float mfTempPlayerCoinMagnetLifeDurationInSecond;
     bool mbMagnetIsAttachedToPlayer;
     GameObject[] mArrOfChilds;
     List<GameObject> mListOfCollectableGameObject = new List<GameObject>();
     GameObject mTempGameObject;
+    Vector3 mvTempVector;
     bool mbShouldDestroyCGO = false;
     static CollectableAndFoodManager mInstance;
 

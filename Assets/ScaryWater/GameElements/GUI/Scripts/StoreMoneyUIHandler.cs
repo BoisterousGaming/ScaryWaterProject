@@ -37,6 +37,7 @@ public class StoreMoneyUIHandler : GUIItemsManager
 
     void Start()
     {
+        DataManager.SetActiveStoreTab(this.gameObject.name);
         InitializeCoinData();
         InitializeButterflyData();
 	}

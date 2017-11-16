@@ -336,8 +336,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695838333157508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.63}
-  m_LocalScale: {x: 0.35790882, y: 1, z: 0.6720229}
+  m_LocalPosition: {x: 0, y: 0, z: 0.46}
+  m_LocalScale: {x: 0.37, y: 1, z: 0.43}
   m_Children: []
   m_Father: {fileID: 4619643492924678}
   m_RootOrder: 1
@@ -1011,4 +1011,3 @@ MonoBehaviour:
   _fSpeedB: 20
   _fSpeedC: 12.5
   _fRotationSpeed: 2.5
-  _SurroundingColliderScr: {fileID: 114157430592241714}

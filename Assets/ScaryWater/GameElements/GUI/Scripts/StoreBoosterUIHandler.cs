@@ -40,6 +40,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
     void Start()
     {
+        DataManager.SetActiveStoreTab(this.gameObject.name);
         if (DataManager.GetCoinValue() != 1)
         {
             _Coin2XPrice.text = " ";

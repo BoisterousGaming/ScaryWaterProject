@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StoreTabUIHandler : GUIItemsManager
 {
+    bool mbSuccessState = false;
     static StoreTabUIHandler mInstance;
 
     public List<GUIItem> _listOfBtn = new List<GUIItem>();
@@ -48,56 +49,36 @@ public class StoreTabUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "PlayerSkinBtn":
-                for (int i = 0; i < UICanvasHandler.Instance._ActiveCanvas.Count; i++)
-                {
-                    GameObject tCanvas = UICanvasHandler.Instance._ActiveCanvas[i];
-
-                    if (tCanvas.name.Equals("StoreUpgradeCanvas") | tCanvas.name.Equals("StoreBoosterCanvas") | tCanvas.name.Equals("StoreMoneyCanvas"))
-                        UICanvasHandler.Instance.DestroyScreen(tCanvas);
-                }
-
-                UICanvasHandler.Instance.LoadScreen("StorePlayerSkinCanvas", null, true);
+                DestroyAndLoadCanvas("StorePlayerSkinCanvas");
                 break;
 
             case "UpgradeBtn":
-				for (int i = 0; i < UICanvasHandler.Instance._ActiveCanvas.Count; i++)
-				{
-					GameObject tCanvas = UICanvasHandler.Instance._ActiveCanvas[i];
-
-                    if (tCanvas.name.Equals("StorePlayerSkinCanvas") | tCanvas.name.Equals("StoreBoosterCanvas") | tCanvas.name.Equals("StoreMoneyCanvas"))
-                        UICanvasHandler.Instance.DestroyScreen(tCanvas);
-				}
-
-				UICanvasHandler.Instance.LoadScreen("StoreUpgradeCanvas", null, true);
+                DestroyAndLoadCanvas("StoreUpgradeCanvas");
                 break;
 
             case "BoosterBtn":
-				for (int i = 0; i < UICanvasHandler.Instance._ActiveCanvas.Count; i++)
-				{
-					GameObject tCanvas = UICanvasHandler.Instance._ActiveCanvas[i];
-
-					if (tCanvas.name.Equals("StorePlayerSkinCanvas") | tCanvas.name.Equals("StoreUpgradeCanvas") | tCanvas.name.Equals("StoreMoneyCanvas"))
-						UICanvasHandler.Instance.DestroyScreen(tCanvas);
-				}
-
-				UICanvasHandler.Instance.LoadScreen("StoreBoosterCanvas", null, true);
+                DestroyAndLoadCanvas("StoreBoosterCanvas");
                 break;
 
             case "CoinBtn":
-				for (int i = 0; i < UICanvasHandler.Instance._ActiveCanvas.Count; i++)
-				{
-					GameObject tCanvas = UICanvasHandler.Instance._ActiveCanvas[i];
-
-					if (tCanvas.name.Equals("StorePlayerSkinCanvas") | tCanvas.name.Equals("StoreUpgradeCanvas") | tCanvas.name.Equals("StoreBoosterCanvas"))
-						UICanvasHandler.Instance.DestroyScreen(tCanvas);
-				}
-
-				UICanvasHandler.Instance.LoadScreen("StoreMoneyCanvas", null, true);
+                DestroyAndLoadCanvas("StoreMoneyCanvas");
                 break;
 
             case "BackBtn":
                 OnPressBackBtn();
                 break;
+        }
+    }
+
+    void DestroyAndLoadCanvas(string canvasToLoad)
+    {
+        string tCanvasName = DataManager.GetActiveStoreTab();
+        if (!tCanvasName.Equals(canvasToLoad))
+        {
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName(tCanvasName);
+            if (tCanvas != null)
+                UICanvasHandler.Instance.DestroyScreen(tCanvas);
+            UICanvasHandler.Instance.LoadScreen(canvasToLoad);
         }
     }
 

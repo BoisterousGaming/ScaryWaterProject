@@ -45,6 +45,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 
     void Start()
     {
+        DataManager.SetActiveStoreTab(this.gameObject.name);
         Initialized();
     }
 

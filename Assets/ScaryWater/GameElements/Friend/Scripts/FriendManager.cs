@@ -16,14 +16,14 @@ public class FriendManager : MonoBehaviour
     AirWingsScr mAirWingsScr;
     static bool mbPlayerIsWithAFriend = false;
     static bool mbAirWingIsActive = false;
+    static FriendManager mInstance = null;
 
     public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
     public List<AirWingsScr> _listOfAirWingsScr = new List<AirWingsScr>();
     public List<Transform> _listOfFriends = new List<Transform>();
     public PlayerManager _playerManager; 
-
-    static FriendManager mInstance = null;
+    public static bool _PlayerIsColseToAnotherFriend = false;
 
     public static FriendManager Instance
     {

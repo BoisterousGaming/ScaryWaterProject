@@ -18,9 +18,10 @@ public class FrirendSurroundingScr : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FriendManager._PlayerIsColseToAnotherFriend = !state;
             GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
             if (tCanvas != null)
-                tCanvas.GetComponent<GameplayAreaUIHandler>()._airwingBtn.enabled = false;    
+                tCanvas.GetComponent<GameplayAreaUIHandler>().SetAirwingBtnState(state);   
         }
     }
 }

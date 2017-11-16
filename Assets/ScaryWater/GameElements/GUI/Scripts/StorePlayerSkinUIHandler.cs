@@ -91,6 +91,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 
     void Start()
     {
+        DataManager.SetActiveStoreTab(this.gameObject.name);
         Color tColor = new Color();
         ColorUtility.TryParseHtmlString(msEquipedTextColor, out tColor);
         SkinAndBtnState(false, false, "Skin is equipped", tColor, " ", false);

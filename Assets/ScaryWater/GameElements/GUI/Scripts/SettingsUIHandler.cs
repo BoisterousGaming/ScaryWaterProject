@@ -38,8 +38,8 @@ public class SettingsUIHandler : GUIItemsManager
 
     void Start()
     {
-        SetMusicBtnColorState();
-        SetSFXBtnColorState();
+        SetMusicBtnColorState(CMusicPlayer.Instance.Mute);
+        SetSFXBtnColorState(CEffectsPlayer.Instance.Mute);
     }
 
     public override void OnButtonCallBack(GUIItem item)
@@ -49,29 +49,17 @@ public class SettingsUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "MusicBtn":
-                if (CMusicPlayer.Instance.Mute)
-                {
-                    CMusicPlayer.Instance.Mute = false;
-                    SetMusicBtnColorState();
-                }
+                if (CMusicPlayer.Instance.Mute | CAmbientSFX.Instance.Mute | CEffectsPlayer.Instance.Mute)
+                    SetMusicState(false);
                 else
-                {
-                    CMusicPlayer.Instance.Mute = true;
-                    SetMusicBtnColorState();
-                }
+                    SetMusicState(true);
                 break;
 
             case "SFXBtn":
-                if (CEffectsPlayer.Instance.Mute)
-                {
-                    CEffectsPlayer.Instance.Mute = false;
-                    SetSFXBtnColorState();
-                }
+                if (CEffectsPlayer.Instance.Mute | CAmbientSFX.Instance.Mute)
+                    SetSFXState(false);
                 else
-                {
-                    CEffectsPlayer.Instance.Mute = true;
-                    SetSFXBtnColorState();
-                }
+                    SetSFXState(true);
                 break;
 
             case "AdvGraphicBtn":
@@ -115,9 +103,26 @@ public class SettingsUIHandler : GUIItemsManager
         UICanvasHandler.Instance.LoadScreen(canvasName);
     }
 
-    void SetMusicBtnColorState()
+
+    public void SetMusicState(bool state)
     {
-        if (CMusicPlayer.Instance.Mute)
+        CMusicPlayer.Instance.Mute = state;
+        CAmbientSFX.Instance.Mute = state;
+        CEffectsPlayer.Instance.Mute = state;
+        SetSFXState(state);
+        SetMusicBtnColorState(state);
+    }
+
+    public void SetSFXState(bool state)
+    {
+        CAmbientSFX.Instance.Mute = state;
+        CEffectsPlayer.Instance.Mute = state;
+        SetSFXBtnColorState(state);
+    }
+
+    void SetMusicBtnColorState(bool state)
+    {
+        if (state)
         {
             _MusicBtn.GetComponent<Image>().color = _BtnOffColor;
             _MusicBtnText.color = _BtnOffTextColor;
@@ -131,9 +136,9 @@ public class SettingsUIHandler : GUIItemsManager
         }
     }
 
-    void SetSFXBtnColorState()
+    void SetSFXBtnColorState(bool state)
     {
-        if (CEffectsPlayer.Instance.Mute)
+        if (state)
         {
             _SFXBtn.GetComponent<Image>().color = _BtnOffColor;
             _SFXBtnText.color = _BtnOffTextColor;

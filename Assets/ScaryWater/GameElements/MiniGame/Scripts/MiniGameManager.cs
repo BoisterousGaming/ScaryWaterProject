@@ -102,7 +102,7 @@ public class MiniGameManager : MonoBehaviour
 
 		UICanvasHandler.Instance.LoadScreen("MiniGameInfoCanvas", null, true);
 
-		GameObject tInfoCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameInfoCanvas");
+        GameObject tInfoCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameInfoCanvas");
 		if (tInfoCanvas != null)
 			mMiniGameInfoUIHandlerScr = tInfoCanvas.GetComponent<MiniGameInfoUIHandler>();
         
@@ -283,7 +283,7 @@ public class MiniGameManager : MonoBehaviour
 		_eMiniGameState = eMiniGameState.None;
 		EnvironmentManager.Instance.MiniGameTypeSetInstantiation(eSetType.AllType, false, false);
 		yield return new WaitForSeconds(2f);
-		GameObject tInfoCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameInfoCanvas");
+        GameObject tInfoCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameInfoCanvas");
 		if (tInfoCanvas != null)
 			UICanvasHandler.Instance.DestroyScreen(tInfoCanvas);
 	}
@@ -296,7 +296,7 @@ public class MiniGameManager : MonoBehaviour
 
 			UICanvasHandler.Instance.LoadScreen("MiniGameRewardCanvas", null, true);
 
-			GameObject tRewardCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameRewardCanvas");
+            GameObject tRewardCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameRewardCanvas");
 			if (tRewardCanvas != null)
 				mMiniGameRewardUIHandlerScr = tRewardCanvas.GetComponent<MiniGameRewardUIHandler>();
             
@@ -328,7 +328,7 @@ public class MiniGameManager : MonoBehaviour
 			DataManager.AddToTotalButterfly(mCurrentMiniGameHandlerScr._iReward_ButterfliesAmount);
 			DataManager.AddToCSessionButterfly(mCurrentMiniGameHandlerScr._iReward_ButterfliesAmount);
 
-			GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+            GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 			if (tCanvas != null)
             {
                 tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayCoinCount();
@@ -355,14 +355,14 @@ public class MiniGameManager : MonoBehaviour
 
             if (coinCount > 0)
             {
-				GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+                GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 				if (tCanvas != null)
 					tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateCoin(null, true);
             }
 
             if (butterflyCount > 0)
             {
-				GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
+                GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
 				if (tCanvas != null)
 					tCanvas.GetComponent<GameplayAreaUIHandler>().InstantiateButterfly(null, true);
             }
