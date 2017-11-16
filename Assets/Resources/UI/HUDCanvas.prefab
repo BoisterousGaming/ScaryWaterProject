@@ -1606,8 +1606,6 @@ MonoBehaviour:
   _CoinTargetPosRect: {fileID: 224757467899347244}
   _ButterflyTargetPosRect: {fileID: 224372512708602976}
   _ScoreTargetPosRect: {fileID: 224559632136407808}
-  _BrokenHeart: {fileID: 1139810750544876, guid: 796c33a43c4fd473daef03943cd531e7,
-    type: 2}
 --- !u!114 &114617838266935592
 MonoBehaviour:
   m_ObjectHideFlags: 1

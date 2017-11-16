@@ -20,6 +20,7 @@ public class FriendManager : MonoBehaviour
 
     public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
+    public GameObject _airWingsMovingPointsPrefab;
     public List<AirWingsScr> _listOfAirWingsScr = new List<AirWingsScr>();
     public List<Transform> _listOfFriends = new List<Transform>();
     public PlayerManager _playerManager; 

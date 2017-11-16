@@ -70,17 +70,28 @@ public class StoreTabUIHandler : GUIItemsManager
         }
     }
 
+    bool mbChangingTab = false;
     void DestroyAndLoadCanvas(string canvasToLoad)
     {
+        if (mbChangingTab)
+            return;
+        
         string tCanvasName = DataManager.GetActiveStoreTab();
         if (!tCanvasName.Equals(canvasToLoad))
         {
+            mbChangingTab = true;
             GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName(tCanvasName);
             if (tCanvas != null)
                 UICanvasHandler.Instance.DestroyScreen(tCanvas);
-            UICanvasHandler.Instance.LoadScreen(canvasToLoad);
+            UICanvasHandler.Instance.LoadScreen(canvasToLoad, DidFinishLoadingTab);
         }
     }
+
+    void DidFinishLoadingTab()
+    {
+        mbChangingTab = false;
+    }
+
 
     void ChangeButtonImage(GUIItem btnItem)
     {

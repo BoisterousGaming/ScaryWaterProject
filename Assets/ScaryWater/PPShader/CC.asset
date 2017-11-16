@@ -121,8 +121,8 @@ MonoBehaviour:
         neutralWhiteClip: 5.94
       basic:
         postExposure: 0.46
-        temperature: 43
-        tint: -6
+        temperature: 5.7
+        tint: -2.7
         hueShift: 2
         saturation: 0.82
         contrast: 0.93

@@ -5,11 +5,8 @@ using UnityEngine;
 public enum eAirWingState
 {
     None = 0,
-    CatchPlayer,
-    MoveForward,
-    MoveDown,
-    DropPlayer,
-    LeaveTheScene,
+    CatchThePlayer,
+    MoveThroughPath,
     InCaseFailure
 }
 
@@ -24,6 +21,7 @@ public class AirWingsScr : MonoBehaviour
     Vector3 mvFinalDestination;
     Vector3 mvOffset;
     Vector3 mvTempPos;
+    AirWingsMovingPointsScr mAirWingsPathScr;
     float mfSqrLen;
     bool mbPlayerTriggerEnterChecking = true;
     bool mbForceStateChanged = false;
@@ -56,8 +54,8 @@ public class AirWingsScr : MonoBehaviour
     {
         mtAirWingTransform = transform;
         _friendManager._listOfFriends.Add(this.transform);
-        mtPlayerTransform = PlayerManager.Instance._playerHandler.transform;
-        meAirWingState = eAirWingState.CatchPlayer;
+        mtPlayerTransform = _friendManager._playerManager._playerHandler.transform;
+        meAirWingState = eAirWingState.CatchThePlayer;
     }
 
     void Update()
@@ -104,47 +102,83 @@ public class AirWingsScr : MonoBehaviour
     {
         switch (meAirWingState)
         {
-            case eAirWingState.CatchPlayer:
+            case eAirWingState.CatchThePlayer:
                 transform.position = Vector3.MoveTowards(mtAirWingTransform.position, mtPlayerTransform.position, Time.deltaTime * _fBirdMoveTowardPlayerSpeed);
                 SmoothLook(mtPlayerTransform.position);
                 break;
 
-            case eAirWingState.MoveForward:
-                transform.position = Vector3.MoveTowards(mtAirWingTransform.position, mvAirWingMovePoint, Time.deltaTime * _fBirdMoveForwardSpeed);
-                SmoothLook(mvAirWingMovePoint);
-
-                mvOffset = mvAirWingMovePoint - mtAirWingTransform.position;
-                mfSqrLen = mvOffset.sqrMagnitude;
-                if (mfSqrLen < 2f * 2f)
+            case eAirWingState.MoveThroughPath:
+                switch (mAirWingsPathScr._eAirWingPathState)
                 {
-                    meAirWingState = eAirWingState.MoveDown;
+                    case eAirWingPathState.PointA:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointA.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointB);
+                        break;
+
+                    case eAirWingPathState.PointB:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointB.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointC);
+                        break;
+
+                    case eAirWingPathState.PointC:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointC.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointD, true);
+                        break;
+
+                    case eAirWingPathState.PointD:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointD.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointE1, false, true);
+                        break;
+
+                    case eAirWingPathState.PointE1:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointE1.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointF1);
+                        break;
+
+                    case eAirWingPathState.PointE2:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointE2.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointF2);
+                        break;
+
+                    case eAirWingPathState.PointF1:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointF1.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointF1, false, false, false, true);
+                        break;
+
+                    case eAirWingPathState.PointF2:
+                        MovingAirWingAlongGivenPath(mAirWingsPathScr._tPointF2.position, _fBirdMoveForwardSpeed, eAirWingPathState.PointF2, false, false, false, true);
+                        break;
                 }
-                break;
-
-            case eAirWingState.MoveDown:
-				transform.position = Vector3.MoveTowards(mtAirWingTransform.position, mvPlayerDropPoint, Time.deltaTime * _fBirdMoveForwardSpeed);
-				SmoothLook(mvPlayerDropPoint);
-
-				mvOffset = mvPlayerDropPoint - mtAirWingTransform.position;
-				mfSqrLen = mvOffset.sqrMagnitude;
-				if (mfSqrLen < 2f * 2f)
-				{
-					EnvironmentManager.Instance.UpdatePlatformState(mvPlayerDropPoint.z, ePlatformHandlerType.Fixed, true);
-					meAirWingState = eAirWingState.DropPlayer;
-				}
-                break;
-
-            case eAirWingState.DropPlayer:
-                PlayerMoveTowardsLandingPad();
-                break;
-
-            case eAirWingState.LeaveTheScene:
-                GoToFinalDestination();
                 break;
 
             case eAirWingState.InCaseFailure:
                 GoToFinalDestination();
                 break;
+        }
+    }
+
+    void MovingAirWingAlongGivenPath(Vector3 targetPos, float movingSpeed, eAirWingPathState nextState, bool dropThePlayer = false, bool chooseLane = false, bool keepMoving = true, bool destroyAirwing = false)
+    {
+        transform.position = Vector3.MoveTowards(mtAirWingTransform.position, targetPos, Time.deltaTime * movingSpeed);
+        SmoothLook(mvAirWingMovePoint);
+
+        mvOffset = mtAirWingTransform.position - targetPos;
+        mfSqrLen = mvOffset.sqrMagnitude;
+        if (mfSqrLen < 2f)
+        {
+            if (dropThePlayer)
+                PlayerMoveTowardsLandingPad();
+
+            if (chooseLane)
+            {
+                int tValue = Random.Range(0, 1);
+                if (tValue == 0)
+                    nextState = eAirWingPathState.PointE1;
+                else
+                    nextState = eAirWingPathState.PointE2;
+            }
+
+            if (keepMoving)
+                mAirWingsPathScr._eAirWingPathState = nextState;
+
+            if (destroyAirwing)
+            {
+                Destroy(mAirWingsPathScr.gameObject);
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -165,24 +199,24 @@ public class AirWingsScr : MonoBehaviour
 	void PlayerMoveTowardsLandingPad()
 	{
 		transform.GetComponent<SphereCollider>().enabled = false;
-        meAirWingState = eAirWingState.LeaveTheScene;
+        //meAirWingState = eAirWingState.LeaveTheScene;
         FriendManager.SetAirwingActiveState(false);
 
-        mtPlayerTransform.position = Vector3.MoveTowards(mtPlayerTransform.position, mvLandingPadPosition, 10 * Time.deltaTime);
+        mtPlayerTransform.position = Vector3.MoveTowards(mtPlayerTransform.position, mvLandingPadPosition, Time.deltaTime * 5f);
 
         if (mvLandingPadPosition.y - mtPlayerTransform.position.y < 0.1f)
         {
             FriendManager.SetPlayerIsWithFriendState(false);
-			mtPlayerTransform.SetParent(PlayerManager.Instance.transform);
+			mtPlayerTransform.SetParent(_friendManager._playerManager.transform);
 			mtPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
 			mtPlayerTransform.GetComponent<Rigidbody>().useGravity = true;
 			mtPlayerTransform.GetComponent<Rigidbody>().isKinematic = false;
-			PlayerManager.Instance._playerHandler._eControlState = eControlState.Active;
+            _friendManager._playerManager._playerHandler._eControlState = eControlState.Active;
 
-			PlayerManager.Instance._playerHandler._vPlayerRequiredPosition = mvLandingPadPosition;
-			PlayerManager.Instance._playerHandler._vNextPlatformPosition = mvLandingPadPosition;
-            PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
-			PlayerManager.Instance._playerHandler.DoSingleJump();
+            _friendManager._playerManager._playerHandler._vPlayerRequiredPosition = mvLandingPadPosition;
+            _friendManager._playerManager._playerHandler._vNextPlatformPosition = mvLandingPadPosition;
+            _friendManager._playerManager._CameraControllerScr._bFollowPlayerY = false;
+            _friendManager._playerManager._playerHandler.DoSingleJump();
 
             GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
             if (tCanvas != null)
@@ -201,43 +235,39 @@ public class AirWingsScr : MonoBehaviour
 			{
 				mbPlayerTriggerEnterChecking = false;
 
-                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
-				if (ScoreHandler._OnScoreEventCallback != null)
-					ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
-                
-				other.transform.SetParent(transform);
+                other.transform.SetParent(transform);
                 FriendManager.SetPlayerIsWithFriendState(true);
 
-				mvTempPos.x = _landingXPos;
-				mvTempPos.y = 5f;
-				mvTempPos.z = EnvironmentManager.Instance._vCurrentPlatformPosition.z + _fPlayerDropDistance;
-				mvPlayerDropPoint = mvTempPos;
+                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
+                if (ScoreHandler._OnScoreEventCallback != null)
+                    ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
 
-				mvTempPos.x = mvPlayerDropPoint.x;
-				mvTempPos.y = 10f;
-				mvTempPos.z = mvPlayerDropPoint.z - 20f;
-				mvAirWingMovePoint = mvTempPos;
+                if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                    MiniGameManager.Instance._iFriendsHelpAccepted += 1;
 
-				mvTempPos.x = mvPlayerDropPoint.x;
-				mvTempPos.y = 0f;
-				mvTempPos.z = mvPlayerDropPoint.z;
-				mvLandingPadPosition = mvTempPos;
+                GameObject goAirwingPath = Instantiate(FriendManager.Instance._airWingsMovingPointsPrefab);
+                goAirwingPath.transform.SetParent(_friendManager.transform);
+                mvTempPos.x = 0f;
+                mvTempPos.y = 0f;
+                mvTempPos.z = _friendManager._playerManager._playerHandler._tPlayerTransform.position.z + 50f;
+                goAirwingPath.transform.position = mvTempPos;
+                mAirWingsPathScr = goAirwingPath.GetComponent<AirWingsMovingPointsScr>();
+                mAirWingsPathScr._AirWingsScr = this;
 
-				mvTempPos.x = mvPlayerDropPoint.x;
-				mvTempPos.y = 50f;
-				mvTempPos.z = mvPlayerDropPoint.z + 100f;
-				mvFinalDestination = mvTempPos;
+                EnvironmentManager.Instance.UpdatePlatformState(mAirWingsPathScr._tPointC.position.z, ePlatformHandlerType.Fixed, true);
+                mvTempPos.x = mAirWingsPathScr._tPointC.position.x;
+                mvTempPos.y = 0f;
+                mvTempPos.z = mAirWingsPathScr._tPointC.position.z;
+                mvLandingPadPosition = mvTempPos;
 
-				PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
+                _friendManager._playerManager._playerHandler._jumpActionScr.StopJump("Armature|idle");
 				other.GetComponent<Rigidbody>().useGravity = false;
 				other.GetComponent<Rigidbody>().isKinematic = true;
 
                 SetPlayerPositionForAirWings();
 
-				meAirWingState = eAirWingState.MoveForward;
-
-				if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-					MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+                meAirWingState = eAirWingState.MoveThroughPath;
+                mAirWingsPathScr._eAirWingPathState = eAirWingPathState.PointA;
 			}
 		}
     }
@@ -259,6 +289,6 @@ public class AirWingsScr : MonoBehaviour
         mvTempPos.x = airWingPosition.x;
         mvTempPos.y = airWingPosition.y - 0.85f;
         mvTempPos.z = airWingPosition.z;
-        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+        _friendManager._playerManager._playerHandler._tPlayerTransform.position = mvTempPos;
     }
 }
