@@ -14,34 +14,29 @@ public class DuckHandler : MonoBehaviour
     }
 
 	eDuckState meDuckState = eDuckState.None;
-	bool mbSkipChecking;
     Vector3 mvTempPos;
+	bool mbSkipChecking;
+    bool mbGiveMiniGamePoints = true;
 
     public Transform _tPointA;
     public Transform _tPointB;
     public Transform _tPointC;
     public Transform _tPointD;
-    public float _fSpeedA = 40f;
-    public float _fSpeedB = 40f;
-    public float _fSpeedC = 25f;
-    public float _fRotationSpeed = 5f;
+    public float _fSpeedA = 20f;
+    public float _fSpeedB = 20f;
+    public float _fSpeedC = 12.5f;
+    public float _fRotationSpeed = 2.5f;
+    public float _fPickUpPositionOnZAxis;
 
 	void OnEnable()
 	{
         FriendManager.Instance._listOfFriends.Add(this.transform);
 	}
 
-	void OnDestroy()
+    void Start ()
 	{
-        FriendManager.Instance._listOfFriends.Remove(this.transform);
-	}
-
-	void Start ()
-	{
-        _tPointA.GetComponent<MeshRenderer>().enabled = false;
-        _tPointB.GetComponent<MeshRenderer>().enabled = false;
-        _tPointC.GetComponent<MeshRenderer>().enabled = false;
-        _tPointD.GetComponent<MeshRenderer>().enabled = false;
+        SetVisibilityOfMovingPoints();
+        _fPickUpPositionOnZAxis = _tPointA.position.z;
 	}
 
     void FixedUpdate ()
@@ -53,56 +48,44 @@ public class DuckHandler : MonoBehaviour
     {
         switch (meDuckState)
         {
-            case eDuckState.None:
-                break;
-
             case eDuckState.MoveToPointA:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointA.localPosition, _fSpeedA * Time.deltaTime);
-                SmoothLook(_tPointA.localPosition);
-
-                if (_tPointA.localPosition.z - transform.localPosition.z < 0.1f)
-                    meDuckState = eDuckState.MoveToPointB;
+                MovingDuckAlongGivenPath(_tPointA.localPosition, _fSpeedA, eDuckState.MoveToPointB);
                 break;
 
             case eDuckState.MoveToPointB:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointB.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointB.localPosition);
-
-                if (_tPointB.localPosition.z - transform.localPosition.z < 0.1f)
-                    meDuckState = eDuckState.MoveToPointC;
+                MovingDuckAlongGivenPath(_tPointB.localPosition, _fSpeedB, eDuckState.MoveToPointC);
                 break;
 
             case eDuckState.MoveToPointC:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointC.localPosition, _fSpeedA * Time.deltaTime);
-                SmoothLook(_tPointC.localPosition);
-
-                if (_tPointC.localPosition.z - transform.localPosition.z < 0.1f)
-                {
-                    transform.GetComponent<BoxCollider>().enabled = false;
-                    meDuckState = eDuckState.MoveToPointD;
-
-                    FriendManager.SetPlayerIsWithFriendState(false);
-
-                    PlayerManager.Instance._playerHandler._tPlayerTransform.SetParent(PlayerManager.Instance.transform);
-                    PlayerManager.Instance._playerHandler._tPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-                    PlayerManager.Instance._playerHandler.GetComponent<Rigidbody>().useGravity = true;
-                    PlayerManager.Instance._playerHandler.GetComponent<Rigidbody>().isKinematic = false;
-                    PlayerManager.Instance._playerHandler._eControlState = eControlState.Active;
-
-                    PlayerManager.Instance._playerHandler._vPlayerRequiredPosition = _tPointC.position;
-                    PlayerManager.Instance._playerHandler._vNextPlatformPosition = _tPointC.position;
-                    PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
-                    PlayerManager.Instance._playerHandler.DoSingleJump();
-                }
+                MovingDuckAlongGivenPath(_tPointC.localPosition, _fSpeedA, eDuckState.MoveToPointD, true);
                 break;
 
             case eDuckState.MoveToPointD:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointD.localPosition, _fSpeedC * Time.deltaTime);
-                SmoothLook(_tPointD.localPosition);
-
-                if (_tPointD.localPosition.z - transform.localPosition.z < 0.1f)
-                    meDuckState = eDuckState.None;
+                MovingDuckAlongGivenPath(_tPointD.localPosition, _fSpeedC, eDuckState.None);
                 break;
+        }
+    }
+
+    void MovingDuckAlongGivenPath(Vector3 targetPos, float movingSpeed, eDuckState nextState, bool dropThePlayer = false)
+    {
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, Time.deltaTime * movingSpeed);
+        SmoothLook(targetPos);
+        if (targetPos.z - transform.localPosition.z < 0.1f)
+        {
+            meDuckState = nextState;
+
+            if (dropThePlayer)
+            {
+                transform.GetComponent<BoxCollider>().enabled = false;
+                FriendManager.SetPlayerIsWithFriendState(false);
+                if (mbGiveMiniGamePoints)
+                {
+                    mbGiveMiniGamePoints = false;
+                    if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                        MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+                }
+                UpdatePlayerStatesOnDrop();
+            }
         }
     }
 
@@ -116,25 +99,36 @@ public class DuckHandler : MonoBehaviour
             if (!mbSkipChecking)
             {
                 mbSkipChecking = false;
-                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
                 if (ScoreHandler._OnScoreEventCallback != null)
                     ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
 
-                other.transform.SetParent(transform);
-
                 FriendManager.SetPlayerIsWithFriendState(true);
-                PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
-                other.GetComponent<Rigidbody>().useGravity = false;
-                other.GetComponent<Rigidbody>().isKinematic = true;
                 FriendManager._eFriendType = eFriendType.Duck;
+                UpdatePlayerStatesOnTriggerEnter();
                 SetPlayerPositionForDuck();
 
                 meDuckState = eDuckState.MoveToPointA;
-
-                if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-                    MiniGameManager.Instance._iFriendsHelpAccepted += 1;
             }
         }
+    }
+
+    void UpdatePlayerStatesOnTriggerEnter()
+    {
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerParent(this.transform);
+        PlayerManager.Instance._CameraControllerScr.CameraFollowPlayerOnYAxis();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerIdle();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPhysic();
+    }
+
+    void UpdatePlayerStatesOnDrop()
+    {
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerParent();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerRotation();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPhysic(true);
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerControlState();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerRequiredAndNextPlatformPosition(_tPointC.position);
+        PlayerManager.Instance._CameraControllerScr.CameraFollowPlayerOnYAxis(false);
+        PlayerManager.Instance._playerHandler.DoSingleJump();
     }
 
     void SmoothLook(Vector3 Direction)
@@ -153,6 +147,19 @@ public class DuckHandler : MonoBehaviour
         mvTempPos.x = duckPosition.x;
         mvTempPos.y = duckPosition.y + 0.2f;
         mvTempPos.z = duckPosition.z - 0.65f;
-        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPosition(mvTempPos.x, mvTempPos.y, mvTempPos.z);
+    }
+
+    void SetVisibilityOfMovingPoints(bool state = false)
+    {
+        _tPointA.GetComponent<MeshRenderer>().enabled = state;
+        _tPointB.GetComponent<MeshRenderer>().enabled = state;
+        _tPointC.GetComponent<MeshRenderer>().enabled = state;
+        _tPointD.GetComponent<MeshRenderer>().enabled = state;
+    }
+
+    void OnDisable()
+    {
+        FriendManager.Instance._listOfFriends.Remove(this.transform);
     }
 }

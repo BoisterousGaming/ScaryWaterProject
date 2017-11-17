@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StoreTabUIHandler : GUIItemsManager
 {
-    bool mbSuccessState = false;
+    bool mbChangingTab = false;
     static StoreTabUIHandler mInstance;
 
     public List<GUIItem> _listOfBtn = new List<GUIItem>();
@@ -70,7 +70,6 @@ public class StoreTabUIHandler : GUIItemsManager
         }
     }
 
-    bool mbChangingTab = false;
     void DestroyAndLoadCanvas(string canvasToLoad)
     {
         if (mbChangingTab)
@@ -91,7 +90,6 @@ public class StoreTabUIHandler : GUIItemsManager
     {
         mbChangingTab = false;
     }
-
 
     void ChangeButtonImage(GUIItem btnItem)
     {

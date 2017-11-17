@@ -21,10 +21,9 @@ public class FriendManager : MonoBehaviour
     public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
     public GameObject _airWingsMovingPointsPrefab;
-    public List<AirWingsScr> _listOfAirWingsScr = new List<AirWingsScr>();
     public List<Transform> _listOfFriends = new List<Transform>();
     public PlayerManager _playerManager; 
-    public static bool _PlayerIsColseToAnotherFriend = false;
+    public static bool mbPlayerIsColseToAnotherFriend = false;
 
     public static FriendManager Instance
     {
@@ -58,9 +57,28 @@ public class FriendManager : MonoBehaviour
             goAirWings.transform.position = new Vector3(_playerManager._playerHandler.transform.position.x, 10f, _playerManager._playerHandler.transform.position.z - 20f);
 			mAirWingsScr = (AirWingsScr)goAirWings.GetComponent<AirWingsScr>();
 			mAirWingsScr._friendManager = this;
-            mAirWingsScr._landingXPos = xPos;
-			_listOfAirWingsScr.Add(mAirWingsScr);
+            mAirWingsScr._fLandingPadXPos = xPos;
             mbAirWingIsActive = true;
+        }
+    }
+
+    public void RemoveOtherFriendsIfWithinAirwingsDropPointRange()
+    {
+        for (int i = 0; i < _listOfFriends.Count; i++)
+        {
+            BirdHandler tBirdScr = _listOfFriends[i].GetComponent<BirdHandler>();
+            if (tBirdScr != null)
+            {
+                if (mAirWingsScr._vLandingPadPosition.z >= tBirdScr._fPickUpPositionOnZAxis)
+                    Destroy(tBirdScr.gameObject);
+            }
+
+            DuckHandler tDuckScr = _listOfFriends[i].GetComponent<DuckHandler>();
+            if (tDuckScr != null)
+            {
+                if (mAirWingsScr._vLandingPadPosition.z >= tDuckScr._fPickUpPositionOnZAxis)
+                    Destroy(tDuckScr.gameObject);
+            }
         }
     }
 
@@ -77,5 +95,15 @@ public class FriendManager : MonoBehaviour
     public static void SetAirwingActiveState(bool state = true)
     {
         mbAirWingIsActive = state;
+    }
+
+    public static void SetIfPlayerIsCloseToAFriend(bool state = true)
+    {
+        mbPlayerIsColseToAnotherFriend = state;
+    }
+
+    public static bool GetIfPlayerIsCloseToAFriend()
+    {
+        return mbPlayerIsColseToAnotherFriend;
     }
 }

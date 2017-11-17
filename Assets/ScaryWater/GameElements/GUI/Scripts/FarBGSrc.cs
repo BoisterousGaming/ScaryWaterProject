@@ -19,7 +19,6 @@ public class FarBGSrc : MonoBehaviour
         mvTempPos.x = mvInitialPosition.x;
         mvTempPos.y = mvInitialPosition.y;
         mvTempPos.z = _PlayerTransform.position.z + mvInitialPosition.z;
-
         this.transform.position = mvTempPos;
     }
 }

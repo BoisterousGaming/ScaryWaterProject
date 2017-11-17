@@ -28,6 +28,7 @@ public class PlayerHandler : MonoBehaviour
     public PlayerManager _playerManager = null;
     public PlayerJumpAction _jumpActionScr;
     public TouchInputHandler _touchInputHandlerScr;
+    public PlayerProperties _playerPropertiesScr;
     public Animator _Animator;
     public Vector3 _vPlayerRequiredPosition = new Vector3(0, 0, 0);
     public Vector3 _vCurPlatformPosition;
@@ -54,7 +55,8 @@ public class PlayerHandler : MonoBehaviour
         _touchInputHandlerScr = new TouchInputHandler();
         _touchInputHandlerScr._playerHandler = this;
         _touchInputHandlerScr._InputTypeChangedCallback += InputHandlerCallback;
-
+        _playerPropertiesScr = new PlayerProperties();
+        _playerPropertiesScr._playerHandler = this;
         JumpFinished();
 
         mbInGameLoadingBufferState = true;
@@ -145,7 +147,7 @@ public class PlayerHandler : MonoBehaviour
         //Jump finished now what to do check if platform is available below player then jump again
         //Or depending on swipe you can change the jump parameters for next jump
         if (_playerManager._CameraControllerScr != null)
-            _playerManager._CameraControllerScr._bFollowPlayerY = false;
+            _playerManager._CameraControllerScr.CameraFollowPlayerOnYAxis(false);
         
         mbPerformingSpiderJump = false;
 
@@ -188,9 +190,7 @@ public class PlayerHandler : MonoBehaviour
 
                     //else
                         //_playerManager._MiniGameManagerScr.DeactivateMiniGame(false);
-                }
-
-                if (_playerManager._EnvironmentManagerScr != null)
+                }if (_playerManager._EnvironmentManagerScr != null)
                 {
                     if (tHealthBarScr.GetNumberOfFills() >= 1)
                         StartCoroutine(IRespawnThePlayer(_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForReSpawning(transform.position, 2f, 30f)));
@@ -278,7 +278,7 @@ public class PlayerHandler : MonoBehaviour
             return;
 
         if (_playerManager._CameraControllerScr != null)
-            _playerManager._CameraControllerScr._bFollowPlayerY = true;
+            _playerManager._CameraControllerScr.CameraFollowPlayerOnYAxis();
 
 		if (ScoreHandler._OnScoreEventCallback != null)
 			ScoreHandler._OnScoreEventCallback(eScoreType.HighAndLongJump);
@@ -297,7 +297,7 @@ public class PlayerHandler : MonoBehaviour
         mbPerformingSpiderJump = true;
 
         if (_playerManager._CameraControllerScr != null)
-            _playerManager._CameraControllerScr._bFollowPlayerY = true;
+            _playerManager._CameraControllerScr.CameraFollowPlayerOnYAxis();
 
 		transform.position = _vPlayerRequiredPosition;
 		_vCurPlatformPosition = _vNextPlatformPosition;

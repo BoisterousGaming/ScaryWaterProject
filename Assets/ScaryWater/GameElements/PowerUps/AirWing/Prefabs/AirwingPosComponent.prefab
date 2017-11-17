@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4407218084072364}
-  - component: {fileID: 114730107793685622}
+  - component: {fileID: 114394055658409872}
   m_Layer: 0
   m_Name: AirwingPosComponent
   m_TagString: Untagged
@@ -616,7 +616,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827197238270868}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114730107793685622
+--- !u!114 &114394055658409872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1629433460998386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a295aec847a94716bf780fad4a5d887, type: 3}
+  m_Script: {fileID: 11500000, guid: dddad33c00ee941bebffbfc41f1cf89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _tPointA: {fileID: 4903469801454424}

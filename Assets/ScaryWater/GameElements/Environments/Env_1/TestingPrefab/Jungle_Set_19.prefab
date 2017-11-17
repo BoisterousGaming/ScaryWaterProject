@@ -9016,7 +9016,6 @@ MonoBehaviour:
   _tPointG2: {fileID: 4566217060813484}
   _tPointH1: {fileID: 4612114181026896}
   _tPointH2: {fileID: 4574838077897090}
-  _fSpeedA: 50
   _fSpeedB: 20
   _fSpeedC: 20
   _fPlayerLandingSpeed: 5

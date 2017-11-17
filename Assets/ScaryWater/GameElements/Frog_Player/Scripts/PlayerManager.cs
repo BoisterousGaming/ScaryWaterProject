@@ -36,10 +36,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         if (_playerPrefab != null)
-            PlayerSpawnLoc(new Vector3(0f, 0.5f, 0f));
-
-		else
-            Debug.LogWarning("Player prefab dose not exist!");
+            PlayerSpawnLoc(new Vector3(0f, -1f, 0f));
 
         Invoke("AfterStart", 2);
     }

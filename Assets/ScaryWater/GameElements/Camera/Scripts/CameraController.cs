@@ -11,9 +11,8 @@ public class CameraController : MonoBehaviour
     Vector3 mvOriginalPosition;
     Vector3 mvOriginalLocalPosition;
     Vector3 mvTargetPosition;
-    bool mbInitialized;
-
-    public bool _bFollowPlayerY = false;
+    bool mbInitialized = false;
+    bool mbFollowPlayerY = false;
 
     void Initialize()
     {
@@ -24,7 +23,6 @@ public class CameraController : MonoBehaviour
 			mtPlayerTransform = PlayerManager.Instance._playerHandler._tPlayerTransform;
             mTransform.parent = mtPlayerTransform;
 		}
-
         mvOriginalPosition = mTransform.position;
     }
 
@@ -36,7 +34,7 @@ public class CameraController : MonoBehaviour
             Initialize();
         }
 
-        if (!_bFollowPlayerY)
+        if (!mbFollowPlayerY)
         {
             Vector3 tPlayerPosition = mtPlayerTransform.position;
             Vector3 tCamPos = mTransform.position;
@@ -58,5 +56,10 @@ public class CameraController : MonoBehaviour
 
         if (!FriendManager.GetPlayerIsWithFriendState())
             mTransform.rotation = mInitialRotation;
+    }
+
+    public void CameraFollowPlayerOnYAxis(bool state = true)
+    {
+        mbFollowPlayerY = state;
     }
 }

@@ -18,11 +18,6 @@ public class SpiderHandler : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    void OnDestroy()
-    {
-        FriendManager.Instance._listOfFriends.Remove(this.transform);
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (FriendManager.GetPlayerIsWithFriendState())
@@ -46,4 +41,9 @@ public class SpiderHandler : MonoBehaviour
 			}
 		}
 	}
+
+    void OnDisable()
+    {
+        FriendManager.Instance._listOfFriends.Remove(this.transform);
+    }
 }

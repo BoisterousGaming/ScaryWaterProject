@@ -842,7 +842,7 @@ Transform:
   m_GameObject: {fileID: 1622527862756186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0000062059, y: 5.86, z: 383.92}
-  m_LocalScale: {x: 23.25125, y: 12.55567, z: 5.115276}
+  m_LocalScale: {x: 23.25125, y: 12.555669, z: 5.115276}
   m_Children: []
   m_Father: {fileID: 4673717913803046}
   m_RootOrder: 2
@@ -1344,6 +1344,7 @@ MonoBehaviour:
   _iLaneNumber: 0
   _eControlState: 0
   _playerManager: {fileID: 0}
+  _playerPropertiesScr: {fileID: 0}
   _Animator: {fileID: 95438025247916012}
   _vPlayerRequiredPosition: {x: 0, y: 0, z: 0}
   _vCurPlatformPosition: {x: 0, y: 0, z: 0}
@@ -1353,7 +1354,6 @@ MonoBehaviour:
   _bSwipedLeftOrRight: 0
   _rigidBodyOfPlayer: {fileID: 54470430337402746}
   _BarProgressSpriteScr: {fileID: 114287851501462006}
-  _BrokenHeart: {fileID: 0}
 --- !u!114 &114287851501462006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -27,9 +27,10 @@ public class BirdHandler : MonoBehaviour
     }
 
 	eBirdState meBirdState = eBirdState.Idle;
-	bool mbDetectPlayer;
 	Vector3 mvLandingPadPosition = Vector3.zero;
     Vector3 mvTempPos;
+    bool mbDetectPlayer;
+    bool mbGiveMiniGamePoints = true;
 
     public eBirdType _eBirdType = eBirdType.None;
     public Transform _tBird;
@@ -43,11 +44,11 @@ public class BirdHandler : MonoBehaviour
     public Transform _tPointG2;
     public Transform _tPointH1;
     public Transform _tPointH2;
-    public float _fSpeedA = 50f;
+    public float _fSpeedA = 20f;
     public float _fSpeedB = 20f;
-    public float _fSpeedC = 20f;
     public float _fPlayerLandingSpeed = 5f;
-    public float _fRotationSpeed = 5f;
+    public float _fRotationSpeed = 2.5f;
+    public float _fPickUpPositionOnZAxis;
     public BirdInitiate _BirdInitiateScr;
 
 	void OnEnable()
@@ -55,29 +56,13 @@ public class BirdHandler : MonoBehaviour
         FriendManager.Instance._listOfFriends.Add(this.transform);
 	}
 
-	void OnDestroy()
-	{
-        FriendManager.Instance._listOfFriends.Remove(this.transform);
-
-        if (_BirdInitiateScr._InitiateBird != null)
-            _BirdInitiateScr._InitiateBird -= StartMoving;
-	}
-
     void Start()
     {
         DetectBirdType("KingfisherIncomingSound", "DragonflyIncomingSound", false);
         mvLandingPadPosition = new Vector3(_tPointE.position.x, 0f, _tPointE.position.z);
-		_tPointA.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointB.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointC.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointD.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointE.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointF.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointG1.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointG2.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointH1.GetComponent<MeshRenderer> ().enabled = false;
-		_tPointH2.GetComponent<MeshRenderer> ().enabled = false;
+        SetVisibilityOfMovingPoints();
         _BirdInitiateScr._InitiateBird += StartMoving;
+        _fPickUpPositionOnZAxis = _tPointB.position.z;
     }
 
     void StartMoving()
@@ -94,9 +79,6 @@ public class BirdHandler : MonoBehaviour
     {
         switch(meBirdState)
         {
-            case eBirdState.Idle:
-                break;
-
             case eBirdState.PointA:
                 transform.localPosition = _tPointA.localPosition;
 
@@ -105,108 +87,90 @@ public class BirdHandler : MonoBehaviour
                 break;
 
             case eBirdState.PointB:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointB.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointB.localPosition);
-
-                if (_tPointB.localPosition.z - transform.localPosition.z < 0.1f)
-                    mbDetectPlayer = true;
+                MovingBirdAlongGivenPath(_tPointB.localPosition, _fSpeedA, eBirdState.Idle, true, false);
                 break;
 
             case eBirdState.PointC:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointC.localPosition, _fSpeedC * Time.deltaTime);
-                SmoothLook(_tPointC.localPosition);
-
-                if (_tPointC.localPosition.z - transform.localPosition.z < 0.1f)
-                    meBirdState = eBirdState.PointD;
+                MovingBirdAlongGivenPath(_tPointC.localPosition, _fSpeedB, eBirdState.PointD, false);
                 break;
 
             case eBirdState.PointD:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointD.localPosition, _fSpeedC * Time.deltaTime);
-                SmoothLook(_tPointD.localPosition);
-
-                if (_tPointD.localPosition.z - transform.localPosition.z < 0.1f)
-                    meBirdState = eBirdState.PointE;
+                MovingBirdAlongGivenPath(_tPointD.localPosition, _fSpeedB, eBirdState.PointE, false);
                 break;
 
             case eBirdState.PointE:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointE.localPosition, _fSpeedC * Time.deltaTime);
-                SmoothLook(_tPointE.localPosition);
-
-                if (_tPointE.localPosition.z - transform.localPosition.z < 0.1f)
-                    PlayerMoveTowardsLandingPad();
+                MovingBirdAlongGivenPath(_tPointE.localPosition, _fSpeedB, eBirdState.PointF, false, true, true);
                 break;
 
             case eBirdState.PointF:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointF.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointF.localPosition);
-
-                if (_tPointF.localPosition.z - transform.localPosition.z < 0.1f)
-                {
-                    int tValue = Random.Range(0, 1);
-
-                    if (tValue == 0)
-                        meBirdState = eBirdState.PointG1;
-
-                    else
-                        meBirdState = eBirdState.PointG2;
-                }
+                MovingBirdAlongGivenPath(_tPointF.localPosition, _fSpeedA, eBirdState.Idle, false, false, false, true);
                 break;
 
             case eBirdState.PointG1:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointG1.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointG1.localPosition);
-
-                if (_tPointG1.localPosition.z - transform.localPosition.z < 0.1f)
-                    meBirdState = eBirdState.PointH1;
+                MovingBirdAlongGivenPath(_tPointG1.localPosition, _fSpeedA, eBirdState.PointH1);
                 break;
 
             case eBirdState.PointG2:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointG2.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointG2.localPosition);
-
-                if (_tPointG2.localPosition.z - transform.localPosition.z < 0.1f)
-                    meBirdState = eBirdState.PointH2;
+                MovingBirdAlongGivenPath(_tPointG2.localPosition, _fSpeedA, eBirdState.PointH2);
                 break;
 
             case eBirdState.PointH1:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointH1.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointH1.localPosition);
-
-                if (_tPointH1.localPosition.z - transform.localPosition.z < 0.1f)
-                    Destroy(this.gameObject);
+                MovingBirdAlongGivenPath(_tPointH1.localPosition, _fSpeedA, eBirdState.Idle, false, false, false, false, true);
                 break;
 
             case eBirdState.PointH2:
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, _tPointH2.localPosition, _fSpeedB * Time.deltaTime);
-                SmoothLook(_tPointH2.localPosition);
-
-                if (_tPointH2.localPosition.z - transform.localPosition.z < 0.1f)
-                    Destroy(this.gameObject);
+                MovingBirdAlongGivenPath(_tPointH2.localPosition, _fSpeedA, eBirdState.Idle, false, false, false, false, true);
                 break;
         }
     }
 
-    void PlayerMoveTowardsLandingPad()
+    void MovingBirdAlongGivenPath(Vector3 targetPos, float movingSpeed, eBirdState nextState, bool detectPlayer = false, bool setNextState = true, bool dropThePlayer = false, bool chooseLane = false, bool destroyBird = false)
     {
-        transform.GetComponent<SphereCollider>().enabled = false;
-        meBirdState = eBirdState.PointF;
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, Time.deltaTime * movingSpeed);
+        SmoothLook(targetPos);
 
-        PlayerManager.Instance._playerHandler._tPlayerTransform.position = Vector3.MoveTowards(PlayerManager.Instance._playerHandler._tPlayerTransform.position, mvLandingPadPosition, _fPlayerLandingSpeed * Time.deltaTime);
+        if (targetPos.z - transform.localPosition.z < 0.1f)
+        {
+            if (detectPlayer)
+                mbDetectPlayer = true;
+            
+            if (setNextState)
+                meBirdState = nextState;
+            
+            if (dropThePlayer)
+            {
+                transform.GetComponent<SphereCollider>().enabled = false;
+                if (mbGiveMiniGamePoints)
+                {
+                    mbGiveMiniGamePoints = false;
+                    if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                        MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+                }
+                MovePlayerTowardsLandingPad();
+            }
+            
+            if (chooseLane)
+            {
+                int tValue = Random.Range(0, 1);
+                if (tValue == 0)
+                    meBirdState = eBirdState.PointG1;
+                else
+                    meBirdState = eBirdState.PointG2;
+            }
+
+            if (destroyBird)
+                Destroy(this.gameObject);
+        }
+    }
+
+    void MovePlayerTowardsLandingPad()
+    {
+        PlayerManager.Instance._playerHandler._tPlayerTransform.position = Vector3.MoveTowards(PlayerManager.Instance._playerHandler._tPlayerTransform.position, mvLandingPadPosition, Time.deltaTime * _fPlayerLandingSpeed);
 
         if (mvLandingPadPosition.y - PlayerManager.Instance._playerHandler._tPlayerTransform.position.y < 0.1f)
         {
             FriendManager.SetPlayerIsWithFriendState(false);
-
-            PlayerManager.Instance._playerHandler._tPlayerTransform.SetParent(PlayerManager.Instance.transform);
-			PlayerManager.Instance._playerHandler._tPlayerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-			PlayerManager.Instance._playerHandler.GetComponent<Rigidbody>().useGravity = true;
-			PlayerManager.Instance._playerHandler.GetComponent<Rigidbody>().isKinematic = false;
-			PlayerManager.Instance._playerHandler._eControlState = eControlState.Active;
-
-			PlayerManager.Instance._playerHandler._vPlayerRequiredPosition = mvLandingPadPosition;
-			PlayerManager.Instance._playerHandler._vNextPlatformPosition = mvLandingPadPosition;
-            PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = false;
-			PlayerManager.Instance._playerHandler.DoSingleJump();
+            UpdatePlayerStatesOnDrop();
         }
     }
 
@@ -220,7 +184,6 @@ public class BirdHandler : MonoBehaviour
             if (mbDetectPlayer)
             {
                 mbDetectPlayer = false;
-                PlayerManager.Instance._CameraControllerScr._bFollowPlayerY = true;
                 if (ScoreHandler._OnScoreEventCallback != null)
                 {
                     if (_eBirdType.Equals(eBirdType.Kingfisher))
@@ -229,21 +192,31 @@ public class BirdHandler : MonoBehaviour
                     else if (_eBirdType.Equals(eBirdType.Dragonfly))
                         ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
                 }
-
-                other.transform.SetParent(transform);
-
                 FriendManager.SetPlayerIsWithFriendState(true);
-                PlayerManager.Instance._playerHandler._jumpActionScr.StopJump("Armature|idle");
-                other.GetComponent<Rigidbody>().useGravity = false;
-                other.GetComponent<Rigidbody>().isKinematic = true;
+                UpdatePlayerStatesOnTriggerEnter();
                 DetectBirdType();
-
                 meBirdState = eBirdState.PointC;
-
-                if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-                    MiniGameManager.Instance._iFriendsHelpAccepted += 1;
             }
         }
+    }
+
+    void UpdatePlayerStatesOnTriggerEnter()
+    {
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerParent(this.transform);
+        PlayerManager.Instance._CameraControllerScr.CameraFollowPlayerOnYAxis();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerIdle();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPhysic();
+    }
+
+    void UpdatePlayerStatesOnDrop()
+    {
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerParent();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerRotation();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPhysic(true);
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerControlState();
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerRequiredAndNextPlatformPosition(mvLandingPadPosition);
+        PlayerManager.Instance._CameraControllerScr.CameraFollowPlayerOnYAxis(false);
+        PlayerManager.Instance._playerHandler.DoSingleJump();
     }
 
     void SmoothLook(Vector3 Direction)
@@ -281,7 +254,7 @@ public class BirdHandler : MonoBehaviour
         mvTempPos.x = birdPosition.x;
         mvTempPos.y = birdPosition.y - 1.25f;
         mvTempPos.z = birdPosition.z - 0.35f;
-        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPosition(mvTempPos.x, mvTempPos.y, mvTempPos.z);
     }
 
     void SetPlayerPositionForDragonfly()
@@ -290,6 +263,27 @@ public class BirdHandler : MonoBehaviour
         mvTempPos.x = birdPosition.x;
         mvTempPos.y = birdPosition.y - 0.85f;
         mvTempPos.z = birdPosition.z;
-        PlayerManager.Instance._playerHandler._tPlayerTransform.position = mvTempPos;
+        PlayerManager.Instance._playerHandler._playerPropertiesScr.SetPlayerPosition(mvTempPos.x, mvTempPos.y, mvTempPos.z);
+    }
+
+    void SetVisibilityOfMovingPoints(bool state = false)
+    {
+        _tPointA.GetComponent<MeshRenderer>().enabled = state;
+        _tPointB.GetComponent<MeshRenderer>().enabled = state;
+        _tPointC.GetComponent<MeshRenderer>().enabled = state;
+        _tPointD.GetComponent<MeshRenderer>().enabled = state;
+        _tPointE.GetComponent<MeshRenderer>().enabled = state;
+        _tPointF.GetComponent<MeshRenderer>().enabled = state;
+        _tPointG1.GetComponent<MeshRenderer>().enabled = state;
+        _tPointG2.GetComponent<MeshRenderer>().enabled = state;
+        _tPointH1.GetComponent<MeshRenderer>().enabled = state;
+        _tPointH2.GetComponent<MeshRenderer>().enabled = state;
+    }
+
+    void OnDisable()
+    {
+        FriendManager.Instance._listOfFriends.Remove(this.transform);
+        if (_BirdInitiateScr._InitiateBird != null)
+            _BirdInitiateScr._InitiateBird -= StartMoving;
     }
 }
