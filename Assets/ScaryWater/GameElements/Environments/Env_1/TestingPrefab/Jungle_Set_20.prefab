@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4728584393194720}
   - component: {fileID: 33007251947362984}
   - component: {fileID: 23130041598579344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_Left_Back_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 4805163794706552}
   - component: {fileID: 33010208223808406}
   - component: {fileID: 23750954816046876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_Right_Back_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 33671114607174914}
   - component: {fileID: 23857724844818362}
   - component: {fileID: 114131567473788654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bird
   m_TagString: Kingfisher
   m_Icon: {fileID: 0}
@@ -946,7 +946,7 @@ GameObject:
   - component: {fileID: 4532195103105366}
   - component: {fileID: 33547626667771226}
   - component: {fileID: 23781633490459928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_Left_Fornt_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1258,7 +1258,7 @@ GameObject:
   - component: {fileID: 65775712877955264}
   - component: {fileID: 54650850530015682}
   - component: {fileID: 114705524472186544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SurroundingCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1414,7 @@ GameObject:
   - component: {fileID: 4917214248014852}
   - component: {fileID: 33018127234443316}
   - component: {fileID: 23133155326451706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_Right_Fornt_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 4605060965983274}
   - component: {fileID: 33233939204071630}
   - component: {fileID: 23218182898480120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_Left_Wing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1660,7 +1660,7 @@ GameObject:
   - component: {fileID: 4506379391366264}
   - component: {fileID: 33187871263111080}
   - component: {fileID: 23861585470496564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1766,7 +1766,7 @@ GameObject:
   - component: {fileID: 65629610199530366}
   - component: {fileID: 23336403318618080}
   - component: {fileID: 114775588747244144}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BirdInitiateTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2106,7 @@ GameObject:
   - component: {fileID: 4434133188478730}
   - component: {fileID: 33556122030758326}
   - component: {fileID: 23620402092187624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly_Right_Wing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2378,7 +2378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4147581764527860}
   - component: {fileID: 95853980225970600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragonfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3195,7 +3195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1472854068700302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 480}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4976651345224122}
@@ -9948,9 +9948,9 @@ MonoBehaviour:
   _tPointH2: {fileID: 4594203692019444}
   _fSpeedA: 50
   _fSpeedB: 20
-  _fSpeedC: 20
   _fPlayerLandingSpeed: 5
   _fRotationSpeed: 2.5
+  _fPickUpPositionOnZAxis: 0
   _BirdInitiateScr: {fileID: 114775588747244144}
 --- !u!114 &114750726927315588
 MonoBehaviour:

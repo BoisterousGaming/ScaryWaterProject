@@ -71,6 +71,8 @@ public class EnvironmentManager : MonoBehaviour
     public Vector3 _vCurrentPlatformPosition;
     public List<PlatformHandler> _listOfPlatformHandler = new List<PlatformHandler>();
     public eSetTire _eSetTire = eSetTire.Low;
+    public ParticleSystem _RippleLeaf;
+    public ParticleSystem _RippleDeath;
 
 	public static EnvironmentManager Instance
     {
@@ -279,8 +281,12 @@ public class EnvironmentManager : MonoBehaviour
                 if (element._eSupportType == ePlatformHandlerType.Fixed)
                 {
                     bRequiredState = true;
-                    break;  
+                    element.PlayRippleParticle(_RippleLeaf);
+                    break;
                 }
+
+                else
+                    element.PlayRippleParticle(_RippleDeath);
 
                 float relativePos = element.GetTransform.position.x / DataHandler._fSpaceBetweenLanes;
                 int lane = Mathf.RoundToInt(relativePos);

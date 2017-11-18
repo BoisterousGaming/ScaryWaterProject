@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 65772638879406774}
   - component: {fileID: 54770003486113590}
   - component: {fileID: 114285631815369288}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SurroundingCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 23526134637794428}
   - component: {fileID: 114103846471580512}
   - component: {fileID: 54343703653437914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 4729364104370252}
   - component: {fileID: 33221055770124678}
   - component: {fileID: 23491401453981022}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck_Right_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1226,7 +1226,7 @@ GameObject:
   - component: {fileID: 4394652745338880}
   - component: {fileID: 33024253416225256}
   - component: {fileID: 23553081517286820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck_Right_Wing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,7 +1312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4759952449532558}
   - component: {fileID: 95655490485120604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 4755324801044392}
   - component: {fileID: 33330653142648150}
   - component: {fileID: 23955207181734344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck_Left_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1643,7 +1643,7 @@ GameObject:
   - component: {fileID: 4687615257312468}
   - component: {fileID: 33209456237255050}
   - component: {fileID: 23651325141844768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck_Left_Wing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 4504772400202146}
   - component: {fileID: 33231549137004496}
   - component: {fileID: 23215687749454924}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2220,7 +2220,7 @@ GameObject:
   - component: {fileID: 4939822076762720}
   - component: {fileID: 33111509534596874}
   - component: {fileID: 23872550807543118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck_tail_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2974,7 +2974,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1472854068700302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 120}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4976651345224122}
@@ -9579,6 +9579,7 @@ MonoBehaviour:
   _fSpeedB: 20
   _fSpeedC: 12.5
   _fRotationSpeed: 2.5
+  _fPickUpPositionOnZAxis: 0
 --- !u!198 &198295601637933262
 ParticleSystem:
   m_ObjectHideFlags: 1

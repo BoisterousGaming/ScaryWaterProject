@@ -130,7 +130,7 @@ public class ScoreHandler : MonoBehaviour
 
     void ElementsScoreOnScreenDisplayDataInitializers()
     {
-        //mListOfElementsScoreDisplay.Add(eScoreType.HighAndLongJump);
+        mListOfElementsScoreDisplay.Add(eScoreType.HighAndLongJump);
         mListOfElementsScoreDisplay.Add(eScoreType.Butterfly);
         mListOfElementsScoreDisplay.Add(eScoreType.Firefly);
         mListOfElementsScoreDisplay.Add(eScoreType.Bug);

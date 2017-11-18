@@ -51,7 +51,18 @@ public class PlatformHandler : MonoBehaviour
 		}  
     }
 
-    void OnDestroy()
+    public void PlayRippleParticle(ParticleSystem particle)
+    {
+        Vector3 tPlatformPos;
+        tPlatformPos.x = transform.position.x;
+        tPlatformPos.y = transform.position.y - 0.2f;
+        tPlatformPos.z = transform.position.z;
+        particle.Stop();
+        particle.transform.position = tPlatformPos;
+        particle.Play();
+    }
+
+    void OnDisable()
     {
         EnvironmentManager.Instance._listOfPlatformHandler.Remove(this);
     }

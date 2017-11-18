@@ -182,7 +182,6 @@ MonoBehaviour:
   _CameraControllerScr: {fileID: 0}
   _EnvironmentManagerScr: {fileID: 0}
   _MiniGameManagerScr: {fileID: 0}
-  _bPlayerIsDead: 0
   _BrokenHeart: {fileID: 198348290981960270}
 --- !u!198 &198348290981960270
 ParticleSystem:
@@ -244,7 +243,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1227893059
+  randomSeed: 1332580188
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -640,7 +639,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -3582,7 +3581,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1779199954
+  randomSeed: -1890648190
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3978,7 +3977,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10
     size3D: 0
     rotation3D: 0
     gravityModifier:

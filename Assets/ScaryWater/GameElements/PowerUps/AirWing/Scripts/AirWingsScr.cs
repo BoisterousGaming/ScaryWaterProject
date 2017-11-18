@@ -50,7 +50,7 @@ public class AirWingsScr : MonoBehaviour
 
     void Update()
     {
-        RemoveOtherFriendFromScene();
+        //RemoveOtherFriendFromScene();
         ForceChangeState();
     }
 
@@ -193,7 +193,7 @@ public class AirWingsScr : MonoBehaviour
     void GoToFinalDestination()
     {
         transform.position = Vector3.MoveTowards(mtAirWingTransform.position, mvFinalDestination, Time.deltaTime * _fSpeedB);
-        SmoothLook(mvFinalDestination);
+        //SmoothLook(mvFinalDestination);
 
         mvOffset = mvFinalDestination - mtAirWingTransform.position;
         mfSqrLen = mvOffset.sqrMagnitude;
@@ -305,16 +305,20 @@ public class AirWingsScr : MonoBehaviour
 
     int SetLandingPadProperPosition(int landingPos)
     {
-        int tValue = 0;
-        string tStringValue = landingPos.ToString();
-        if (tStringValue.EndsWith(tValue.ToString(), System.StringComparison.CurrentCulture))
+        if (landingPos % 10 == 0)
             return landingPos;
         else
-        {
-            tStringValue = tStringValue.Remove(tStringValue.Length - 1);
-            tValue = int.Parse(tStringValue + 5);
-            return tValue += 5;    
-        }
+            return landingPos = (landingPos / 10) * 10 + 5;
+        //int tValue = 0;
+        //string tStringValue = landingPos.ToString();
+        //if (tStringValue.EndsWith(tValue.ToString(), System.StringComparison.CurrentCulture))
+        //    return landingPos;
+        //else
+        //{
+        //    tStringValue = tStringValue.Remove(tStringValue.Length - 1);
+        //    tValue = int.Parse(tStringValue + 5);
+        //    return tValue += 5;    
+        //}
     }
 
     void OnDisable()

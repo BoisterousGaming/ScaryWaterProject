@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4952564352195784}
   - component: {fileID: 33093059685931588}
   - component: {fileID: 23944584940816960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kingfisher_Left_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4041348966001162}
   - component: {fileID: 95642990585764608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kingfisher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 65903864712744162}
   - component: {fileID: 54026690244281818}
   - component: {fileID: 114107233839901730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SurroundingCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 4444905867620316}
   - component: {fileID: 33550514107618502}
   - component: {fileID: 23042461164515642}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kingfisher_Right_Wing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1096,7 @@ GameObject:
   - component: {fileID: 4932953657965140}
   - component: {fileID: 33283109146356000}
   - component: {fileID: 23202340715020680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kingfisher_Right_Leg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 33395242910646452}
   - component: {fileID: 23393840815872286}
   - component: {fileID: 114106962990165394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bird
   m_TagString: Kingfisher
   m_Icon: {fileID: 0}
@@ -1553,7 +1553,7 @@ GameObject:
   - component: {fileID: 65938678841301600}
   - component: {fileID: 23139836642841010}
   - component: {fileID: 114435754738242034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BirdInitiateTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2194,7 @@ GameObject:
   - component: {fileID: 4263593245561710}
   - component: {fileID: 33536305572169428}
   - component: {fileID: 23771796326944620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kingfisher_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 4672979047076488}
   - component: {fileID: 33907163693926324}
   - component: {fileID: 23190618496089704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kingfisher_Left_Wing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9016,10 +9016,11 @@ MonoBehaviour:
   _tPointG2: {fileID: 4566217060813484}
   _tPointH1: {fileID: 4612114181026896}
   _tPointH2: {fileID: 4574838077897090}
+  _fSpeedA: 20
   _fSpeedB: 20
-  _fSpeedC: 20
   _fPlayerLandingSpeed: 5
   _fRotationSpeed: 2.5
+  _fPickUpPositionOnZAxis: 0
   _BirdInitiateScr: {fileID: 114435754738242034}
 --- !u!114 &114024733293606116
 MonoBehaviour:

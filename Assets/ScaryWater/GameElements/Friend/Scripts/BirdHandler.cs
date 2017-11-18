@@ -127,7 +127,7 @@ public class BirdHandler : MonoBehaviour
     void MovingBirdAlongGivenPath(Vector3 targetPos, float movingSpeed, eBirdState nextState, bool detectPlayer = false, bool setNextState = true, bool dropThePlayer = false, bool chooseLane = false, bool destroyBird = false)
     {
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, Time.deltaTime * movingSpeed);
-        SmoothLook(targetPos);
+        //SmoothLook(targetPos);
 
         if (targetPos.z - transform.localPosition.z < 0.1f)
         {
