@@ -38,10 +38,10 @@ public class PlayerHandler : MonoBehaviour
     public bool _bSwipedLeftOrRight;
     public Rigidbody _rigidBodyOfPlayer;
     public BarProgressSprite _BarProgressSpriteScr;
-    public WETScr _WETScr;
+    public AttachedComponentScr _AttachedComponentScr;
 
-    public float _fSpeed = 17f;
-    public float _fLaneChangeRate = 0.6f;
+    public float _fSpeed = 17f; // Testing
+    public float _fLaneChangeLimit = 0.6f; // Testing
 
     void Awake()
     {
@@ -164,7 +164,7 @@ public class PlayerHandler : MonoBehaviour
                 miJumpDistance = 10;
                 //_Animator.SetTrigger("Jump");
                 _Animator.speed = 2;
-                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
+                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, _fSpeed, miJumpDistance);
             }   
 
             else
@@ -241,8 +241,8 @@ public class PlayerHandler : MonoBehaviour
 		if (_iLaneNumber > -1)
 		{
 			_iLaneNumber -= 1;
-            if (_jumpActionScr._Progress <= 0.6f)
-                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
+            if (_jumpActionScr._Progress <= _fLaneChangeLimit)
+                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, _fSpeed, miJumpDistance);
 		}
 	}
 
@@ -251,12 +251,12 @@ public class PlayerHandler : MonoBehaviour
 		if (_iLaneNumber < 1)
 		{
 			_iLaneNumber += 1;
-            if (_jumpActionScr._Progress <= 0.6f)
-                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance);
+            if (_jumpActionScr._Progress <= _fLaneChangeLimit)
+                DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, _fSpeed, miJumpDistance);
 		}
 	}
 
-    void DoJumpToNextPlatform(float height = DataHandler._fPlayerAutoJumpHeight, float offset = 10.0f, float speed = 17, string animationName = "short_jump_root_motion")
+    void DoJumpToNextPlatform(float height = DataHandler._fPlayerAutoJumpHeight, float speed = 17.0f, float offset = 10.0f, string animationName = "short_jump_root_motion")
     {
         if (_playerManager._EnvironmentManagerScr == null)
             return;
@@ -273,7 +273,7 @@ public class PlayerHandler : MonoBehaviour
 		_vCurPlatformPosition = _vNextPlatformPosition;
 		miJumpDistance = 10;
         //_Animator.SetTrigger("Jump");
-        DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, miJumpDistance, 17, "short_jump_root_motion");
+        DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, _fSpeed, miJumpDistance, "short_jump_root_motion");
 	}
 
     public void DoDoubleJump()
@@ -291,7 +291,7 @@ public class PlayerHandler : MonoBehaviour
         _vCurPlatformPosition = _vNextPlatformPosition;
         miJumpDistance = 10;
         //_Animator.SetTrigger("LongJump");
-        DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, miJumpDistance, 17, "long_jump_root_motion");
+        DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, _fSpeed, miJumpDistance, "long_jump_root_motion");
         _playerManager._BarProgressSpriteScr.AddDamage(0.03f, _playerManager.PlayerDeathHandler);
         //CEffectsPlayer.Instance.Play("LongJump");
     }
@@ -308,7 +308,7 @@ public class PlayerHandler : MonoBehaviour
 		miJumpDistance = 30;
         //Debug.Log("PlayerReqPosition: " + _vPlayerRequiredPosition + " CurPlatformPosition: " + _vNextPlatformPosition);
         //_Animator.SetTrigger("LongJump");
-        DoJumpToNextPlatform(DataHandler._fPlayerSpiderInitiatedJumpHeight, miJumpDistance, 17, "long_jump_root_motion");
+        DoJumpToNextPlatform(DataHandler._fPlayerSpiderInitiatedJumpHeight, _fSpeed, miJumpDistance, "long_jump_root_motion");
 	}
 
     public void DoPoisonThrow()

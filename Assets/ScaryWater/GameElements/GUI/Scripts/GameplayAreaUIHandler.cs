@@ -23,6 +23,9 @@ public class GameplayAreaUIHandler : GUIItemsManager
 	public RectTransform _ButterflyTargetPosRect;
     public RectTransform _ScoreTargetPosRect;
 
+    public TextMeshProUGUI _PlayerSpeed;
+    public TextMeshProUGUI _PlayerLaneChangeLimit;
+
 	public static GameplayAreaUIHandler Instance
 	{
 		get { return mInstance; }
@@ -173,5 +176,17 @@ public class GameplayAreaUIHandler : GUIItemsManager
     public void SetAirwingBtnState(bool state = true)
     {
         _airwingBtn.interactable = state;
+    }
+
+    public void SetPlayerSpeed(float fValue)
+    {
+        PlayerManager.Instance._playerHandler._fSpeed = fValue;
+        _PlayerSpeed.text = fValue.ToString();
+    }
+
+    public void SetPlayerLaneChangeLimit(float fValue)
+    {
+        PlayerManager.Instance._playerHandler._fLaneChangeLimit = fValue;
+        _PlayerLaneChangeLimit.text = fValue.ToString();
     }
 }

@@ -15,7 +15,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
     public List<AggressiveEnemy> _listOfAggressiveEnemyScr;
     public AutoIntensityScr _AutoIntensityScr;
     public PlayerManager _playerManager;
-    //public DayNightHandler _DayNightHandlerScr;
+    public DayNightHandler _DayNightHandlerScr;
 
     public static EnemyAndObstacleManager Instance
     {
@@ -157,7 +157,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
     public void InstantiateBat(Vector3 playerPos)
     {
-        if (_batPrefab != null & _AutoIntensityScr._bNightTime)
+        if (_batPrefab != null & _DayNightHandlerScr._bNightTime)
 		{
 			GameObject goBat = (GameObject)Instantiate(_batPrefab);
 			goBat.transform.SetParent(this.transform);

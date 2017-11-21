@@ -60,7 +60,7 @@ public class EnvironmentManager : MonoBehaviour
     List<EnvironmentHandler> mListOfEnvironmentHandler = new List<EnvironmentHandler>();
 
     public AutoIntensityScr _AutoIntensityScr;
-    //public DayNightHandler _DayNightHandlerScr;
+    public DayNightHandler _DayNightHandlerScr;
     public EnvironmentHandler _currentActiveEnvironmentHandler = null;
     public GenerateRandomValueScr _GenerateRandomValueScr;
     public List<GameObject> _listOfLowTireSets;
@@ -99,7 +99,6 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         _GenerateRandomValueScr = new GenerateRandomValueScr();
-        //_GenerateRandomValueScr._EnvironmentManager = this;
         mfStartTime = Time.time;
         SetTireOfEnvToSpawn();
     }
@@ -355,7 +354,7 @@ public class EnvironmentManager : MonoBehaviour
         for (int i = 0; i < mListOfEnvironmentHandler.Count; i++)
         {
             EnvironmentHandler tEnvHandlerScr = mListOfEnvironmentHandler[i];
-            if (_AutoIntensityScr._bNightTime)
+            if (_DayNightHandlerScr._bNightTime)
             {
                 if (tEnvHandlerScr._Firefly != null)
                     tEnvHandlerScr._Firefly.Play(); 

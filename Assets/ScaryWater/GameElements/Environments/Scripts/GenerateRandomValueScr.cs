@@ -53,12 +53,11 @@ using UnityEngine;
 
 public class GenerateRandomValueScr
 {
-    int miPreviousValue;
+    int miFPreviousValue;
+    //int miSPreviousValue;
     int miCurrentValue;
     int miCount;
     int miLimit = 5;
-
-    //public EnvironmentManager _EnvironmentManager;
 
     public int Random(int min, int max)
     {
@@ -66,13 +65,13 @@ public class GenerateRandomValueScr
 
         do
         {
-            if (miPreviousValue == miCurrentValue)
+            if (miFPreviousValue == miCurrentValue)
                 miCurrentValue = RollTheDice(min, max);
 
             else
             {
-                miPreviousValue = miCurrentValue;
-                return miPreviousValue;
+                miFPreviousValue = miCurrentValue;
+                return miFPreviousValue;
             }
 
             miCount++;

@@ -8,11 +8,7 @@ public class WeatherEffectsHandler : MonoBehaviour
     float mfTimeInCurWEState = 0f;
     float mfTimeStamp = 0f;
     float mfTimeToStartWE = 0f;
-    int[] mArrOfWET = { 1, 2, 3 };
-    float[] mArrOfTimeInterval = { 250, 500, 350, 400, 650 };
-    float[] mArrOfTimeToPlayWE = { 50, 20, 100, 70, 35 };
     int miWEToPlay = 0;
-    int miWEStartTime = 0;
     bool mbWEIsEnable = false;
     bool mbWETimeLimitIsSet = false;
     bool mbEnableWE = false;
@@ -40,19 +36,14 @@ public class WeatherEffectsHandler : MonoBehaviour
             if (!mbWETimeLimitIsSet)
             {
                 mbWETimeLimitIsSet = true;
-                int tIndex = _GenerateRandomValueScr.Random(0, mArrOfTimeToPlayWE.Length - 1);
-                mfWETimeLimit = mArrOfTimeToPlayWE[tIndex];
+                mfWETimeLimit = _GenerateRandomValueScr.Random(20, 100);
                 mfTimeInCurWEState = 0f;
                 mbDisableWE = true;
             }
         }
 
         else
-        {
-            int tProbability = _GenerateRandomValueScr.Random(0, 10);
-            if (tProbability > 7)
-                SetWEStartTimeAndType();    
-        }
+            SetWEStartTimeAndType();
     }
 
     void CheckWEPlayingState()
@@ -73,7 +64,7 @@ public class WeatherEffectsHandler : MonoBehaviour
         {
             if (mfTimeInCurWEState < mfWETimeLimit)
                 mfTimeInCurWEState += Time.deltaTime;
-
+                
             else
             {
                 mbDisableWE = false;
@@ -85,79 +76,78 @@ public class WeatherEffectsHandler : MonoBehaviour
     void SetWEStartTimeAndType()
     {
         mbWEIsEnable = true;
-        miWEStartTime = _GenerateRandomValueScr.Random(0, mArrOfTimeInterval.Length - 1);
-        miWEToPlay = _GenerateRandomValueScr.Random(0, mArrOfWET.Length - 1);
-        mfTimeStamp = mArrOfTimeInterval[miWEStartTime];
+        miWEToPlay = _GenerateRandomValueScr.Random(1, 3);
+        mfTimeStamp = _GenerateRandomValueScr.Random(50, 500);
         mfTimeToStartWE = 0f;
         mbEnableWE = true;
     }
 
     void PlayWE()
     {
-        switch (miWEToPlay)
+        //Debug.Log("HowManyWEToPlay: " + miWEToPlay);
+        int tValue = 0;
+        for (int i = 0; i < miWEToPlay; i++)
         {
-            case 1:
-                StartCoroutine(ICloudWEState(0f, true));
-                StartCoroutine(IRainWEState(5f, true));
-                StartCoroutine(IThunderWEState(2f, true));
-                break;
-
-            case 2:
-                StartCoroutine(ICloudWEState(0f, true));
-                StartCoroutine(IRainWEState(3f, true));
-                break;
-
-            case 3:
-                StartCoroutine(ICloudWEState(0f, true));
-                StartCoroutine(IThunderWEState(5f, true));
-                break;
+            tValue = _GenerateRandomValueScr.Random(1, 3);
+            if (tValue == 1)
+                StartCoroutine(ICloudWEState(true));
+            else if (tValue == 2)
+                StartCoroutine(IRainWEState(true));
+            else if (tValue == 3)
+                StartCoroutine(IThunderWEState(true));
         }
         SetWEPlayingState();
     }
 
     void StopWE()
     {
-        StartCoroutine(IThunderWEState(2f));
-        StartCoroutine(IRainWEState(5f));
-        StartCoroutine(ICloudWEState(5f));
+        StartCoroutine(IThunderWEState(false, _GenerateRandomValueScr.Random(2, 4)));
+        StartCoroutine(IRainWEState(false, _GenerateRandomValueScr.Random(3, 7)));
+        StartCoroutine(ICloudWEState(false, _GenerateRandomValueScr.Random(5, 10)));
         mbWEIsEnable = false;
         mbWETimeLimitIsSet = false;
         SetWEPlayingState();
     }
 
-    IEnumerator IThunderWEState(float fTimeDelay, bool bState = false)
+    IEnumerator ICloudWEState(bool bState = false, float fTimeDelay = 0f)
     {
+        if (bState)
+            fTimeDelay = _GenerateRandomValueScr.Random(0, 2);
         yield return new WaitForSeconds(fTimeDelay);
-        if (_playerManager._playerHandler._WETScr._Thunder != null)
+        if (_playerManager._playerHandler._AttachedComponentScr._Cloud != null)
         {
             if (bState)
-                _playerManager._playerHandler._WETScr._Thunder.Play();
+                _playerManager._playerHandler._AttachedComponentScr._Cloud.Play();
             else
-                _playerManager._playerHandler._WETScr._Thunder.Stop();
+                _playerManager._playerHandler._AttachedComponentScr._Cloud.Stop();
         }
     }
 
-    IEnumerator IRainWEState(float fTimeDelay, bool bState = false)
+    IEnumerator IRainWEState(bool bState = false, float fTimeDelay = 0f)
     {
+        if (bState)
+            fTimeDelay = _GenerateRandomValueScr.Random(2, 5);
         yield return new WaitForSeconds(fTimeDelay);
-        if (_playerManager._playerHandler._WETScr._Rain != null)
+        if (_playerManager._playerHandler._AttachedComponentScr._Rain != null)
         {
             if (bState)
-                _playerManager._playerHandler._WETScr._Rain.Play();
+                _playerManager._playerHandler._AttachedComponentScr._Rain.Play();
             else
-                _playerManager._playerHandler._WETScr._Rain.Stop();
+                _playerManager._playerHandler._AttachedComponentScr._Rain.Stop();
         }
     }
 
-    IEnumerator ICloudWEState(float fTimeDelay, bool bState = false)
+    IEnumerator IThunderWEState(bool bState = false, float fTimeDelay = 0f)
     {
+        if (bState)
+            fTimeDelay = _GenerateRandomValueScr.Random(3, 6);
         yield return new WaitForSeconds(fTimeDelay);
-        if (_playerManager._playerHandler._WETScr._Cloud != null)
+        if (_playerManager._playerHandler._AttachedComponentScr._Thunder != null)
         {
             if (bState)
-                _playerManager._playerHandler._WETScr._Cloud.Play();
+                _playerManager._playerHandler._AttachedComponentScr._Thunder.Play();
             else
-                _playerManager._playerHandler._WETScr._Cloud.Stop();
+                _playerManager._playerHandler._AttachedComponentScr._Thunder.Stop();
         }
     }
 }

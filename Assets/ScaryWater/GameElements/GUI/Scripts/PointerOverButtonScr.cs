@@ -14,7 +14,7 @@ public class PointerOverButtonScr : MonoBehaviour
         PlayerManager.Instance._playerHandler._touchInputHandlerScr._bPointerOverBtn = false;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         PlayerManager.Instance._playerHandler._touchInputHandlerScr._bPointerOverBtn = false;
     }

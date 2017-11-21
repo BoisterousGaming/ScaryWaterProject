@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 114257723847005498}
   - component: {fileID: 54470430337402746}
   - component: {fileID: 135408631976008590}
-  - component: {fileID: 114713978424871362}
+  - component: {fileID: 114537144223445944}
   m_Layer: 0
   m_Name: PlayerFrog
   m_TagString: Player
@@ -482,7 +482,6 @@ GameObject:
   - component: {fileID: 4538012538189018}
   - component: {fileID: 33406881760006448}
   - component: {fileID: 23994587741556064}
-  - component: {fileID: 114439923530700518}
   - component: {fileID: 65363424782033256}
   m_Layer: 9
   m_Name: FarBGQuad
@@ -1608,6 +1607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9b25fe4523f48ce9f036aaf1a3ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mvPosition: {x: 0, y: 0, z: 0}
   _PlayerTransform: {fileID: 4673717913803046}
 --- !u!114 &114257723847005498
 MonoBehaviour:
@@ -1633,7 +1633,9 @@ MonoBehaviour:
   _bSwipedLeftOrRight: 0
   _rigidBodyOfPlayer: {fileID: 54470430337402746}
   _BarProgressSpriteScr: {fileID: 114287851501462006}
-  _WETScr: {fileID: 114713978424871362}
+  _AttachedComponentScr: {fileID: 114537144223445944}
+  _fSpeed: 17
+  _fLaneChangeLimit: 0.6
 --- !u!114 &114287851501462006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1650,18 +1652,6 @@ MonoBehaviour:
   _CurrentFillAmount: 0
   _ProgressBar: {fileID: 1904230199327228}
   _PlayerHandlerScr: {fileID: 114257723847005498}
---- !u!114 &114439923530700518
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1698398800306226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68226a454bfba4f7e923d5a1fa23ed28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _PlayerTransform: {fileID: 4673717913803046}
 --- !u!114 &114516346877862460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1673,8 +1663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68226a454bfba4f7e923d5a1fa23ed28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mvInitialPosition: {x: 0, y: 0, z: 0}
+  mvTempPos: {x: 0, y: 0, z: 0}
   _PlayerTransform: {fileID: 4673717913803046}
---- !u!114 &114713978424871362
+--- !u!114 &114537144223445944
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1682,12 +1674,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1432167568676342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c63a020caf2e4bba95d139e0420e058, type: 3}
+  m_Script: {fileID: 11500000, guid: 9938b0e1c16ef41058579b38f6601665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Cloud: {fileID: 198234697696422280}
   _Thunder: {fileID: 198363185725898594}
   _Rain: {fileID: 198652497387351476}
+  _FarBG: {fileID: 4538012538189018}
+  _PlayerTransform: {fileID: 4131275016034072}
 --- !u!135 &135408631976008590
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1832,7 +1826,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 387277839
+  randomSeed: 894158674
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11804,7 +11798,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1794927220
+  randomSeed: -2131608714
   InitialModule:
     serializedVersion: 3
     enabled: 1
