@@ -160,7 +160,7 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
 
     void OnClickingPurchaseSkin()
     {
-        UICanvasHandler.Instance.LoadScreen("PurchaseSkinCanvas", null, true);
+        UICanvasHandler.Instance.LoadScreen("PurchaseSkinCanvas");
     }
 
 	public void OnClickingEquipSkin()

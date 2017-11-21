@@ -110,7 +110,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
                 }
 
                 else
-                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
                 break;
 
             case "PoisonDecBtn":
@@ -145,7 +145,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				}
 
                 else
-                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
                 break;
 
             case "AirwingsDecBtn":
@@ -180,7 +180,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				}
 
                 else
-                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
                 break;
 
             case "MagnetDecBtn":
@@ -215,7 +215,7 @@ public class StoreUpgradeUIHandler : GUIItemsManager
 				}
 
                 else
-                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                    UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
                 break;
         }
     }

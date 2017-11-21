@@ -66,12 +66,17 @@ public class PlayerManager : MonoBehaviour
     public void PlayerDeathHandler()
     {
         _playerHandler._jumpActionScr.StopJump("death");
+        StartCoroutine(IDelayGameOverScreen());
+    }
 
+    IEnumerator IDelayGameOverScreen()
+    {
+        yield return new WaitForSeconds(2f);
         GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
-		if (tCanvas != null)
-			UICanvasHandler.Instance.DestroyScreen(tCanvas);
+        if (tCanvas != null)
+            UICanvasHandler.Instance.DestroyScreen(tCanvas);
 
-		UICanvasHandler.Instance.LoadScreen("GameOverCanvas", null, true);
+        UICanvasHandler.Instance.LoadScreen("GameOverCanvas");
     }
 
     public void PlayerMaxHealthLimit()

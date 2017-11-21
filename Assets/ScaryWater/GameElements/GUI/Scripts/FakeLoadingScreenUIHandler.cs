@@ -50,7 +50,7 @@ public class FakeLoadingScreenUIHandler : GUIItemsManager
 
         if (_loadingBar.fillAmount >= 0.95f)
         {
-            UICanvasHandler.Instance.LoadScreen("HUDCanvas", null, true);
+            UICanvasHandler.Instance.LoadScreen("HUDCanvas");
             UICanvasHandler.Instance.DestroyScreen(this.gameObject);
         }
     }

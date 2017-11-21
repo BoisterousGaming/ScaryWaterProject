@@ -11,16 +11,21 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
     public Image _MagnetCoinImage;
     public Image _PoisonCoinImage;
+    public Image _AirwingCoinImage;
     public Text _Coin2XPrice;
     public Text _MagnetTimePrice;
     public Text _PoisonRangePrice;
+    public Text _AirwingRangePrice;
     public Button _Coin2XBtn;
     public Button _MagnetTimeBtn;
     public Button _PoisonRangeBtn;
+    public Button _AirwingRangeBtn;
     public Image[] _arrOfMagnetTimeMeter;
     public Image[] _arrOfPoisonRangeMeter;
+    public Image[] _arrOfAirwingRangeMeter;
     public int[] _arrOfMagnetTimePrice;
     public int[] _arrOfPoisonRangePrice;
+    public int[] _arrOfAirwingRangePrice;
 
     public static StoreBoosterUIHandler Instance
     {
@@ -53,6 +58,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 
         MagnetMeterAndPriceInitializer();
         PoisonMeterAndPriceInitializer();
+        AirwingMeterAndPriceInitializer();
     }
 
     void MagnetMeterAndPriceInitializer()
@@ -103,6 +109,30 @@ public class StoreBoosterUIHandler : GUIItemsManager
 			_PoisonRangePrice.text = _arrOfPoisonRangePrice[0].ToString();
     }
 
+    void AirwingMeterAndPriceInitializer()
+    {
+        if (DataManager.GetAirwingRange() != -1)
+        {
+            int tIndex = DataManager.GetAirwingRange();
+
+            if (tIndex >= _arrOfAirwingRangePrice.Length - 1)
+            {
+                _AirwingRangePrice.text = " ";
+                _AirwingCoinImage.enabled = false;
+                _AirwingRangeBtn.interactable = false;
+            }
+
+            else
+                _AirwingRangePrice.text = _arrOfAirwingRangePrice[tIndex].ToString();
+
+            for (int i = 0; i <= tIndex; i++)
+                _arrOfAirwingRangeMeter[i].color = mFullColor;
+        }
+
+        else
+            _AirwingRangePrice.text = _arrOfAirwingRangePrice[0].ToString();
+    }
+
     public override void OnButtonCallBack(GUIItem item)
     {
         //Debug.Log("Button Pressed: " + item.gameObject.name);
@@ -133,7 +163,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                     }
 
                     else
-                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
 
                     if (tIndex >= _arrOfMagnetTimePrice.Length - 1)
                         MagnetMeterAndPriceInitializer();
@@ -151,7 +181,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
                     }
 
                     else
-                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
                 }
                 break;
 
@@ -172,7 +202,7 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					}
 
 					else
-                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
 
                     if (tIndex >= _arrOfPoisonRangePrice.Length - 1)
                         PoisonMeterAndPriceInitializer();
@@ -190,8 +220,47 @@ public class StoreBoosterUIHandler : GUIItemsManager
 					}
 
 					else
-                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
 				}
+                break;
+
+            case "AirwingRangeBuyBtn":
+                //CEffectsPlayer.Instance.Play("BuyCoin");
+                if (DataManager.GetAirwingRange() != -1)
+                {
+                    int tIndex = DataManager.GetAirwingRange();
+                    tIndex += 1;
+
+                    if (DataManager.GetTotalCoinAmount() >= _arrOfAirwingRangePrice[tIndex])
+                    {
+                        //CEffectsPlayer.Instance.Play("UpgradeSound");
+                        DataManager.SetAirwingRange(tIndex);
+                        _arrOfAirwingRangeMeter[tIndex].color = mFullColor;
+                        _AirwingRangePrice.text = _arrOfAirwingRangePrice[tIndex].ToString();
+                        DataManager.SubstractFromTotalCoin(_arrOfAirwingRangePrice[tIndex]);
+                    }
+
+                    else
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
+
+                    if (tIndex >= _arrOfAirwingRangePrice.Length - 1)
+                        AirwingMeterAndPriceInitializer();
+                }
+
+                else
+                {
+                    if (DataManager.GetTotalCoinAmount() >= _arrOfAirwingRangePrice[0])
+                    {
+                        //CEffectsPlayer.Instance.Play("UpgradeSound");
+                        DataManager.SetAirwingRange(0);
+                        _arrOfAirwingRangeMeter[0].color = mFullColor;
+                        _AirwingRangePrice.text = _arrOfAirwingRangePrice[1].ToString();
+                        DataManager.SubstractFromTotalCoin(_arrOfAirwingRangePrice[0]);
+                    }
+
+                    else
+                        UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
+                }
                 break;
         }
     }

@@ -21,6 +21,7 @@ public class FriendManager : MonoBehaviour
     public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
     public GameObject _airWingsMovingPointsPrefab;
+    public GameObject[] _arrOfAirWingsMovingPoints;
     public List<Transform> _listOfFriends = new List<Transform>();
     public PlayerManager _playerManager; 
     public static bool mbPlayerIsColseToAnotherFriend = false;

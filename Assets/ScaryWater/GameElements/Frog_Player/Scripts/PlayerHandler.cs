@@ -38,6 +38,10 @@ public class PlayerHandler : MonoBehaviour
     public bool _bSwipedLeftOrRight;
     public Rigidbody _rigidBodyOfPlayer;
     public BarProgressSprite _BarProgressSpriteScr;
+    public WETScr _WETScr;
+
+    public float _fSpeed = 17f;
+    public float _fLaneChangeRate = 0.6f;
 
     void Awake()
     {

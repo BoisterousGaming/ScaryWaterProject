@@ -51,6 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a0585f40133496c932d18882205c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _airWingsPrefab: {fileID: 0}
-  _listOfAirWingsScr: []
+  _airWingsPrefab: {fileID: 1386856693607928, guid: 7b1e1908b94a7403aaddcf8632409c23,
+    type: 2}
+  _airWingsMovingPointsPrefab: {fileID: 1629433460998386, guid: abaf54c3448bd4158833489cd7600e3b,
+    type: 2}
+  _arrOfAirWingsMovingPoints:
+  - {fileID: 1629433460998386, guid: 48ee3e2c2ef514490b157198bb68250f, type: 2}
+  - {fileID: 1629433460998386, guid: edb0767478ce34b759de368bb9eec15f, type: 2}
+  - {fileID: 1629433460998386, guid: a7a6ab660efc34cadad1211704996564, type: 2}
+  - {fileID: 1629433460998386, guid: cb2d542b0d2474d52bcaa9eb26f06ce9, type: 2}
+  - {fileID: 1629433460998386, guid: 582b55ca105b54fb7aa65d81deaf6e73, type: 2}
   _listOfFriends: []
+  _playerManager: {fileID: 0}

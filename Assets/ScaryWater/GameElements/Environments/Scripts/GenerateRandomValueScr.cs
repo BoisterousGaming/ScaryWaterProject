@@ -58,7 +58,7 @@ public class GenerateRandomValueScr
     int miCount;
     int miLimit = 5;
 
-    public EnvironmentManager _EnvironmentManager;
+    //public EnvironmentManager _EnvironmentManager;
 
     public int Random(int min, int max)
     {

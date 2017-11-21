@@ -59,7 +59,8 @@ public class EnvironmentManager : MonoBehaviour
     static EnvironmentManager mInstance = null;
     List<EnvironmentHandler> mListOfEnvironmentHandler = new List<EnvironmentHandler>();
 
-    public DayNightHandler _DayNightHandlerScr;
+    public AutoIntensityScr _AutoIntensityScr;
+    //public DayNightHandler _DayNightHandlerScr;
     public EnvironmentHandler _currentActiveEnvironmentHandler = null;
     public GenerateRandomValueScr _GenerateRandomValueScr;
     public List<GameObject> _listOfLowTireSets;
@@ -73,6 +74,7 @@ public class EnvironmentManager : MonoBehaviour
     public eSetTire _eSetTire = eSetTire.Low;
     public ParticleSystem _RippleLeaf;
     public ParticleSystem _RippleDeath;
+    public bool _bDisableIndicator = false;
 
 	public static EnvironmentManager Instance
     {
@@ -97,7 +99,7 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         _GenerateRandomValueScr = new GenerateRandomValueScr();
-        _GenerateRandomValueScr._EnvironmentManager = this;
+        //_GenerateRandomValueScr._EnvironmentManager = this;
         mfStartTime = Time.time;
         SetTireOfEnvToSpawn();
     }
@@ -353,14 +355,14 @@ public class EnvironmentManager : MonoBehaviour
         for (int i = 0; i < mListOfEnvironmentHandler.Count; i++)
         {
             EnvironmentHandler tEnvHandlerScr = mListOfEnvironmentHandler[i];
-            if (_DayNightHandlerScr._bNightTime)
+            if (_AutoIntensityScr._bNightTime)
             {
-                if (tEnvHandlerScr._Firefly.isStopped)
-                    tEnvHandlerScr._Firefly.Play();
+                if (tEnvHandlerScr._Firefly != null)
+                    tEnvHandlerScr._Firefly.Play(); 
             }
             else
             {
-                if (tEnvHandlerScr._Firefly.isPlaying)
+                if (tEnvHandlerScr._Firefly != null)
                     tEnvHandlerScr._Firefly.Stop();
             }
         }

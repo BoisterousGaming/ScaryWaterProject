@@ -27,6 +27,7 @@ public class DataManager : MonoBehaviour
     static string msCoinMultiplierValue = "CoinMultiplierValue";
     static string msMagnetTime = "MagnetTime";
     static string msPoisonRange = "PoisonRange";
+    static string msAirwingRange = "AirwingRange";
 
 	static string msEquipedSkinID = "EquipedSkinID";
     static string msSkinLockState = "LockState";
@@ -395,6 +396,11 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt(msPoisonRange, Value);
     }
 
+    public static void SetAirwingRange(int Value)
+    {
+        PlayerPrefs.SetInt(msAirwingRange, Value);
+    }
+
 	public static void SetEquipedSkinID(int Value)
 	{
 		PlayerPrefs.SetInt(msEquipedSkinID, Value);
@@ -536,6 +542,14 @@ public class DataManager : MonoBehaviour
         int tValue = -1;
         if (PlayerPrefs.HasKey(msPoisonRange))
             tValue = PlayerPrefs.GetInt(msPoisonRange);
+        return tValue;
+    }
+
+    public static int GetAirwingRange()
+    {
+        int tValue = -1;
+        if (PlayerPrefs.HasKey(msAirwingRange))
+            tValue = PlayerPrefs.GetInt(msAirwingRange);
         return tValue;
     }
 

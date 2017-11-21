@@ -33,7 +33,7 @@ public class StoreTabUIHandler : GUIItemsManager
 
     void Start()
     {
-        UICanvasHandler.Instance.LoadScreen("StorePlayerSkinCanvas", null, true);  
+        UICanvasHandler.Instance.LoadScreen("StorePlayerSkinCanvas");  
         DisplayCoinAmount();
         DisplayButterflyAmount();
     }
@@ -123,9 +123,9 @@ public class StoreTabUIHandler : GUIItemsManager
         UICanvasHandler.Instance.RemoveAllActiveCanvas();
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
-            UICanvasHandler.Instance.LoadScreen("MainMenuCanvas", null, true);
+            UICanvasHandler.Instance.LoadScreen("MainMenuCanvas");
 
         else
-            UICanvasHandler.Instance.LoadScreen("GameOverCanvas", null, true);
+            UICanvasHandler.Instance.LoadScreen("GameOverCanvas");
     }
 }

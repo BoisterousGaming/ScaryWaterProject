@@ -36,7 +36,7 @@ public class AirWingsScr : MonoBehaviour
     public Transform _tPointH2;
     public Vector3 _vLandingPadPosition;
     public float _fSpeedA = 50f;
-    public float _fSpeedB = 12.5f;
+    public float _fSpeedB = 40f;
     public float _fRotationSpeed = 5f;
     public float _fLandingPadXPos;
 
@@ -245,7 +245,16 @@ public class AirWingsScr : MonoBehaviour
 
     void InstantiatePathForAirwing()
     {
-        GameObject goAirwingPath = Instantiate(FriendManager.Instance._airWingsMovingPointsPrefab);
+        int tIndex;
+        GameObject goAirwingPath;
+        if (DataManager.GetAirwingRange() != -1)
+        {
+            tIndex = DataManager.GetAirwingRange();
+            goAirwingPath = Instantiate(FriendManager.Instance._arrOfAirWingsMovingPoints[tIndex]);
+        }
+        else
+            goAirwingPath = Instantiate(FriendManager.Instance._airWingsMovingPointsPrefab);
+        
         goAirwingPath.transform.SetParent(_friendManager.transform);
         mvTempPos.x = 0f;
         mvTempPos.y = 0f;
@@ -296,29 +305,29 @@ public class AirWingsScr : MonoBehaviour
     void SetPlayerPositionForAirWings()
     {
         FriendManager._eFriendType = eFriendType.Dragonfly;
-        Vector3 airWingPosition = transform.position;
-        mvTempPos.x = airWingPosition.x;
-        mvTempPos.y = airWingPosition.y - 0.85f;
-        mvTempPos.z = airWingPosition.z;
+        Vector3 birdPosition = transform.position;
+        mvTempPos.x = birdPosition.x;
+        mvTempPos.y = birdPosition.y - 1.25f;
+        mvTempPos.z = birdPosition.z - 0.35f;
         _friendManager._playerManager._playerHandler._playerPropertiesScr.SetPlayerPosition(mvTempPos.x, mvTempPos.y, mvTempPos.z);
     }
 
     int SetLandingPadProperPosition(int landingPos)
     {
-        if (landingPos % 10 == 0)
-            return landingPos;
-        else
-            return landingPos = (landingPos / 10) * 10 + 5;
-        //int tValue = 0;
-        //string tStringValue = landingPos.ToString();
-        //if (tStringValue.EndsWith(tValue.ToString(), System.StringComparison.CurrentCulture))
+        //if (landingPos % 10 == 0)
         //    return landingPos;
         //else
-        //{
-        //    tStringValue = tStringValue.Remove(tStringValue.Length - 1);
-        //    tValue = int.Parse(tStringValue + 5);
-        //    return tValue += 5;    
-        //}
+            //return landingPos = (landingPos / 10) * 10 + 5;
+        int tValue = 0;
+        string tStringValue = landingPos.ToString();
+        if (tStringValue.EndsWith(tValue.ToString(), System.StringComparison.CurrentCulture))
+            return landingPos;
+        else
+        {
+            tStringValue = tStringValue.Remove(tStringValue.Length - 1);
+            tValue = int.Parse(tStringValue + 5);
+            return tValue += 5;    
+        }
     }
 
     void OnDisable()

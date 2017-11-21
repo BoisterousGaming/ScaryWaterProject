@@ -8,6 +8,7 @@ public class FogHandler : MonoBehaviour
 	Material mFogMaterial;
 	Transform mTransform;
 
+    public AutoIntensityScr _AutoIntensityScr;
     public GameObject _fog = null;
     public float _scrollSpeed = 0.01f;
     public Renderer _renderer;
@@ -30,10 +31,10 @@ public class FogHandler : MonoBehaviour
             _renderer.material.SetTextureOffset("_MainTex", new Vector2(offset, 0.17f));
         }
 
-        if (!DayNightHandler.Instance._bNightTime)
+        if (!_AutoIntensityScr._bNightTime)
             StartCoroutine(FadeTo(0.25f, 1f));
 
-        if (DayNightHandler.Instance._bNightTime)
+        if (_AutoIntensityScr._bNightTime)
             StartCoroutine(FadeTo(0.0f, 1f));
 
         mv3PlayerPos.z = PlayerManager.Instance._playerHandler._tPlayerTransform.position.z + 30.0f;

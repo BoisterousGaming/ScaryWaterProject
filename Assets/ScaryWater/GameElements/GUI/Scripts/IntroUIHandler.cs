@@ -19,7 +19,7 @@ public class IntroUIHandler : GUIItemsManager
     void Awake()
     {
         base.Init();
-
+        Input.multiTouchEnabled = false;
         if (mInstance == null)
             mInstance = this;
 

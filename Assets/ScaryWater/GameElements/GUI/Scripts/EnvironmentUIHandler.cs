@@ -133,7 +133,7 @@ public class EnvironmentUIHandler : GUIItemsManager
                         }
 
                         else
-                            UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                            UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
 
                         break;
                     }

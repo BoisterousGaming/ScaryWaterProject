@@ -17,7 +17,7 @@ public class MainMenuUIHandler : GUIItemsManager
 	void Awake() 
 	{
         base.Init();
-        Input.multiTouchEnabled = false;
+
 		if (mInstance == null)
 			mInstance = this;
 
@@ -38,7 +38,7 @@ public class MainMenuUIHandler : GUIItemsManager
         {
             case "PlayBtn":
                 UICanvasHandler.Instance.DestroyScreen(this.gameObject);
-                UICanvasHandler.Instance.LoadScreen("EnvironmentSelectionCanvas", null, true);
+                UICanvasHandler.Instance.LoadScreen("EnvironmentSelectionCanvas");
                 break;
 
             case "ChallengeBtn":
@@ -64,7 +64,7 @@ public class MainMenuUIHandler : GUIItemsManager
 
             case "StoreBtn":
 				UICanvasHandler.Instance.DestroyScreen(this.gameObject);
-				UICanvasHandler.Instance.LoadScreen("StoreTabCanvas", null, true);
+				UICanvasHandler.Instance.LoadScreen("StoreTabCanvas");
 				break;
 
             case "ClearPrefsBtn":

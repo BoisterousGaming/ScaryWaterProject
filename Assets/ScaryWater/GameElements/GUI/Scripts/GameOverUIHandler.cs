@@ -77,7 +77,7 @@ public class GameOverUIHandler : GUIItemsManager
 
             case "StoreBtn":
                 UICanvasHandler.Instance.DestroyScreen(this.gameObject);
-                UICanvasHandler.Instance.LoadScreen("StoreTabCanvas", null, true);
+                UICanvasHandler.Instance.LoadScreen("StoreTabCanvas");
                 break;
         }
     }

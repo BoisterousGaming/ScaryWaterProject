@@ -49,7 +49,7 @@ public class PurchaseSkinUIHandler : GUIItemsManager
                             else
                             {
                                 UICanvasHandler.Instance.DestroyScreen(this.gameObject);
-                                UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas", null, true);
+                                UICanvasHandler.Instance.LoadScreen("CoinWarningCanvas");
                             }
                         }
                     }

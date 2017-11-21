@@ -81,7 +81,7 @@ public class MiniGameManager : MonoBehaviour
     {
         if (!_bMinGameIsActive)
         {
-			UICanvasHandler.Instance.LoadScreen("MiniGameChioceCanvas", null, true);
+			UICanvasHandler.Instance.LoadScreen("MiniGameChioceCanvas");
 			GetPropertiesOfMiniGame(scr);
 		}
     }
@@ -100,7 +100,7 @@ public class MiniGameManager : MonoBehaviour
 		if (tChoiceCanvas != null)
 			UICanvasHandler.Instance.DestroyScreen(tChoiceCanvas);
 
-		UICanvasHandler.Instance.LoadScreen("MiniGameInfoCanvas", null, true);
+		UICanvasHandler.Instance.LoadScreen("MiniGameInfoCanvas");
 
         GameObject tInfoCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameInfoCanvas");
 		if (tInfoCanvas != null)
@@ -294,7 +294,7 @@ public class MiniGameManager : MonoBehaviour
         {
             mbSkipInfo = true;
 
-			UICanvasHandler.Instance.LoadScreen("MiniGameRewardCanvas", null, true);
+			UICanvasHandler.Instance.LoadScreen("MiniGameRewardCanvas");
 
             GameObject tRewardCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("MiniGameRewardCanvas");
 			if (tRewardCanvas != null)

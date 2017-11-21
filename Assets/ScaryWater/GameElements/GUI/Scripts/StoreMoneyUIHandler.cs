@@ -7,7 +7,7 @@ using System.Linq;
 public class StoreMoneyUIHandler : GUIItemsManager 
 {
     static StoreMoneyUIHandler mInstance;
-    Dictionary<float, int> mDictOfCoinContent = new Dictionary<float, int>();
+    Dictionary<int, int> mDictOfCoinContent = new Dictionary<int, int>();
     Dictionary<float, int> mDictOfButterflyContent = new Dictionary<float, int>();
     List<int> mListOfCoinAmount = new List<int>();
     List<int> mListOfButterflyAmount = new List<int>();
@@ -44,17 +44,17 @@ public class StoreMoneyUIHandler : GUIItemsManager
 
     void InitializeCoinData()
     {
-        mDictOfCoinContent.Add(0.99f, 1000);
-        mDictOfCoinContent.Add(2.99f, 10000);
-        mDictOfCoinContent.Add(4.99f, 100000);
-        mDictOfCoinContent.Add(6.99f, 1000000);
-        mDictOfCoinContent.Add(8.99f, 10000000);
+        mDictOfCoinContent.Add(50, 1000);
+        mDictOfCoinContent.Add(100, 10000);
+        mDictOfCoinContent.Add(500, 100000);
+        mDictOfCoinContent.Add(1000, 1000000);
+        mDictOfCoinContent.Add(1500, 10000000);
 
         int tIndex = 0;
-        foreach(KeyValuePair<float, int> element in mDictOfCoinContent)
+        foreach(KeyValuePair<int, int> element in mDictOfCoinContent)
         {
             _arrOfCoinAmountText[tIndex].text = element.Value.ToString() + " Coins";
-            _arrOfCoinPriceText[tIndex].text = element.Key.ToString() + "$";
+            _arrOfCoinPriceText[tIndex].text = element.Key.ToString();
             tIndex += 1;
         }
     }
@@ -126,8 +126,16 @@ public class StoreMoneyUIHandler : GUIItemsManager
 
     void AddCoin(int index)
     {
-        //CEffectsPlayer.Instance.Play("BuyCash");
-        DataManager.AddToTotalCoin(mDictOfCoinContent.Values.ElementAt(index));
+        //CEffectsPlayer.Instance.Play("BuyButterfly");
+        int tValue = mDictOfCoinContent.Keys.ElementAt(index);
+        if (tValue <= DataManager.GetTotalButterflyAmount())
+        {
+            DataManager.SubstractFromTotalButterfly(tValue);
+            DataManager.AddToTotalCoin(mDictOfCoinContent.Values.ElementAt(index));
+        }
+
+        else
+            UICanvasHandler.Instance.LoadScreen("ButterflyWarningCanvas");
     }
 
     void AddButterfly(int index)

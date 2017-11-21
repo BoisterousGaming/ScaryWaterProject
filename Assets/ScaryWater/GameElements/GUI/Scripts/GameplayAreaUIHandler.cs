@@ -10,7 +10,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
     CoinSpriteScr mCoinSpriteScr;
     ButterflySpriteScr mButterflySpriteScr;
     OnScreenScoreScr mOnScreenScoreScr;
-    BrokenHeartScr mBrokenHeartScr;
     static GameplayAreaUIHandler mInstance;
 
     public TextMeshProUGUI[] _arrOfAllTMPTextElement;
@@ -128,7 +127,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
 		{
 			case "PauseBtn":
                 //CEffectsPlayer.Instance.Play("GeneralClick");
-                UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas", null, true);
+                UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas");
 				break;
 
             case "MagnetBtn":
@@ -157,7 +156,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
             if (tCanvas.GetComponent<Canvas>().sortingOrder > 0)
                 return;
         }
-        UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas", null, true);
+        UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas");
     }
 
     void OnDisable()
