@@ -2,6 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class GenerateRandomValueScr
+{
+    int miFPreviousValue;
+    int miSPreviousValue;
+    int miCurrentValue;
+    int miCount;
+    int miLimit = 5;
+
+    public int Random(int min, int max)
+    {
+        miCurrentValue = RollTheDice(min, max);
+        do
+        {
+            if (miFPreviousValue == miCurrentValue | miSPreviousValue == miCurrentValue)
+                miCurrentValue = RollTheDice(min, max);
+            else
+            {
+                miFPreviousValue = miSPreviousValue;
+                miSPreviousValue = miCurrentValue;
+                return miCurrentValue;
+            }
+            miCount++;
+        }
+        while (miCount < miLimit);
+        return RollTheDice(min, max);
+    }
+
+    int RollTheDice(int min, int max)
+    {
+        int tMax = max + 1;
+        return UnityEngine.Random.Range(min, tMax);
+    }
+}
+
+
+
+
 //public class GenerateRandomValueScr
 //{
 //    int miCurrentValue;
@@ -49,41 +86,3 @@ using UnityEngine;
 //        return possiblilityForUse;
 //    }
 //}
-
-
-public class GenerateRandomValueScr
-{
-    int miFPreviousValue;
-    //int miSPreviousValue;
-    int miCurrentValue;
-    int miCount;
-    int miLimit = 5;
-
-    public int Random(int min, int max)
-    {
-        miCurrentValue = RollTheDice(min, max);
-
-        do
-        {
-            if (miFPreviousValue == miCurrentValue)
-                miCurrentValue = RollTheDice(min, max);
-
-            else
-            {
-                miFPreviousValue = miCurrentValue;
-                return miFPreviousValue;
-            }
-
-            miCount++;
-        }
-        while (miCount < miLimit);
-
-        return RollTheDice(min, max);
-    }
-
-    int RollTheDice(int min, int max)
-    {
-        int tMax = max + 1;
-        return UnityEngine.Random.Range(min, tMax);
-    }
-}

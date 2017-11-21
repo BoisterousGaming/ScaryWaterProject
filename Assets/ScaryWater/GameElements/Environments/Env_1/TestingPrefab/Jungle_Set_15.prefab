@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 54136410477113918}
   - component: {fileID: 114259222294212928}
   m_Layer: 0
-  m_Name: HawkInstantiationTrigger (1)
+  m_Name: HawkInstantiationTrigger
   m_TagString: HawkInstantiation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
