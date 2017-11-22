@@ -194,52 +194,6 @@ LensFlare:
     serializedVersion: 2
     m_Bits: 518
   m_Directional: 1
---- !u!1001 &243868975
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.0027004
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.070492
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.065014
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673717913803046, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1432167568676342, guid: 18308047499a04da38a5f10462514d30, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 18308047499a04da38a5f10462514d30, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &437123449
 Prefab:
   m_ObjectHideFlags: 0
@@ -3971,6 +3925,52 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1001 &1200440454
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.0027004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.070492
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.065014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940340455812266, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258131847952436, guid: 18308047499a04da38a5f10462514d30, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 18308047499a04da38a5f10462514d30, type: 2}
+  m_IsPrefabParent: 0
 --- !u!198 &1221296192 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 198071408696511520, guid: 1fc439ec9f4b5044e982e156df962960,
