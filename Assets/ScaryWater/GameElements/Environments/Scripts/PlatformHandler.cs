@@ -53,6 +53,7 @@ public class PlatformHandler : MonoBehaviour
 
     public void PlayRippleParticle(ParticleSystem particle)
     {
+        particle.Stop();
         Vector3 tPlatformPos;
         tPlatformPos.x = transform.position.x;
         tPlatformPos.y = transform.position.y - 0.2f;
