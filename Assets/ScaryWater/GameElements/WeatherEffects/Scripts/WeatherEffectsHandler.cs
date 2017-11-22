@@ -14,6 +14,14 @@ public class WeatherEffectsHandler : MonoBehaviour
     bool mbEnableWE = false;
     bool mbDisableWE = false;
 
+    public int _fWETimeLimitMinValue = 20;
+    public int _fWETimeLimitMaxValue = 100;
+    public int _fCloudWEStopMinTimeValue = 2;
+    public int _fCloudWEStopMaxTimeValue = 4;
+    public int _fRainWEStopMinTimeValue = 3;
+    public int _fRainWEStopMaxTimeValue = 7;
+    public int _fThunderWEStopMinTimeValue = 5;
+    public int _fThunderWEStopMaxTimeValue = 10;
     public PlayerManager _playerManager;
 
     public GenerateRandomValueScr _GenerateRandomValueScr;
@@ -36,7 +44,7 @@ public class WeatherEffectsHandler : MonoBehaviour
             if (!mbWETimeLimitIsSet)
             {
                 mbWETimeLimitIsSet = true;
-                mfWETimeLimit = _GenerateRandomValueScr.Random(20, 100);
+                mfWETimeLimit = _GenerateRandomValueScr.Random(_fWETimeLimitMinValue, _fWETimeLimitMaxValue);
                 mfTimeInCurWEState = 0f;
                 mbDisableWE = true;
             }
@@ -76,7 +84,7 @@ public class WeatherEffectsHandler : MonoBehaviour
     void SetWEStartTimeAndType()
     {
         mbWEIsEnable = true;
-        miWEToPlay = _GenerateRandomValueScr.Random(1, 3);
+        miWEToPlay = _GenerateRandomValueScr.Random(1, 2);
         mfTimeStamp = _GenerateRandomValueScr.Random(50, 500);
         mfTimeToStartWE = 0f;
         mbEnableWE = true;
@@ -85,15 +93,14 @@ public class WeatherEffectsHandler : MonoBehaviour
     void PlayWE()
     {
         //Debug.Log("HowManyWEToPlay: " + miWEToPlay);
+        StartCoroutine(ICloudWEState(true));
         int tValue = 0;
         for (int i = 0; i < miWEToPlay; i++)
         {
-            tValue = _GenerateRandomValueScr.Random(1, 3);
+            tValue = _GenerateRandomValueScr.Random(1, 2);
             if (tValue == 1)
-                StartCoroutine(ICloudWEState(true));
-            else if (tValue == 2)
                 StartCoroutine(IRainWEState(true));
-            else if (tValue == 3)
+            else if (tValue == 2)
                 StartCoroutine(IThunderWEState(true));
         }
         SetWEPlayingState();
@@ -101,9 +108,9 @@ public class WeatherEffectsHandler : MonoBehaviour
 
     void StopWE()
     {
-        StartCoroutine(IThunderWEState(false, _GenerateRandomValueScr.Random(2, 4)));
-        StartCoroutine(IRainWEState(false, _GenerateRandomValueScr.Random(3, 7)));
-        StartCoroutine(ICloudWEState(false, _GenerateRandomValueScr.Random(5, 10)));
+        StartCoroutine(IThunderWEState(false, _GenerateRandomValueScr.Random(_fCloudWEStopMinTimeValue, _fCloudWEStopMaxTimeValue)));
+        StartCoroutine(IRainWEState(false, _GenerateRandomValueScr.Random(_fRainWEStopMinTimeValue, _fRainWEStopMaxTimeValue)));
+        StartCoroutine(ICloudWEState(false, _GenerateRandomValueScr.Random(_fThunderWEStopMinTimeValue, _fThunderWEStopMaxTimeValue)));
         mbWEIsEnable = false;
         mbWETimeLimitIsSet = false;
         SetWEPlayingState();

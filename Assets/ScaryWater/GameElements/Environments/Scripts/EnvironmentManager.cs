@@ -48,7 +48,7 @@ public class EnvironmentManager : MonoBehaviour
     int miSetHandlerPrefabIndex = 0;
     int miSetPrefabIndex = 0;
     int miChallengeSetPrefabIndex = 0;
-    int miNumberOfSetSpawnAtATime = 6;
+    int miNumberOfSetSpawnAtATime = 5;
     int miNumberOfSetsToDeleteFromBack = 1;
     float mfLowTireSetInstantiationTimeLimit = 45f;
     float mfMediumTireSetInstantiationTimeLimit = 75f;
@@ -199,7 +199,7 @@ public class EnvironmentManager : MonoBehaviour
         mbInstantiateChallengeSet = true;
     }
 
-    void SetTireOfEnvToSpawn(int limit = 6)
+    void SetTireOfEnvToSpawn(int limit = 5)
     {
         int tLimit = limit;
         if (mListOfEnvironmentHandler.Any())
