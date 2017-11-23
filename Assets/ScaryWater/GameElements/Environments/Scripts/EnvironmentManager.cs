@@ -269,15 +269,15 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    public bool ComparePlatformAndPlayerPositionForLanding(Vector3 PlayerPosition, float Difference, out int deathlane)
+    public bool ComparePlatformAndPlayerPositionForLanding(Vector3 vPlayerPosition, float fDifference, out int iDeathLane)
     {
-        bool bRequiredState = false;
-        deathlane = 0;
+        bool bRequiredState = false; // Testing 
+        iDeathLane = 0;
         for (int i = 0; i < _listOfPlatformHandler.Count; i++)
         {
             PlatformHandler element = _listOfPlatformHandler[i];
 
-            if (Vector3.Distance(element.GetTransform.position, PlayerPosition) < Difference)
+            if (Vector3.Distance(element.GetTransform.position, vPlayerPosition) < fDifference)
             {
                 if (element._eSupportType == ePlatformHandlerType.Fixed)
                 {
@@ -285,13 +285,12 @@ public class EnvironmentManager : MonoBehaviour
                     element.PlayRippleParticle(_RippleLeaf);
                     break;
                 }
-
                 else
                     element.PlayRippleParticle(_RippleDeath);
 
-                float relativePos = element.GetTransform.position.x / DataHandler._fSpaceBetweenLanes;
-                int lane = Mathf.RoundToInt(relativePos);
-                deathlane = lane;
+                float tRelativePos = element.GetTransform.position.x / DataHandler._fSpaceBetweenLanes;
+                int tLane = Mathf.RoundToInt(tRelativePos);
+                iDeathLane = tLane;
             }
         }
         return bRequiredState;

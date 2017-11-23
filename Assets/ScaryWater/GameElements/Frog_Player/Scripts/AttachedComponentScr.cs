@@ -9,7 +9,8 @@ public class AttachedComponentScr : MonoBehaviour
     Vector3 mvFarBGInitialPos;
     Transform mfRainTransform;
 
-    public ParticleSystem _Cloud;
+    public ParticleSystem _CloudLToR;
+    public ParticleSystem _CloudRToL;
     public ParticleSystem _Thunder;
     public ParticleSystem _Rain;
     public Transform _FarBG;

@@ -39,9 +39,11 @@ public class PlayerHandler : MonoBehaviour
     public Rigidbody _rigidBodyOfPlayer;
     public BarProgressSprite _BarProgressSpriteScr;
     public AttachedComponentScr _AttachedComponentScr;
-
     public float _fSpeed = 17f; // Testing
     public float _fLaneChangeLimit = 0.6f; // Testing
+
+    public delegate void PlayerChangedLane(int val);
+    public PlayerChangedLane _PlayerChangedLaneCallback;
 
     void Awake()
     {
@@ -169,7 +171,6 @@ public class PlayerHandler : MonoBehaviour
 
             else
             {
-                _iLaneNumber = miDeathLane;
                 _playerManager.SetPlayerDeadState(true);
                 SetPlayerColliderState(false);
                 //CEffectsPlayer.Instance.Play("PlayerWaterDeath");
@@ -227,7 +228,7 @@ public class PlayerHandler : MonoBehaviour
         _vNextPlatformPosition = mvTempPos;
         _vPlayerRequiredPosition = mvTempPos;
 		_eControlState = eControlState.Active;
-
+        _iLaneNumber = miDeathLane;
         DoSingleJump();
 	}
 
@@ -240,9 +241,13 @@ public class PlayerHandler : MonoBehaviour
 	{
 		if (_iLaneNumber > -1)
 		{
-			_iLaneNumber -= 1;
+            if (_PlayerChangedLaneCallback != null)
+                _PlayerChangedLaneCallback(_iLaneNumber);
             if (_jumpActionScr._Progress <= _fLaneChangeLimit)
+            {
+                _iLaneNumber -= 1;
                 DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, _fSpeed, miJumpDistance);
+            }
 		}
 	}
 
@@ -250,9 +255,13 @@ public class PlayerHandler : MonoBehaviour
 	{
 		if (_iLaneNumber < 1)
 		{
-			_iLaneNumber += 1;
+            if (_PlayerChangedLaneCallback != null)
+                _PlayerChangedLaneCallback(_iLaneNumber);
             if (_jumpActionScr._Progress <= _fLaneChangeLimit)
+            {
+                _iLaneNumber += 1;
                 DoJumpToNextPlatform(DataHandler._fPlayerAutoJumpHeight, _fSpeed, miJumpDistance);
+            }
 		}
 	}
 

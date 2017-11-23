@@ -9,7 +9,6 @@ public enum ePlatformHandlerType
 	NoSupport,
 }
 
-
 public class PlatformHandler : MonoBehaviour 
 {
     public ePlatformHandlerType _eSupportType = ePlatformHandlerType.Fixed;
@@ -53,7 +52,7 @@ public class PlatformHandler : MonoBehaviour
 
     public void PlayRippleParticle(ParticleSystem particle)
     {
-        particle.Stop();
+        //particle.Stop();
         Vector3 tPlatformPos;
         tPlatformPos.x = transform.position.x;
         tPlatformPos.y = transform.position.y - 0.2f;

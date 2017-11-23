@@ -33,7 +33,7 @@ public class DayNightHandler : MonoBehaviour
     private void Start()
     {
         mfSunInitialIntensity = _sunLight.intensity;
-        _fCurrentTimeOfTheDay = 0.42f;
+        _fCurrentTimeOfTheDay = 0.55f;
     }
 
     private void Update()
@@ -44,6 +44,8 @@ public class DayNightHandler : MonoBehaviour
 
         if(_fCurrentTimeOfTheDay >= 1)
             _fCurrentTimeOfTheDay = 0;
+
+        //Debug.Log("CurrentTimeOfTheDay: " + _fCurrentTimeOfTheDay);
     }
 
     void UpdateSun()
@@ -53,14 +55,12 @@ public class DayNightHandler : MonoBehaviour
 
 		if (_fCurrentTimeOfTheDay > 0.23f & _fCurrentTimeOfTheDay < 0.73f) // DayTime
 		{
-            _bNightTime = false;
 			_fTimeMultiplier = 1;
             CollectableAndFoodManager.Instance.ManipulateElement(eFoodType.Firefly, eFoodType.DayTime, false);
 		}
 
         if(_fCurrentTimeOfTheDay < 0.23f | _fCurrentTimeOfTheDay > 0.73f) // NightTime
         {
-			_bNightTime = true;
             IntensityMultiplier = 0;
             _fTimeMultiplier = 2.3f;
 			CollectableAndFoodManager.Instance.ManipulateElement(eFoodType.DayTime, eFoodType.Firefly, true);
@@ -72,6 +72,11 @@ public class DayNightHandler : MonoBehaviour
         else if(_fCurrentTimeOfTheDay > 0.73f)
             IntensityMultiplier = Mathf.Clamp01(1 - (_fCurrentTimeOfTheDay - 0.73f) * (1 / 0.02f));
 
+        if (_fCurrentTimeOfTheDay < 0f & _fCurrentTimeOfTheDay > -1f)
+            _bNightTime = true;
+        else
+            _bNightTime = false;
+        
         _sunLight.intensity = mfSunInitialIntensity * IntensityMultiplier;
     }
 }

@@ -6,7 +6,7 @@ public class WeatherEffectsHandler : MonoBehaviour
 {
     float mfWETimeLimit = 0f;
     float mfTimeInCurWEState = 0f;
-    float mfTimeStamp = 0f;
+    float mfDelayForReplayingWE = 0f;
     float mfTimeToStartWE = 0f;
     int miWEToPlay = 0;
     bool mbWEIsEnable = false;
@@ -16,12 +16,12 @@ public class WeatherEffectsHandler : MonoBehaviour
 
     public int _fWETimeLimitMinValue = 20;
     public int _fWETimeLimitMaxValue = 100;
-    public int _fCloudWEStopMinTimeValue = 2;
-    public int _fCloudWEStopMaxTimeValue = 4;
+    public int _fCloudWEStopMinTimeValue = 4;
+    public int _fCloudWEStopMaxTimeValue = 5;
     public int _fRainWEStopMinTimeValue = 3;
-    public int _fRainWEStopMaxTimeValue = 7;
-    public int _fThunderWEStopMinTimeValue = 5;
-    public int _fThunderWEStopMaxTimeValue = 10;
+    public int _fRainWEStopMaxTimeValue = 4;
+    public int _fThunderWEStopMinTimeValue = 3;
+    public int _fThunderWEStopMaxTimeValue = 4;
     public PlayerManager _playerManager;
 
     public GenerateRandomValueScr _GenerateRandomValueScr;
@@ -58,7 +58,7 @@ public class WeatherEffectsHandler : MonoBehaviour
     {
         if (mbEnableWE)
         {
-            if (mfTimeToStartWE < mfTimeStamp)
+            if (mfTimeToStartWE < mfDelayForReplayingWE)
                 mfTimeToStartWE += Time.deltaTime;
 
             else
@@ -85,7 +85,7 @@ public class WeatherEffectsHandler : MonoBehaviour
     {
         mbWEIsEnable = true;
         miWEToPlay = _GenerateRandomValueScr.Random(1, 2);
-        mfTimeStamp = _GenerateRandomValueScr.Random(50, 500);
+        mfDelayForReplayingWE = _GenerateRandomValueScr.Random(1, 5);
         mfTimeToStartWE = 0f;
         mbEnableWE = true;
     }
@@ -121,19 +121,26 @@ public class WeatherEffectsHandler : MonoBehaviour
         if (bState)
             fTimeDelay = _GenerateRandomValueScr.Random(0, 2);
         yield return new WaitForSeconds(fTimeDelay);
-        if (_playerManager._playerHandler._AttachedComponentScr._Cloud != null)
+        if (_playerManager._playerHandler._AttachedComponentScr._CloudLToR != null & _playerManager._playerHandler._AttachedComponentScr._CloudRToL != null)
         {
             if (bState)
-                _playerManager._playerHandler._AttachedComponentScr._Cloud.Play();
+            {
+                _playerManager._playerHandler._AttachedComponentScr._CloudLToR.Play();
+                _playerManager._playerHandler._AttachedComponentScr._CloudRToL.Play();
+            }
+                
             else
-                _playerManager._playerHandler._AttachedComponentScr._Cloud.Stop();
+            {
+                _playerManager._playerHandler._AttachedComponentScr._CloudLToR.Stop();
+                _playerManager._playerHandler._AttachedComponentScr._CloudRToL.Stop();
+            }   
         }
     }
 
     IEnumerator IRainWEState(bool bState = false, float fTimeDelay = 0f)
     {
         if (bState)
-            fTimeDelay = _GenerateRandomValueScr.Random(2, 5);
+            fTimeDelay = _GenerateRandomValueScr.Random(1, 2);
         yield return new WaitForSeconds(fTimeDelay);
         if (_playerManager._playerHandler._AttachedComponentScr._Rain != null)
         {
@@ -147,7 +154,7 @@ public class WeatherEffectsHandler : MonoBehaviour
     IEnumerator IThunderWEState(bool bState = false, float fTimeDelay = 0f)
     {
         if (bState)
-            fTimeDelay = _GenerateRandomValueScr.Random(3, 6);
+            fTimeDelay = _GenerateRandomValueScr.Random(1, 2);
         yield return new WaitForSeconds(fTimeDelay);
         if (_playerManager._playerHandler._AttachedComponentScr._Thunder != null)
         {
