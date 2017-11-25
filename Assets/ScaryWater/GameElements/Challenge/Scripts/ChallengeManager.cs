@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChallengeManager : MonoBehaviour 
 {
-    static bool mbChallengeIsComplete = false;
+    bool mbChallengeIsComplete = false;
     static ChallengeManager mInstance;
 
     public PlayerManager _PlayerManagerScr;
@@ -50,7 +50,7 @@ public class ChallengeManager : MonoBehaviour
         mbChallengeIsComplete = true;
     }
 
-    public static void TerminateChallengeCallback(int val)
+    public void TerminateChallengeCallback(int val)
     {
         if (mbChallengeIsComplete)
             return;
@@ -64,7 +64,7 @@ public class ChallengeManager : MonoBehaviour
         UICanvasHandler.Instance.LoadScreen("GameOverCanvas");
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         if (_PlayerManagerScr._BarProgressSpriteScr._FillCountChangedCallback != null)
             _PlayerManagerScr._BarProgressSpriteScr._FillCountChangedCallback -= TerminateChallengeCallback;

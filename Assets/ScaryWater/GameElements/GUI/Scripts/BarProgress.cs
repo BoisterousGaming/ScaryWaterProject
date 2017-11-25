@@ -17,7 +17,6 @@ public class BarProgress : MonoBehaviour
 	int miNumberOfFills;
 	int miCurNumberOfFills;
 	bool mbAnimating = false;
-    bool mbEmptyTheBar = false;
 
     public delegate void FillsCountChanged(int val);
     public FillsCountChanged _FillCountChangedCallback;

@@ -44,7 +44,7 @@ public class MiniGameHandler : MonoBehaviour
 
     void OnEnable()
     {
-        MiniGameManager.Instance._listOfMinGameHandlers.Add(this); 
+        //MiniGameManager.Instance._listOfMinGameHandlers.Add(this); 
     }
 
     void Update()
@@ -54,11 +54,11 @@ public class MiniGameHandler : MonoBehaviour
 
     void SetVisibility()
     {
-        if (MiniGameManager._bMinGameIsActive & !mbRenderIsDisable)
-            VisibilityState(true, false);
+        //if (MiniGameManager._bMinGameIsActive & !mbRenderIsDisable)
+        //    VisibilityState(true, false);
 
-        else if (!MiniGameManager._bMinGameIsActive & mbRenderIsDisable)
-            VisibilityState(false, true);
+        //else if (!MiniGameManager._bMinGameIsActive & mbRenderIsDisable)
+            //VisibilityState(false, true);
     }
 
     void VisibilityState(bool state, bool renderState)
@@ -76,14 +76,14 @@ public class MiniGameHandler : MonoBehaviour
             if (FriendManager.GetPlayerIsWithFriendState())
 				return;
 
-            if (other.CompareTag("Player"))
-                MiniGameManager.Instance.CheckIfMiniGameCanBeActivated(this);
+            //if (other.CompareTag("Player"))
+                //MiniGameManager.Instance.CheckIfMiniGameCanBeActivated(this);
         }
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
-        MiniGameManager.Instance._listOfMinGameHandlers.Remove(this);
+        //MiniGameManager.Instance._listOfMinGameHandlers.Remove(this);
     }
 }
 

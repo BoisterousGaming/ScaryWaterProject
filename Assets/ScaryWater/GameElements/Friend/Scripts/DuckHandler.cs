@@ -81,8 +81,8 @@ public class DuckHandler : MonoBehaviour
                 if (mbGiveMiniGamePoints)
                 {
                     mbGiveMiniGamePoints = false;
-                    if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-                        MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+                    //if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                        //MiniGameManager.Instance._iFriendsHelpAccepted += 1;
                 }
                 UpdatePlayerStatesOnDrop();
             }
@@ -98,12 +98,12 @@ public class DuckHandler : MonoBehaviour
         {
             if (!mbSkipChecking)
             {
-                mbSkipChecking = false;
+                mbSkipChecking = true;
                 if (ScoreHandler._OnScoreEventCallback != null)
                     ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
 
                 FriendManager.SetPlayerIsWithFriendState(true);
-                FriendManager._eFriendType = eFriendType.Duck;
+                FriendManager.SetFriendType(eFriendType.Duck);
                 UpdatePlayerStatesOnTriggerEnter();
                 SetPlayerPositionForDuck();
 

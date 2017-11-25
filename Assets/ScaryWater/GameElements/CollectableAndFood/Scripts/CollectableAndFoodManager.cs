@@ -10,7 +10,6 @@ public class CollectableAndFoodManager : MonoBehaviour
     GameObject[] mArrOfChilds;
     List<GameObject> mListOfCollectableGameObject = new List<GameObject>();
     GameObject mTempGameObject;
-    Vector3 mvTempVector;
     bool mbShouldDestroyCGO = false;
     static CollectableAndFoodManager mInstance;
 
@@ -79,8 +78,8 @@ public class CollectableAndFoodManager : MonoBehaviour
 				break;
 		}
 
-		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.EatFood || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFood)
-			MiniGameManager.Instance._iFoodsEaten += 1;
+		//if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.EatFood || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFood)
+			//MiniGameManager.Instance._iFoodsEaten += 1;
     }
 
     public void CompareCollectableElements(CollectableHandler scr)
@@ -147,8 +146,8 @@ public class CollectableAndFoodManager : MonoBehaviour
 		else if (mbMagnetIsAttachedToPlayer)
             mfTempPlayerCoinMagnetLifeDurationInSecond += mfPlayerCoinMagnetLifeDurationInSecond;
 
-		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectPowerUp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidPowerUp)
-			MiniGameManager.Instance._iPowerUpsCollected += 1;
+		//if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectPowerUp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidPowerUp)
+			//MiniGameManager.Instance._iPowerUpsCollected += 1;
 
         GameObject tCanvas = UICanvasHandler.Instance.GetActiveCanvasByName("HUDCanvas");
         if (tCanvas != null)

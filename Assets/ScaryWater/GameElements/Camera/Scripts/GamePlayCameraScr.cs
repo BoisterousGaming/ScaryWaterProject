@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class GamePlayCameraScr : MonoBehaviour
 {
     Transform mtPlayerTransform;
     Transform mTransform;
     Quaternion mInitialRotation;
-    Vector3 mvOffset;
     Vector3 mvOriginalPosition;
-    Vector3 mvOriginalLocalPosition;
-    Vector3 mvTargetPosition;
     bool mbInitialized = false;
     bool mbFollowPlayerY = false;
 

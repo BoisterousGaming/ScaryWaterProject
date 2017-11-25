@@ -8,7 +8,8 @@ public enum eFriendType
     Spider,
     Duck,
     Kingfisher,
-    Dragonfly
+    Dragonfly,
+    Airwing
 }
 
 public class FriendManager : MonoBehaviour
@@ -16,15 +17,15 @@ public class FriendManager : MonoBehaviour
     AirWingsScr mAirWingsScr;
     static bool mbPlayerIsWithAFriend = false;
     static bool mbAirWingIsActive = false;
+    static bool mbPlayerIsColseToAnotherFriend = false;
     static FriendManager mInstance = null;
+    static eFriendType meFriendType = eFriendType.None;
 
-    public static eFriendType _eFriendType = eFriendType.None;
     public GameObject _airWingsPrefab;
     public GameObject _airWingsMovingPointsPrefab;
     public GameObject[] _arrOfAirWingsMovingPoints;
     public List<Transform> _listOfFriends = new List<Transform>();
     public PlayerManager _playerManager; 
-    public static bool mbPlayerIsColseToAnotherFriend = false;
 
     public static FriendManager Instance
     {
@@ -34,6 +35,13 @@ public class FriendManager : MonoBehaviour
     void Awake()
     {
         mInstance = this;    
+    }
+
+    void Start()
+    {
+        SetPlayerIsWithFriendState(false);    
+        SetAirwingActiveState(false);
+        SetFriendType(eFriendType.None);
     }
 
     public void InstantiateAirWings(float xPos)
@@ -106,5 +114,15 @@ public class FriendManager : MonoBehaviour
     public static bool GetIfPlayerIsCloseToAFriend()
     {
         return mbPlayerIsColseToAnotherFriend;
+    }
+
+    public static void SetFriendType(eFriendType eType)
+    {
+        meFriendType = eType;
+    }
+
+    public static eFriendType GetFriendType()
+    {
+        return meFriendType;
     }
 }

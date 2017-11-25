@@ -14,6 +14,7 @@ public class BarProgressSprite : MonoBehaviour
 	float mfTime = 1;
 	float mfCount = 0;
 	float mfProgress = 0;
+    float mfAirwingBarPosYAxis = 2.25f;
     float mfKingfisherBarPosYAxis = 2.25f;
     float mfDragonflyBarPosYAxis = 2.25f;
     float mfDuckBarPosYAxis = 2.2f;
@@ -22,7 +23,6 @@ public class BarProgressSprite : MonoBehaviour
 	int miCurNumberOfFills;
     int miPreviousNumberOfFills;
 	bool mbAnimating = false;
-    bool mbEmptyTheBar = false;
     Vector3 mvTempVector;
 
     public delegate void FillsCountChanged(int val);
@@ -179,14 +179,17 @@ public class BarProgressSprite : MonoBehaviour
     {
         if (FriendManager.GetPlayerIsWithFriendState())
         {
-            if (FriendManager._eFriendType == eFriendType.Duck)
+            if (FriendManager.GetFriendType() == eFriendType.Duck)
                 SetPos(mfDuckBarPosYAxis);
 
-            else if (FriendManager._eFriendType == eFriendType.Kingfisher)
+            else if (FriendManager.GetFriendType() == eFriendType.Kingfisher)
                 SetPos(mfKingfisherBarPosYAxis);
 
-            else if (FriendManager._eFriendType == eFriendType.Dragonfly)
+            else if (FriendManager.GetFriendType() == eFriendType.Dragonfly)
                 SetPos(mfDragonflyBarPosYAxis);
+
+            else if (FriendManager.GetFriendType() == eFriendType.Airwing)
+                SetPos(mfAirwingBarPosYAxis);
         }
 
         else

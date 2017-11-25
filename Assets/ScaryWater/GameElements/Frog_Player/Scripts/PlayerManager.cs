@@ -14,9 +14,9 @@ public class PlayerManager : MonoBehaviour
     public PlayerHandler _playerHandler;
     public Texture[] _arrOfPlayerTexture;
     public BarProgressSprite _BarProgressSpriteScr;
-    public CameraController _CameraControllerScr;
+    public GamePlayCameraScr _CameraControllerScr;
     public EnvironmentManager _EnvironmentManagerScr;
-    public MiniGameManager _MiniGameManagerScr;
+    //public MiniGameManager _MiniGameManagerScr;
     public ParticleSystem _BrokenHeart;
 
     public static PlayerManager Instance

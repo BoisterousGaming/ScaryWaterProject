@@ -143,8 +143,8 @@ public class BirdHandler : MonoBehaviour
                 if (mbGiveMiniGamePoints)
                 {
                     mbGiveMiniGamePoints = false;
-                    if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
-                        MiniGameManager.Instance._iFriendsHelpAccepted += 1;
+                    //if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AcceptFriendHelp || MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidFriend)
+                        //MiniGameManager.Instance._iFriendsHelpAccepted += 1;
                 }
                 MovePlayerTowardsLandingPad();
             }
@@ -234,7 +234,7 @@ public class BirdHandler : MonoBehaviour
         if (this._eBirdType == eBirdType.Kingfisher)
         {
             //CEffectsPlayer.Instance.Play(audioKingfisher);
-            FriendManager._eFriendType = eFriendType.Kingfisher;
+            FriendManager.SetFriendType(eFriendType.Kingfisher);
             if (state)
                 SetPlayerPositionForKingfisher();
         }
@@ -242,7 +242,7 @@ public class BirdHandler : MonoBehaviour
         else if (this._eBirdType == eBirdType.Dragonfly)
         {
             //CEffectsPlayer.Instance.Play(audioDragonfly);
-            FriendManager._eFriendType = eFriendType.Dragonfly;
+            FriendManager.SetFriendType(eFriendType.Dragonfly);
             if (state)
                 SetPlayerPositionForDragonfly();
         }

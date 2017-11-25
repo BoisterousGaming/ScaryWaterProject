@@ -6,7 +6,6 @@ using TMPro;
 
 public class GameplayAreaUIHandler : GUIItemsManager 
 {
-    int miCurrentScore;
     CoinSpriteScr mCoinSpriteScr;
     ButterflySpriteScr mButterflySpriteScr;
     OnScreenScoreScr mOnScreenScoreScr;
@@ -18,7 +17,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
 	public Image _CoinImage;
 	public Image _ButterflyImage;
     public TextMeshProUGUI _OnScreenScore;
-    public TextMeshProUGUI _LaneID;
     public RectTransform _CenterPointRect;
 	public RectTransform _CoinTargetPosRect;
 	public RectTransform _ButterflyTargetPosRect;
@@ -56,9 +54,7 @@ public class GameplayAreaUIHandler : GUIItemsManager
     void InitializeCallback()
     {
         PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback += PrintHealthCountCallback;
-        PlayerManager.Instance._playerHandler._PlayerChangedLaneCallback += PrintPlayerLaneID;
     }
-
 
 	public void InstantiateCoin(Transform coinTransform = null, bool state = false)
 	{
@@ -114,11 +110,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
         _arrOfAllTMPTextElement[3].text = val.ToString();
     }
 
-    void PrintPlayerLaneID(int iValue)
-    {
-        _LaneID.text = iValue.ToString();
-    }
-
     public void DisplayPoisonCount()
     {
         _arrOfAllTMPTextElement[4].text = DataManager.GetPoisonAmount().ToString();
@@ -169,15 +160,6 @@ public class GameplayAreaUIHandler : GUIItemsManager
         UICanvasHandler.Instance.LoadScreen("PauseScreenCanvas");
     }
 
-    void OnDisable()
-    {
-        if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
-            PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PrintHealthCountCallback;
-
-        if (PlayerManager.Instance._playerHandler._PlayerChangedLaneCallback != null)
-            PlayerManager.Instance._playerHandler._PlayerChangedLaneCallback -= PrintPlayerLaneID;
-    }
-
     public void SetMagnetBtnState(bool state = true)
     {
         _magnetBtn.interactable = state;
@@ -198,5 +180,11 @@ public class GameplayAreaUIHandler : GUIItemsManager
     {
         PlayerManager.Instance._playerHandler._fLaneChangeLimit = fValue;
         _PlayerLaneChangeLimit.text = fValue.ToString();
+    }
+
+    void OnDisable()
+    {
+        if (PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback != null)
+            PlayerManager.Instance._BarProgressSpriteScr._FillCountChangedCallback -= PrintHealthCountCallback;
     }
 }

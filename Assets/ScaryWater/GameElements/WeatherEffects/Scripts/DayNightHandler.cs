@@ -33,7 +33,7 @@ public class DayNightHandler : MonoBehaviour
     private void Start()
     {
         mfSunInitialIntensity = _sunLight.intensity;
-        _fCurrentTimeOfTheDay = 0.55f;
+        _fCurrentTimeOfTheDay = 0.42f;
     }
 
     private void Update()

@@ -42,7 +42,7 @@ public class MiniGameRewardUIHandler : GUIItemsManager
 			case "OkBtn":
                 Time.timeScale = 1f;
                 UICanvasHandler.Instance.DestroyScreen(this.gameObject);
-                MiniGameManager.Instance.GiveRewardToPlayer();
+                //MiniGameManager.Instance.GiveRewardToPlayer();
                 PlayerManager.Instance._playerHandler._eControlState = eControlState.Active;
 				break;
 		}

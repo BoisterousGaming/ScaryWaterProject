@@ -97,8 +97,8 @@ public class CollectableHandler : MonoBehaviour
         if (tCanvas != null)
             tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayCoinCount();
 
-		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectCoins)
-			MiniGameManager.Instance._iCoinsCollected += miCoinValue;
+		//if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectCoins)
+			//MiniGameManager.Instance._iCoinsCollected += miCoinValue;
 	}
 
 	void ButterflyCount()
@@ -111,8 +111,8 @@ public class CollectableHandler : MonoBehaviour
 		if (tCanvas != null)
             tCanvas.GetComponent<GameplayAreaUIHandler>().DisplayButterflyCount();
         
-		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectButterflies)
-			MiniGameManager.Instance._iButterfliesCollected += miButterflyValue;
+		//if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.CollectButterflies)
+			//MiniGameManager.Instance._iButterfliesCollected += miButterflyValue;
 	}
 
 	void MoveTowardsPlayer(Vector3 CurrentPosition)

@@ -90,9 +90,7 @@ namespace LPWAsset {
                 var _Time_ = Time.realtimeSinceStartup;
                 material.SetFloat("_Time_", _Time_);
             }
-
-            //if (sun != null)
-                //Debug.Log("Sun name: " + sun.name + " position: " + sun.transform.position + " rotation: " + sun.transform.rotation);
+            
         }
 
         void OnDisable() {

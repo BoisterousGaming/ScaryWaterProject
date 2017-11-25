@@ -30,11 +30,6 @@ public class FoodHandler : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    void OnDestroy()
-    {
-        CollectableAndFoodManager.Instance._listOfFoodHandlers.Remove(this);
-    }
-
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))
@@ -45,8 +40,12 @@ public class FoodHandler : MonoBehaviour
                 //CEffectsPlayer.Instance.Play("FoodCollection");
 				CollectableAndFoodManager.Instance.ApplyHealthBasedOnFood(_eFoodType);
             }
-
             mbShouldDestroy = true;
 		}
 	}
+
+    void OnDisable()
+    {
+        CollectableAndFoodManager.Instance._listOfFoodHandlers.Remove(this);
+    }
 }

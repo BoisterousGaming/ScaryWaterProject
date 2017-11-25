@@ -5,26 +5,24 @@ using System;
 
 public class PlayerJumpAction 
 {
-    public PlayerHandler _PlayerHandler;
-
     Action mAnimationCallback;
     Vector3 mvDiffVector;
     Vector3 mvTempVector;
     float mfPlayerJumpTime;
     float mfCount;
     float mfJumpHeight;
+    string msAnimationName;
 
     public bool _bIsAnimating = false;
     public Vector3 _vStartPosition;
     public Vector3 _vEndPosition;
     public float _Progress;
-
-    string mAnimationName;
+    public PlayerHandler _PlayerHandler;
 
     //Jump to a particular position within time specified and do a callback once done
     public void JumpToPosition(Vector3 StartPosition, Vector3 EndPosition, float speed, float height, Action callback, string animationName)
 	{
-        mAnimationName = animationName;
+        msAnimationName = animationName;
         _vEndPosition = EndPosition;
         _vStartPosition = StartPosition;
 
@@ -75,7 +73,7 @@ public class PlayerJumpAction
                     _PlayerHandler._vPlayerRequiredPosition.y = _vStartPosition.y + mvTempVector.y;
                     _PlayerHandler._vPlayerRequiredPosition.z = _vStartPosition.z + mvTempVector.z;
                     _PlayerHandler._vPlayerRequiredPosition.x = _vStartPosition.x + mvTempVector.x;
-                    _PlayerHandler._Animator.Play(mAnimationName, -1, _Progress);
+                    _PlayerHandler._Animator.Play(msAnimationName, -1, _Progress);
                 }
             }
             else
@@ -94,12 +92,12 @@ public class PlayerJumpAction
 
     public void StopJump(string animationName)
     {
-        mAnimationName = animationName;
+        msAnimationName = animationName;
 		_bIsAnimating = false; 
         mfCount = 0.0f;
 		_Progress = 0.0f;
         _PlayerHandler._bLockUpdatingPosition = true;
-        _PlayerHandler._Animator.Play(mAnimationName, -1, _Progress);
+        _PlayerHandler._Animator.Play(msAnimationName, -1, _Progress);
         _PlayerHandler._eControlState = eControlState.Deactive;
     }
 }

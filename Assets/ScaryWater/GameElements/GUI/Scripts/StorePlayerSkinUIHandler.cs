@@ -58,7 +58,6 @@ public enum ePlayerSkinEquipState
 public class StorePlayerSkinUIHandler : GUIItemsManager
 {
     static StorePlayerSkinUIHandler mInstance;
-    GameObject mDemoPlayer;
     string msRegularTextColor = "#FFFFFFFF";
     string msEquipedTextColor = "#2D8199FF";
 
@@ -97,11 +96,6 @@ public class StorePlayerSkinUIHandler : GUIItemsManager
         SkinAndBtnState(false, false, "Skin is equipped", tColor, " ", false);
         InitializeSkinPrice();
 	}
-
-    void OnDestroy()
-    {
-        Destroy(mDemoPlayer);    
-    }
 
     void InitializeSkinPrice()
     {

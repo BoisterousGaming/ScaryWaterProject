@@ -53,11 +53,9 @@ public enum eScoreType
 public class ScoreHandler : MonoBehaviour 
 {
     static ScoreHandler mInstance;
-    eScoreType meScoreType = eScoreType.None;
     Dictionary<eScoreType, int> mDictOfScore = new Dictionary<eScoreType, int>();
     List<eScoreType> mListOfElementsScoreDisplay = new List<eScoreType>();
     int miCurrentScore;
-    int miTempCurrentScore;
 
     public delegate void ScoreEvent(eScoreType type);
     public static ScoreEvent _OnScoreEventCallback;
@@ -101,31 +99,31 @@ public class ScoreHandler : MonoBehaviour
         mDictOfScore.Add(eScoreType.Duck, 25);
         mDictOfScore.Add(eScoreType.SnakeJumpingOver, 50);
         mDictOfScore.Add(eScoreType.SnakeKilling, 150);
-        mDictOfScore.Add(eScoreType.SnakeEscaping, 100);
+        //mDictOfScore.Add(eScoreType.SnakeEscaping, 100);
         mDictOfScore.Add(eScoreType.GiantWaterBugJumpingOver, 50);
         mDictOfScore.Add(eScoreType.GiantWaterBugKilling, 150);
-        mDictOfScore.Add(eScoreType.GiantWaterBugEscaping, 100);
+        //mDictOfScore.Add(eScoreType.GiantWaterBugEscaping, 100);
         mDictOfScore.Add(eScoreType.BlueHeronJumpingOver, 50);
         mDictOfScore.Add(eScoreType.BlueHeronKilling, 150);
-        mDictOfScore.Add(eScoreType.BlueHeronEscaping, 100);
+        //mDictOfScore.Add(eScoreType.BlueHeronEscaping, 100);
         mDictOfScore.Add(eScoreType.CrabJumpingOver, 50);
         mDictOfScore.Add(eScoreType.CrabKilling, 150);
-        mDictOfScore.Add(eScoreType.CrabEscaping, 100);
+        //mDictOfScore.Add(eScoreType.CrabEscaping, 100);
         mDictOfScore.Add(eScoreType.VenusFlytrapJumpingOver, 50);
         mDictOfScore.Add(eScoreType.VenusFlytrapKilling, 150);
-        mDictOfScore.Add(eScoreType.VenusFlytrapEscaping, 100);
+        //mDictOfScore.Add(eScoreType.VenusFlytrapEscaping, 100);
         mDictOfScore.Add(eScoreType.RaccoonJumpingOver, 50);
         mDictOfScore.Add(eScoreType.RaccoonKilling, 250);
-        mDictOfScore.Add(eScoreType.RaccoonEscaping, 200);
+        //mDictOfScore.Add(eScoreType.RaccoonEscaping, 200);
         mDictOfScore.Add(eScoreType.GreatEgretJumpingOver, 50);
         mDictOfScore.Add(eScoreType.GreatEgretKilling, 150);
-        mDictOfScore.Add(eScoreType.GreatEgretEscaping, 100);
+        //mDictOfScore.Add(eScoreType.GreatEgretEscaping, 100);
         mDictOfScore.Add(eScoreType.BatJumpingOver, 75);
         mDictOfScore.Add(eScoreType.BatKilling, 200);
-        mDictOfScore.Add(eScoreType.BatEscaping, 150);
+        //mDictOfScore.Add(eScoreType.BatEscaping, 150);
         mDictOfScore.Add(eScoreType.HawkJumpingOver, 50);
         mDictOfScore.Add(eScoreType.HawkKilling, 150);
-        mDictOfScore.Add(eScoreType.HawkEscaping, 100);
+        //mDictOfScore.Add(eScoreType.HawkEscaping, 100);
     }
 
     void ElementsScoreOnScreenDisplayDataInitializers()
@@ -146,31 +144,31 @@ public class ScoreHandler : MonoBehaviour
         mListOfElementsScoreDisplay.Add(eScoreType.Duck);
         mListOfElementsScoreDisplay.Add(eScoreType.SnakeJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.SnakeKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.SnakeEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.SnakeEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.GiantWaterBugEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.BlueHeronEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.CrabJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.CrabKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.CrabEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.CrabEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.VenusFlytrapEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.RaccoonJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.RaccoonKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.RaccoonEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.RaccoonEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.GreatEgretEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.BatJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.BatKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.BatEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.BatEscaping);
         mListOfElementsScoreDisplay.Add(eScoreType.HawkJumpingOver);
         mListOfElementsScoreDisplay.Add(eScoreType.HawkKilling);
-        mListOfElementsScoreDisplay.Add(eScoreType.HawkEscaping);
+        //mListOfElementsScoreDisplay.Add(eScoreType.HawkEscaping);
     }
 
     void ScoreUpdateHandler(eScoreType scoreType)

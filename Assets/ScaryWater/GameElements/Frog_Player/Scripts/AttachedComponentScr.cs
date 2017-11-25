@@ -25,13 +25,20 @@ public class AttachedComponentScr : MonoBehaviour
 
     void LateUpdate()
     {
-        // Updating rain position
+        SetRainPosition();
+        SetFarBGPosition();
+    }
+
+    void SetRainPosition()
+    {
         mvPosition.x = 0f;
         mvPosition.y = mvRainInitialPos.y;
         mvPosition.z = _PlayerTransform.position.z + mvRainInitialPos.z;
         mfRainTransform.position = mvPosition;
+    }
 
-        // Updating farBG position
+    void SetFarBGPosition()
+    {
         mvPosition.x = 0f;
         mvPosition.y = mvFarBGInitialPos.y;
         mvPosition.z = _PlayerTransform.position.z + mvFarBGInitialPos.z;

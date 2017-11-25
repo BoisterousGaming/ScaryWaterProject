@@ -18,10 +18,6 @@ public class StoreUpgradeUIHandler : GUIItemsManager
     int miPoisonCount = 1;
     int miAirwingCount = 1;
     int miMagnetCount = 1;
-    int miTotalLiveBought;
-    int miTotalPoisonBought;
-    int miTotalAirwingBought;
-    int miTotalMagnetBought;
     int miTempCount = 1;
 
     public Text[] _arrOfAllTextElement;

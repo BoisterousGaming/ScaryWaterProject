@@ -40,7 +40,7 @@ public class MiniGameChoiceUIHandler : GUIItemsManager
             case "YesBtn":
                 //CEffectsPlayer.Instance.Play("PostitiveSound");
                 Time.timeScale = 1f;
-                MiniGameManager.Instance.ActivateMiniGame(Time.time);
+                //MiniGameManager.Instance.ActivateMiniGame(Time.time);
                 DestroyCanvas();
                 break;
 

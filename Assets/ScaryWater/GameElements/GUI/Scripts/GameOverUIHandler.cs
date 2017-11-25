@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class GameOverUIHandler : GUIItemsManager 
 {
-	int miCoinCount;
-	int miButterflyCount;
     static GameOverUIHandler mInstance;
 
 	public Text _CoinCount;

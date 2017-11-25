@@ -6,7 +6,6 @@ public class MoveHealthBarScr : MonoBehaviour
 {
     RectTransform mTempRectTransform;
     float mfLerpingSpeed = 2f;
-    int miLaneID;
 
     public GameplayAreaUIHandler _GameplayAreaUIHandlerScr;
     public RectTransform _LeftLanePosRect;

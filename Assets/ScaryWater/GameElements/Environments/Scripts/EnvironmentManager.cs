@@ -271,7 +271,7 @@ public class EnvironmentManager : MonoBehaviour
 
     public bool ComparePlatformAndPlayerPositionForLanding(Vector3 vPlayerPosition, float fDifference, out int iDeathLane)
     {
-        bool bRequiredState = false; // Testing 
+        bool bRequiredState = true; // Testing 
         iDeathLane = 0;
         for (int i = 0; i < _listOfPlatformHandler.Count; i++)
         {

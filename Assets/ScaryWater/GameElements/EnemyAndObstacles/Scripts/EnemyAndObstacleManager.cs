@@ -89,8 +89,8 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
 		//Debug.Log("obsType: " + obsType);
 
-		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidObstacles)
-			MiniGameManager.Instance._iObstaclesTouched += 1;
+		//if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidObstacles)
+			//MiniGameManager.Instance._iObstaclesTouched += 1;
 	}
 
     public void ApplyDamageBasedOnEnemy(eEnemyType enemyType)
@@ -151,8 +151,8 @@ public class EnemyAndObstacleManager : MonoBehaviour
 
 		//Debug.Log("enemyType: " + enemyType);
 
-		if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidEnemy)
-			MiniGameManager.Instance._iEnemiesStunned += 1;
+		//if (MiniGameManager.Instance._eMiniGameState == eMiniGameState.AvoidEnemy)
+			//MiniGameManager.Instance._iEnemiesStunned += 1;
     }
 
     public void InstantiateBat(Vector3 playerPos)

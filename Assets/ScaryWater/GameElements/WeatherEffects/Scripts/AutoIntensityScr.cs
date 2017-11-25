@@ -5,7 +5,6 @@ public class AutoIntensityScr : MonoBehaviour
 {
     float mfSkySpeed = 1f;
     Light mMainLight;
-    Skybox mSkyBox;
     Material mSkyMat;
 
     public Gradient _NightDayColor;

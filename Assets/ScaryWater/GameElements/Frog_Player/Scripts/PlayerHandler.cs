@@ -42,9 +42,6 @@ public class PlayerHandler : MonoBehaviour
     public float _fSpeed = 17f; // Testing
     public float _fLaneChangeLimit = 0.6f; // Testing
 
-    public delegate void PlayerChangedLane(int val);
-    public PlayerChangedLane _PlayerChangedLaneCallback;
-
     void Awake()
     {
         _iLaneNumber = 0;
@@ -188,14 +185,15 @@ public class PlayerHandler : MonoBehaviour
                 targetHealth = Mathf.RoundToInt(targetHealth);
                 tHealthBarScr.AddDamage(diff + 0.001f, _playerManager.PlayerDeathHandler);
 
-                if (_playerManager._MiniGameManagerScr != null)
-                {
-                    if (_playerManager._MiniGameManagerScr._eMiniGameState == eMiniGameState.AvoidDying)
-                        _playerManager._MiniGameManagerScr._iPlayerDeathCount += 1;
+                //if (_playerManager._MiniGameManagerScr != null)
+                //{
+                //    if (_playerManager._MiniGameManagerScr._eMiniGameState == eMiniGameState.AvoidDying)
+                //        _playerManager._MiniGameManagerScr._iPlayerDeathCount += 1;
 
-                    //else
-                        //_playerManager._MiniGameManagerScr.DeactivateMiniGame(false);
-                }if (_playerManager._EnvironmentManagerScr != null)
+                //    //else
+                //        //_playerManager._MiniGameManagerScr.DeactivateMiniGame(false);
+                //}
+                if (_playerManager._EnvironmentManagerScr != null)
                 {
                     if (tHealthBarScr.GetNumberOfFills() >= 1)
                         StartCoroutine(IRespawnThePlayer(_playerManager._EnvironmentManagerScr.ComparePlatformAndPlayerPositionForReSpawning(transform.position, 2f, 30f)));
@@ -241,8 +239,6 @@ public class PlayerHandler : MonoBehaviour
 	{
 		if (_iLaneNumber > -1)
 		{
-            if (_PlayerChangedLaneCallback != null)
-                _PlayerChangedLaneCallback(_iLaneNumber);
             if (_jumpActionScr._Progress <= _fLaneChangeLimit)
             {
                 _iLaneNumber -= 1;
@@ -255,8 +251,6 @@ public class PlayerHandler : MonoBehaviour
 	{
 		if (_iLaneNumber < 1)
 		{
-            if (_PlayerChangedLaneCallback != null)
-                _PlayerChangedLaneCallback(_iLaneNumber);
             if (_jumpActionScr._Progress <= _fLaneChangeLimit)
             {
                 _iLaneNumber += 1;
@@ -272,7 +266,7 @@ public class PlayerHandler : MonoBehaviour
 
         _bLockUpdatingPosition = false;
         _playerManager._EnvironmentManagerScr.SetCurrentPlatformPosition(_vCurPlatformPosition.x, _vCurPlatformPosition.y, _vCurPlatformPosition.z);
-        _vNextPlatformPosition = _playerManager._EnvironmentManagerScr.GetNextPlatformPosition(1f, offset, 5f * _iLaneNumber);
+        _vNextPlatformPosition = _playerManager._EnvironmentManagerScr.GetNextPlatformPosition(1f, offset, DataHandler._fSpaceBetweenLanes * _iLaneNumber);
         _jumpActionScr.JumpToPosition(transform.position, _vNextPlatformPosition, speed, height, JumpFinished, animationName);
     }
 

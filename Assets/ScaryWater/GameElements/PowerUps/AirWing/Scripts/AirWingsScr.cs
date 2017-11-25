@@ -304,7 +304,7 @@ public class AirWingsScr : MonoBehaviour
 
     void SetPlayerPositionForAirWings()
     {
-        FriendManager._eFriendType = eFriendType.Dragonfly;
+        FriendManager.SetFriendType(eFriendType.Airwing);
         Vector3 birdPosition = transform.position;
         mvTempPos.x = birdPosition.x;
         mvTempPos.y = birdPosition.y - 1.25f;
