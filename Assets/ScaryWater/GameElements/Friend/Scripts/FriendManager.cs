@@ -119,10 +119,35 @@ public class FriendManager : MonoBehaviour
     public static void SetFriendType(eFriendType eType)
     {
         meFriendType = eType;
+        GiveScoreBasedOnTypeOfFriend(eType);
     }
 
     public static eFriendType GetFriendType()
     {
         return meFriendType;
+    }
+
+    static void GiveScoreBasedOnTypeOfFriend(eFriendType eType)
+    {
+        if (eType == eFriendType.Dragonfly)
+        {
+            if (ScoreHandler._OnScoreEventCallback != null)
+                ScoreHandler._OnScoreEventCallback(eScoreType.Dragonfly);
+        }
+        else if (eType == eFriendType.Duck)
+        {
+            if (ScoreHandler._OnScoreEventCallback != null)
+                ScoreHandler._OnScoreEventCallback(eScoreType.Duck);
+        }
+        else if (eType == eFriendType.Kingfisher)
+        {
+            if (ScoreHandler._OnScoreEventCallback != null)
+                ScoreHandler._OnScoreEventCallback(eScoreType.Kingfisher);
+        }
+        else if (eType == eFriendType.Spider)
+        {
+            if (ScoreHandler._OnScoreEventCallback != null)
+                ScoreHandler._OnScoreEventCallback(eScoreType.Spider);
+        }
     }
 }

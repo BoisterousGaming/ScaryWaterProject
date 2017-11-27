@@ -37,10 +37,10 @@ public class BZCPoint
     public AnimationCurve _PositionCurve;
     public bool _bChained;
 
-    public BZCPoint(Vector3 pos, Quaternion rot)
+    public BZCPoint(Vector3 vPos, Quaternion qRot)
     {
-        _vPosition = pos;
-        _qRotation = rot;
+        _vPosition = vPos;
+        _qRotation = qRot;
         _vHandlePrev = Vector3.back;
         _vHandleNext = Vector3.forward;
         _eCurveTypeRotation = eBZCECurveType.EaseInAndOut;
@@ -58,8 +58,7 @@ public class BZCObjectPath : MonoBehaviour
     float mfTimePerSegment;
     bool mbPaused = false;
     bool mbPlaying = false;
-    bool mbReachedReleasePoint = false;
-    static BZCObjectPath mInstance;
+    bool mbReachedDropPoint = false;
 
     public GameObject _SelectedObject;
     public Transform _tLookAtTarget;
@@ -76,19 +75,12 @@ public class BZCObjectPath : MonoBehaviour
     public bool _bAlwaysShow = true;
     public bool _bPickupPoint = false;
     public bool _bDropPoint = false;
-
-    public static BZCObjectPath Instance
-    {
-        get { return mInstance; }
-    }
-
-    private void Awake()
-    {
-        if (mInstance == null)
-            mInstance = this;
-        else if (mInstance != this)
-            Destroy(this.gameObject);
-    }
+    public delegate void ArrivedAtThePickupPoint(Vector3 vPosition);
+    public ArrivedAtThePickupPoint _ArrivedAtThePickupPointCallback;
+    public delegate void ArrivedAtTheDropPoint(Vector3 vPosition);
+    public ArrivedAtTheDropPoint _ArrivedAtTheDropPointCallback;
+    public delegate void ArrivedAtTheEndPoint(Vector3 vPosition);
+    public ArrivedAtTheEndPoint _ArrivedAtTheEndPointCallback;
 
     void Start ()
     {
@@ -111,6 +103,7 @@ public class BZCObjectPath : MonoBehaviour
 
         if (_bPlayOnAwake)
             PlayPath(_fPlayOnAwakeTime);
+        
         PausePath();
         _iDropPointIndex = Mathf.Clamp(_iDropPointIndex, 0, _ListOfPoints.Count - 1);
         _iPickupPointIndex = Mathf.Clamp(_iPickupPointIndex, 0, _iDropPointIndex - 1);
@@ -118,14 +111,10 @@ public class BZCObjectPath : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _bPickupPoint = false;
-            ResumePath();
-        }
-            
-        if (Input.GetKeyDown(KeyCode.S))
-            PlayPath(_fPlayOnAwakeTime);
+        //if (Input.GetKeyDown(KeyCode.R))
+        //    ResumePath();
+        //if (Input.GetKeyDown(KeyCode.S))
+            //PlayPath(_fPlayOnAwakeTime);
     }
 
     /// <summary>
@@ -152,25 +141,30 @@ public class BZCObjectPath : MonoBehaviour
         mbPlaying = false;
         mbPaused = false;
         StopAllCoroutines();
-        OnArriveEndPoint();
+        Vector3 tPos = _ListOfPoints[miCurrentWaypointIndex]._vPosition;
+        OnArriveEndPoint(tPos);
     }
 
     /// <summary>
     /// Stop the object
     /// </summary>
-    public void OnArriveEndPoint()
+    public void OnArriveEndPoint(Vector3 vPosition)
     {
         Debug.Log("Reached end point");
-        Destroy(_SelectedObject);
-        Destroy(this.gameObject);
+        if (_ArrivedAtTheEndPointCallback != null)
+            _ArrivedAtTheEndPointCallback(vPosition);
+        //Destroy(_SelectedObject);
+        //Destroy(this.gameObject);
     }
 
     /// <summary>
     /// Release attached object
     /// </summary>
-    public void OnArriveReleasePoint()
+    public void OnArriveDropPoint(Vector3 vPosition)
     {
-        Debug.Log("Reached release point");
+        Debug.Log("Reached drop point");
+        if (_ArrivedAtTheDropPointCallback != null)
+            _ArrivedAtTheDropPointCallback(vPosition);
     }
 
     /// <summary>
@@ -196,6 +190,7 @@ public class BZCObjectPath : MonoBehaviour
     /// </summary>
     public void ResumePath()
     {
+        _bPickupPoint = false;
         if (mbPaused)
             mbPlaying = true;
         mbPaused = false;
@@ -225,23 +220,28 @@ public class BZCObjectPath : MonoBehaviour
     /// <returns>Returns waypoint index</returns>
     public int GetCurrentWayPoint()
     {
-        if (_bPickupPoint)
-        {
-            if (_iPickupPointIndex == miCurrentWaypointIndex)
-            PausePath();
-        }
+        //if (_bPickupPoint)
+        //{
+        //    if (_iPickupPointIndex == miCurrentWaypointIndex)
+        //        PausePath();
+        //}
 
-        if (_bDropPoint)
-        {
-            if (_iDropPointIndex == miCurrentWaypointIndex)
-            {
-                if (!mbReachedReleasePoint)
-                {
-                    mbReachedReleasePoint = true;
-                    OnArriveReleasePoint();
-                }
-            }
-        }
+        //if (_bDropPoint)
+        //{
+        //    Debug.Log("DropPoint Is Set");
+        //    if (_iDropPointIndex == miCurrentWaypointIndex)
+        //    {
+        //        Debug.Log("DropPoint Is Reached");
+        //        if (!mbReachedDropPoint)
+        //        {
+        //            mbReachedDropPoint = true;
+        //            Vector3 tPos = _ListOfPoints[_iDropPointIndex]._vPosition;
+        //            OnArriveDropPoint(tPos);
+        //            Debug.Log("ArriveState Are Set");
+        //        }
+        //    }
+        //}
+        Debug.Log("Current Point Is: " + miCurrentWaypointIndex);
         return miCurrentWaypointIndex;
     }
 
@@ -307,6 +307,28 @@ public class BZCObjectPath : MonoBehaviour
             ++miCurrentWaypointIndex;
             if (miCurrentWaypointIndex == _ListOfPoints.Count - 1 && !_bLooped) break;
             if (miCurrentWaypointIndex == _ListOfPoints.Count && _eAfterLoop == eBZCEAfterLoop.Continue) miCurrentWaypointIndex = 0;
+
+            if (_bPickupPoint)
+            {
+                if (_iPickupPointIndex == miCurrentWaypointIndex)
+                    PausePath();
+            }
+
+            if (_bDropPoint)
+            {
+                //Debug.Log("DropPoint Is Set");
+                if (_iDropPointIndex == miCurrentWaypointIndex)
+                {
+                    //Debug.Log("DropPoint Is Reached");
+                    if (!mbReachedDropPoint)
+                    {
+                        mbReachedDropPoint = true;
+                        Vector3 tPos = _ListOfPoints[_iDropPointIndex]._vPosition;
+                        OnArriveDropPoint(tPos);
+                        //Debug.Log("ArriveState Are Set");
+                    }
+                }
+            }
         }
         StopPath();
     }

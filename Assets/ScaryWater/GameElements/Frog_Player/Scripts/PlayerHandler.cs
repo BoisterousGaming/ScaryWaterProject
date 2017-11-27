@@ -265,8 +265,8 @@ public class PlayerHandler : MonoBehaviour
             return;
 
         _bLockUpdatingPosition = false;
-        _playerManager._EnvironmentManagerScr.SetCurrentPlatformPosition(_vCurPlatformPosition.x, _vCurPlatformPosition.y, _vCurPlatformPosition.z);
-        _vNextPlatformPosition = _playerManager._EnvironmentManagerScr.GetNextPlatformPosition(1f, offset, DataHandler._fSpaceBetweenLanes * _iLaneNumber);
+        _playerManager._EnvironmentManagerScr.SetCurrentPlatformPosition(_vCurPlatformPosition);
+        _vNextPlatformPosition = _playerManager._EnvironmentManagerScr.GetNextPlatformPosition(offset, DataHandler._fSpaceBetweenLanes * _iLaneNumber);
         _jumpActionScr.JumpToPosition(transform.position, _vNextPlatformPosition, speed, height, JumpFinished, animationName);
     }
 

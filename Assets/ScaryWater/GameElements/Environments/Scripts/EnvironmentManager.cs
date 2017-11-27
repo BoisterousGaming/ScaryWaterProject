@@ -314,23 +314,26 @@ public class EnvironmentManager : MonoBehaviour
         return tRequiredPosition;
     }
 
-    public void SetCurrentPlatformPosition(float X_Pos, float Y_Pos, float Z_Pos)
+    public void SetCurrentPlatformPosition(Vector3 vPos)
     {
-        _vCurrentPlatformPosition = new Vector3(X_Pos, Y_Pos, Z_Pos);
+        _vCurrentPlatformPosition = vPos;
     }
 
-    public Vector3 GetNextPlatformPosition(float MaxDistanceOn_X_Axis, float DistanceOn_Z_Axis, float X_Axis)
+    public Vector3 GetNextPlatformPosition(float fOffsetOnZ, float fRequiredXPos)
     {
-        Vector3 tRequiredPosition = Vector3.zero;
+        Vector3 tRequiredPosition = _vCurrentPlatformPosition;
         for (int i = 0; i < _listOfPlatformHandler.Count; i++)
         {
-            PlatformHandler element = _listOfPlatformHandler[i];
-            Vector3 tPos = element.transform.position;
-            if (Mathf.Abs(tPos.x - X_Axis) <= MaxDistanceOn_X_Axis & tPos.z - _vCurrentPlatformPosition.z <= DistanceOn_Z_Axis & tPos.z - _vCurrentPlatformPosition.z >= DistanceOn_Z_Axis)
+            Vector3 tPos = _listOfPlatformHandler[i].transform.position;
+            if (tPos.z > _vCurrentPlatformPosition.z & tPos.z - _vCurrentPlatformPosition.z <= fOffsetOnZ & tPos.x.Equals(fRequiredXPos))
             {
                 tRequiredPosition = tPos;
+                Debug.Log("If");
                 break;
             }
+
+            else
+                Debug.Log("Else");
         }
         return tRequiredPosition;
     }
