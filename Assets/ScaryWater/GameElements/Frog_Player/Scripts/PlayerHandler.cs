@@ -30,7 +30,7 @@ public class PlayerHandler : MonoBehaviour
     public TouchInputHandler _touchInputHandlerScr;
     public PlayerProperties _playerPropertiesScr;
     public Animator _Animator;
-    public Vector3 _vPlayerRequiredPosition = new Vector3(0, 0, 0);
+    public Vector3 _vPlayerRequiredPosition = Vector3.zero;
     public Vector3 _vCurPlatformPosition;
     public Vector3 _vNextPlatformPosition;
     public Transform _tPlayerTransform;
@@ -70,12 +70,7 @@ public class PlayerHandler : MonoBehaviour
     {
         if(mbInGameLoadingBufferState)
         {
-            mfTimeInGameLoadingBufferState += Time.deltaTime;
-            if (mfTimeInGameLoadingBufferState > 15.0f)
-            {
-                _rigidBodyOfPlayer.useGravity = true;
-                mbInGameLoadingBufferState = false;
-            }
+            _rigidBodyOfPlayer.useGravity = true;
             return;
         }
 
@@ -90,6 +85,20 @@ public class PlayerHandler : MonoBehaviour
 
         AddCommonScore();
 	}
+
+    public void ReadySteadyGo()
+    {
+        mbInGameLoadingBufferState = false;
+        transform.rotation = Quaternion.identity;
+        _BarProgressSpriteScr.GetComponent<SpriteRenderer>().enabled = true;
+        _BarProgressSpriteScr.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+        //_BarProgressSpriteScr.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        //transform.position = _vPlayerRequiredPosition;
+        _vCurPlatformPosition = new Vector3(0f, 0f, -10f);
+        //Debug.Log("Player Pos: " + transform.position);
+        miJumpDistance = Mathf.Abs(0 - transform.position.z);
+        DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, 10f, miJumpDistance, "long_jump_root_motion");
+    }
 
     void AddCommonScore()
     {

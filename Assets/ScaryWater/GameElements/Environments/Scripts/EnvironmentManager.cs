@@ -328,12 +328,8 @@ public class EnvironmentManager : MonoBehaviour
             if (tPos.z > _vCurrentPlatformPosition.z & tPos.z - _vCurrentPlatformPosition.z <= fOffsetOnZ & tPos.x.Equals(fRequiredXPos))
             {
                 tRequiredPosition = tPos;
-                Debug.Log("If");
                 break;
             }
-
-            else
-                Debug.Log("Else");
         }
         return tRequiredPosition;
     }

@@ -18,6 +18,9 @@ public class PlayerManager : MonoBehaviour
     public EnvironmentManager _EnvironmentManagerScr;
     //public MiniGameManager _MiniGameManagerScr;
     public ParticleSystem _BrokenHeart;
+    public BZCObjectPath _BZCPlayerPathScr;
+    public BZCObjectPath _BZCCameraPathScr;
+    public DayNightHandler _DayNightHandlerScr;
 
     public static PlayerManager Instance
     {
@@ -31,13 +34,13 @@ public class PlayerManager : MonoBehaviour
 
 		else if (mInstance != this)
 			Destroy(this.gameObject);
+
+        if (_playerPrefab != null)
+            PlayerSpawnLoc(new Vector3(0f, -1f, 0f));
 	}
 
     void Start()
     {
-        if (_playerPrefab != null)
-            PlayerSpawnLoc(new Vector3(0f, -1f, 0f));
-
         Invoke("AfterStart", 2);
     }
 
@@ -50,6 +53,7 @@ public class PlayerManager : MonoBehaviour
         _playerHandler._playerManager = this;
         _BarProgressSpriteScr = _playerHandler._BarProgressSpriteScr;
         EquipSkinOnStart(goPlayer);
+        _BZCPlayerPathScr._SelectedObject = goPlayer;
     }
 
     void EquipSkinOnStart(GameObject player)
@@ -61,6 +65,14 @@ public class PlayerManager : MonoBehaviour
 			if (miEquipedSkinID == i)
 				player.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.mainTexture = _arrOfPlayerTexture[i];
 		}
+    }
+
+    public void SetupPlayerForFirstJump()
+    {
+        _playerHandler.ReadySteadyGo();
+        _BZCPlayerPathScr.StopPath();
+        _BZCCameraPathScr.ResumePath();
+        _DayNightHandlerScr._bEnableDayNightHandler = true;
     }
 
     public void PlayerDeathHandler()

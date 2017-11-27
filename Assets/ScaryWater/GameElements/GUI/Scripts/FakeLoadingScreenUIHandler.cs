@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FakeLoadingScreenUIHandler : GUIItemsManager 
 {
     static FakeLoadingScreenUIHandler mInstance;
-	float mfTimeInGameLoadingBufferState;
-    float mfLerpingSpeed = 0.21f;
+    float mfTimeInGameLoadingBufferState = 5f;
+    float mfRotationSpeed = -60f;
 	bool mbInGameLoadingBufferState = true;
+    bool mbSkipSetting = false;
 
-    public Image _loadingBar;
+    public Image _snakeLoadingBar;
+    public Button _PlayBtn;
+    public TextMeshProUGUI _PlayBtnText;
 
     public static FakeLoadingScreenUIHandler Instance
     {
@@ -21,8 +25,6 @@ public class FakeLoadingScreenUIHandler : GUIItemsManager
     {
         base.Init();
 
-		_loadingBar.fillAmount = 0;
-
         if (mInstance == null)
             mInstance = this;
 
@@ -32,26 +34,45 @@ public class FakeLoadingScreenUIHandler : GUIItemsManager
 
     void Start()
     {
-        mbInGameLoadingBufferState = true;    
+        mbInGameLoadingBufferState = true;
+        _PlayBtn.enabled = false;
+        _PlayBtnText.enabled = false;
     }
 
     void Update()
     {
 		if (mbInGameLoadingBufferState)
 		{
-			mfTimeInGameLoadingBufferState += Time.deltaTime;
-			if (mfTimeInGameLoadingBufferState > 0.25f)
+			mfTimeInGameLoadingBufferState -= Time.deltaTime;
+			if (mfTimeInGameLoadingBufferState < 0.2f)
     			mbInGameLoadingBufferState = false;
-			return;
+            
+			_snakeLoadingBar.rectTransform.Rotate(0f, 0f, 6.0f * mfRotationSpeed * Time.deltaTime);
 		}
 
-        if (_loadingBar != null)
-            _loadingBar.fillAmount = Mathf.Lerp(_loadingBar.fillAmount, 1.0f, Time.deltaTime * mfLerpingSpeed);
-
-        if (_loadingBar.fillAmount >= 0.95f)
+        else if (!mbInGameLoadingBufferState)
         {
-            UICanvasHandler.Instance.LoadScreen("HUDCanvas");
-            UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+            if (!mbSkipSetting)
+            {
+                mbSkipSetting = true;
+                _snakeLoadingBar.gameObject.SetActive(false);
+                _PlayBtn.enabled = true;
+                _PlayBtnText.enabled = true;
+            }
+        }
+    }
+
+    public override void OnButtonCallBack(GUIItem item)
+    {
+        //Debug.Log("Button Pressed: " + item.gameObject.name);
+
+        switch (item.gameObject.name)
+        {
+            case "PlayBtn":
+                UICanvasHandler.Instance.LoadScreen("HUDCanvas");
+                UICanvasHandler.Instance.DestroyScreen(this.gameObject);
+                PlayerManager.Instance.SetupPlayerForFirstJump();
+                break;
         }
     }
 }

@@ -15,6 +15,7 @@ public class DayNightHandler : MonoBehaviour
     [Range(0, 5)] public float _fTimeMultiplier = 1f;
     [Range(0, 5)] public float _fSunLightIntensityMultiplier = 1f;
     public bool _bNightTime;
+    public bool _bEnableDayNightHandler = false;
 
     public static DayNightHandler Instance
     {
@@ -33,11 +34,14 @@ public class DayNightHandler : MonoBehaviour
     private void Start()
     {
         mfSunInitialIntensity = _sunLight.intensity;
-        _fCurrentTimeOfTheDay = 0.42f;
+        _fCurrentTimeOfTheDay = 0.55f;
     }
 
     private void Update()
     {
+        if (!_bEnableDayNightHandler)
+            return;
+        
         UpdateSun();
 
         _fCurrentTimeOfTheDay += (Time.deltaTime/ _fSecondsInFullDay) * _fTimeMultiplier;

@@ -10,8 +10,21 @@ public class GamePlayCameraScr : MonoBehaviour
     Vector3 mvOriginalPosition;
     bool mbInitialized = false;
     bool mbFollowPlayerY = false;
+    bool mbEnableCameraControl = false;
 
-    void Initialize()
+    public BZCObjectPath _BZCCameraPath;
+
+    void OnEnable()
+    {
+        _BZCCameraPath._ArrivedAtTheEndPointCallback += Initialize;   
+    }
+
+    void OnDisable()
+    {
+        _BZCCameraPath._ArrivedAtTheEndPointCallback -= Initialize;
+    }
+
+    void Initialize(Vector3 vPos)
     {
         mTransform = transform;
         mInitialRotation = transform.rotation;
@@ -21,15 +34,19 @@ public class GamePlayCameraScr : MonoBehaviour
             mTransform.parent = mtPlayerTransform;
 		}
         mvOriginalPosition = mTransform.position;
+        mbEnableCameraControl = true;
     }
 
     void LateUpdate ()
     {
-        if(!mbInitialized)
-        {
-            mbInitialized = true;
-            Initialize();
-        }
+        //if(!mbInitialized)
+        //{
+        //    mbInitialized = true;
+        //    Initialize();
+        //}
+
+        if (!mbEnableCameraControl)
+            return;
 
         if (!mbFollowPlayerY)
         {
