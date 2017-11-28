@@ -16,6 +16,7 @@ public class EnemyAndObstacleManager : MonoBehaviour
     public AutoIntensityScr _AutoIntensityScr;
     public PlayerManager _playerManager;
     public DayNightHandler _DayNightHandlerScr;
+    public SnakeScr _SnakeScr;
 
     public static EnemyAndObstacleManager Instance
     {

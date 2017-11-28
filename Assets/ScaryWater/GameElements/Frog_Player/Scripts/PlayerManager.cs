@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public BarProgressSprite _BarProgressSpriteScr;
     public GamePlayCameraScr _CameraControllerScr;
     public EnvironmentManager _EnvironmentManagerScr;
+    public EnemyAndObstacleManager _EnemyAndObstacleManagerScr;
     //public MiniGameManager _MiniGameManagerScr;
     public ParticleSystem _BrokenHeart;
     public BZCObjectPath _BZCPlayerPathScr;
@@ -77,6 +78,7 @@ public class PlayerManager : MonoBehaviour
     void InitiateJump(Vector3 vPos)
     {
         UICanvasHandler.Instance.LoadScreen("HUDCanvas");
+        _EnemyAndObstacleManagerScr._SnakeScr.StopDOTweenSequence();
         _playerHandler.ReadySteadyGo();
         _BZCPlayerPathScr.StopPath();
         _BZCCameraPathScr.ResumePath();
