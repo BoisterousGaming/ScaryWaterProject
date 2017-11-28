@@ -68,6 +68,8 @@ public class PlayerHandler : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log("Rotation: " + transform.rotation);
+        transform.rotation = Quaternion.identity;
         if(mbInGameLoadingBufferState)
         {
             _rigidBodyOfPlayer.useGravity = true;
@@ -90,6 +92,10 @@ public class PlayerHandler : MonoBehaviour
     {
         mbInGameLoadingBufferState = false;
         transform.rotation = Quaternion.identity;
+        transform.eulerAngles = Vector3.zero;
+        transform.localEulerAngles = Vector3.zero;
+        //Debug.Log("------ Reset rotation ------");
+        //Debug.Log("Rotation: " + transform.rotation);
         _BarProgressSpriteScr.GetComponent<SpriteRenderer>().enabled = true;
         _BarProgressSpriteScr.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
         //_BarProgressSpriteScr.GetComponentInChildren<SpriteRenderer>().enabled = true;
@@ -97,6 +103,7 @@ public class PlayerHandler : MonoBehaviour
         _vCurPlatformPosition = new Vector3(0f, 0f, -10f);
         //Debug.Log("Player Pos: " + transform.position);
         miJumpDistance = Mathf.Abs(0 - transform.position.z);
+
         DoJumpToNextPlatform(DataHandler._fPlayerHighAndLongJumpHeight, 10f, miJumpDistance, "long_jump_root_motion");
     }
 

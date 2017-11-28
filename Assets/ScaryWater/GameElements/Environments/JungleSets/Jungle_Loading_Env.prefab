@@ -4616,7 +4616,7 @@ MonoBehaviour:
   sizeX: 30
   sizeZ: 30
   noise: 0.478
-  enableReflection: 1
+  enableReflection: 0
   enableRefraction: 0
   reflection:
     disablePixelLights: 1
@@ -4653,7 +4653,7 @@ MonoBehaviour:
   sizeZ: 30
   noise: 0.478
   enableReflection: 1
-  enableRefraction: 0
+  enableRefraction: 1
   reflection:
     disablePixelLights: 1
     textureSize: 256

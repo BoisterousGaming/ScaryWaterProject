@@ -69,7 +69,6 @@ public class FakeLoadingScreenUIHandler : GUIItemsManager
         switch (item.gameObject.name)
         {
             case "PlayBtn":
-                UICanvasHandler.Instance.LoadScreen("HUDCanvas");
                 UICanvasHandler.Instance.DestroyScreen(this.gameObject);
                 PlayerManager.Instance.SetupPlayerForFirstJump();
                 break;

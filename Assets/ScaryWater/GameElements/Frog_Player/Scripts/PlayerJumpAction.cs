@@ -35,6 +35,8 @@ public class PlayerJumpAction
         mfCount = 0.0f;
         _Progress = 0.0f;
         _bIsAnimating = true;
+        //_PlayerHandler.transform.eulerAngles = Vector3.zero;
+        //_PlayerHandler.transform.localEulerAngles = Vector3.zero;
 	}
 
     public void CustomUpdate()

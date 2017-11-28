@@ -108,8 +108,8 @@ public class BZCObjectPath : MonoBehaviour
 
         if (_SelectedObject.name == "GameplayCamera")
             PausePath();
-        //_iDropPointIndex = Mathf.Clamp(_iDropPointIndex, 0, _ListOfPoints.Count - 1);
-        //_iPickupPointIndex = Mathf.Clamp(_iPickupPointIndex, 0, _iDropPointIndex - 1);
+        _iDropPointIndex = Mathf.Clamp(_iDropPointIndex, 0, _ListOfPoints.Count - 1);
+        _iPickupPointIndex = Mathf.Clamp(_iPickupPointIndex, 0, _iDropPointIndex - 1);
     }
 
     void Update()

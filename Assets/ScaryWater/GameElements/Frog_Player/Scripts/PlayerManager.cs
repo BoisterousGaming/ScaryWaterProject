@@ -41,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        _BZCPlayerPathScr._ArrivedAtTheDropPointCallback += InitiateJump;
         Invoke("AfterStart", 2);
     }
 
@@ -69,6 +70,13 @@ public class PlayerManager : MonoBehaviour
 
     public void SetupPlayerForFirstJump()
     {
+        _BZCPlayerPathScr._bDropPoint = true;
+        _BZCPlayerPathScr._iDropPointIndex = 4;
+    }
+
+    void InitiateJump(Vector3 vPos)
+    {
+        UICanvasHandler.Instance.LoadScreen("HUDCanvas");
         _playerHandler.ReadySteadyGo();
         _BZCPlayerPathScr.StopPath();
         _BZCCameraPathScr.ResumePath();
@@ -123,6 +131,9 @@ public class PlayerManager : MonoBehaviour
 
     void OnDisable()
     {
-        _BarProgressSpriteScr._FillsCountReducedCallback -= BrokenHeartCallback;
+        if (_BZCPlayerPathScr._ArrivedAtTheDropPointCallback != null)
+            _BZCPlayerPathScr._ArrivedAtTheDropPointCallback -= InitiateJump;
+        if (_BarProgressSpriteScr._FillsCountReducedCallback != null)
+            _BarProgressSpriteScr._FillsCountReducedCallback -= BrokenHeartCallback;
     }
 }

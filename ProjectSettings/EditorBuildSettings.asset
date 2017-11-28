@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/ScaryWater/Scenes/MenuScene.unity
     guid: faebbe366bcc9da469cd053a76cf8136
   - enabled: 1

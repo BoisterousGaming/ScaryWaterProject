@@ -1,0 +1,907 @@
+fileFormatVersion: 2
+guid: 5cdbe4de2fde9412492bc0a94b91e575
+timeCreated: 1511810765
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Left_Grass_0100
+    100002: Left_Grass_0101
+    100004: Left_Grass_0102
+    100006: Left_Grass_0103
+    100008: Left_Grass_0104
+    100010: Left_Grass_0105
+    100012: Left_Grass_0106
+    100014: Left_Grass_0107
+    100016: Left_Grass_0108
+    100018: Left_Grass_0109
+    100020: Left_Grass_0110
+    100022: Left_Grass_0111
+    100024: Left_Grass_0112
+    100026: Left_Grass_0113
+    100028: Left_Grass_0114
+    100030: Left_Grass_0115
+    100032: Left_Grass_0116
+    100034: Left_Grass_0117
+    100036: Left_Grass_0118
+    100038: Left_Grass_0119
+    100040: Left_Grass_0120
+    100042: Left_Grass_0121
+    100044: Left_Grass_0122
+    100046: Left_Grass_0123
+    100048: Left_Grass_0124
+    100050: Left_Grass_0125
+    100052: Left_Grass_0126
+    100054: Left_Grass_0127
+    100056: Left_Grass_0128
+    100058: Left_Grass_0129
+    100060: Left_Grass_0130
+    100062: Left_Grass_0131
+    100064: Left_Grass_0132
+    100066: Left_Grass_0133
+    100068: Left_Grass_0134
+    100070: Left_Grass_0135
+    100072: Left_Grass_0136
+    100074: Left_Grass_0137
+    100076: Left_Grass_0138
+    100078: Left_Grass_0139
+    100080: Left_Grass_0140
+    100082: Left_Grass_0141
+    100084: Left_Grass_0142
+    100086: Left_Grass_0143
+    100088: Left_Grass_0144
+    100090: Left_Grass_0145
+    100092: Left_Grass_0146
+    100094: Left_Grass_0147
+    100096: Left_Grass_0148
+    100098: Left_Grass_0149
+    100100: Left_Grass_0150
+    100102: Left_Grass_0151
+    100104: Left_Grass_0152
+    100106: Left_Grass_0153
+    100108: Left_Grass_0154
+    100110: Left_Grass_0155
+    100112: Left_Grass_0156
+    100114: Left_Grass_0157
+    100116: Left_Grass_0158
+    100118: Left_Grass_0159
+    100120: Left_Grass_0160
+    100122: Left_Grass_0161
+    100124: Left_Grass_0162
+    100126: Left_Grass_0163
+    100128: Left_Grass_0164
+    100130: Left_Grass_0165
+    100132: Left_Grass_0166
+    100134: Left_PLane_big_grass_01
+    100136: //RootNode
+    100138: Left_Side_Plane_Trees_0100
+    100140: Left_Side_Plane_Trees_0101
+    100142: Left_Side_Plane_Trees_0102
+    100144: Left_Side_Plane_Trees_0103
+    100146: Left_Side_Plane_Trees_0104
+    100148: Left_Side_Plane_Trees_0105
+    100150: Left_Side_Plane_Trees_0106
+    100152: Left_Side_Plane_Trees_0107
+    100154: Left_Side_Plane_Trees_0108
+    100156: Left_Side_Plane_Trees_0109
+    100158: Left_Side_Plane_Trees_0110
+    100160: Left_Side_Plane_Trees_0111
+    100162: Left_Side_Plane_Trees_0112
+    100164: Rock_Left_Side_01
+    400000: Left_Grass_0100
+    400002: Left_Grass_0101
+    400004: Left_Grass_0102
+    400006: Left_Grass_0103
+    400008: Left_Grass_0104
+    400010: Left_Grass_0105
+    400012: Left_Grass_0106
+    400014: Left_Grass_0107
+    400016: Left_Grass_0108
+    400018: Left_Grass_0109
+    400020: Left_Grass_0110
+    400022: Left_Grass_0111
+    400024: Left_Grass_0112
+    400026: Left_Grass_0113
+    400028: Left_Grass_0114
+    400030: Left_Grass_0115
+    400032: Left_Grass_0116
+    400034: Left_Grass_0117
+    400036: Left_Grass_0118
+    400038: Left_Grass_0119
+    400040: Left_Grass_0120
+    400042: Left_Grass_0121
+    400044: Left_Grass_0122
+    400046: Left_Grass_0123
+    400048: Left_Grass_0124
+    400050: Left_Grass_0125
+    400052: Left_Grass_0126
+    400054: Left_Grass_0127
+    400056: Left_Grass_0128
+    400058: Left_Grass_0129
+    400060: Left_Grass_0130
+    400062: Left_Grass_0131
+    400064: Left_Grass_0132
+    400066: Left_Grass_0133
+    400068: Left_Grass_0134
+    400070: Left_Grass_0135
+    400072: Left_Grass_0136
+    400074: Left_Grass_0137
+    400076: Left_Grass_0138
+    400078: Left_Grass_0139
+    400080: Left_Grass_0140
+    400082: Left_Grass_0141
+    400084: Left_Grass_0142
+    400086: Left_Grass_0143
+    400088: Left_Grass_0144
+    400090: Left_Grass_0145
+    400092: Left_Grass_0146
+    400094: Left_Grass_0147
+    400096: Left_Grass_0148
+    400098: Left_Grass_0149
+    400100: Left_Grass_0150
+    400102: Left_Grass_0151
+    400104: Left_Grass_0152
+    400106: Left_Grass_0153
+    400108: Left_Grass_0154
+    400110: Left_Grass_0155
+    400112: Left_Grass_0156
+    400114: Left_Grass_0157
+    400116: Left_Grass_0158
+    400118: Left_Grass_0159
+    400120: Left_Grass_0160
+    400122: Left_Grass_0161
+    400124: Left_Grass_0162
+    400126: Left_Grass_0163
+    400128: Left_Grass_0164
+    400130: Left_Grass_0165
+    400132: Left_Grass_0166
+    400134: Left_PLane_big_grass_01
+    400136: //RootNode
+    400138: Left_Side_Plane_Trees_0100
+    400140: Left_Side_Plane_Trees_0101
+    400142: Left_Side_Plane_Trees_0102
+    400144: Left_Side_Plane_Trees_0103
+    400146: Left_Side_Plane_Trees_0104
+    400148: Left_Side_Plane_Trees_0105
+    400150: Left_Side_Plane_Trees_0106
+    400152: Left_Side_Plane_Trees_0107
+    400154: Left_Side_Plane_Trees_0108
+    400156: Left_Side_Plane_Trees_0109
+    400158: Left_Side_Plane_Trees_0110
+    400160: Left_Side_Plane_Trees_0111
+    400162: Left_Side_Plane_Trees_0112
+    400164: Rock_Left_Side_01
+    2300000: Left_Grass_0100
+    2300002: Left_Grass_0101
+    2300004: Left_Grass_0102
+    2300006: Left_Grass_0103
+    2300008: Left_Grass_0104
+    2300010: Left_Grass_0105
+    2300012: Left_Grass_0106
+    2300014: Left_Grass_0107
+    2300016: Left_Grass_0108
+    2300018: Left_Grass_0109
+    2300020: Left_Grass_0110
+    2300022: Left_Grass_0111
+    2300024: Left_Grass_0112
+    2300026: Left_Grass_0113
+    2300028: Left_Grass_0114
+    2300030: Left_Grass_0115
+    2300032: Left_Grass_0116
+    2300034: Left_Grass_0117
+    2300036: Left_Grass_0118
+    2300038: Left_Grass_0119
+    2300040: Left_Grass_0120
+    2300042: Left_Grass_0121
+    2300044: Left_Grass_0122
+    2300046: Left_Grass_0123
+    2300048: Left_Grass_0124
+    2300050: Left_Grass_0125
+    2300052: Left_Grass_0126
+    2300054: Left_Grass_0127
+    2300056: Left_Grass_0128
+    2300058: Left_Grass_0129
+    2300060: Left_Grass_0130
+    2300062: Left_Grass_0131
+    2300064: Left_Grass_0132
+    2300066: Left_Grass_0133
+    2300068: Left_Grass_0134
+    2300070: Left_Grass_0135
+    2300072: Left_Grass_0136
+    2300074: Left_Grass_0137
+    2300076: Left_Grass_0138
+    2300078: Left_Grass_0139
+    2300080: Left_Grass_0140
+    2300082: Left_Grass_0141
+    2300084: Left_Grass_0142
+    2300086: Left_Grass_0143
+    2300088: Left_Grass_0144
+    2300090: Left_Grass_0145
+    2300092: Left_Grass_0146
+    2300094: Left_Grass_0147
+    2300096: Left_Grass_0148
+    2300098: Left_Grass_0149
+    2300100: Left_Grass_0150
+    2300102: Left_Grass_0151
+    2300104: Left_Grass_0152
+    2300106: Left_Grass_0153
+    2300108: Left_Grass_0154
+    2300110: Left_Grass_0155
+    2300112: Left_Grass_0156
+    2300114: Left_Grass_0157
+    2300116: Left_Grass_0158
+    2300118: Left_Grass_0159
+    2300120: Left_Grass_0160
+    2300122: Left_Grass_0161
+    2300124: Left_Grass_0162
+    2300126: Left_Grass_0163
+    2300128: Left_Grass_0164
+    2300130: Left_Grass_0165
+    2300132: Left_Grass_0166
+    2300134: Left_PLane_big_grass_01
+    2300136: Left_Side_Plane_Trees_0100
+    2300138: Left_Side_Plane_Trees_0101
+    2300140: Left_Side_Plane_Trees_0102
+    2300142: Left_Side_Plane_Trees_0103
+    2300144: Left_Side_Plane_Trees_0104
+    2300146: Left_Side_Plane_Trees_0105
+    2300148: Left_Side_Plane_Trees_0106
+    2300150: Left_Side_Plane_Trees_0107
+    2300152: Left_Side_Plane_Trees_0108
+    2300154: Left_Side_Plane_Trees_0109
+    2300156: Left_Side_Plane_Trees_0110
+    2300158: Left_Side_Plane_Trees_0111
+    2300160: Left_Side_Plane_Trees_0112
+    2300162: Rock_Left_Side_01
+    3300000: Left_Grass_0100
+    3300002: Left_Grass_0101
+    3300004: Left_Grass_0102
+    3300006: Left_Grass_0103
+    3300008: Left_Grass_0104
+    3300010: Left_Grass_0105
+    3300012: Left_Grass_0106
+    3300014: Left_Grass_0107
+    3300016: Left_Grass_0108
+    3300018: Left_Grass_0109
+    3300020: Left_Grass_0110
+    3300022: Left_Grass_0111
+    3300024: Left_Grass_0112
+    3300026: Left_Grass_0113
+    3300028: Left_Grass_0114
+    3300030: Left_Grass_0115
+    3300032: Left_Grass_0116
+    3300034: Left_Grass_0117
+    3300036: Left_Grass_0118
+    3300038: Left_Grass_0119
+    3300040: Left_Grass_0120
+    3300042: Left_Grass_0121
+    3300044: Left_Grass_0122
+    3300046: Left_Grass_0123
+    3300048: Left_Grass_0124
+    3300050: Left_Grass_0125
+    3300052: Left_Grass_0126
+    3300054: Left_Grass_0127
+    3300056: Left_Grass_0128
+    3300058: Left_Grass_0129
+    3300060: Left_Grass_0130
+    3300062: Left_Grass_0131
+    3300064: Left_Grass_0132
+    3300066: Left_Grass_0133
+    3300068: Left_Grass_0134
+    3300070: Left_Grass_0135
+    3300072: Left_Grass_0136
+    3300074: Left_Grass_0137
+    3300076: Left_Grass_0138
+    3300078: Left_Grass_0139
+    3300080: Left_Grass_0140
+    3300082: Left_Grass_0141
+    3300084: Left_Grass_0142
+    3300086: Left_Grass_0143
+    3300088: Left_Grass_0144
+    3300090: Left_Grass_0145
+    3300092: Left_Grass_0146
+    3300094: Left_Grass_0147
+    3300096: Left_Grass_0148
+    3300098: Left_Grass_0149
+    3300100: Left_Grass_0150
+    3300102: Left_Grass_0151
+    3300104: Left_Grass_0152
+    3300106: Left_Grass_0153
+    3300108: Left_Grass_0154
+    3300110: Left_Grass_0155
+    3300112: Left_Grass_0156
+    3300114: Left_Grass_0157
+    3300116: Left_Grass_0158
+    3300118: Left_Grass_0159
+    3300120: Left_Grass_0160
+    3300122: Left_Grass_0161
+    3300124: Left_Grass_0162
+    3300126: Left_Grass_0163
+    3300128: Left_Grass_0164
+    3300130: Left_Grass_0165
+    3300132: Left_Grass_0166
+    3300134: Left_PLane_big_grass_01
+    3300136: Left_Side_Plane_Trees_0100
+    3300138: Left_Side_Plane_Trees_0101
+    3300140: Left_Side_Plane_Trees_0102
+    3300142: Left_Side_Plane_Trees_0103
+    3300144: Left_Side_Plane_Trees_0104
+    3300146: Left_Side_Plane_Trees_0105
+    3300148: Left_Side_Plane_Trees_0106
+    3300150: Left_Side_Plane_Trees_0107
+    3300152: Left_Side_Plane_Trees_0108
+    3300154: Left_Side_Plane_Trees_0109
+    3300156: Left_Side_Plane_Trees_0110
+    3300158: Left_Side_Plane_Trees_0111
+    3300160: Left_Side_Plane_Trees_0112
+    3300162: Rock_Left_Side_01
+    4300000: Left_Grass_0100
+    4300002: Left_Grass_0101
+    4300004: Left_Grass_0102
+    4300006: Left_Grass_0103
+    4300008: Left_Grass_0104
+    4300010: Left_Grass_0105
+    4300012: Left_Grass_0106
+    4300014: Left_Grass_0107
+    4300016: Left_Grass_0108
+    4300018: Left_Grass_0109
+    4300020: Left_Grass_0110
+    4300022: Left_Grass_0111
+    4300024: Left_Grass_0112
+    4300026: Left_Grass_0113
+    4300028: Left_Grass_0114
+    4300030: Left_Grass_0115
+    4300032: Left_Grass_0116
+    4300034: Left_Grass_0117
+    4300036: Left_Grass_0118
+    4300038: Left_Grass_0119
+    4300040: Left_Grass_0120
+    4300042: Left_Grass_0121
+    4300044: Left_Grass_0122
+    4300046: Left_Grass_0123
+    4300048: Left_Grass_0124
+    4300050: Left_Grass_0125
+    4300052: Left_Grass_0126
+    4300054: Left_Grass_0127
+    4300056: Left_Grass_0128
+    4300058: Left_Grass_0129
+    4300060: Left_Grass_0130
+    4300062: Left_Grass_0131
+    4300064: Left_Grass_0132
+    4300066: Left_Grass_0133
+    4300068: Left_Grass_0134
+    4300070: Left_Grass_0135
+    4300072: Left_Grass_0136
+    4300074: Left_Grass_0137
+    4300076: Left_Grass_0138
+    4300078: Left_Grass_0139
+    4300080: Left_Grass_0140
+    4300082: Left_Grass_0141
+    4300084: Left_Grass_0142
+    4300086: Left_Grass_0143
+    4300088: Left_Grass_0144
+    4300090: Left_Grass_0145
+    4300092: Left_Grass_0146
+    4300094: Left_Grass_0147
+    4300096: Left_Grass_0148
+    4300098: Left_Grass_0149
+    4300100: Left_Grass_0150
+    4300102: Left_Grass_0151
+    4300104: Left_Grass_0152
+    4300106: Left_Grass_0153
+    4300108: Left_Grass_0154
+    4300110: Left_Grass_0155
+    4300112: Left_Grass_0156
+    4300114: Left_Grass_0157
+    4300116: Left_Grass_0158
+    4300118: Left_Grass_0159
+    4300120: Left_Grass_0160
+    4300122: Left_Grass_0161
+    4300124: Left_Grass_0162
+    4300126: Left_Grass_0163
+    4300128: Left_Grass_0164
+    4300130: Left_Grass_0165
+    4300132: Left_Grass_0166
+    4300134: Left_PLane_big_grass_01
+    4300136: Left_Side_Plane_Trees_0100
+    4300138: Left_Side_Plane_Trees_0101
+    4300140: Left_Side_Plane_Trees_0102
+    4300142: Left_Side_Plane_Trees_0103
+    4300144: Left_Side_Plane_Trees_0104
+    4300146: Left_Side_Plane_Trees_0105
+    4300148: Left_Side_Plane_Trees_0106
+    4300150: Left_Side_Plane_Trees_0107
+    4300152: Left_Side_Plane_Trees_0108
+    4300154: Left_Side_Plane_Trees_0109
+    4300156: Left_Side_Plane_Trees_0110
+    4300158: Left_Side_Plane_Trees_0111
+    4300160: Left_Side_Plane_Trees_0112
+    4300162: Rock_Left_Side_01
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0100Mat
+    second: {fileID: 2100000, guid: 241dbad4d631f4a5597fcf5be3119543, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0101Mat
+    second: {fileID: 2100000, guid: 298080643ec93400ea768649acbaef83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0102Mat
+    second: {fileID: 2100000, guid: 6db7dc319e644493f98a14d71204ca0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0103Mat
+    second: {fileID: 2100000, guid: 60b79d4245e8140dfa9efdd47c1a28cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0104Mat
+    second: {fileID: 2100000, guid: 6d6f854dbf4214b2f867a1f967b5ec20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0105Mat
+    second: {fileID: 2100000, guid: b4b6bade6b84647f697931be9e82e749, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0106Mat
+    second: {fileID: 2100000, guid: 61916b16e548949dd8e6d55ae26adf9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0107Mat
+    second: {fileID: 2100000, guid: 7037087f9e5fc43d4ba82128caf65071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0108Mat
+    second: {fileID: 2100000, guid: fa75ca05a608541a481082e1a8f3c5c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0109Mat
+    second: {fileID: 2100000, guid: c5e632ecd243d47f9b0bdec9b251198a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0110Mat
+    second: {fileID: 2100000, guid: 65fd8eb4b179b4b44a8d7cacb81a300b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0111Mat
+    second: {fileID: 2100000, guid: 57fb23756daa14369b69a54148bcb87a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0112Mat
+    second: {fileID: 2100000, guid: 7db80b0ce3966489382f02d1ab578145, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0113Mat
+    second: {fileID: 2100000, guid: d616d8b54bf4743eb9fc5939618b415b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0114Mat
+    second: {fileID: 2100000, guid: ba7ba8e42f17c4029a5540089c9f3b0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0115Mat
+    second: {fileID: 2100000, guid: e9a947f0e5d2b4333952e88ea4d96f98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0116Mat
+    second: {fileID: 2100000, guid: 77281d3ffbbd9448597f87312f3a2992, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0117Mat
+    second: {fileID: 2100000, guid: 75650daa317e7436582865b72be873f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0118Mat
+    second: {fileID: 2100000, guid: 18e33d02a116c4274aa97c90ddfbd2fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0119Mat
+    second: {fileID: 2100000, guid: 33ba7458be1ac4324b30592db3a696cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0120Mat
+    second: {fileID: 2100000, guid: 31da5f3099c2644348764bd9e809f665, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0121Mat
+    second: {fileID: 2100000, guid: 3473bc2a79c2345daa5bdab3b8bb963c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0122Mat
+    second: {fileID: 2100000, guid: e6466e3f9bd654669bce3d5d689396b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0123Mat
+    second: {fileID: 2100000, guid: f45a025d55c0c44228a1800f1bfafbf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0124Mat
+    second: {fileID: 2100000, guid: 2c5e45ed4f5df430d9cd7c1f50012885, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0125Mat
+    second: {fileID: 2100000, guid: 004014a1aad7c4f128ff549f0552fd54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0126Mat
+    second: {fileID: 2100000, guid: a4eaf53fbad2a4a73957205f6ac1a65d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0127Mat
+    second: {fileID: 2100000, guid: f94427ba7ac52473b8796ac690528cea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0128Mat
+    second: {fileID: 2100000, guid: d00602c5364754d04a4804e60223e9ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0129Mat
+    second: {fileID: 2100000, guid: f71ccb1b899694fc7a56b4594dd19581, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0130Mat
+    second: {fileID: 2100000, guid: 3d9073db3436b4633901579211a23a36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0131Mat
+    second: {fileID: 2100000, guid: 116d0b7057aff4031b6b71c177b42e48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0132Mat
+    second: {fileID: 2100000, guid: fe2d37cbdb5584ad39d564ec52eb733a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0133Mat
+    second: {fileID: 2100000, guid: 7d4b62139f3fe4796b2e0bbdbec2831f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0134Mat
+    second: {fileID: 2100000, guid: 44723d79880e6410b997ae8e186df0d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0135Mat
+    second: {fileID: 2100000, guid: b8026e09f32bb48f6893a8e251f3eee9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0136Mat
+    second: {fileID: 2100000, guid: 84a79b27e03be47679cc3ff22b724459, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0137Mat
+    second: {fileID: 2100000, guid: d7f272535a16646d7bd6c1af9dfb4f1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0138Mat
+    second: {fileID: 2100000, guid: a0ea39c799b1f41c783128ed11e25ceb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0139Mat
+    second: {fileID: 2100000, guid: b8d5e834e48fa4e6c82062cd1d659c21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0140Mat
+    second: {fileID: 2100000, guid: 7d6525b7b804046188e946abc20dffee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0141Mat
+    second: {fileID: 2100000, guid: ac7b7e9cd191d4ebbabec3247a71217f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0142Mat
+    second: {fileID: 2100000, guid: cfa88e32f6599416d839fe115e6f5698, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0143Mat
+    second: {fileID: 2100000, guid: f4c02c0c9581c4c9184786f68485faef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0144Mat
+    second: {fileID: 2100000, guid: 05e36176fbb31452c8ee1680c3381df0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0145Mat
+    second: {fileID: 2100000, guid: 544c5f02e9490409a8c24227af004f71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0146Mat
+    second: {fileID: 2100000, guid: fc109dbf032f9452c84db1c483fb53d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0147Mat
+    second: {fileID: 2100000, guid: b759cc45655314735aadd331384b5b13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0148Mat
+    second: {fileID: 2100000, guid: 81776c735c49f4688beb73e0365d982e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0149Mat
+    second: {fileID: 2100000, guid: 90c917020aad84a2b947cec38a5da5ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0150Mat
+    second: {fileID: 2100000, guid: 39d6d40b0cb9240aeae45753fdabd1de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0151Mat
+    second: {fileID: 2100000, guid: 706976c8298a9459ba862e8938891fb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0152Mat
+    second: {fileID: 2100000, guid: 6c99e85d1403643ac838ffa194055a37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0153Mat
+    second: {fileID: 2100000, guid: 7eae5229c1a034bfea048334a0c2f272, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0154Mat
+    second: {fileID: 2100000, guid: d846ab1aed4f0443c89bcb94352388ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0155Mat
+    second: {fileID: 2100000, guid: ade9b7919e7da489cba3abd7af05b55b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0156Mat
+    second: {fileID: 2100000, guid: 231521d0fb24a444fb0ef4321b2bbb06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0157Mat
+    second: {fileID: 2100000, guid: 845f69e9b1df141cb97b69e5cce78c9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0158Mat
+    second: {fileID: 2100000, guid: 45cd726ecdad345d1b70c5efe5a38e67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0159Mat
+    second: {fileID: 2100000, guid: 466e38a72306340279cadad14d528e15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0160Mat
+    second: {fileID: 2100000, guid: 776170384e5cf47baa85f0a005b2f48e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0161Mat
+    second: {fileID: 2100000, guid: d2a46e95dbda04c75be9c4150808e2f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0162Mat
+    second: {fileID: 2100000, guid: c717079ac0d864e7f98196dbeb89cab6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0163Mat
+    second: {fileID: 2100000, guid: 464be4cb569814df88dcefa51a1d47cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0164Mat
+    second: {fileID: 2100000, guid: 1279746472bed464fa258fb986aa243c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0165Mat
+    second: {fileID: 2100000, guid: bf0365d916ca84e14a95037027c20c29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Grass_0166Mat
+    second: {fileID: 2100000, guid: 321531d877bd24b36ab8037fd3f5e2b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_PLane_big_grass_01Mat
+    second: {fileID: 2100000, guid: 805d6d8fd36474992add4c628802c325, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0100Mat
+    second: {fileID: 2100000, guid: 111ded129baa54f5a93320e5d40913fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0101Mat
+    second: {fileID: 2100000, guid: 5d9204acebe2744b1a7e52770a2bf616, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0102Mat
+    second: {fileID: 2100000, guid: 3720755782983422b9d38b29b29b4fb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0103Mat
+    second: {fileID: 2100000, guid: 92c28c2bba0d34de0b441c03f2799389, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0104Mat
+    second: {fileID: 2100000, guid: 292b80f31429c4bb5968bb9df3d09fef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0105Mat
+    second: {fileID: 2100000, guid: f30e756c1ec854bf3b4d8c5a6d23a271, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0106Mat
+    second: {fileID: 2100000, guid: 7a33ad1a8c5f44d979fff6160ab82690, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0107Mat
+    second: {fileID: 2100000, guid: 8a786a4e4ae5b4c1f8152f5d845b49b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0108Mat
+    second: {fileID: 2100000, guid: 689612dd808fb4a0f9c983fa01a63061, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0109Mat
+    second: {fileID: 2100000, guid: 1243690ff33354c158ff09e82022c314, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0110Mat
+    second: {fileID: 2100000, guid: c5976e141bb354897b55e21f2015dec0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0111Mat
+    second: {fileID: 2100000, guid: 2748c28dcb487459aaddbdeb2b2533cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Side_Plane_Trees_0112Mat
+    second: {fileID: 2100000, guid: 1b8433ec11bd9472eb05decda2b6853e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rock_Left_Side_01Mat
+    second: {fileID: 2100000, guid: 2bf369718dd114c6dbcbae0a6fc3fb98, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
